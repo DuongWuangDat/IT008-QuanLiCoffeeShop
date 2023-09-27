@@ -9,5 +9,8 @@ namespace QuanLiCoffeeShop.View
     internal class placeHolder
     {
         
+
+
+
     }
 }

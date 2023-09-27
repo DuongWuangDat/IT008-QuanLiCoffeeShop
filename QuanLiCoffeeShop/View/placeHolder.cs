@@ -10,5 +10,7 @@ namespace QuanLiCoffeeShop.View
     {
         //test
 
+
+
     }
 }

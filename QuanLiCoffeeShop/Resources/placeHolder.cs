@@ -8,5 +8,8 @@ namespace QuanLiCoffeeShop.Resources
 {
     internal class placeHolder
     {
+
+
+
     }
 }

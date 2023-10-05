@@ -75,7 +75,16 @@
                                    FontSize="14" 
                                    FontWeight="Medium" 
                                    Margin="66.07,9.27,0,6.18"/>
-                            <TextBox Template="{StaticResource TextBoxLogin}"/>
+                            <PasswordBox Width="280" 
+                                         Height="40.09" 
+                                         BorderThickness="0.5" 
+                                         materialDesign:TextFieldAssist.TextFieldCornerRadius="20" 
+                                         VerticalContentAlignment="Center"
+                                         Padding="15,3"
+                                         Background="#F0F0F0"
+                                         FontFamily="Inter" 
+                                         FontSize="12" 
+                                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"/>
                             <TextBlock Text="Quên mật khẩu?" 
                                    FontFamily="Inter" 
                                    FontSize="12" 

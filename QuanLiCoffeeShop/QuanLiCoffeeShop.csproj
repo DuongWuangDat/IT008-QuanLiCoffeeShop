@@ -71,10 +71,12 @@
     <Compile Include="Resources\Image\placeHolder.cs" />
     <Compile Include="Resources\placeHolder.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="View\Admin\Class1.cs" />
     <Compile Include="View\LoginWindow\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\placeHolder.cs" />
+    <Compile Include="View\Staff\Class1.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

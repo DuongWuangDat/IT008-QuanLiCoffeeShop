@@ -149,6 +149,17 @@
   <ItemGroup>
     <Resource Include="Resources\Icon\LogoApp.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icon\Admin_Icon.png" />
+    <Resource Include="Resources\Icon\BackMenu_Icon.png" />
+    <Resource Include="Resources\Icon\Ban_Brown_Icon.png" />
+    <Resource Include="Resources\Icon\KhachHang_Brown_Icon.png" />
+    <Resource Include="Resources\Icon\Menu_Icon.png" />
+    <Resource Include="Resources\Icon\NhanVien_Brown_Icon.png" />
+    <Resource Include="Resources\Icon\SanPham_White_Icon.png" />
+    <Resource Include="Resources\Icon\TaiKhoan_Brown_Icon.png" />
+    <Resource Include="Resources\Icon\ThongKe_Brown_Icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

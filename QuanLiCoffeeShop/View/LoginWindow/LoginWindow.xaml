@@ -89,7 +89,7 @@
                                    FontFamily="Inter" 
                                    FontSize="11" 
                                    FontWeight="Medium" 
-                                   Margin="190.4,6.4,0,2"/>
+                                   Margin="190.4,6.4,0,6.04"/>
                             <Separator Width="189.648" Background="Black"></Separator>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Orientation="Horizontal">
@@ -100,7 +100,7 @@
                                     Background="#E0AE8A"
                                     Content= "Đăng nhập"
                                     Foreground="Black"
-                                    FontSize="13"
+                                    FontSize="10.4"
                                     FontWeight="SemiBold"
                                     BorderThickness="0"
                                     Margin="60,0,18.208,0"
@@ -111,7 +111,7 @@
                                     Background="#D0CCC8"
                                     Content= "Thoát"
                                     Foreground="Black"
-                                    FontSize="13"
+                                    FontSize="10.4"
                                     FontWeight="SemiBold"
                                     BorderThickness="0" Click="Button_Click"
                             />

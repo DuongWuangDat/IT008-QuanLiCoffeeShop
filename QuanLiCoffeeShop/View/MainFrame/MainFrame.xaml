@@ -5,19 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:QuanLiCoffeeShop.View.MainFrame"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920">
+        mc:Ignorable="d" 
+        d:DesignHeight="864" d:DesignWidth="1536"
+        Title="MainFrame"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="18"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="White"
+        FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
         <materialDesign:ColorZone
-    Mode="PrimaryLight"
-    Padding="16" Background="#FFF2E9">
+            Mode="PrimaryLight"
+            Padding="13" Background="#FFF2E9" Grid.ColumnSpan="3" Height="53">
             <StackPanel
-        Orientation="Horizontal">
-                <Button Margin="12 0 0 0" x:Name="Menu_btn">
+                Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal">
+
+                </StackPanel>
+                <Button 
+                    Margin="10 0 0 0"
+                    Cursor="Hand">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
                     <Button.Content>
                         <Image 
-                    Source="/QuanLiCoffeeShop;component/Resources/Icon/Menu_Icon.png"
-                    Width="33"/>
+                            Source="/QuanLiCoffeeShop;component/Resources/Icon/Menu_Icon.png"
+                            Width="27"/>
                     </Button.Content>
                     <Button.Style>
                         <Style TargetType="Button">
@@ -29,23 +49,33 @@
                 </Button>
 
                 <TextBlock
-                FontSize="22"
-                VerticalAlignment="Center"
-                Margin="16 0 0 0" Foreground="#FFE0AE8A" FontWeight="Bold">
+                    FontSize="20"
+                    VerticalAlignment="Center"
+                    Margin="13 0 0 0" Foreground="#FFE0AE8A" FontWeight="Bold">
                 Coffee Shop
                 </TextBlock>
+
                 <TextBlock
-            FontSize="22"
-            VerticalAlignment="Center"
-            Margin="1500 0 0 0" Foreground="#FFE0AE8A" FontWeight="Bold">                    
-            Administrator
+                    FontSize="20"
+                    VerticalAlignment="Center"
+                    Margin="1170 0 0 0" Foreground="#FFE0AE8A" FontWeight="Bold">                    
+                    Administrator
                 </TextBlock>
 
-                <Button Margin="12 0 0 0">
+                <Button 
+                    Margin="13 0 0 0"
+                    Cursor="Hand">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}">
+                                <ContentPresenter/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
                     <Button.Content>
                         <Image
-                    Source="/QuanLiCoffeeShop;component/Resources/Icon/Admin_Icon.png"                                                        
-                    Width="33"/>
+                            Source="/QuanLiCoffeeShop;component/Resources/Icon/Admin_Icon.png"                                                        
+                            Width="27"/>
                     </Button.Content>
                     <Button.Style>
                         <Style TargetType="Button">
@@ -56,6 +86,7 @@
                     </Button.Style>
                 </Button>
             </StackPanel>
+
         </materialDesign:ColorZone>
     </Grid>
 </Window>

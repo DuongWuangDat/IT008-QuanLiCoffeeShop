@@ -24,6 +24,8 @@
                             <Setter Property="Foreground"
                                 Value="White" />
                         </Style.Setters>
+
+                        
                     </Style>
                     <Style TargetType="materialDesign:PackIcon">
                         <Style.Setters>

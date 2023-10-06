@@ -4,12 +4,47 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:QuanLiCoffeeShop.View.Admin"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="1080" d:DesignWidth="1920"
-      Background="White"
-      Title="CustomerPage">
-
+      d:DesignHeight="778.4" d:DesignWidth="1536"
+      
+      Title="CustomerPage"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="White"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+      >
+    
     <Grid>
-        
+        <StackPanel>
+            <StackPanel.Resources>
+                <ControlTemplate x:Key="TextSearchCustomer" TargetType="TextBox">
+                    <Border Width="332"
+                            Height="53.6"
+                            Background="#FFF4F4"
+                            BorderThickness="1"
+                            BorderBrush="Black"
+                            CornerRadius="16">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/QuanLiCoffeeShop;component/Resources/Icon/SearchIconCus.png" 
+                                   Width="20" 
+                                   Height="20" 
+                                   Margin="19.2,0,15.2,0"/>
+                            <TextBox Width="260" Height="40"
+                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                     BorderThickness="0"
+                                     materialDesign:HintAssist.Hint="Tìm Kiếm khách hàng"
+                                     FontSize="17.6"
+                                     VerticalContentAlignment="Center" />
+                        </StackPanel>
+                        
+                    </Border>
+                </ControlTemplate>
+            </StackPanel.Resources>
+            <TextBox Template="{StaticResource TextSearchCustomer}"/>
+        </StackPanel>
     </Grid>
 </Page>

@@ -17,6 +17,7 @@
         >
 
     <Grid
+        HorizontalAlignment="Left"
         Height="864"
         Background="#FFFFFF" 
         Width="220">

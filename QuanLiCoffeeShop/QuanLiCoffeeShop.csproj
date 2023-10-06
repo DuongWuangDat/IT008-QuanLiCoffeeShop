@@ -71,6 +71,9 @@
     <Compile Include="Resources\Image\placeHolder.cs" />
     <Compile Include="Resources\placeHolder.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="View\Admin\CustomerManagement\AddCustomerWindow.xaml.cs">
+      <DependentUpon>AddCustomerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Admin\CustomerManagement\CustomerPage.xaml.cs">
       <DependentUpon>CustomerPage.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,10 @@
       <DependentUpon>MainStaffWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="ResourcesXAML\MainResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\CustomerManagement\AddCustomerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -172,6 +179,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icon\AddCusBtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icon\Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icon\Remove.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />

@@ -15,15 +15,13 @@ using System.Windows.Shapes;
 namespace QuanLiCoffeeShop.View.Admin.CustomerManagement
 {
     /// <summary>
-    /// Interaction logic for AddCustomerWindow.xaml
+    /// Interaction logic for EditCustomerWindow.xaml
     /// </summary>
-    public partial class AddCustomerWindow : Window
+    public partial class EditCustomerWindow : Window
     {
-        public AddCustomerWindow()
+        public EditCustomerWindow()
         {
             InitializeComponent();
         }
-
-        
     }
 }

@@ -40,7 +40,7 @@
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontSize" Value="19.2"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            
+
         </Style>
     </Window.Resources>
     <Grid>
@@ -52,7 +52,7 @@
                         <RowDefinition Height="436.2"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Thêm khách hàng" 
+                    <TextBlock Text="Sửa khách hàng" 
                                FontSize="28.8" 
                                FontWeight="Bold" 
                                Foreground="#CC824D" 
@@ -63,7 +63,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
-                            
+
                         </Grid.ColumnDefinitions>
                         <StackPanel>
                             <TextBlock Style="{DynamicResource TextBlockLogin}" 
@@ -117,7 +117,7 @@
                                 materialDesign:ButtonAssist.CornerRadius="24"
                                 Background="#F0BD70"
                                 BorderThickness="0"
-                                Content="Thêm khách hàng"
+                                Content="Sửa khách hàng"
                                 FontSize="24"
                                 FontWeight="Bold"
                                 VerticalAlignment="Top"

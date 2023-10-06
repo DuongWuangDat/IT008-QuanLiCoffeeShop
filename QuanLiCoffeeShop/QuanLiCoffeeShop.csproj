@@ -71,6 +71,9 @@
     <Compile Include="Resources\Image\placeHolder.cs" />
     <Compile Include="Resources\placeHolder.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="View\Admin\CustomerManagement\CustomerPage.xaml.cs">
+      <DependentUpon>CustomerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Admin\MainAdminWindow.xaml.cs">
       <DependentUpon>MainAdminWindow.xaml</DependentUpon>
     </Compile>
@@ -92,6 +95,10 @@
       <DependentUpon>MainStaffWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="ResourcesXAML\MainResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\CustomerManagement\CustomerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -126,6 +126,8 @@
                                 PlacementMode="BottomAndAlignRightEdges"
                                 StaysOpen="False" 
                                 Foreground="#FFE0AE8A">
+                                
+                                <!--Popup Box-->
                                 <materialDesign:PopupBox.ToggleContent>
                                     <Grid Margin="10 0 0 0">
                                         <Image
@@ -144,7 +146,7 @@
                                                         Cursor="Hand" 
                                                         Orientation="Horizontal">
                                                     <Image 
-                                                            Source="/QuanLiCoffeeShop;component/Resources/Icon/Admin_Icon.png"
+                                                            Source="/QuanLiCoffeeShop;component/Resources/Icon/Setting_Icon.png"
                                                             Width="27"
                                                             Margin="24 0 0 0" />
                                                     <TextBlock 
@@ -166,7 +168,7 @@
                                                         Cursor="Hand" 
                                                         Orientation="Horizontal">
                                                     <Image 
-                                                            Source="/QuanLiCoffeeShop;component/Resources/Icon/Admin_Icon.png"
+                                                            Source="/QuanLiCoffeeShop;component/Resources/Icon/Help_Icon.png"
                                                             Width="27"
                                                             Margin="24 0 0 0" />
                                                     <TextBlock 
@@ -189,7 +191,7 @@
                                                         Cursor="Hand" 
                                                         Orientation="Horizontal">
                                                     <Image 
-                                                            Source="/QuanLiCoffeeShop;component/Resources/Icon/Admin_Icon.png"
+                                                            Source="/QuanLiCoffeeShop;component/Resources/Icon/Logout_Icon.png"
                                                             Width="27"
                                                             Margin="24 0 0 0" />
                                                     <TextBlock 

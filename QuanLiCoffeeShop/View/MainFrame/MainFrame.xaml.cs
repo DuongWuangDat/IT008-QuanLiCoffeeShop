@@ -23,5 +23,6 @@ namespace QuanLiCoffeeShop.View.MainFrame
         {
             InitializeComponent();
         }
+
     }
 }

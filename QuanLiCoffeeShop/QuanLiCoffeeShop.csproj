@@ -77,6 +77,9 @@
     <Compile Include="View\Admin\CustomerManagement\CustomerPage.xaml.cs">
       <DependentUpon>CustomerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Admin\CustomerManagement\EditCustomerWindow.xaml.cs">
+      <DependentUpon>EditCustomerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Admin\MainAdminWindow.xaml.cs">
       <DependentUpon>MainAdminWindow.xaml</DependentUpon>
     </Compile>
@@ -106,6 +109,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Admin\CustomerManagement\CustomerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\CustomerManagement\EditCustomerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -18,8 +18,8 @@ namespace QuanLiCoffeeShop.View.SanPhamCard
     /// <summary>
     /// Interaction logic for SanPhamCard.xaml
     /// </summary>
-    public partial class SanPhamCard : UserControl
-    {
+    public partial class SanPhamCard : Page
+    { 
         public SanPhamCard()
         {
             InitializeComponent();

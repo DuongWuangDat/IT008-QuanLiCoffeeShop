@@ -135,25 +135,73 @@
                                     </Grid>
                                 </materialDesign:PopupBox.ToggleContent>
                                 <StackPanel Width="200">
-                                    <Button 
-                                        Foreground="#FFE0AE8A"
-                                        Cursor="Hand"
-                                        >
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image
-                                                Source="/QuanLiCoffeeShop;component/Resources/Icon/Setting_Icon.png"                                                        
-                                                Width="27"
-                                            />
-                                            <TextBlock FontSize="18">Tàikhoản</TextBlock>
-                                        </StackPanel>
+                                    <Button
+                                        Height="50">
+                                        <Button.Template>
+                                            <ControlTemplate 
+                                                TargetType="Button">
+                                                <StackPanel 
+                                                        Cursor="Hand" 
+                                                        Orientation="Horizontal">
+                                                    <Image 
+                                                            Source="/QuanLiCoffeeShop;component/Resources/Icon/Admin_Icon.png"
+                                                            Width="27"
+                                                            Margin="24 0 0 0" />
+                                                    <TextBlock 
+                                                            Text="Tài khoản"
+                                                            FontSize="18"
+                                                            VerticalAlignment="Center"
+                                                            Margin="13,0,0,0"
+                                                            Foreground="#E0AE8A" />
+                                                </StackPanel>
+                                            </ControlTemplate>
+                                        </Button.Template>
                                     </Button>
-                                    <Button Content="Giúp đỡ" 
-                                        Foreground="#FFE0AE8A"
-                                        Cursor="Hand"></Button>
+                                    <Button
+                                        Height="50">
+                                        <Button.Template>
+                                            <ControlTemplate 
+                                                TargetType="Button">
+                                                <StackPanel 
+                                                        Cursor="Hand" 
+                                                        Orientation="Horizontal">
+                                                    <Image 
+                                                            Source="/QuanLiCoffeeShop;component/Resources/Icon/Admin_Icon.png"
+                                                            Width="27"
+                                                            Margin="24 0 0 0" />
+                                                    <TextBlock 
+                                                            Text="Trợ giúp"
+                                                            FontSize="18"
+                                                            VerticalAlignment="Center"
+                                                            Margin="13,0,0,0"
+                                                            Foreground="#E0AE8A" />
+                                                </StackPanel>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
                                     <Separator></Separator>
-                                    <Button Content="Đăng xuất"
-                                        Cursor="Hand"
-                                        Foreground="#FFE0AE8A"></Button>
+                                    <Button
+                                        Height="50">
+                                        <Button.Template>
+                                            <ControlTemplate 
+                                                TargetType="Button">
+                                                <StackPanel 
+                                                        Cursor="Hand" 
+                                                        Orientation="Horizontal">
+                                                    <Image 
+                                                            Source="/QuanLiCoffeeShop;component/Resources/Icon/Admin_Icon.png"
+                                                            Width="27"
+                                                            Margin="24 0 0 0" />
+                                                    <TextBlock 
+                                                            Text="Đăng xuất"
+                                                            FontSize="18"
+                                                            VerticalAlignment="Center"
+                                                            Margin="13,0,0,0"
+                                                            Foreground="#E0AE8A" />
+                                                </StackPanel>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>                                    
                                 </StackPanel>
                             </materialDesign:PopupBox>
                         </StackPanel>

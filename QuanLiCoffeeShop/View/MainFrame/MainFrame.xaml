@@ -15,78 +15,337 @@
         TextOptions.TextRenderingMode="Auto"
         Background="White"
         FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Resources>
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="FrameworkElenment.Width" Storyboard.TargetName="MenuBar">
+                
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
     <Grid>
-        <materialDesign:ColorZone
-            Mode="PrimaryLight"
-            Padding="13" Background="#FFF2E9" Grid.ColumnSpan="3" Height="53">
-            <StackPanel
-                Orientation="Horizontal">
-                <StackPanel Orientation="Horizontal">
+        
+        <Grid>
+            <materialDesign:ColorZone
+                Mode="PrimaryLight"
+                Padding="13" 
+                Background="#FFF2E9" 
+                Height="53">
+                    <StackPanel
+                        Orientation="Horizontal">
+                        <!--OpenMenu_btn-->
+                        <Button
+                            x:Name="OpenMenu_btn"
+                            Margin="10 0 0 0"
+                            Cursor="Hand">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Content>
+                                <Image 
+                                Source="/QuanLiCoffeeShop;component/Resources/Icon/Menu_Icon.png"
+                                Width="27"/>
+                            </Button.Content>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="{x:Null}" />
+                                    <Setter Property="BorderBrush" Value="{x:Null}" />
+                                    <Setter Property="Foreground" Value="{x:Null}" />
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <TextBlock
+                        FontSize="20"
+                        VerticalAlignment="Center"
+                        Margin="13 0 0 0" Foreground="#FFE0AE8A" FontWeight="Bold">
+                        Coffee Shop
+                    </TextBlock>
 
-                </StackPanel>
-                <Button 
-                    Margin="10 0 0 0"
-                    Cursor="Hand">
+                        <!--Admin_btn-->
+                        <StackPanel
+                            Orientation="Horizontal">
+                            <TextBlock
+                                 FontSize="20"
+                                 VerticalAlignment="Center"
+                                 Margin="1170 0 0 0" Foreground="#FFE0AE8A" FontWeight="Bold">                    
+                                 Administrator
+                            </TextBlock>
+                            <materialDesign:PopupBox
+                                HorizontalAlignment="Right"
+                                Margin="0"
+                                PlacementMode="BottomAndAlignRightEdges"
+                                StaysOpen="False" 
+                                Foreground="#FFE0AE8A">
+                                <materialDesign:PopupBox.ToggleContent>
+                                    <Grid Margin="10 0 0 0">
+                                        <Image
+                                            Source="/QuanLiCoffeeShop;component/Resources/Icon/Admin_Icon.png"                                                        
+                                            Width="27"
+                                            />
+                                    </Grid>
+                                </materialDesign:PopupBox.ToggleContent>
+                                <StackPanel Width="120"
+                                            >
+                                    <Button Content="Tài khoản" 
+                                            Foreground="#FFE0AE8A"
+                                            Cursor="Hand"
+                                            ></Button>
+                                    <Button Content="Giúp đỡ" 
+                                            Foreground="#FFE0AE8A"
+                                            Cursor="Hand"></Button>
+                                    <Separator></Separator>
+                                    <Button Content="Đăng xuất"
+                                            Cursor="Hand"
+                                            Foreground="#FFE0AE8A"></Button>
+                                </StackPanel>
+                            </materialDesign:PopupBox>
+                        </StackPanel>
+
+                    </StackPanel>
+
+            </materialDesign:ColorZone>
+        </Grid>
+        
+        <Grid
+            x:Name="MenuBar"
+            HorizontalAlignment="Left"
+            Height="864"
+            Background="#FFFFFF" 
+            Width="220">
+            <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="Button"
+                       BasedOn="{StaticResource MaterialDesignFlatAccentBgButton}">
+                        <Style.Setters>
+                            <Setter Property="Foreground"
+                                Value="White" />
+                        </Style.Setters>
+
+
+                    </Style>
+                    <Style TargetType="materialDesign:PackIcon">
+                        <Style.Setters>
+                            <Setter Property="Foreground"
+                                Value="White" />
+                        </Style.Setters>
+                    </Style>
+                </StackPanel.Resources>
+
+                <Grid Height="64">
+                    <StackPanel
+                         Cursor="Hand"
+                         HorizontalAlignment="Right"
+                         Orientation="Horizontal" Margin="0,0,0,8">
+                        <TextBlock
+                            FontSize="20"
+                            VerticalAlignment="Center"
+                            Margin="0 0 12 0" Foreground="#FFE0AE8A" FontWeight="Bold">
+                            Coffee Shop
+                        </TextBlock>
+                        <!--CloseMenu_btn-->
+                        <Button
+                            x:Name="CloseMenu_btn"
+                            Padding="0"
+                            Background="{x:Null}" 
+                            BorderBrush="{x:Null}" 
+                            Foreground="{x:Null}"
+                            Margin="0 0 24 0"
+                            Visibility="Collapsed"
+                            >
+                            <Image 
+                               Source="/QuanLiCoffeeShop;component/Resources/Icon/BackMenu_Icon.png"
+                               Width="27"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+
+                <!--SanPham-Menu_btn-->
+                <Button
+                    Height="58"
+                    Command="{Binding LoadSanPhamPage}" 
+                    CommandParameter="{Binding ElementName=MainFrame}">
                     <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}">
-                                <ContentPresenter/>
+                        <ControlTemplate 
+                            TargetType="Button">
+                            <Border 
+                                Height="58" 
+                                CornerRadius="16" 
+                                Background="#FFE0AE8A">
+                                <StackPanel 
+                                    Cursor="Hand" 
+                                    Orientation="Horizontal">
+                                    <Image 
+                                        Source="/QuanLiCoffeeShop;component/Resources/Icon/SanPham_White_Icon.png"
+                                        Width="27"
+                                        Margin="24 0 0 0" />
+                                    <TextBlock 
+                                        Text="Sản phẩm"
+                                        FontSize="18"
+                                        VerticalAlignment="Center"
+                                        Margin="13,0,0,0"
+                                        Foreground="White" />
+                                </StackPanel>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
-                    <Button.Content>
-                        <Image 
-                            Source="/QuanLiCoffeeShop;component/Resources/Icon/Menu_Icon.png"
-                            Width="27"/>
-                    </Button.Content>
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="{x:Null}" />
-                            <Setter Property="BorderBrush" Value="{x:Null}" />
-                            <Setter Property="Foreground" Value="{x:Null}" />
-                        </Style>
-                    </Button.Style>
                 </Button>
 
-                <TextBlock
-                    FontSize="20"
-                    VerticalAlignment="Center"
-                    Margin="13 0 0 0" Foreground="#FFE0AE8A" FontWeight="Bold">
-                Coffee Shop
-                </TextBlock>
-
-                <TextBlock
-                    FontSize="20"
-                    VerticalAlignment="Center"
-                    Margin="1170 0 0 0" Foreground="#FFE0AE8A" FontWeight="Bold">                    
-                    Administrator
-                </TextBlock>
-
-                <Button 
-                    Margin="13 0 0 0"
-                    Cursor="Hand">
+                <!--NhanVien-Menu_btn-->
+                <Button
+                    Height="58"
+                    Command="{Binding LoadNhanVienPage}" 
+                    CommandParameter="{Binding ElementName=MainFrame}">
                     <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}">
-                                <ContentPresenter/>
+                        <ControlTemplate 
+                            TargetType="Button">
+                            <Border 
+                                Height="58" 
+                                CornerRadius="16">
+                                <StackPanel 
+                                    Cursor="Hand" 
+                                    Orientation="Horizontal">
+                                    <Image 
+                                        Source="/QuanLiCoffeeShop;component/Resources/Icon/NhanVien_Brown_Icon.png"
+                                        Width="27"
+                                        Margin="24 0 0 0" />
+                                    <TextBlock 
+                                        Text="Nhân viên"
+                                        FontSize="18"
+                                        VerticalAlignment="Center"
+                                        Margin="13,0,0,0"
+                                        Foreground="#FFE0AE8A" />
+                                </StackPanel>
                             </Border>
                         </ControlTemplate>
                     </Button.Template>
-                    <Button.Content>
-                        <Image
-                            Source="/QuanLiCoffeeShop;component/Resources/Icon/Admin_Icon.png"                                                        
-                            Width="27"/>
-                    </Button.Content>
-                    <Button.Style>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="{x:Null}" />
-                            <Setter Property="BorderBrush" Value="{x:Null}" />
-                            <Setter Property="Foreground" Value="{x:Null}" />
-                        </Style>
-                    </Button.Style>
                 </Button>
+
+                <!--Ban-Menu_btn-->
+                <Button
+                    Height="58"
+                    Command="{Binding LoadMenuPage}" 
+                    CommandParameter="{Binding ElementName=MainFrame}">
+                    <Button.Template>
+                        <ControlTemplate 
+                            TargetType="Button">
+                            <Border 
+                                Height="58" 
+                                CornerRadius="16">
+                                <StackPanel 
+                                    Cursor="Hand" 
+                                    Orientation="Horizontal">
+                                    <Image 
+                                        Source="/QuanLiCoffeeShop;component/Resources/Icon/Ban_Brown_Icon.png"
+                                        Width="27"
+                                        Margin="24 0 0 0" />
+                                    <TextBlock 
+                                        Text="Bàn"
+                                        FontSize="18"
+                                        VerticalAlignment="Center"
+                                        Margin="13,0,0,0"
+                                        Foreground="#FFE0AE8A" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!--KhachHang-Menu_btn-->
+                <Button
+                    Height="58"
+                    Command="{Binding LoadKhachHangPage}" 
+                    CommandParameter="{Binding ElementName=MainFrame}">
+                    <Button.Template>
+                        <ControlTemplate 
+                            TargetType="Button">
+                            <Border 
+                                Height="58" 
+                                CornerRadius="16">
+                                <StackPanel 
+                                    Cursor="Hand" 
+                                    Orientation="Horizontal">
+                                    <Image 
+                                        Source="/QuanLiCoffeeShop;component/Resources/Icon/KhachHang_Brown_Icon.png"
+                                        Width="27"
+                                        Margin="24 0 0 0" />
+                                    <TextBlock 
+                                        Text="Khách hàng"
+                                        FontSize="18"
+                                        VerticalAlignment="Center"
+                                        Margin="13,0,0,0"
+                                        Foreground="#FFE0AE8A" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!--ThongKe-Menu_btn-->
+                <Button
+                        Height="58"
+                        Command="{Binding LoadThongKePage}" 
+                        CommandParameter="{Binding ElementName=MainFrame}">
+                    <Button.Template>
+                        <ControlTemplate 
+                                TargetType="Button">
+                            <Border 
+                                    Height="58" 
+                                    CornerRadius="16">
+                                <StackPanel 
+                                        Cursor="Hand" 
+                                        Orientation="Horizontal">
+                                    <Image 
+                                            Source="/QuanLiCoffeeShop;component/Resources/Icon/ThongKe_Brown_Icon.png"
+                                            Width="27"
+                                            Margin="24 0 0 0" />
+                                    <TextBlock 
+                                            Text="Thống kê"
+                                            FontSize="18"
+                                            VerticalAlignment="Center"
+                                            Margin="13,0,0,0"
+                                            Foreground="#FFE0AE8A" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!--TaiKhoan-Menu_btn-->
+                <Button
+                    Height="58"
+                    Command="{Binding LoadNhanVienPage}" 
+                    CommandParameter="{Binding ElementName=MainFrame}">
+                    <Button.Template>
+                        <ControlTemplate 
+                            TargetType="Button">
+                            <Border 
+                                Height="58" 
+                                CornerRadius="16">
+                                <StackPanel 
+                                    Cursor="Hand" 
+                                    Orientation="Horizontal">
+                                    <Image 
+                                        Source="/QuanLiCoffeeShop;component/Resources/Icon/TaiKhoan_Brown_Icon.png"
+                                        Width="27"
+                                        Margin="24 0 0 0" />
+                                    <TextBlock 
+                                        Text="Tài khoản"
+                                        FontSize="18"
+                                        VerticalAlignment="Center"
+                                        Margin="13,0,0,0"
+                                        Foreground="#FFE0AE8A" />
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
             </StackPanel>
-
-        </materialDesign:ColorZone>
+        </Grid>
     </Grid>
+    
+    
 </Window>

@@ -23,5 +23,10 @@ namespace QuanLiCoffeeShop.View.MenuBar
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -94,7 +94,7 @@
                 <Button
                     Height="73"
                     Command="{Binding LoadNhanVienPage}" 
-                    CommandParameter="{Binding ElementName=MainFrame}">
+                    CommandParameter="{Binding ElementName=MainFrame}" Click="Button_Click">
                     <Button.Template>
                         <ControlTemplate 
                             TargetType="Button">

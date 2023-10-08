@@ -10,24 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.Table
+namespace QuanLiCoffeeShop.View.Table.TablePage
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for Page_table.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class Page_table : Page
     {
-        public Window1()
+        public Page_table()
         {
             InitializeComponent();
         }
-
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            if (textBox.Text ==textBox.Tag.ToString())
+            if (textBox.Text == textBox.Tag.ToString())
             {
                 textBox.Text = "";
             }
@@ -42,5 +42,4 @@ namespace QuanLiCoffeeShop.View.Table
             }
         }
     }
-    
 }

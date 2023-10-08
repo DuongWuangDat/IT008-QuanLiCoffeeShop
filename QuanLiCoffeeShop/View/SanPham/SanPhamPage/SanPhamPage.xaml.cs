@@ -24,5 +24,6 @@ namespace QuanLiCoffeeShop.View.SanPham.SanPhamPage
         {
             InitializeComponent();
         }
+
     }
 }

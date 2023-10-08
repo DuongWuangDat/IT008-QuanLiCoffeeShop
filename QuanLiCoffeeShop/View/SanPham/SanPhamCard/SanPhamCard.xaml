@@ -21,6 +21,8 @@
             CornerRadius="15" 
             BorderBrush="#E0AE8A" 
             BorderThickness="2,2,2,2"          
+            Height="216"
+            Width="164"
             >
         <Grid 
             Height="216"

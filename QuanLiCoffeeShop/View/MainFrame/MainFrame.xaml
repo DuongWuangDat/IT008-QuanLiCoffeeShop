@@ -77,7 +77,7 @@
                     Mode="PrimaryLight"
                     Padding="13" 
                     Background="#FFF2E9" 
-                    Height="53">
+                    Height="64">
                     <StackPanel
                     Orientation="Horizontal">
                         <!--OpenMenu_btn-->

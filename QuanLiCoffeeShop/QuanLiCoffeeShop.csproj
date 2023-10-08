@@ -96,8 +96,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\SanPhamCard\SanPhamCard.xaml.cs">
+    <Compile Include="View\SanPham\SanPhamCard\SanPhamCard.xaml.cs">
       <DependentUpon>SanPhamCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SanPham\SanPhamPage\SanPhamPage.xaml.cs">
+      <DependentUpon>SanPhamPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Staff\MainStaffWindow.xaml.cs">
       <DependentUpon>MainStaffWindow.xaml</DependentUpon>
@@ -130,7 +133,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SanPhamCard\SanPhamCard.xaml">
+    <Page Include="View\SanPham\SanPhamCard\SanPhamCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SanPham\SanPhamPage\SanPhamPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,6 +226,7 @@
   <ItemGroup>
     <Resource Include="Resources\Image\None_Img.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

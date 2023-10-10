@@ -69,7 +69,7 @@
                 <Button
                     Height="58"
                     Command="{Binding LoadSanPhamPage}" 
-                    CommandParameter="{Binding ElementName=MainFrame}">
+                    CommandParameter="{Binding ElementName=MainFrame}" Click="Button_Click_1">
                     <Button.Template>
                         <ControlTemplate 
                             TargetType="Button">

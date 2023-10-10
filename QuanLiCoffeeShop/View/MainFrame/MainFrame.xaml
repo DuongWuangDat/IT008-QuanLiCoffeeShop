@@ -11,6 +11,7 @@
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="18"
+        TextElement.FontFamily="Roboto Condensed"
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="White"
@@ -76,7 +77,7 @@
                     Mode="PrimaryLight"
                     Padding="13" 
                     Background="#FFF2E9" 
-                    Height="53">
+                    Height="64">
                     <StackPanel
                     Orientation="Horizontal">
                         <!--OpenMenu_btn-->

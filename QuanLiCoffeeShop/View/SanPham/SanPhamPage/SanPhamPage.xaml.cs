@@ -13,16 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.SanPhamCard
+namespace QuanLiCoffeeShop.View.SanPham.SanPhamPage
 {
     /// <summary>
-    /// Interaction logic for SanPhamCard.xaml
+    /// Interaction logic for SanPhamPage.xaml
     /// </summary>
-    public partial class SanPhamCard : UserControl
+    public partial class SanPhamPage : Page
     {
-        public SanPhamCard()
+        public SanPhamPage()
         {
             InitializeComponent();
         }
+
     }
 }

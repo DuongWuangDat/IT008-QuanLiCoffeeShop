@@ -6,7 +6,7 @@
              StartupUri="View/MenuBar/MenuBar.xaml">
 =======
 
-             StartupUri="View/MainFrame/MainFrame.xaml">
+             StartupUri="View/SanPham/SanPhamPage/SanPhamPage.xaml">
 
 >>>>>>> bb0ccaa3c1dc69d48e043db39c2ee015e807c273
     <Application.Resources>

@@ -2,7 +2,13 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:QuanLiCoffeeShop"
+<<<<<<< HEAD
              StartupUri="View/MenuBar/MenuBar.xaml">
+=======
+
+             StartupUri="View/MainFrame/MainFrame.xaml">
+
+>>>>>>> bb0ccaa3c1dc69d48e043db39c2ee015e807c273
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

@@ -1,14 +1,14 @@
-﻿<Page x:Class="QuanLiCoffeeShop.View.Table.TablePage.Page_table"
+﻿<Page x:Class="QuanLiCoffeeShop.View.Admin.Table.Table_page_main.Page_main"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:QuanLiCoffeeShop.View.Table.TablePage"
-       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:QuanLiCoffeeShop.View.Admin.Table.Table_page_main"
       mc:Ignorable="d" 
-      Background="White"
-      d:DesignHeight="811" d:DesignWidth="1536"
-      Title="Page_table">
+      d:DesignHeight="800" d:DesignWidth="1536"
+      Title="Page_main">
+
     <Grid Background="#FFFFFF" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="280"></ColumnDefinition>
@@ -19,10 +19,10 @@
                 <StackPanel>
                     <StackPanel.Resources>
                         <Style TargetType="Button"
-         BasedOn="{StaticResource MaterialDesignFlatAccentBgButton}">
+      BasedOn="{StaticResource MaterialDesignFlatAccentBgButton}">
                             <Style.Setters>
                                 <Setter Property="Foreground"
-                  Value="White" />
+               Value="White" />
                             </Style.Setters>
 
 
@@ -30,7 +30,7 @@
                         <Style TargetType="materialDesign:PackIcon">
                             <Style.Setters>
                                 <Setter Property="Foreground"
-                  Value="White" />
+               Value="White" />
                             </Style.Setters>
                         </Style>
 

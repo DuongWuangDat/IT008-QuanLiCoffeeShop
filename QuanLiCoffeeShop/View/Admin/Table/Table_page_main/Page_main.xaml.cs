@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.Table.TablePage
+namespace QuanLiCoffeeShop.View.Admin.Table.Table_page_main
 {
     /// <summary>
-    /// Interaction logic for Page_table.xaml
+    /// Interaction logic for Page_main.xaml
     /// </summary>
-    public partial class Page_table : Page
+    public partial class Page_main : Page
     {
-        public Page_table()
+        public Page_main()
         {
             InitializeComponent();
         }

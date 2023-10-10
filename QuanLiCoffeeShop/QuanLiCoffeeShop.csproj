@@ -82,6 +82,12 @@
     <Compile Include="View\Admin\MainAdminWindow.xaml.cs">
       <DependentUpon>MainAdminWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Admin\SanPham\SanPhamCard.xaml.cs">
+      <DependentUpon>SanPhamCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\SanPham\SanPhamPage.xaml.cs">
+      <DependentUpon>SanPhamPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginWindow\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -95,12 +101,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="View\SanPham\SanPhamCard\SanPhamCard.xaml.cs">
-      <DependentUpon>SanPhamCard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SanPham\SanPhamPage\SanPhamPage.xaml.cs">
-      <DependentUpon>SanPhamPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Staff\MainStaffWindow.xaml.cs">
       <DependentUpon>MainStaffWindow.xaml</DependentUpon>
@@ -121,6 +121,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Admin\SanPham\SanPhamCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\SanPham\SanPhamPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LoginWindow\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,14 +138,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MenuBar\MenuBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\SanPham\SanPhamCard\SanPhamCard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\SanPham\SanPhamPage\SanPhamPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

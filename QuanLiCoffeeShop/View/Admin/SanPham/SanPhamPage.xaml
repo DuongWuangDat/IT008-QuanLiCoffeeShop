@@ -20,7 +20,6 @@
         Margin="10"
         Grid.Column="0">
             <StackPanel Margin="10 20 10 20">
-                <!--List danh muc san pham-->
                 <StackPanel>
 
                     <!--Add SanPham btn-->
@@ -97,207 +96,182 @@
                     </Border>
 
                     <!--List danh mục-->
-                    <StackPanel
-                    Margin="0 14 0 0">
-                        <Border
-                        Width="180"
-                        Height="46"
-                        Background="#FFF4F4"
-                        CornerRadius="16"
-                        >
-                            <Button
-                            Background="{x:Null}" 
-                            BorderBrush="{x:Null}" 
-                            Foreground="{x:Null}"
-                            Width="180"
-                            Height="46"
-                            Padding="0"  
-                            HorizontalContentAlignment="Left"
-                            >
-                                <TextBlock
-                                FontFamily="Roboto Condensed"
-                                FontSize="17"
-                                Foreground="#E0AE8A"
-                                FontWeight="DemiBold"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Left"
-                                Margin="40 0 0 0"
-                                >
-                                Tất cả
-                                </TextBlock>
+                    <ListBox Name="categoryListBox" 
+                             SelectedValue="{Binding SelectedCategory}">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Padding" Value="0" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border 
+                                    Width="180" 
+                                    Height="46" 
+                                    Background="{Binding Background}">
+                                    <Button 
+                                        Content="{Binding Name}" 
+                                        Style="{StaticResource 
+                                        CategoryButtonStyle}" 
+                                        Click="Category_Button_Click"/>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
 
-                            </Button>
-                        </Border>
-
-                        <Border
-                        Width="180"
-                        Height="46"
-                        Background="#FFFFFF"
-                        CornerRadius="16"
-                        HorizontalAlignment="Center"
-                        
-                        >
-                            <Button
-                            Background="{x:Null}" 
-                            BorderBrush="{x:Null}" 
-                            Foreground="{x:Null}"
-                            Width="180"
-                            Height="46"
-                            Padding="0"
-                            VerticalAlignment="Center"
-                            HorizontalContentAlignment="Left"
-                            >
-                                <TextBlock
-                                FontFamily="Roboto Condensed"
-                                FontSize="17"
-                                Foreground="#E0AE8A"
-                                FontWeight="DemiBold"
-                                VerticalAlignment="Center"
-                                Margin="40 0 0 0"
-                                >
-                                Coffee
-                                </TextBlock>
-
-                            </Button>
-                        </Border>
-                        <Border
-                        Width="180"
-                        Height="46"
-                        Background="#FFFFFF"
-                        CornerRadius="16"
-                        HorizontalAlignment="Center"
-                        
-                        >
-                            <Button
-                            Background="{x:Null}" 
-                            BorderBrush="{x:Null}" 
-                            Foreground="{x:Null}"
-                            Width="180"
-                            Height="46"
-                            Padding="0"
-                            VerticalAlignment="Center"
-                            HorizontalContentAlignment="Left"
-                            >
-                                <TextBlock
-                                FontFamily="Roboto Condensed"
-                                FontSize="17"
-                                Foreground="#E0AE8A"
-                                FontWeight="DemiBold"
-                                VerticalAlignment="Center"
-                                Margin="40 0 0 0"
-                                >
-                                Freeze
-                                </TextBlock>
-
-                            </Button>
-                        </Border>
-                        <Border
-                        Width="180"
-                        Height="46"
-                        Background="#FFFFFF"
-                        CornerRadius="16"
-                        HorizontalAlignment="Center"
-                        
-                        >
-                            <Button
-                            Background="{x:Null}" 
-                            BorderBrush="{x:Null}" 
-                            Foreground="{x:Null}"
-                            Width="180"
-                            Height="46"
-                            Padding="0"
-                            VerticalAlignment="Center"
-                            HorizontalContentAlignment="Left"
-                            >
-                                <TextBlock
-                                FontFamily="Roboto Condensed"
-                                FontSize="17"
-                                Foreground="#E0AE8A"
-                                FontWeight="DemiBold"
-                                VerticalAlignment="Center"
-                                Margin="40 0 0 0"
-                                >
-                                Đồ ăn
-                                </TextBlock>
-
-                            </Button>
-                        </Border>
-                        <Border
-                        Width="180"
-                        Height="46"
-                        Background="#FFFFFF"
-                        CornerRadius="16"
-                        HorizontalAlignment="Center"
-                        
-                        >
-                            <Button
-                            Background="{x:Null}" 
-                            BorderBrush="{x:Null}" 
-                            Foreground="{x:Null}"
-                            Width="180"
-                            Height="46"
-                            Padding="0"
-                            VerticalAlignment="Center"
-                            HorizontalContentAlignment="Left"
-                            >
-                                <TextBlock
-                                FontFamily="Roboto Condensed"
-                                FontSize="17"
-                                Foreground="#E0AE8A"
-                                FontWeight="DemiBold"
-                                VerticalAlignment="Center"
-                                Margin="40 0 0 0"
-                                >
-                                Trà
-                                </TextBlock>
-
-                            </Button>
-                        </Border>
-
-
-                    </StackPanel>
 
                 </StackPanel>
             </StackPanel>
         </Grid>
 
         <!--Hien thi cac san pham-->
-        <ScrollViewer 
-            Margin="0 20 20 40"
-            Grid.Column="1">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-            </Grid>
-        </ScrollViewer>
-        <Grid 
-        Margin="0 20 20 40"
-        Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-        </Grid>
+        <ScrollViewer
+            Margin="10 20 15 30"
+            Height="728"
+            Grid.Column="1"
+            VerticalScrollBarVisibility="Auto"
+            PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
+            VerticalAlignment="Top">
+            <ListBox 
+                ItemsSource="{Binding SanPhamList}"
+                x:Name="listBox"
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                VerticalAlignment="Top"
+                materialDesign:ListBoxItemAssist.ShowSelection="False"
+                materialDesign:ListBoxAssist.IsToggle="False">
+                <ListBox.ItemContainerStyle>
+                    <Style
+                        TargetType="ListBoxItem"
+                        BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                       
+                        <Style.Triggers>
+                            <Trigger 
+                                Property="IsMouseOver"
+                                Value="True">
+                                <Setter Property="IsSelected"
+                                        Value="True" />
+                                <Setter Property="Background"
+                                        Value="#FFD0EAF6" />
+                            </Trigger>
+                        </Style.Triggers>
+                        
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius"
+                                Value="10" />
+                                <Setter Property="Width"
+                                Value="300" />
+                                <Setter Property="Padding"
+                                Value="0" />
+                                <Setter Property="Margin"
+                                Value="0" />
+                            </Style>
+                        </Style.Resources>
+                        <Setter Property="Padding"
+                        Value="0" />
+                        <Setter Property="Margin"
+                        Value="5 5 6 5" />
+                        <Setter Property="materialDesign:ListBoxItemAssist.ShowSelection"
+                        Value="False" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="6" Rows="3" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            Background="White"
+                            CornerRadius="15" 
+                            BorderBrush="#E0AE8A" 
+                            BorderThickness="2,2,2,2"          
+                            Height="216"
+                            Width="164"
+                            >
+                            <Grid 
+                                Height="216"
+                                Width="164">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="146"></RowDefinition>
+                                    <RowDefinition Height="35"></RowDefinition>
+                                    <RowDefinition Height="35"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Image 
+                                    Grid.Row="0"
+                                    Source="{Binding Image}"
+                                    Height="126"
+                                    Margin="-4,10,0,10"
+                />
+                                <TextBlock
+                                    Text="{Binding TenSP}"
+                                    FontFamily="Poppins"
+                                    FontWeight="Bold"
+                                    Grid.Row="1"              
+                                    Margin="10 0 0 0"
+                                    FontSize="16"
+                                    VerticalAlignment="Top"
+                                    HorizontalAlignment="Left"
+                                    >
+                                </TextBlock>
+                                <DockPanel                
+                                    Margin="10 0 10 5"
+                                    Grid.Row="2"
+                                    LastChildFill="False"
+                                    >
+                                    <TextBlock
+                                        x:Name="PriceSP"
+                                        Text="{Binding PriceSp}"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Left"
+                                        FontFamily="Poppins"
+                                        FontWeight="Bold"
+                                        FontSize="13"
+                                        Foreground="#EA6A12"></TextBlock>
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Left"
+                                        FontFamily="Poppins"
+                                        FontWeight="Bold"
+                                        FontSize="13"
+                                        Foreground="#EA6A12"
+                                        Margin="1 0 0 0"                   
+                                        >đ</TextBlock>
+                                    <StackPanel
+                                        DockPanel.Dock="Right"
+                                        Orientation="Horizontal"
+                                        >
+                                        <Button 
+                                            Background="{x:Null}" 
+                                            BorderBrush="{x:Null}" 
+                                            Foreground="{x:Null}" Width="30"
+                                            Padding="0"
+                                            VerticalAlignment="Center">
+                                            <Image
+                                                Source="/QuanLiCoffeeShop;component/Resources/Icon/ChangeBrown_Icon.png"
+                                                Width="22"></Image>
+                                        </Button>
+                                        <Button 
+                                            Background="{x:Null}" 
+                                            BorderBrush="{x:Null}" 
+                                            Foreground="{x:Null}" Width="30"
+                                            Padding="0"
+                                            VerticalAlignment="Center">
+                                            <Image
+                                                Source="/QuanLiCoffeeShop;component/Resources/Icon/DeleteBlue_Icon.png"
+                                                Width="22"></Image>
+                                        </Button>
 
+                                    </StackPanel>
+
+                                </DockPanel>
+                            </Grid>
+
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
     </Grid>
 </Page>

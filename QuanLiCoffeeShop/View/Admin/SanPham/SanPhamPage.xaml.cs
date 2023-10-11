@@ -24,5 +24,17 @@ namespace QuanLiCoffeeShop.View.Admin.SanPham
         {
             InitializeComponent();
         }
+
+        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer scv = (ScrollViewer)sender;
+            scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
+            e.Handled = true;
+        }
+
+        private void Category_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

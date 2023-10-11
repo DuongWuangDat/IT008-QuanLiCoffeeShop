@@ -41,5 +41,10 @@ namespace QuanLiCoffeeShop.View.Admin.Table.Table_page_main
 
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

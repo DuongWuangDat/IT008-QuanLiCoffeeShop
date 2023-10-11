@@ -109,6 +109,7 @@
         <Grid Grid.Column="1"  >
             <!--nơi để các bàn-->
         </Grid>
+        <Popup  x:Name="infoPopup" IsOpen="False" AllowsTransparency="True" PopupAnimation="Fade"></Popup>
 
     </Grid>
 </Page>

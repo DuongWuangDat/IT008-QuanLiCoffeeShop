@@ -3,14 +3,64 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:QuanLiCoffeeShop.View.Admin.Table.Table_card"
              mc:Ignorable="d" 
-             Background="White"
-             d:DesignHeight="216" d:DesignWidth="164">
-    <Border BorderThickness="1.5" BorderBrush="#E0AE8A" CornerRadius="15">
-        <Grid >
+             Background="White">
+    <Grid>
 
-        </Grid>
-    </Border>
+        <Border   Height="216" Width="164" BorderThickness="1.5" BorderBrush="#E0AE8A" CornerRadius="15">
+                <StackPanel>
+                    <Button Width="120" Height="120" Margin="0,5,0,0">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Image Width="90.4" Height="92" Source= "/QuanLiCoffeeShop;component/Resources/Image/table.png"  ></Image>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <TextBlock Text="Bàn 1" HorizontalAlignment="Center" FontSize="16"></TextBlock>
+                    <TextBlock Text="Đã đặt" HorizontalAlignment="Center" FontSize="8.8" Foreground="#FF3DFF3D"></TextBlock>
+                    <Grid Margin="0,10,0,0">
+                        <!--button_add_table-->
+                        <Button Margin="55,0,83,0" Height="23" Width="23" Background="White">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Border CornerRadius="100" Background="White" Height="23" Width="23">
+                                        <Image Source="/QuanLiCoffeeShop;component/Resources/Icon/ChangeBrown_Icon.png"></Image>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <!--button_deltete-->
+
+                        </Button>
+                        <Button Height="23" Width="23" Background="White" Margin="83,0,55,0" VerticalAlignment="Center">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Border CornerRadius="100" Background="White" Height="23" Width="23">
+                                        <Image Source="/QuanLiCoffeeShop;component/Resources/Icon/DeleteBlue_Icon.png"></Image>
+                                    </Border>
+
+                                </ControlTemplate>
+                            </Button.Template>
+
+                        </Button>
+
+                    </Grid>
+
+                </StackPanel>
+            </Border>
+
+        <Popup  Placement="Center" x:Name="infoPopup" IsOpen="True" AllowsTransparency="True" PopupAnimation="Fade" >
+                <Border Height="370" Width="460" Background="White" CornerRadius="20" BorderBrush="#E0AE8A" BorderThickness="1" >
+                <StackPanel></StackPanel>
+                
+            </Border>
+        </Popup>
+        
+        
+
+    </Grid>
+   
+   
 </UserControl>

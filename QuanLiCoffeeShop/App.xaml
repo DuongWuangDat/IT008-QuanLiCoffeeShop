@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:QuanLiCoffeeShop"
 
-             StartupUri="View/Admin/Table/Table_page_main/Page_main.xaml">
+             StartupUri="View/Admin/Table/Table_card/card_table.xaml">
 
     <Application.Resources>
         <ResourceDictionary>

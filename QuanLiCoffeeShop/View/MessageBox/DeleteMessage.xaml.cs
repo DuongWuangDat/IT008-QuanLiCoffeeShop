@@ -9,26 +9,24 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.MainFrame
+namespace QuanLiCoffeeShop.View.MessageBox
 {
     /// <summary>
-    /// Interaction logic for MainFrame.xaml
+    /// Interaction logic for DeleteMessage.xaml
     /// </summary>
-    public partial class MainFrame : Window
+    public partial class DeleteMessage : Window
     {
-        public MainFrame()
+        public DeleteMessage()
         {
             InitializeComponent();
         }
 
-        private void Overlay_MouseDown(object sender, MouseButtonEventArgs e)
+        private void No_btn_Click(object sender, RoutedEventArgs e)
         {
-
-            BeginStoryboard((Storyboard)Resources["MenuClose"]);
+            Window.GetWindow(this).Close();
         }
     }
 }

@@ -9,26 +9,20 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.MainFrame
+namespace QuanLiCoffeeShop.View.Admin.SanPham
 {
     /// <summary>
-    /// Interaction logic for MainFrame.xaml
+    /// Interaction logic for SanPhamCard.xaml
     /// </summary>
-    public partial class MainFrame : Window
+    public partial class SanPhamCard : UserControl
     {
-        public MainFrame()
+        public SanPhamCard()
         {
             InitializeComponent();
-        }
-
-        private void Overlay_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-            BeginStoryboard((Storyboard)Resources["MenuClose"]);
         }
     }
 }

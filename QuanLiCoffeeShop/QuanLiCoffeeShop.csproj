@@ -85,6 +85,9 @@
     <Compile Include="View\Admin\SanPham\AddSanPham.xaml.cs">
       <DependentUpon>AddSanPham.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Admin\SanPham\EditSanPham.xaml.cs">
+      <DependentUpon>EditSanPham.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Admin\SanPham\SanPhamCard.xaml.cs">
       <DependentUpon>SanPhamCard.xaml</DependentUpon>
     </Compile>
@@ -99,6 +102,9 @@
     </Compile>
     <Compile Include="View\MenuBar\MenuBar.xaml.cs">
       <DependentUpon>MenuBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MessageBox\DeleteMessage.xaml.cs">
+      <DependentUpon>DeleteMessage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\placeHolder.cs" />
     <Compile Include="App.xaml.cs">
@@ -128,6 +134,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Admin\SanPham\EditSanPham.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Admin\SanPham\SanPhamCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -145,6 +155,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MenuBar\MenuBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MessageBox\DeleteMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -235,6 +249,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icon\Upload_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icon\Warning_Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />

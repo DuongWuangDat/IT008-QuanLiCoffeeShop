@@ -63,8 +63,8 @@
             <Grid>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="293*"/>
-                        <ColumnDefinition Width="307*"/>
+                        <ColumnDefinition Width="289*"/>
+                        <ColumnDefinition Width="311*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="77"/>
@@ -117,6 +117,7 @@
                                     Text="Hình ảnh" 
                                     Margin="40.8,34.6,0,10"/>
                                 <Button
+                                    Click="AddImage_btn_Click"  
                                     Padding="0"
                                     Width="25"
                                     Height="25"

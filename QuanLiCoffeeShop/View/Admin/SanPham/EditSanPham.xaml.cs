@@ -10,29 +10,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 
 namespace QuanLiCoffeeShop.View.Admin.SanPham
 {
     /// <summary>
-    /// Interaction logic for AddSanPham.xaml
+    /// Interaction logic for EditSanPham.xaml
     /// </summary>
-    public partial class AddSanPham : Window
+    public partial class EditSanPham : Window
     {
         public ImageSource ImageSource { get; set; }
-        public AddSanPham()
+        public EditSanPham()
         {
             InitializeComponent();
             DataContext = this;
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Window.GetWindow(this).Close();
-        }
-
         private void AddImage_btn_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -42,6 +35,10 @@ namespace QuanLiCoffeeShop.View.Admin.SanPham
             {
                 ImageSource = new BitmapImage(new Uri(openFileDialog.FileName));
             }
+        }
+        private void BoQua_btn_Click(object obj, RoutedEventArgs e)
+        {
+            Window.GetWindow(this).Close();
         }
     }
 }

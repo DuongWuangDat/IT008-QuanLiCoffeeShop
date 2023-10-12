@@ -1,5 +1,6 @@
 ﻿using QuanLiCoffeeShop.Model;
 using QuanLiCoffeeShop.View.Admin;
+using QuanLiCoffeeShop.View.Staff;
 using QuanLiCoffeeShop.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -59,8 +60,18 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
             if(accCount > 0)
             {
                 p.Visibility = Visibility.Collapsed;
-                MainAdminWindow ad = new MainAdminWindow();
-                ad.Show();
+                Staff staff = DataProvider.Ins.DB.Staff.Where(x => x.UserName == Username && x.PassWord == Password).FirstOrDefault();
+                if(staff.Role == "Quản lí")
+                {
+                    MainAdminWindow ad = new MainAdminWindow();
+                    ad.Show();
+                }
+                else
+                {
+                    MainStaffWindow st = new MainStaffWindow();
+                    st.Show();
+                }
+                
             }
             else
             {

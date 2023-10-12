@@ -102,6 +102,53 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+                    <!--popup thêm bàn-->
+                    <Popup  Placement="Left" x:Name="addPopup" IsOpen="False" AllowsTransparency="True" PopupAnimation="Fade" >
+                        <Border Height="355" Width="347" Background="White" CornerRadius="20" BorderBrush="#E0AE8A" BorderThickness="1" >
+                            <StackPanel>
+
+                                <TextBlock FontSize="29" Margin="0,16,0,0" HorizontalAlignment="Center" Text="Thêm bàn"  Foreground="#CC824D"  FontWeight="Bold"></TextBlock>
+
+                                <TextBlock Text="Tên bàn" FontWeight="Bold" Margin="35,20,0,10" FontSize="19"></TextBlock>
+
+                                <Border  Height="50" Width="287" BorderThickness="1.5" BorderBrush="#FFE0AE8A" CornerRadius="16"     Background="#FFF4F4" >
+                                    <!--them_ten_ban-->
+                                    <TextBox  BorderBrush="#FFF4F4" TextDecorations="None" Width="250"   FontSize="18"       VerticalAlignment="Center"         Margin="13,0,0,0"      Foreground="Black" />
+
+                                </Border>
+
+                                <TextBlock Text="Ghi chú" FontWeight="Bold" Margin="35,20,0,10" FontSize="19"></TextBlock>
+
+                                <Border  Height="50" Width="287" BorderThickness="1.5" BorderBrush="#FFE0AE8A" CornerRadius="16"     Background="#FFF4F4" >
+                                    <!--them_ghi_chu-->
+                                    <TextBox  BorderBrush="#FFF4F4" TextDecorations="None" Width="250"   FontSize="18"       VerticalAlignment="Center"         Margin="13,0,0,0"      Foreground="Black" />
+
+                                </Border>
+                                <!--btn_them-->
+                                <Grid Margin="0,20,0,0">
+                                    <Button Height="48" Width="97" HorizontalAlignment="Left" Margin="35,0,0,0">
+                                        <Button.Template>
+                                            <ControlTemplate >
+                                                <Border      CornerRadius="24"     Background="#F0BD70">
+                                                    <TextBlock   Text="Thêm"  FontWeight="Bold"     FontSize="20"     VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"  />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                    <!--btn_dong-->
+                                    <Button Height="48" Width="97" HorizontalAlignment="Right" Margin="0,0,35,0"  >
+                                        <Button.Template>
+                                            <ControlTemplate >
+                                                <Border      CornerRadius="24"     Background="#FFC3BDB9">
+                                                    <TextBlock   Text="Đóng"  FontWeight="Bold"     FontSize="20"       VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"  />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </Popup>
 
                 </StackPanel>
             </Border>

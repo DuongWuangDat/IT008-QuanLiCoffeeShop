@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.Admin.Table.Table_page_main
+namespace QuanLiCoffeeShop.View.Admin.Problem.Problem_page_main
 {
     /// <summary>
     /// Interaction logic for Page_main.xaml

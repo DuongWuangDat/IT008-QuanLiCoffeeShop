@@ -94,6 +94,12 @@
     <Compile Include="View\Admin\SanPham\SanPhamPage.xaml.cs">
       <DependentUpon>SanPhamPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Admin\ThongKe\LichSuBan\ChiTietHoaDon.xaml.cs">
+      <DependentUpon>ChiTietHoaDon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ThongKe\ThongKeMainPage.xaml.cs">
+      <DependentUpon>ThongKeMainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginWindow\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -143,6 +149,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Admin\SanPham\SanPhamPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\ThongKe\LichSuBan\ChiTietHoaDon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\ThongKe\ThongKeMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -252,6 +266,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icon\Warning_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icon\Info_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\Admin\ThongKe\DoanhThu\" />
+    <Folder Include="View\Admin\ThongKe\MonUaThich\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />

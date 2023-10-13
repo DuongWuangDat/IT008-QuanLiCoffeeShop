@@ -34,6 +34,5 @@ namespace QuanLiCoffeeShop.Model
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Seat> Seat { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

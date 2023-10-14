@@ -8,8 +8,6 @@ namespace QuanLiCoffeeShop.View
 {
     internal class placeHolder
     {
-        //test
-        //test3
 
 
 

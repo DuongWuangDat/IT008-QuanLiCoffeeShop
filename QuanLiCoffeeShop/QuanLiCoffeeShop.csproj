@@ -124,7 +124,6 @@
     </Compile>
     <Compile Include="Resources\Icon\placeHolder.cs" />
     <Compile Include="Resources\Image\placeHolder.cs" />
-    <Compile Include="Resources\placeHolder.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="View\Admin\CustomerManagement\AddCustomerWindow.xaml.cs">
       <DependentUpon>AddCustomerWindow.xaml</DependentUpon>
@@ -138,6 +137,10 @@
     <Compile Include="View\Admin\MainAdminWindow.xaml.cs">
       <DependentUpon>MainAdminWindow.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+    <Compile Include="View\Admin\StaffManagement\StaffPage.xaml.cs">
+      <DependentUpon>StaffPage.xaml</DependentUpon>
+=======
     <Compile Include="View\Admin\SanPham\AddSanPham.xaml.cs">
       <DependentUpon>AddSanPham.xaml</DependentUpon>
     </Compile>
@@ -164,6 +167,7 @@
     </Compile>
     <Compile Include="View\Admin\ThongKe\ThongKeMainPage.xaml.cs">
       <DependentUpon>ThongKeMainPage.xaml</DependentUpon>
+>>>>>>> 24e1710d87c01296abe49bc6b19dcdae030fb336
     </Compile>
     <Compile Include="View\LoginWindow\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -205,6 +209,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
+    <Page Include="View\Admin\StaffManagement\StaffPage.xaml">
+=======
     <Page Include="View\Admin\SanPham\AddSanPham.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -238,6 +245,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Admin\ThongKe\ThongKeMainPage.xaml">
+>>>>>>> 24e1710d87c01296abe49bc6b19dcdae030fb336
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

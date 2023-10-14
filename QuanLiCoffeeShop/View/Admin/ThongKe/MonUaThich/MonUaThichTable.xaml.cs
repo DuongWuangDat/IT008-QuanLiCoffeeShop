@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.SanPham.SanPhamPage
+namespace QuanLiCoffeeShop.View.Admin.ThongKe.MonUaThich
 {
     /// <summary>
-    /// Interaction logic for SanPhamPage.xaml
+    /// Interaction logic for MonUaThichTable.xaml
     /// </summary>
-    public partial class SanPhamPage : Page
+    public partial class MonUaThichTable : Page
     {
-        public SanPhamPage()
+        public MonUaThichTable()
         {
             InitializeComponent();
         }
-
     }
 }

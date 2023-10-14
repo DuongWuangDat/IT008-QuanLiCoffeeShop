@@ -37,6 +37,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=2.1.4.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.2.1.4\lib\net462\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -47,7 +53,10 @@
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -68,7 +77,51 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\placeHolder.cs" />
+    <Compile Include="Model\Bill.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\BillInfo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Customer.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Error.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GenreProduct.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\GenreSeat.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Product.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Seat.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Staff.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Icon\placeHolder.cs" />
     <Compile Include="Resources\Image\placeHolder.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -78,11 +131,43 @@
     <Compile Include="View\Admin\CustomerManagement\CustomerPage.xaml.cs">
       <DependentUpon>CustomerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Admin\CustomerManagement\EditCustomerWindow.xaml.cs">
+      <DependentUpon>EditCustomerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Admin\MainAdminWindow.xaml.cs">
       <DependentUpon>MainAdminWindow.xaml</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="View\Admin\StaffManagement\StaffPage.xaml.cs">
       <DependentUpon>StaffPage.xaml</DependentUpon>
+=======
+    <Compile Include="View\Admin\SanPham\AddSanPham.xaml.cs">
+      <DependentUpon>AddSanPham.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\SanPham\EditSanPham.xaml.cs">
+      <DependentUpon>EditSanPham.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\SanPham\SanPhamCard.xaml.cs">
+      <DependentUpon>SanPhamCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\SanPham\SanPhamPage.xaml.cs">
+      <DependentUpon>SanPhamPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ThongKe\DoanhThu\DoanhThuTable.xaml.cs">
+      <DependentUpon>DoanhThuTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ThongKe\LichSuBan\ChiTietHoaDon.xaml.cs">
+      <DependentUpon>ChiTietHoaDon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ThongKe\LichSuBan\LichSuTable.xaml.cs">
+      <DependentUpon>LichSuTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ThongKe\MonUaThich\MonUaThichTable.xaml.cs">
+      <DependentUpon>MonUaThichTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ThongKe\ThongKeMainPage.xaml.cs">
+      <DependentUpon>ThongKeMainPage.xaml</DependentUpon>
+>>>>>>> 24e1710d87c01296abe49bc6b19dcdae030fb336
     </Compile>
     <Compile Include="View\LoginWindow\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -93,16 +178,13 @@
     <Compile Include="View\MenuBar\MenuBar.xaml.cs">
       <DependentUpon>MenuBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MessageBox\DeleteMessage.xaml.cs">
+      <DependentUpon>DeleteMessage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\placeHolder.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="View\SanPham\SanPhamCard\SanPhamCard.xaml.cs">
-      <DependentUpon>SanPhamCard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SanPham\SanPhamPage\SanPhamPage.xaml.cs">
-      <DependentUpon>SanPhamPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Staff\MainStaffWindow.xaml.cs">
       <DependentUpon>MainStaffWindow.xaml</DependentUpon>
@@ -119,11 +201,51 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Admin\CustomerManagement\EditCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Admin\MainAdminWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+<<<<<<< HEAD
     <Page Include="View\Admin\StaffManagement\StaffPage.xaml">
+=======
+    <Page Include="View\Admin\SanPham\AddSanPham.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\SanPham\EditSanPham.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\SanPham\SanPhamCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\SanPham\SanPhamPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\ThongKe\DoanhThu\DoanhThuTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\ThongKe\LichSuBan\ChiTietHoaDon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\ThongKe\LichSuBan\LichSuTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\ThongKe\MonUaThich\MonUaThichTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\ThongKe\ThongKeMainPage.xaml">
+>>>>>>> 24e1710d87c01296abe49bc6b19dcdae030fb336
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -139,11 +261,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SanPham\SanPhamCard\SanPhamCard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\SanPham\SanPhamPage\SanPhamPage.xaml">
+    <Page Include="View\MessageBox\DeleteMessage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,6 +288,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Model\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -209,6 +334,21 @@
     <Resource Include="Resources\Icon\Remove.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Model\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Resources\Icon\ChangeBrown_Icon.png" />
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +371,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Image\None_Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icon\Upload_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icon\Warning_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icon\Info_Icon.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

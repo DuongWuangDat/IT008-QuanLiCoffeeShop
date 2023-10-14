@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -137,36 +137,6 @@
     <Compile Include="View\Admin\MainAdminWindow.xaml.cs">
       <DependentUpon>MainAdminWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Admin\StaffManagement\StaffPage.xaml.cs">
-      <DependentUpon>StaffPage.xaml</DependentUpon>
-    <Compile Include="View\Admin\SanPham\AddSanPham.xaml.cs">
-      <DependentUpon>AddSanPham.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Admin\SanPham\EditSanPham.xaml.cs">
-      <DependentUpon>EditSanPham.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Admin\SanPham\SanPhamCard.xaml.cs">
-      <DependentUpon>SanPhamCard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Admin\SanPham\SanPhamPage.xaml.cs">
-      <DependentUpon>SanPhamPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Admin\ThongKe\DoanhThu\DoanhThuTable.xaml.cs">
-      <DependentUpon>DoanhThuTable.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Admin\ThongKe\LichSuBan\ChiTietHoaDon.xaml.cs">
-      <DependentUpon>ChiTietHoaDon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Admin\ThongKe\LichSuBan\LichSuTable.xaml.cs">
-      <DependentUpon>LichSuTable.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Admin\ThongKe\MonUaThich\MonUaThichTable.xaml.cs">
-      <DependentUpon>MonUaThichTable.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Admin\ThongKe\ThongKeMainPage.xaml.cs">
-      <DependentUpon>ThongKeMainPage.xaml</DependentUpon>
->>>>>>> 24e1710d87c01296abe49bc6b19dcdae030fb336
-    </Compile>
     <Compile Include="View\LoginWindow\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -204,46 +174,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Admin\MainAdminWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-<<<<<<< HEAD
-    <Page Include="View\Admin\StaffManagement\StaffPage.xaml">
-=======
-    <Page Include="View\Admin\SanPham\AddSanPham.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Admin\SanPham\EditSanPham.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Admin\SanPham\SanPhamCard.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Admin\SanPham\SanPhamPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Admin\ThongKe\DoanhThu\DoanhThuTable.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Admin\ThongKe\LichSuBan\ChiTietHoaDon.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Admin\ThongKe\LichSuBan\LichSuTable.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Admin\ThongKe\MonUaThich\MonUaThichTable.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Admin\ThongKe\ThongKeMainPage.xaml">
->>>>>>> 24e1710d87c01296abe49bc6b19dcdae030fb336
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

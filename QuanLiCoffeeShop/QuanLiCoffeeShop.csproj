@@ -55,13 +55,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
-
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -153,8 +150,17 @@
     <Compile Include="View\Admin\SanPham\SanPhamPage.xaml.cs">
       <DependentUpon>SanPhamPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Admin\ThongKe\DoanhThu\DoanhThuTable.xaml.cs">
+      <DependentUpon>DoanhThuTable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Admin\ThongKe\LichSuBan\ChiTietHoaDon.xaml.cs">
       <DependentUpon>ChiTietHoaDon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ThongKe\LichSuBan\LichSuTable.xaml.cs">
+      <DependentUpon>LichSuTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\ThongKe\MonUaThich\MonUaThichTable.xaml.cs">
+      <DependentUpon>MonUaThichTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Admin\ThongKe\ThongKeMainPage.xaml.cs">
       <DependentUpon>ThongKeMainPage.xaml</DependentUpon>
@@ -215,7 +221,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Admin\ThongKe\DoanhThu\DoanhThuTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Admin\ThongKe\LichSuBan\ChiTietHoaDon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\ThongKe\LichSuBan\LichSuTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\ThongKe\MonUaThich\MonUaThichTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -308,7 +326,6 @@
     <Resource Include="Resources\Icon\Remove.png" />
   </ItemGroup>
   <ItemGroup>
-
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -352,15 +369,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icon\Warning_Icon.png" />
-
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icon\Info_Icon.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\Admin\ThongKe\DoanhThu\" />
-    <Folder Include="View\Admin\ThongKe\MonUaThich\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

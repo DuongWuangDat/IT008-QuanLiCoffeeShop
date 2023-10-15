@@ -54,15 +54,11 @@
                             <Image    Source="/QuanLiCoffeeShop;component/Resources/Icon/SearchIconCus.png"        Width="25" Height="30"      Margin="24 0 0 0" />
                             <TextBox  BorderBrush="#FFF4F4" TextDecorations="None" Width="130" Tag="Tìm kiếm" Text="Tìm kiếm"    FontSize="18"       VerticalAlignment="Center"         Margin="13,0,0,0"      Foreground="Black" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"  />
                         </StackPanel>
-                    </Border>
-
-
-
+                    </Border> 
                 </StackPanel>
             </Border>
         </Grid>
         <Grid Grid.Column="1" >
-            
             <Border  Margin="10,15,20,15" BorderBrush="#E6B89F" BorderThickness="25" CornerRadius="50">
                 <StackPanel>
                     <!--thanah ngang đầu bảng-->
@@ -117,7 +113,6 @@
 
                                     </ControlTemplate>
                                 </Button.Template>
-
                             </Button>
                         </WrapPanel>
                     </Border>
@@ -160,10 +155,8 @@
                             </Button>
                         </WrapPanel>
                     </Border>
-
                 </StackPanel>
             </Border>
-         
         </Grid>
         <!--popup thêm sự cố-->
         <Popup  Placement="Center" x:Name="Popup_bao_cao_su_co" IsOpen="False" AllowsTransparency="True" PopupAnimation="Fade" >
@@ -226,6 +219,72 @@
                 </StackPanel>
             </Border>
         </Popup>
+        <Popup  Placement="Center" x:Name="Popup_sua_su_co" IsOpen="False" AllowsTransparency="True" PopupAnimation="Fade" >
+            <Border Height="355" Width="347" Background="White" CornerRadius="20" BorderBrush="#E0AE8A" BorderThickness="1" >
+                <StackPanel>
+                    <TextBlock FontSize="29" Margin="0,16,0,0" HorizontalAlignment="Center" Text="Sửa sự cố"  Foreground="#CC824D"  FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="Trạng thái" FontWeight="Bold" Margin="35,20,0,10" FontSize="19"></TextBlock>
+                    <Border  Height="50" Width="287" BorderThickness="1.5" BorderBrush="#FFE0AE8A" CornerRadius="16"     Background="#FFF4F4" >
+                        <TextBox  BorderBrush="Transparent" TextDecorations="None" Width="250"   FontSize="18"       VerticalAlignment="Center"         Margin="13,0,0,0"      Foreground="Black" Background="{x:Null}" />
+                    </Border>
+                    <TextBlock Text="Ghi chú" FontWeight="Bold" Margin="35,20,0,10" FontSize="19"></TextBlock>
+                    <Border  Height="50" Width="287" BorderThickness="1.5" BorderBrush="#FFE0AE8A" CornerRadius="16"     Background="#FFF4F4" >
+                        <TextBox  BorderBrush="#FFF4F4" TextDecorations="None" Width="250"   FontSize="18"       VerticalAlignment="Center"         Margin="13,0,0,0"      Foreground="Black" Background="{x:Null}" />
+                    </Border>
 
+                    <!--btn_sua-->
+                    <Grid Margin="0,20,0,0">
+                        <Button Height="48" Width="97" HorizontalAlignment="Left" Margin="35,0,0,0">
+                            <Button.Template>
+                                <ControlTemplate >
+                                    <Border      CornerRadius="24"     Background="#F0BD70">
+                                        <TextBlock   Text="Sửa"  FontWeight="Bold"     FontSize="20"     VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"  />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <!--btn_close-->
+                        <Button Height="48" Width="97" HorizontalAlignment="Right" Margin="0,0,35,0"  >
+                            <Button.Template>
+                                <ControlTemplate >
+                                    <Border      CornerRadius="24"     Background="#FFC3BDB9">
+                                        <TextBlock   Text="Đóng"  FontWeight="Bold"     FontSize="20"       VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"  />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+
+                </StackPanel>
+            </Border>
+        </Popup>
+<!--popup thông báo xóa-->
+        <Popup  Placement="Center" x:Name="Popup_thong_bao_dong" IsOpen="False" AllowsTransparency="True" PopupAnimation="Fade" >
+            <Border Width="438" Height="196" CornerRadius="25" Background="White"  BorderBrush="#E0AE8A" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock Margin="0,40,0,0" HorizontalAlignment="Center" Text="Bạn có chắc chắn muốn xóa bàn này không?" FontSize="18" FontWeight="Bold" Foreground="#CC824D"></TextBlock>
+                    <Grid Margin="0,40,0,0">
+                        <Button Height="48" Width="97" HorizontalAlignment="Left" Margin="70,0,0,0">
+                            <Button.Template>
+                                <ControlTemplate >
+                                    <Border      CornerRadius="24"     Background="#F0BD70">
+                                        <TextBlock   Text="Có"  FontWeight="Bold"     FontSize="20"     VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"  />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Height="48" Width="97" HorizontalAlignment="Right" Margin="0,0,70,0"  >
+                            <Button.Template>
+                                <ControlTemplate >
+                                    <Border      CornerRadius="24"     Background="#EFD8B4">
+                                        <TextBlock   Text="Không"  FontWeight="Bold"     FontSize="20"       VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"  />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Popup>
     </Grid>
 </Page>

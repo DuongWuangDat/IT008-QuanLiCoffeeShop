@@ -1,4 +1,5 @@
-﻿using QuanLiCoffeeShop.Model;
+﻿using QuanLiCoffeeShop.DTOs;
+using QuanLiCoffeeShop.Model;
 using QuanLiCoffeeShop.View.Admin;
 using QuanLiCoffeeShop.View.Staff;
 using QuanLiCoffeeShop.ViewModel;
@@ -60,7 +61,21 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
             if(accCount > 0)
             {
                 p.Visibility = Visibility.Collapsed;
-                Staff staff = DataProvider.Ins.DB.Staff.Where(x => x.UserName == Username && x.PassWord == Password).FirstOrDefault();
+                StaffDTO staff = (from s in DataProvider.Ins.DB.Staff select new StaffDTO 
+                {   ID = s.ID, 
+                    DisplayName= s.DisplayName, 
+                    BirthDay=s.BirthDay, 
+                    Email= s.Email, 
+                    Gender= s.Gender,
+                    UserName = s.UserName,
+                    PassWord= s.PassWord,
+                    Role = s.Role,
+                    Wage=s.Wage,
+                    IsDeleted=s.IsDeleted,
+                    PhoneNumber=s.PhoneNumber,
+                    Status=s.Status,
+                    StartDate=s.StartDate,
+                }).FirstOrDefault();
                 if(staff.Role == "Quản lí")
                 {
                     MainAdminWindow ad = new MainAdminWindow();

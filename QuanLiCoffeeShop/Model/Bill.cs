@@ -11,7 +11,7 @@ namespace QuanLiCoffeeShop.Model
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class Bill
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,13 +19,13 @@ namespace QuanLiCoffeeShop.Model
         {
             this.BillInfo = new HashSet<BillInfo>();
         }
-
+    
         public int ID { get; set; }
         public Nullable<int> IDCus { get; set; }
         public Nullable<int> IDStaff { get; set; }
         public Nullable<System.DateTime> CreateAt { get; set; }
         public Nullable<decimal> TotalPrice { get; set; }
-
+    
         public virtual Customer Customer { get; set; }
         public virtual Staff Staff { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

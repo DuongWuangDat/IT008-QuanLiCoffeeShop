@@ -10,28 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.MenuBar
+namespace QuanLiCoffeeShop.View.Admin.ThongKe.DoanhThu
 {
     /// <summary>
-    /// Interaction logic for MenuBar.xaml
+    /// Interaction logic for DoanhThuTable.xaml
     /// </summary>
-    public partial class MenuBar : Window
+    public partial class DoanhThuTable : Page
     {
-        public MenuBar()
+        public DoanhThuTable()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

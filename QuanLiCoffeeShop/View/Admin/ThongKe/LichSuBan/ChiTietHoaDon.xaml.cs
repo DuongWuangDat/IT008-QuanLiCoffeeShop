@@ -12,26 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.MenuBar
+namespace QuanLiCoffeeShop.View.Admin.ThongKe.LichSuBan
 {
     /// <summary>
-    /// Interaction logic for MenuBar.xaml
+    /// Interaction logic for ChiTietHoaDon.xaml
     /// </summary>
-    public partial class MenuBar : Window
+    public partial class ChiTietHoaDon : Window
     {
-        public MenuBar()
+        public ChiTietHoaDon()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Close_btn_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
+            Window.GetWindow(this).Close();
         }
     }
 }

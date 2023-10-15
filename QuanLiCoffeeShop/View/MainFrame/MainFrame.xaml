@@ -64,7 +64,7 @@
                 MouseDown="Overlay_MouseDown">
             <Grid>
                 <TextBlock>
-                    
+
                 </TextBlock>
             </Grid>
         </Border>

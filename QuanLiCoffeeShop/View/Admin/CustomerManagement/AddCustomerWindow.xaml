@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuanLiCoffeeShop.View.Admin.CustomerManagement"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        x:Name="AddCusPage"
         mc:Ignorable="d"
         Height="613.6" Width="886.4"
         Title="AddCustomerWindow" 
@@ -14,7 +15,9 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="Transparent"
+        AllowsTransparency="True"
         FontFamily="{DynamicResource MaterialDesignFont}"
+        DataContext="{StaticResource CustomerPageVM}"
         ResizeMode="NoResize"
         WindowStartupLocation="Manual"
         WindowStyle="None">
@@ -111,7 +114,8 @@
                     </Grid>
                     <StackPanel Grid.Row="2"
                                 Orientation="Horizontal">
-                        <Button Width="320.8"
+                        <Button Command="{Binding AddCusListCM}"
+                                Width="320.8"
                                 Height="61.6"
                                 materialDesign:ButtonAssist.CornerRadius="24"
                                 Background="#F0BD70"
@@ -121,7 +125,9 @@
                                 FontWeight="Bold"
                                 VerticalAlignment="Top"
                                 Margin="348.8,0,29.6,0"/>
-                        <Button Width="120"
+                        <Button Command="{Binding CloseWdCM}"
+                                CommandParameter="{Binding ElementName=AddCusPage}"
+                                Width="120"
                                 Height="61.6"
                                 materialDesign:ButtonAssist.CornerRadius="24"
                                 Background="#EFD8B4"

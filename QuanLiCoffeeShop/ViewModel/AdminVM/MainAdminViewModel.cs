@@ -1,4 +1,5 @@
-﻿using QuanLiCoffeeShop.ViewModel;
+﻿using QuanLiCoffeeShop.DTOs;
+using QuanLiCoffeeShop.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM
 {
     public class MainAdminViewModel : BaseViewModel
     {
+        public StaffDTO currentStaff;
     }
 }

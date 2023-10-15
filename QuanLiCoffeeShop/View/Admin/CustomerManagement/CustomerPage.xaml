@@ -4,10 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:QuanLiCoffeeShop.View.Admin"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="778.4" d:DesignWidth="1536"
-      
+      x:Name="customerPage"
       Title="CustomerPage"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
@@ -16,8 +17,13 @@
      TextOptions.TextRenderingMode="Auto"
      Background="White"
      FontFamily="{DynamicResource MaterialDesignFont}"
+      DataContext="{StaticResource CustomerPageVM}"
       >
-    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding FirstLoadCM}" CommandParameter="{Binding ElementName=customerPage}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="106.59"/>
@@ -37,19 +43,31 @@
                                    Width="20" 
                                    Height="20" 
                                    Margin="19.2,0,15.2,0"/>
-                            <TextBox Width="260" Height="40"
+                            <TextBox x:Name="searchBox" 
+                                    Width="260" Height="40"
                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                      BorderThickness="0"
                                      materialDesign:HintAssist.Hint="Tìm Kiếm khách hàng"
                                      FontSize="17.6"
-                                     VerticalContentAlignment="Center" />
+                                     VerticalContentAlignment="Center">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <i:InvokeCommandAction Command="{Binding SearchCustomerCM}" CommandParameter="{Binding ElementName=searchBox}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </TextBox>
+                                    
                         </StackPanel>
 
                     </Border>
                 </ControlTemplate>
             </StackPanel.Resources>
             <TextBox Template="{StaticResource TextSearchCustomer}" Margin="59.2,23.39,19.2,29.6"/>
-            <Button Width="53" Height="53" BorderThickness="0" Margin="0,21.79,0,31.2">
+            <Button Width="53" 
+                    Height="53" 
+                    BorderThickness="0" 
+                    Margin="0,21.79,0,31.2"
+                    Command="{Binding AddCusWdCM}">
                 <Button.Background>
                     <ImageBrush ImageSource="/QuanLiCoffeeShop;component/Resources/Icon/AddCusBtn.png"/>
                 </Button.Background>
@@ -71,7 +89,9 @@
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem"
                                BasedOn="{StaticResource MaterialDesignGridViewItem}">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         </Style>
+                        
                     </ListView.ItemContainerStyle>
                     
                     <ListView.View>
@@ -87,8 +107,9 @@
                                 </GridViewColumn.HeaderContainerStyle>
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Id}"
-                                                   FontSize="18" />
+                                        <TextBlock Text="{Binding ID}"
+                                                   FontSize="17.6"
+                                                   HorizontalAlignment="Center"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -104,8 +125,9 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding DisplayName}"
-                                                   FontSize="18" 
-                                                   Margin="31,0,0,0"/>
+                                                   FontSize="17.6" 
+                                                   HorizontalAlignment="Center"
+                                                  />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -121,7 +143,8 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding PhoneNumber}"
-                                                   FontSize="18" 
+                                                   FontSize="17.6" 
+                                                   HorizontalAlignment="Center"
                                                    />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -139,7 +162,8 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Email}"
-                                                   FontSize="18" />
+                                                   FontSize="17.6"
+                                                   HorizontalAlignment="Center"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
 
@@ -156,7 +180,8 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Spend}"
-                                                   FontSize="18" />
+                                                   FontSize="17.6"
+                                                   HorizontalAlignment="Center"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -172,7 +197,8 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Description}"
-                                                   FontSize="18" />
+                                                   FontSize="17.6"
+                                                   HorizontalAlignment="Center"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                                 
@@ -181,14 +207,14 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Button Width="24.8" Height="24.8">
+                                            <Button Width="24.8" Height="24.8"  Margin="0,0,0,0" BorderThickness="0">
                                                 <Button.Background>
                                                     <ImageBrush ImageSource="/QuanLiCoffeeShop;component/Resources/Icon/Edit.png"/>
                                                 </Button.Background>
                                             </Button>
-                                            <Button Width="24.8" Height="24.8" Margin="12,0,0,0">
+                                            <Button Width="24.8" Height="24.8" Margin="12,0,0,0" BorderThickness="0">
                                                 <Button.Background>
-                                                    <ImageBrush ImageSource="/QuanLiCoffeeShop;component/Resources/Icon/Edit.png"/>
+                                                    <ImageBrush ImageSource="/QuanLiCoffeeShop;component/Resources/Icon/Remove.png"/>
                                                 </Button.Background>
                                             </Button>
                                         </StackPanel>

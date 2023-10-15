@@ -228,6 +228,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Admin\StaffManagemet\Template\DataGridHeaderStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\Admin\ThongKe\DoanhThu\DoanhThuTable.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

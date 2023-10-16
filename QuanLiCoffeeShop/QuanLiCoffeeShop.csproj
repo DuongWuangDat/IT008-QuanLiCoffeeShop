@@ -256,7 +256,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Admin\StaffManagemet\StaffPage.xaml">
+    <Page Include="View\Admin\StaffManagement\StaffPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -387,7 +387,6 @@
     <Resource Include="Resources\Icon\Log_Out_Caution.png" />
     <Resource Include="Resources\Icon\Delete_Caution.png" />
     <Resource Include="Resources\Icon\Magnifying_Glass.png" />
-
     <Resource Include="Resources\Icon\Add_NoBackground.png" />
     <Resource Include="Resources\Icon\Remove_NoBackground.png" />
 

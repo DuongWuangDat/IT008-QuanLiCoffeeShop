@@ -28,5 +28,6 @@ namespace QuanLiCoffeeShop.View.MessageBox
         {
             Window.GetWindow(this).Close();
         }
+
     }
 }

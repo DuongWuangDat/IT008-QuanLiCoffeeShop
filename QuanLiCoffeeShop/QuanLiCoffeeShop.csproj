@@ -132,6 +132,12 @@
     <Compile Include="Model\Seat.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Service\BillService.cs" />
+    <Compile Include="Model\Service\CustomerService.cs" />
+    <Compile Include="Model\Service\ErrorService.cs" />
+    <Compile Include="Model\Service\ProductService.cs" />
+    <Compile Include="Model\Service\SeatService.cs" />
+    <Compile Include="Model\Service\StaffService.cs" />
     <Compile Include="Model\Staff.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -166,7 +172,10 @@
     <Compile Include="View\Admin\SanPham\SanPhamPage.xaml.cs">
       <DependentUpon>SanPhamPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Admin\StaffManagemet\StaffPage.xaml.cs">
+    <Compile Include="View\MessageBox\ConfirmDelete.xaml.cs">
+      <DependentUpon>ConfirmDelete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\StaffManagement\StaffPage.xaml.cs">
       <DependentUpon>StaffPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Admin\ThongKe\DoanhThu\DoanhThuTable.xaml.cs">
@@ -192,6 +201,9 @@
     </Compile>
     <Compile Include="View\MenuBar\MenuBar.xaml.cs">
       <DependentUpon>MenuBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MessageBox\ConfirmLogOut.xaml.cs">
+      <DependentUpon>ConfirmLogOut.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MessageBox\DeleteMessage.xaml.cs">
       <DependentUpon>DeleteMessage.xaml</DependentUpon>
@@ -240,11 +252,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Admin\StaffManagemet\StaffPage.xaml">
+    <Page Include="View\MessageBox\ConfirmDelete.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Admin\StaffManagement\StaffPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Admin\StaffManagemet\Template\DataGridHeaderStyle.xaml">
+    <Page Include="View\Admin\StaffManagement\Template\DataGridHeaderStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -277,6 +293,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MenuBar\MenuBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MessageBox\ConfirmLogOut.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -363,6 +383,9 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Icon\Log_Out_Caution.png" />
+    <Resource Include="Resources\Icon\Delete_Caution.png" />
+    <Resource Include="Resources\Icon\Magnifying_Glass.png" />
     <Resource Include="Resources\Icon\Add_NoBackground.png" />
     <Resource Include="Resources\Icon\Remove_NoBackground.png" />
   </ItemGroup>

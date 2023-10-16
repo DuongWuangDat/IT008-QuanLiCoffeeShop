@@ -1,4 +1,5 @@
 ﻿using QuanLiCoffeeShop.DTOs;
+using QuanLiCoffeeShop.Model;
 using QuanLiCoffeeShop.Model.Service;
 using QuanLiCoffeeShop.View.Admin.CustomerManagement;
 using System;
@@ -21,6 +22,41 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
         {
             get { return _customerList; }
             set { _customerList = value; OnPropertyChanged(); }
+        }
+        private string _name;
+
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+        private string _email ;
+
+        public string Email
+        {
+            get { return _email ; }
+            set { _email  = value; }
+        }
+        private string _phoneNumber;
+
+        public string PhoneNumber
+        {
+            get { return _phoneNumber; }
+            set { _phoneNumber = value; }
+        }
+        private string _spend;
+
+        public string Spend
+        {
+            get { return _spend; }
+            set { _spend = value; }
+        }
+        private string _description;
+
+        public string Description
+        {
+            get { return _description; }
+            set { _description = value; }
         }
 
         public ICommand FirstLoadCM { get; set; }
@@ -50,9 +86,28 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
                 AddCustomerWindow wd = new AddCustomerWindow();
                 wd.ShowDialog();
             });
-            AddCusListCM = new RelayCommand<object>((p) => { return true; }, (p) =>
+            AddCusListCM = new RelayCommand<Window>((p) => { return true; }, async (p) =>
             {
-
+                Customer newCus = new Customer
+                {
+                    Description = this.Description,
+                    DisplayName = this.Name,
+                    PhoneNumber = this.PhoneNumber,
+                    Spend = decimal.Parse(this.Spend),
+                    Email = this.Email,
+                    IsDeleted = false,
+                    
+                };
+                (bool IsAdded, string messageAdd) = await CustomerService.Ins.AddNewCus(newCus);
+                if(IsAdded)
+                {
+                    p.Close();
+                    CustomerList= new ObservableCollection<CustomerDTO>(await CustomerService.Ins.GetAllCus());
+                }
+                else
+                {
+                    MessageBox.Show(messageAdd);
+                }
             });
             CloseWdCM = new RelayCommand<Window>((p) => { return true; }, (p) => 
             {

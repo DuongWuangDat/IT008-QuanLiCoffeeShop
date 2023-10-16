@@ -63,14 +63,7 @@ namespace QuanLiCoffeeShop.Model.Service
 		{
 			bool IsEmailExist = await DataProvider.Ins.DB.Customer.AnyAsync(p => p.Email == newCus.Email);
 			bool IsPhoneExist = await DataProvider.Ins.DB.Customer.AnyAsync(p => p.PhoneNumber == newCus.PhoneNumber);
-			if(IsEmailExist)
-			{
-				return (false,"Đã tồn tại email này");
-			}
-			if (IsPhoneExist)
-			{
-				return (false, "Đã tồn tại số điện thoại này");
-			}
+			
 			var cus = await DataProvider.Ins.DB.Customer.Where(p => p.Email == newCus.Email || p.PhoneNumber == newCus.PhoneNumber).FirstOrDefaultAsync();
 			if(cus != null)
 			{
@@ -82,8 +75,22 @@ namespace QuanLiCoffeeShop.Model.Service
 					cus.Email = newCus.Email;
 					cus.Description = newCus.Description;
 					cus.IsDeleted= false;
+					return (true, "Khoi phuc tai khoan thanh cong");
 				}
+				else
+				{
+                    if (IsEmailExist)
+                    {
+                        return (false, "Đã tồn tại email này");
+                    }
+                    if (IsPhoneExist)
+                    {
+                        return (false, "Đã tồn tại số điện thoại này");
+                    }
+                }
 			}
+			DataProvider.Ins.DB.Customer.Add(newCus);
+			await DataProvider.Ins.DB.SaveChangesAsync();
 			return (true, "Đăng kí khách hàng thành công");
 		}
 	}

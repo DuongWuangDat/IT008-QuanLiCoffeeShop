@@ -19,7 +19,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         DataContext="{StaticResource CustomerPageVM}"
         ResizeMode="NoResize"
-        WindowStartupLocation="Manual"
+        WindowStartupLocation="CenterScreen"
         WindowStyle="None">
     <Window.Resources>
         <ControlTemplate x:Key="TextBoxAdd" TargetType="TextBox">
@@ -73,28 +73,76 @@
                                    Margin="73.6,34.6,0,14.6" 
                                    Height="23" 
                                    VerticalAlignment="Top"/>
-                            <TextBox Template="{StaticResource TextBoxAdd}" Margin="73.6,0,0,0"/>
+                            <TextBox Width="336" 
+                                    Height="53.6" 
+                                    BorderThickness="0.5" 
+                                    materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
+                                    VerticalContentAlignment="Center"
+                                    Padding="12,2.4"
+                                    HorizontalAlignment="Left"
+                                    Margin="73.6,0,0,0"
+                                    Background="#D9D9D9"
+                                    FontFamily="Inter" 
+                                    FontSize="12" 
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"  Text="{Binding Name}"/>
                             <TextBlock Style="{DynamicResource TextBlockLogin}" 
                                        Text="Email" 
                                        Margin="73.6,20.8,0,20.8" 
                                        VerticalAlignment="Top"/>
-                            <TextBox Template="{StaticResource TextBoxAdd}" 
+                            <TextBox Width="336" 
+                                    Height="53.6" 
+                                    BorderThickness="0.5" 
+                                    materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
+                                    VerticalContentAlignment="Center"
+                                    Padding="12,2.4"
+                                    HorizontalAlignment="Left"
+                                    
+                                    Background="#D9D9D9"
+                                    FontFamily="Inter" 
+                                    FontSize="12" 
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                     Text="{Binding Email}"
                                      Margin="73.6,0,0,0"/>
                             <TextBlock Style="{DynamicResource TextBlockLogin}" 
                                        Text="Chi Tiêu" 
                                        Margin="73.6,20.8,0,20.8" 
                                        VerticalAlignment="Top"/>
-                            <TextBox Template="{StaticResource TextBoxAdd}" 
-                                     Margin="73.6,0,0,0"/>
+                            <TextBox Width="336" 
+                                    Height="53.6" 
+                                    BorderThickness="0.5" 
+                                    materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
+                                    VerticalContentAlignment="Center"
+                                    Padding="12,2.4"
+                                    HorizontalAlignment="Left"
+                                    Margin="73.6,0,0,0"
+                                    Background="#D9D9D9"
+                                    FontFamily="Inter" 
+                                    FontSize="12" 
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                     Text="{Binding Spend}"
+                                     />
                         </StackPanel>
                         <StackPanel Grid.Column="1">
                             <TextBlock Style="{StaticResource TextBlockLogin}" Text="Số Điện Thoại" Margin="40.8,34.6,0,14.6"/>
-                            <TextBox Template="{StaticResource TextBoxAdd}" Margin="40.8,0,0,0"/>
+                            <TextBox Width="336" 
+                                    Height="53.6" 
+                                    BorderThickness="0.5" 
+                                    materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
+                                    VerticalContentAlignment="Center"
+                                    Padding="12,2.4"
+                                    HorizontalAlignment="Left"
+                                    Margin="40.8,0,0,0"
+                                    Background="#D9D9D9"
+                                    FontFamily="Inter" 
+                                    FontSize="12" 
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"  
+                                     Text="{Binding PhoneNumber}"/>
                             <TextBlock Style="{DynamicResource TextBlockLogin}" 
                                        Text="Ghi chú" 
                                        Margin="40.8,20.8,0,20.8" 
                                        VerticalAlignment="Top"/>
                             <TextBox
+                                Text="{Binding Description}"
                                 VerticalContentAlignment="Top"
                                 Margin="40.8,0,0,0"
                                 Width="336" 
@@ -115,6 +163,7 @@
                     <StackPanel Grid.Row="2"
                                 Orientation="Horizontal">
                         <Button Command="{Binding AddCusListCM}"
+                                CommandParameter="{Binding ElementName=AddCusPage}"
                                 Width="320.8"
                                 Height="61.6"
                                 materialDesign:ButtonAssist.CornerRadius="24"
@@ -124,7 +173,7 @@
                                 FontSize="24"
                                 FontWeight="Bold"
                                 VerticalAlignment="Top"
-                                Margin="348.8,0,29.6,0"/>
+                                Margin="348.8,0,29.6,0" />
                         <Button Command="{Binding CloseWdCM}"
                                 CommandParameter="{Binding ElementName=AddCusPage}"
                                 Width="120"

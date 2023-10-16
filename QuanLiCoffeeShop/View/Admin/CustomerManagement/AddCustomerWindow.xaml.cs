@@ -24,6 +24,5 @@ namespace QuanLiCoffeeShop.View.Admin.CustomerManagement
             InitializeComponent();
         }
 
-        
     }
 }

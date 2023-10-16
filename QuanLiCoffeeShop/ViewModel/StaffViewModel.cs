@@ -18,22 +18,4 @@ namespace QuanLiCoffeeShop.ViewModel
 
         }
     }
-
-    public class CountToTextConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is int count)
-            {
-                return $"Nhân viên ({count})";
-            }
-            return "";
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
-    }
-
 }

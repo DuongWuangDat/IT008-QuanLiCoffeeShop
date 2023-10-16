@@ -15,19 +15,21 @@ using System.Windows.Shapes;
 namespace QuanLiCoffeeShop.View.MessageBox
 {
     /// <summary>
-    /// Interaction logic for DeleteMessage.xaml
+    /// Interaction logic for ConfirmLogOut.xaml
     /// </summary>
-    public partial class DeleteMessage : Window
+    public partial class ConfirmLogOut : Window
     {
-        public DeleteMessage()
+        public ConfirmLogOut()
         {
             InitializeComponent();
         }
 
-        private void No_btn_Click(object sender, RoutedEventArgs e)
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Window.GetWindow(this).Close();
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
-
     }
 }

@@ -12,22 +12,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.MessageBox
+namespace QuanLiCoffeeShop.View.Admin.StaffManagemet
 {
     /// <summary>
-    /// Interaction logic for DeleteMessage.xaml
+    /// Interaction logic for ConfirmDelete.xaml
     /// </summary>
-    public partial class DeleteMessage : Window
+    public partial class ConfirmDelete : Window
     {
-        public DeleteMessage()
+        public ConfirmDelete()
         {
             InitializeComponent();
         }
 
-        private void No_btn_Click(object sender, RoutedEventArgs e)
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Window.GetWindow(this).Close();
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
-
     }
+
+
 }

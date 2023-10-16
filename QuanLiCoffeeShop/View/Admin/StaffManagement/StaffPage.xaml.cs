@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace QuanLiCoffeeShop.View.Admin.StaffManagemet
+namespace QuanLiCoffeeShop.View.Admin.StaffManagement
 {
     /// <summary>
     /// Interaction logic for StaffPage.xaml

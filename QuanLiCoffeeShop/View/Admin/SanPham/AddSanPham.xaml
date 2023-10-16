@@ -16,6 +16,7 @@
       TextOptions.TextFormattingMode="Ideal"
       TextOptions.TextRenderingMode="Auto"
       Background="Transparent"
+      AllowsTransparency="True"
       FontFamily="{DynamicResource MaterialDesignFont}"
       Title="AddSanPham">
     <Window.Resources>

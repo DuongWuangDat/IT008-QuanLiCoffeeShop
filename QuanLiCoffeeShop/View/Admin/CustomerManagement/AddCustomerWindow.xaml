@@ -22,22 +22,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None">
     <Window.Resources>
-        <ControlTemplate x:Key="TextBoxAdd" TargetType="TextBox">
-            <TextBox
-                    Text="{TemplateBinding Text}"
-                    Width="336" 
-                    Height="53.6" 
-                    BorderThickness="0.5" 
-                    materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
-                    VerticalContentAlignment="Center"
-                    Padding="12,2.4"
-                HorizontalAlignment="Left"
-                Margin="0,0,0,0"
-                    Background="#D9D9D9"
-                    FontFamily="Inter" 
-                    FontSize="12" 
-                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden" />
-        </ControlTemplate>
+        
         <Style x:Key="TextBlockLogin" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontSize" Value="19.2"/>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLiCoffeeShop.View.Admin.CustomerManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,5 @@ namespace QuanLiCoffeeShop.View.Admin
             InitializeComponent();
         }
 
-   
     }
 }

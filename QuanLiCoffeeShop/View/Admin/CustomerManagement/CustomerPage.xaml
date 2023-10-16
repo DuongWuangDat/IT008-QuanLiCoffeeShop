@@ -83,19 +83,23 @@
             <Border Background="White" 
                     Margin="24" 
                     CornerRadius="32">
-                <ListView Margin="11"
+                <ListView x:Name="CusList"  
+                          Margin="11"
+                          
                           ItemsSource="{Binding CustomerList}"
                           SelectedItem="{Binding SelectedItem}" >
                     <ListView.ItemContainerStyle>
+                        
                         <Style TargetType="ListViewItem"
                                BasedOn="{StaticResource MaterialDesignGridViewItem}">
+                           
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         </Style>
                         
                     </ListView.ItemContainerStyle>
                     
                     <ListView.View>
-                        <GridView>
+                        <GridView >
                             
                             <GridViewColumn Header="ID"  Width="106.4">
                                 <GridViewColumn.HeaderContainerStyle>
@@ -207,16 +211,33 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <Button Width="24.8" Height="24.8"  Margin="0,0,0,0" BorderThickness="0">
-                                                <Button.Background>
-                                                    <ImageBrush ImageSource="/QuanLiCoffeeShop;component/Resources/Icon/Edit.png"/>
-                                                </Button.Background>
-                                            </Button>
-                                            <Button Width="24.8" Height="24.8" Margin="12,0,0,0" BorderThickness="0">
-                                                <Button.Background>
-                                                    <ImageBrush ImageSource="/QuanLiCoffeeShop;component/Resources/Icon/Remove.png"/>
-                                                </Button.Background>
-                                            </Button>
+                                            <Border Width="24.8" 
+                                                    Height="24.8"  
+                                                    Margin="0,0,0,0" 
+                                                    BorderThickness="0"
+                                                    Background="Transparent"
+                                                    Cursor="Hand">
+                                                <Image Source="/QuanLiCoffeeShop;component/Resources/Icon/Edit.png"/>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                                                        <i:InvokeCommandAction Command="{Binding ElementName=CusList, Path=DataContext.OpenEditWdCM}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </Border>
+                                            <Border Width="24.8" 
+                                                    Height="24.8" 
+                                                    Margin="12,0,0,0" 
+                                                    Background="Transparent"
+                                                    BorderThickness="0"
+                                                    Cursor="Hand">
+                                                <Image Source="/QuanLiCoffeeShop;component/Resources/Icon/Remove.png"/>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                                                        <i:InvokeCommandAction Command="{Binding ElementName=CusList, Path=DataContext.DeleteCusListCM}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </Border>
+                                  
                                         </StackPanel>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>

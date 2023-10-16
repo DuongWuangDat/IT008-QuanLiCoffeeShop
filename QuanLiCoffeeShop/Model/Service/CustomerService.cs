@@ -75,7 +75,8 @@ namespace QuanLiCoffeeShop.Model.Service
 					cus.Email = newCus.Email;
 					cus.Description = newCus.Description;
 					cus.IsDeleted= false;
-					return (true, "Khoi phuc tai khoan thanh cong");
+                    await DataProvider.Ins.DB.SaveChangesAsync();
+                    return (true, "Khoi phuc tai khoan thanh cong");
 				}
 				else
 				{
@@ -92,6 +93,26 @@ namespace QuanLiCoffeeShop.Model.Service
 			DataProvider.Ins.DB.Customer.Add(newCus);
 			await DataProvider.Ins.DB.SaveChangesAsync();
 			return (true, "Đăng kí khách hàng thành công");
+		}
+		public async Task<(bool, string)> EditCusList(Customer newCus, int ID)
+		{
+			var cus = await DataProvider.Ins.DB.Customer.Where(p => p.ID == ID).FirstOrDefaultAsync();
+			if (cus == null) return (false, "Không tìm thấy ID");
+			cus.Email= newCus.Email;
+			cus.PhoneNumber= newCus.PhoneNumber;
+			cus.Spend= newCus.Spend;
+			cus.DisplayName = newCus.DisplayName;
+			cus.Description= newCus.Description;
+			await DataProvider.Ins.DB.SaveChangesAsync();
+			return (true, "Chỉnh sửa thành công");
+		}
+		public async Task<(bool,string)> DeleteCustomer(int ID)
+		{
+            var cus = await DataProvider.Ins.DB.Customer.Where(p => p.ID == ID).FirstOrDefaultAsync();
+			if (cus.IsDeleted== true) return (false, "Đã xóa khách hàng này rồi");
+			cus.IsDeleted = true;
+            await DataProvider.Ins.DB.SaveChangesAsync();
+            return (true, "Xóa thành công");
 		}
 	}
 }

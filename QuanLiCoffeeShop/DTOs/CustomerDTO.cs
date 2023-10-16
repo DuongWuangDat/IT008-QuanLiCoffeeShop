@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuanLiCoffeeShop.DTOs
 {
-    internal class CustomerDTO
+    public class CustomerDTO
     {
         public int ID { get; set; }
         public Nullable<int> IDSeat { get; set; }

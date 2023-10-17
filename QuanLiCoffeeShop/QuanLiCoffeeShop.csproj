@@ -436,12 +436,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include=".vs\ProjectSettings.json" />
-    <None Include=".vs\QuanLiCoffeeShop\FileContentIndex\3617b6e0-3766-4690-9106-de93065c35e2.vsidx" />
-    <None Include=".vs\QuanLiCoffeeShop\FileContentIndex\40fba7e7-be86-41ea-8ab5-6ee616a98064.vsidx" />
-    <None Include=".vs\slnx.sqlite" />
-    <None Include=".vs\VSWorkspaceState.json" />
-    <None Include="bin\Debug\QuanLiCoffeeShop.exe.config" />
     <None Include="Model\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
@@ -495,16 +489,6 @@
     <Resource Include="Resources\Icon\Remove.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\MaterialDesignColors.dll" />
-    <Content Include="bin\Debug\MaterialDesignColors.pdb" />
-    <Content Include="bin\Debug\MaterialDesignThemes.Wpf.dll" />
-    <Content Include="bin\Debug\MaterialDesignThemes.Wpf.pdb" />
-    <Resource Include="bin\Debug\MaterialDesignThemes.Wpf.xml" />
-    <Content Include="bin\Debug\Microsoft.Xaml.Behaviors.dll" />
-    <Content Include="bin\Debug\Microsoft.Xaml.Behaviors.pdb" />
-    <Resource Include="bin\Debug\Microsoft.Xaml.Behaviors.xml" />
-    <Content Include="bin\Debug\QuanLiCoffeeShop.exe" />
-    <Content Include="bin\Debug\QuanLiCoffeeShop.pdb" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -561,8 +545,6 @@
     <Resource Include="Resources\Icon\Info_Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include=".vs\QuanLiCoffeeShop\v17\" />
-    <Folder Include="bin\Release\" />
     <Folder Include="obj\Debug\ResourcesXAML\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="obj\Release\ResourcesXAML\" />

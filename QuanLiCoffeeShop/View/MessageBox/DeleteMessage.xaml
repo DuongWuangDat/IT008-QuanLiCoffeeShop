@@ -1,0 +1,65 @@
+﻿<Window
+    x:Class="QuanLiCoffeeShop.View.MessageBox.DeleteMessage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:QuanLiCoffeeShop.View.MessageBox"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="DeleteMessage"
+    Width="640"
+    Height="352"
+    AllowsTransparency="True"
+    Background="Transparent"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    ResizeMode="NoResize"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Grid>
+
+        <Border Background="White" CornerRadius="20">
+            <Grid Background="Transparent">
+                <StackPanel Margin="50">
+                    <Image Width="89.6" Source="/QuanLiCoffeeShop;component/Resources/Icon/Warning_Icon.png" />
+                    <TextBlock
+                        Margin="10,25,10,25"
+                        HorizontalAlignment="Center"
+                        FontFamily="Droid Sans"
+                        FontSize="28.8"
+                        Text="Bạn có chắc chắn muốn xóa không" />
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                        <Button
+                            Width="153.6"
+                            Height="59.2"
+                            Margin="86,0,30,0"
+                            Padding="0"
+                            materialDesign:ButtonAssist.CornerRadius="24"
+                            Background="#42a9e3"
+                            BorderThickness="0"
+                            Content="Có"
+                            FontSize="24"
+                            FontWeight="Bold" />
+                        <Button
+                            Width="153.6"
+                            Height="59.2"
+                            Margin="30,0,30,0"
+                            Padding="0"
+                            materialDesign:ButtonAssist.CornerRadius="24"
+                            Background="#ef4444"
+                            BorderThickness="0"
+                            Click="No_btn_Click"
+                            Content="Không"
+                            FontSize="24"
+                            FontWeight="Bold" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

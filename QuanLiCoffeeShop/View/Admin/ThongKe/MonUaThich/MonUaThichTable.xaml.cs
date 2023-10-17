@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.SanPhamCard
+namespace QuanLiCoffeeShop.View.Admin.ThongKe.MonUaThich
 {
     /// <summary>
-    /// Interaction logic for SanPhamCard.xaml
+    /// Interaction logic for MonUaThichTable.xaml
     /// </summary>
-    public partial class SanPhamCard : UserControl
+    public partial class MonUaThichTable : Page
     {
-        public SanPhamCard()
+        public MonUaThichTable()
         {
             InitializeComponent();
         }

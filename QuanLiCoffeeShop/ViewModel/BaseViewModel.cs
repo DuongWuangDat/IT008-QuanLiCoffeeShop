@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
-namespace CinemaManagement.ViewModel
+namespace QuanLiCoffeeShop.ViewModel
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

@@ -141,6 +141,88 @@
     <Compile Include="Model\Staff.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\App.g.cs" />
+    <Compile Include="obj\Debug\App.g.i.cs" />
+    <Compile Include="obj\Debug\GeneratedInternalTypeHelper.g.cs" />
+    <Compile Include="obj\Debug\GeneratedInternalTypeHelper.g.i.cs" />
+    <Compile Include="obj\Debug\QuanLiCoffeeShop_Content.g.cs" />
+    <Compile Include="obj\Debug\QuanLiCoffeeShop_Content.g.i.cs" />
+    <Compile Include="obj\Debug\View\Admin\CustomerManagement\AddCustomerWindow.g.cs" />
+    <Compile Include="obj\Debug\View\Admin\CustomerManagement\AddCustomerWindow.g.i.cs" />
+    <Compile Include="obj\Debug\View\Admin\CustomerManagement\CustomerPage.g.i.cs" />
+    <Compile Include="obj\Debug\View\Admin\CustomerManagement\EditCustomerWindow.g.cs" />
+    <Compile Include="obj\Debug\View\Admin\CustomerManagement\EditCustomerWindow.g.i.cs" />
+    <Compile Include="obj\Debug\View\Admin\MainAdminWindow.g.cs" />
+    <Compile Include="obj\Debug\View\Admin\MainAdminWindow.g.i.cs" />
+    <Compile Include="obj\Debug\View\Admin\Problem\Problem_page_main\Page_main.g.i.cs" />
+    <Compile Include="obj\Debug\View\Admin\SanPham\AddSanPham.g.cs" />
+    <Compile Include="obj\Debug\View\Admin\SanPham\AddSanPham.g.i.cs" />
+    <Compile Include="obj\Debug\View\Admin\SanPham\EditSanPham.g.cs" />
+    <Compile Include="obj\Debug\View\Admin\SanPham\EditSanPham.g.i.cs" />
+    <Compile Include="obj\Debug\View\Admin\SanPham\SanPhamCard.g.cs" />
+    <Compile Include="obj\Debug\View\Admin\SanPham\SanPhamCard.g.i.cs" />
+    <Compile Include="obj\Debug\View\Admin\SanPham\SanPhamPage.g.cs" />
+    <Compile Include="obj\Debug\View\Admin\SanPham\SanPhamPage.g.i.cs" />
+    <Compile Include="obj\Debug\View\Admin\StaffManagement\StaffPage.g.cs" />
+    <Compile Include="obj\Debug\View\Admin\StaffManagement\StaffPage.g.i.cs" />
+    <Compile Include="obj\Debug\View\Admin\Table\Table_card\card_table.g.i.cs" />
+    <Compile Include="obj\Debug\View\Admin\Table\Table_page_main\Page_main.g.i.cs" />
+    <Compile Include="obj\Debug\View\Admin\ThongKe\DoanhThu\DoanhThuTable.g.cs" />
+    <Compile Include="obj\Debug\View\Admin\ThongKe\DoanhThu\DoanhThuTable.g.i.cs" />
+    <Compile Include="obj\Debug\View\Admin\ThongKe\LichSuBan\ChiTietHoaDon.g.cs" />
+    <Compile Include="obj\Debug\View\Admin\ThongKe\LichSuBan\ChiTietHoaDon.g.i.cs" />
+    <Compile Include="obj\Debug\View\Admin\ThongKe\LichSuBan\LichSuTable.g.cs" />
+    <Compile Include="obj\Debug\View\Admin\ThongKe\LichSuBan\LichSuTable.g.i.cs" />
+    <Compile Include="obj\Debug\View\Admin\ThongKe\MonUaThich\MonUaThichTable.g.cs" />
+    <Compile Include="obj\Debug\View\Admin\ThongKe\MonUaThich\MonUaThichTable.g.i.cs" />
+    <Compile Include="obj\Debug\View\Admin\ThongKe\ThongKeMainPage.g.cs" />
+    <Compile Include="obj\Debug\View\Admin\ThongKe\ThongKeMainPage.g.i.cs" />
+    <Compile Include="obj\Debug\View\LoginWindow\LoginWindow.g.i.cs" />
+    <Compile Include="obj\Debug\View\MainFrame\MainFrame.g.cs" />
+    <Compile Include="obj\Debug\View\MainFrame\MainFrame.g.i.cs" />
+    <Compile Include="obj\Debug\View\MenuBar\MenuBar.g.cs" />
+    <Compile Include="obj\Debug\View\MenuBar\MenuBar.g.i.cs" />
+    <Compile Include="obj\Debug\View\MessageBox\ConfirmDelete.g.cs" />
+    <Compile Include="obj\Debug\View\MessageBox\ConfirmDelete.g.i.cs" />
+    <Compile Include="obj\Debug\View\MessageBox\ConfirmLogOut.g.cs" />
+    <Compile Include="obj\Debug\View\MessageBox\ConfirmLogOut.g.i.cs" />
+    <Compile Include="obj\Debug\View\MessageBox\DeleteMessage.g.cs" />
+    <Compile Include="obj\Debug\View\MessageBox\DeleteMessage.g.i.cs" />
+    <Compile Include="obj\Debug\View\Staff\MainStaffWindow.g.cs" />
+    <Compile Include="obj\Debug\View\Staff\MainStaffWindow.g.i.cs" />
+    <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="obj\Release\App.g.cs" />
+    <Compile Include="obj\Release\GeneratedInternalTypeHelper.g.cs" />
+    <Compile Include="obj\Release\QuanLiCoffeeShop_Content.g.cs" />
+    <Compile Include="obj\Release\View\Admin\CustomerManagement\AddCustomerWindow.g.cs" />
+    <Compile Include="obj\Release\View\Admin\CustomerManagement\EditCustomerWindow.g.cs" />
+    <Compile Include="obj\Release\View\Admin\MainAdminWindow.g.cs" />
+    <Compile Include="obj\Release\View\Admin\Problem\Problem_page_main\Page_main.g.cs" />
+    <Compile Include="obj\Release\View\Admin\SanPham\AddSanPham.g.cs" />
+    <Compile Include="obj\Release\View\Admin\SanPham\EditSanPham.g.cs" />
+    <Compile Include="obj\Release\View\Admin\SanPham\SanPhamCard.g.cs" />
+    <Compile Include="obj\Release\View\Admin\SanPham\SanPhamPage.g.cs" />
+    <Compile Include="obj\Release\View\Admin\StaffManagement\StaffPage.g.cs" />
+    <Compile Include="obj\Release\View\Admin\Table\Table_card\card_table.g.cs" />
+    <Compile Include="obj\Release\View\Admin\Table\Table_page_main\Page_main.g.cs" />
+    <Compile Include="obj\Release\View\Admin\ThongKe\DoanhThu\DoanhThuTable.g.cs" />
+    <Compile Include="obj\Release\View\Admin\ThongKe\LichSuBan\ChiTietHoaDon.g.cs" />
+    <Compile Include="obj\Release\View\Admin\ThongKe\LichSuBan\LichSuTable.g.cs" />
+    <Compile Include="obj\Release\View\Admin\ThongKe\MonUaThich\MonUaThichTable.g.cs" />
+    <Compile Include="obj\Release\View\Admin\ThongKe\ThongKeMainPage.g.cs" />
+    <Compile Include="obj\Release\View\MainFrame\MainFrame.g.cs" />
+    <Compile Include="obj\Release\View\MenuBar\MenuBar.g.cs" />
+    <Compile Include="obj\Release\View\MessageBox\ConfirmDelete.g.cs" />
+    <Compile Include="obj\Release\View\MessageBox\ConfirmLogOut.g.cs" />
+    <Compile Include="obj\Release\View\MessageBox\DeleteMessage.g.cs" />
+    <Compile Include="obj\Release\View\SanPhamCard\SanPhamCard.g.cs" />
+    <Compile Include="obj\Release\View\Staff\MainStaffWindow.g.cs" />
+    <Compile Include="obj\Release\View\Table\Table.g.cs" />
+    <Compile Include="obj\Release\View\Table\TableCard\Page1.g.cs" />
+    <Compile Include="obj\Release\View\Table\TableMain\main_table.g.cs" />
+    <Compile Include="obj\Release\View\Table\TableMain\Table.g.cs" />
+    <Compile Include="obj\Release\View\Table\TablePage\Table.g.cs" />
     <Compile Include="Resources\Icon\placeHolder.cs" />
     <Compile Include="Resources\Image\placeHolder.cs" />
     <Compile Include="ViewModel\AdminVM\CustomerManagementVM\CustomerManagementViewModel.cs" />
@@ -160,6 +242,9 @@
     <Compile Include="View\Admin\MainAdminWindow.xaml.cs">
       <DependentUpon>MainAdminWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Admin\Problem\Problem_page_main\Page_main.xaml.cs">
+      <DependentUpon>Page_main.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Admin\SanPham\AddSanPham.xaml.cs">
       <DependentUpon>AddSanPham.xaml</DependentUpon>
     </Compile>
@@ -171,6 +256,12 @@
     </Compile>
     <Compile Include="View\Admin\SanPham\SanPhamPage.xaml.cs">
       <DependentUpon>SanPhamPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\Table\Table_card\card_table.xaml.cs">
+      <DependentUpon>card_table.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\Table\Table_page_main\Page_main.xaml.cs">
+      <DependentUpon>Page_main.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MessageBox\ConfirmDelete.xaml.cs">
       <DependentUpon>ConfirmDelete.xaml</DependentUpon>
@@ -236,6 +327,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Admin\Problem\Problem_page_main\Page_main.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\Admin\SanPham\AddSanPham.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -252,6 +347,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Admin\Table\Table_card\card_table.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Admin\Table\Table_page_main\Page_main.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\MessageBox\ConfirmDelete.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -264,7 +367,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-
     <Page Include="View\Admin\ThongKe\DoanhThu\DoanhThuTable.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -324,6 +426,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="obj\Debug\QuanLiCoffeeShop.g.resources" />
+    <EmbeddedResource Include="obj\Debug\QuanLiCoffeeShop.Properties.Resources.resources" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -332,9 +436,26 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include=".vs\ProjectSettings.json" />
+    <None Include=".vs\QuanLiCoffeeShop\FileContentIndex\3617b6e0-3766-4690-9106-de93065c35e2.vsidx" />
+    <None Include=".vs\QuanLiCoffeeShop\FileContentIndex\40fba7e7-be86-41ea-8ab5-6ee616a98064.vsidx" />
+    <None Include=".vs\slnx.sqlite" />
+    <None Include=".vs\VSWorkspaceState.json" />
+    <None Include="bin\Debug\QuanLiCoffeeShop.exe.config" />
     <None Include="Model\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\QuanLiCoffeeShop.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\QuanLiCoffeeShop.csproj.CopyComplete" />
+    <None Include="obj\Debug\QuanLiCoffeeShop.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\QuanLiCoffeeShop.csproj.GenerateResource.cache" />
+    <None Include="obj\Debug\QuanLiCoffeeShop_MarkupCompile.i.cache" />
+    <None Include="obj\Debug\QuanLiCoffeeShop_MarkupCompile.i.lref" />
+    <None Include="obj\Release\QuanLiCoffeeShop.csproj.AssemblyReference.cache" />
+    <None Include="obj\Release\View\Admin\StaffManagement\StaffPage.baml" />
+    <None Include="obj\Release\View\Admin\StaffManagement\Template\DataGridHeaderStyle.baml" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -374,6 +495,16 @@
     <Resource Include="Resources\Icon\Remove.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\MaterialDesignColors.dll" />
+    <Content Include="bin\Debug\MaterialDesignColors.pdb" />
+    <Content Include="bin\Debug\MaterialDesignThemes.Wpf.dll" />
+    <Content Include="bin\Debug\MaterialDesignThemes.Wpf.pdb" />
+    <Resource Include="bin\Debug\MaterialDesignThemes.Wpf.xml" />
+    <Content Include="bin\Debug\Microsoft.Xaml.Behaviors.dll" />
+    <Content Include="bin\Debug\Microsoft.Xaml.Behaviors.pdb" />
+    <Resource Include="bin\Debug\Microsoft.Xaml.Behaviors.xml" />
+    <Content Include="bin\Debug\QuanLiCoffeeShop.exe" />
+    <Content Include="bin\Debug\QuanLiCoffeeShop.pdb" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -384,12 +515,14 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="obj\Debug\QuanLiCoffeeShop.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\QuanLiCoffeeShop.exe" />
+    <Content Include="obj\Debug\QuanLiCoffeeShop.pdb" />
     <Resource Include="Resources\Icon\Log_Out_Caution.png" />
     <Resource Include="Resources\Icon\Delete_Caution.png" />
     <Resource Include="Resources\Icon\Magnifying_Glass.png" />
     <Resource Include="Resources\Icon\Add_NoBackground.png" />
     <Resource Include="Resources\Icon\Remove_NoBackground.png" />
-
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -427,7 +560,16 @@
   <ItemGroup>
     <Resource Include="Resources\Icon\Info_Icon.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include=".vs\QuanLiCoffeeShop\v17\" />
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\ResourcesXAML\" />
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="obj\Release\ResourcesXAML\" />
+    <Folder Include="obj\Release\View\cccc\" />
+    <Folder Include="obj\Release\View\LoginWindow\" />
+    <Folder Include="obj\Release\View\TableCard\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

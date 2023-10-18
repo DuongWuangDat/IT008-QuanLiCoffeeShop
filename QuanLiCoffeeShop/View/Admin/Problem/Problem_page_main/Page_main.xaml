@@ -78,7 +78,7 @@
                             </Border>
                         </WrapPanel>
                     </Border>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"  >
                         <ListView x:Name="prb_list" 
 ItemsSource="{Binding ProblemList}"
 SelectedItem="{Binding SelectedItem}"

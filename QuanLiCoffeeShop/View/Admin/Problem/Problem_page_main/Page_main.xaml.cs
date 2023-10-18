@@ -21,27 +21,11 @@ namespace QuanLiCoffeeShop.View.Admin.Problem.Problem_page_main
     
     public partial class Page_main : Page
     {
-        List<problem> pr = new List<problem>();
+       
         public Page_main()
         {
             InitializeComponent();
-            pr.Add(new problem() { STT = "1", Name = "Hư bàn", Status = "chưa sửa",Node="Đạt Fa đập" });
-            pr.Add(new problem() { STT = "2", Name = "Hư bàn", Status = "chưa sửa", Node = "Đạt Fa đập" });
-            pr.Add(new problem() { STT = "3", Name = "Hư bàn", Status = "chưa sửa", Node = "Đạt Fa đập" });
-            pr.Add(new problem() { STT = "2", Name = "Hư bàn", Status = "chưa sửa", Node = "Đạt Fa đập" });
-            pr.Add(new problem() { STT = "2", Name = "Hư bàn", Status = "chưa sửa", Node = "Đạt Fa đập" });
-            pr.Add(new problem() { STT = "2", Name = "Hư bàn", Status = "chưa sửa", Node = "Đạt Fa đập" });
-            pr.Add(new problem() { STT = "2", Name = "Hư bàn", Status = "chưa sửa", Node = "Đạt Fa đập" });
-            pr.Add(new problem() { STT = "2", Name = "Hư bàn", Status = "chưa sửa", Node = "Đạt Fa đập" });
-            pr.Add(new problem() { STT = "2", Name = "Hư bàn", Status = "chưa sửa", Node = "Đạt Fa đập" });
-            pr.Add(new problem() { STT = "2", Name = "Hư bàn", Status = "chưa sửa", Node = "Đạt Fa đập" });
-            pr.Add(new problem() { STT = "2", Name = "Hư bàn", Status = "chưa sửa", Node = "Đạt Fa đập" });
-            pr.Add(new problem() { STT = "2", Name = "Hư bàn", Status = "chưa sửa", Node = "Đạt Fa đập" });
-            pr.Add(new problem() { STT = "5", Name = "Hư bàn", Status = "chưa sửa", Node = "Đạt Fa đập" });
-            pr.Add(new problem() { STT = "6", Name = "Hư bàn", Status = "chưa sửa", Node = "Đạt Fa đập" });
-            pr.Add(new problem() { STT = "7", Name = "Hư bàn", Status = "chưa sửa", Node = "Đạt Fa đập" });
-            pr.Add(new problem() { STT = "8", Name = "Hư bàn", Status = "chưa sửa", Node = "Đạt Fa đập" });
-            prb_list.ItemsSource = pr;
+           
         }
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {

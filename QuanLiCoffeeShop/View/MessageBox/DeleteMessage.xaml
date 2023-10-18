@@ -49,7 +49,8 @@
                             BorderThickness="0"
                             Content="Có"
                             FontSize="15.36" 
-                            FontWeight="Bold" />
+                            FontWeight="Bold"
+                            Click="Yes_btn_Click"/>
                         <Button
                             Width="98.304"  
                             Height="37.888" 

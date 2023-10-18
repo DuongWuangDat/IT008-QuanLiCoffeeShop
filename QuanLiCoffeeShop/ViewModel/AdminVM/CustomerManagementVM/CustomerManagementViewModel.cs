@@ -2,6 +2,7 @@
 using QuanLiCoffeeShop.Model;
 using QuanLiCoffeeShop.Model.Service;
 using QuanLiCoffeeShop.View.Admin.CustomerManagement;
+using QuanLiCoffeeShop.View.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -194,15 +195,21 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
             });
             DeleteCusListCM = new RelayCommand<object>((p) => { return true; }, async (p) => 
             { 
-                (bool sucess, string messageDelete) = await CustomerService.Ins.DeleteCustomer(SelectedItem.ID);
-                if (sucess)
+                DeleteMessage wd = new DeleteMessage();
+                wd.ShowDialog();
+                if (wd.DialogResult == true)
                 {
-                    CustomerList.Remove(SelectedItem);
+                    (bool sucess, string messageDelete) = await CustomerService.Ins.DeleteCustomer(SelectedItem.ID);
+                    if (sucess)
+                    {
+                        CustomerList.Remove(SelectedItem);
+                    }
+                    else
+                    {
+                        MessageBox.Show(messageDelete);
+                    }
                 }
-                else
-                {
-                    MessageBox.Show(messageDelete);
-                }
+                
             });
         }
     }

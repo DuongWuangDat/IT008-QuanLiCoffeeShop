@@ -409,6 +409,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Icon\plus.png" />
     <Resource Include="Resources\Icon\Log_Out_Caution.png" />
     <Resource Include="Resources\Icon\Delete_Caution.png" />
     <Resource Include="Resources\Icon\Magnifying_Glass.png" />

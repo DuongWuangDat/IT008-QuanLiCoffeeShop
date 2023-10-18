@@ -12,7 +12,7 @@ namespace QuanLiCoffeeShop.View.Admin.StaffManagement
         public StaffPage()
         {
             InitializeComponent();
-            DataContext = new StaffViewModel();
+            //DataContext = new StaffViewModel();
 
         }
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

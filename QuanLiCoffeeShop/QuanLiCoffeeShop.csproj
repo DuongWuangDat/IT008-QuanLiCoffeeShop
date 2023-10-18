@@ -161,6 +161,9 @@
     <Compile Include="View\Admin\MainAdminWindow.xaml.cs">
       <DependentUpon>MainAdminWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Admin\Problem\Problem_page_main\Page_main.xaml.cs">
+      <DependentUpon>Page_main.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Admin\SanPham\AddSanPham.xaml.cs">
       <DependentUpon>AddSanPham.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,12 @@
     </Compile>
     <Compile Include="View\Admin\SanPham\SanPhamPage.xaml.cs">
       <DependentUpon>SanPhamPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\Table\Table_card\card_table.xaml.cs">
+      <DependentUpon>card_table.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\Table\Table_page_main\Page_main.xaml.cs">
+      <DependentUpon>Page_main.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MessageBox\ConfirmDelete.xaml.cs">
       <DependentUpon>ConfirmDelete.xaml</DependentUpon>
@@ -237,6 +246,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Admin\Problem\Problem_page_main\Page_main.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\Admin\SanPham\AddSanPham.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -250,6 +263,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Admin\SanPham\SanPhamPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Admin\Table\Table_card\card_table.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Admin\Table\Table_page_main\Page_main.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

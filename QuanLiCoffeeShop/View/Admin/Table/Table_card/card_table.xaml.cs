@@ -10,24 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.MessageBox
+namespace QuanLiCoffeeShop.View.Admin.Table.Table_card
 {
     /// <summary>
-    /// Interaction logic for DeleteMessage.xaml
+    /// Interaction logic for card_table.xaml
     /// </summary>
-    public partial class DeleteMessage : Window
+    public partial class card_table : UserControl
     {
-        public DeleteMessage()
+        public card_table()
         {
             InitializeComponent();
         }
-
-        private void No_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Window.GetWindow(this).Close();
-        }
-
     }
 }

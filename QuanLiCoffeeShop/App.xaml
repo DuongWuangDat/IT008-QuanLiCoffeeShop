@@ -1,9 +1,8 @@
-
 <Application x:Class="QuanLiCoffeeShop.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:QuanLiCoffeeShop"
-             StartupUri="View/Admin/CustomerManagement/CustomerPage.xaml">
+             StartupUri="View/MessageBox/DeleteMessage.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

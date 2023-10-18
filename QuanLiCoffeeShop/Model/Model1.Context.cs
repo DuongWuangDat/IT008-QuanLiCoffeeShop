@@ -12,19 +12,19 @@ namespace QuanLiCoffeeShop.Model
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class QuanLiCoffeShopEntities : DbContext
     {
         public QuanLiCoffeShopEntities()
             : base("name=QuanLiCoffeShopEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<Bill> Bill { get; set; }
         public virtual DbSet<BillInfo> BillInfo { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }

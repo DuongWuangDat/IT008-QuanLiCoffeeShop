@@ -173,6 +173,9 @@
     <Compile Include="View\Admin\SanPham\SanPhamPage.xaml.cs">
       <DependentUpon>SanPhamPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Admin\StaffManagemet\StaffPage.xaml.cs">
+      <DependentUpon>StaffPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Admin\ThongKe\DoanhThu\DoanhThuTable.xaml.cs">
       <DependentUpon>DoanhThuTable.xaml</DependentUpon>
     </Compile>
@@ -244,7 +247,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-
     <Page Include="View\Admin\StaffManagemet\StaffPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -368,7 +370,6 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-
     <Resource Include="Resources\Icon\Add_NoBackground.png" />
     <Resource Include="Resources\Icon\Remove_NoBackground.png" />
   </ItemGroup>

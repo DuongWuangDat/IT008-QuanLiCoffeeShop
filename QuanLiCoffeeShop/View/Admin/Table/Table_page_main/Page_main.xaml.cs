@@ -20,9 +20,11 @@ namespace QuanLiCoffeeShop.View.Admin.Table.Table_page_main
     /// </summary>
     public partial class Page_main : Page
     {
+       
         public Page_main()
         {
             InitializeComponent();
+            
         }
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -41,5 +43,11 @@ namespace QuanLiCoffeeShop.View.Admin.Table.Table_page_main
 
             }
         }
+        class table
+        {
+            public string Name { get; set; }
+            public string Status { get; set; }
+        }
+
     }
 }

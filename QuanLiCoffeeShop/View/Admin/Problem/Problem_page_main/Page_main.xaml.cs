@@ -18,11 +18,14 @@ namespace QuanLiCoffeeShop.View.Admin.Problem.Problem_page_main
     /// <summary>
     /// Interaction logic for Page_main.xaml
     /// </summary>
+    
     public partial class Page_main : Page
     {
+       
         public Page_main()
         {
             InitializeComponent();
+           
         }
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -41,5 +44,12 @@ namespace QuanLiCoffeeShop.View.Admin.Problem.Problem_page_main
 
             }
         }
+    }
+    class problem
+    {
+        public string STT { get; set; }
+        public string Name { get; set; }
+        public string Status { get; set; }
+        public string Node { get; set; }
     }
 }

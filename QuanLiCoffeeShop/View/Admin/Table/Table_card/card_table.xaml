@@ -14,7 +14,7 @@
                     <Button Width="120" Height="120" Margin="0,5,0,0">
                         <Button.Template>
                             <ControlTemplate>
-                                <Image Width="90.4" Height="92" Source= "/QuanLiCoffeeShop;component/Resources/Image/table.png"  ></Image>
+                                <Image Width="90.4" Height="92" Source="/QuanLiCoffeeShop;component/Resources/Image/table.png"  ></Image>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>

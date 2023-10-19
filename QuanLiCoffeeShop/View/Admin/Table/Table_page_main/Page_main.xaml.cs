@@ -20,9 +20,71 @@ namespace QuanLiCoffeeShop.View.Admin.Table.Table_page_main
     /// </summary>
     public partial class Page_main : Page
     {
+        List <table> ta=new List <table> ();
         public Page_main()
         {
             InitializeComponent();
+            ta.Add(new table() { Name="bàn 1", Status="còn trống"});
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+            ta.Add(new table() { Name = "bàn 1", Status = "còn trống" });
+
+            list_table.ItemsSource = ta;
         }
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -41,5 +103,11 @@ namespace QuanLiCoffeeShop.View.Admin.Table.Table_page_main
 
             }
         }
+        class table
+        {
+            public string Name { get; set; }
+            public string Status { get; set; }
+        }
+
     }
 }

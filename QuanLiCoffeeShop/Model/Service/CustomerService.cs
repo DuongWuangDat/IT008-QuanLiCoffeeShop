@@ -42,23 +42,6 @@ namespace QuanLiCoffeeShop.Model.Service
 						   }).ToListAsync();
 			return await cusList;
 		}
-		public async Task<List<CustomerDTO>> SearchCus(string name)
-		{
-			var cusList = (from s in DataProvider.Ins.DB.Customer
-						   where s.IsDeleted == false && s.DisplayName.ToLower().Contains(name.ToLower())
-						   select new CustomerDTO
-						   {
-							   ID = s.ID,
-							   Description = s.Description,
-							   DisplayName = s.DisplayName,
-							   Email = s.Email,
-							   IDSeat = s.IDSeat,
-							   IsDeleted = s.IsDeleted,
-							   PhoneNumber = s.PhoneNumber,
-							   Spend = s.Spend,
-						   }).ToListAsync();
-			return await cusList;
-		}
 		public async Task<(bool, string)> AddNewCus(Customer newCus)
 		{
 			bool IsEmailExist = await DataProvider.Ins.DB.Customer.AnyAsync(p => p.Email == newCus.Email);

@@ -17,6 +17,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
 {
     public class CustomerManagementViewModel : BaseViewModel
     {
+        public static List<CustomerDTO> cusList;
         private ObservableCollection<CustomerDTO> _customerList;
 
         public ObservableCollection<CustomerDTO> CustomerList
@@ -117,7 +118,9 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
             FirstLoadCM = new RelayCommand<Page>((p) => { return true; }, async (p) => 
             {
                 CustomerList = new ObservableCollection<CustomerDTO>(await CustomerService.Ins.GetAllCus());
+                cusList = new List<CustomerDTO>(CustomerList);
             });
+            
             SearchCustomerCM = new RelayCommand<TextBox>((p) => { return true; }, async (p) =>
             {
                 if(p.Text == "")
@@ -126,7 +129,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
                 }
                 else
                 {
-                    CustomerList = new ObservableCollection<CustomerDTO>(await CustomerService.Ins.SearchCus(p.Text));
+                    CustomerList = new ObservableCollection<CustomerDTO>(cusList.FindAll(x=>x.DisplayName.ToLower().Contains(p.Text.ToLower())));
                 }
                
             });

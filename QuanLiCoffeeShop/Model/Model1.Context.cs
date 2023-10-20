@@ -18,13 +18,12 @@ namespace QuanLiCoffeeShop.Model
         public QuanLiCoffeShopEntities()
             : base("name=QuanLiCoffeShopEntities")
         {
-        }
-
+        }   
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-
+       
         public virtual DbSet<Bill> Bill { get; set; }
         public virtual DbSet<BillInfo> BillInfo { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }

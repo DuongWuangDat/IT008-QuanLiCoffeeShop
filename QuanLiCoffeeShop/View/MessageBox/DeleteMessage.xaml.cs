@@ -19,6 +19,7 @@ namespace QuanLiCoffeeShop.View.MessageBox
     /// </summary>
     public partial class DeleteMessage : Window
     {
+        
         public DeleteMessage()
         {
             InitializeComponent();
@@ -26,7 +27,14 @@ namespace QuanLiCoffeeShop.View.MessageBox
 
         private void No_btn_Click(object sender, RoutedEventArgs e)
         {
+            this.DialogResult = false;
             Window.GetWindow(this).Close();
+        }
+
+        private void Yes_btn_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true; 
+            this.Close();
         }
     }
 }

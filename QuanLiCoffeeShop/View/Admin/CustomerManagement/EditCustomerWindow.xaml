@@ -6,36 +6,22 @@
         xmlns:local="clr-namespace:QuanLiCoffeeShop.View.Admin.CustomerManagement"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="AddCustomerWindow" 
-      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-     TextElement.FontWeight="Regular"
-     TextElement.FontSize="13"
-     TextOptions.TextFormattingMode="Ideal"
-     TextOptions.TextRenderingMode="Auto"
-     Background="Transparent"
-     FontFamily="{DynamicResource MaterialDesignFont}"
+        x:Name="EditCusPage"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="Transparent"
+        AllowsTransparency="True"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        
+        DataContext="{StaticResource CustomerPageVM}"
         Height="613.6" Width="886.4">
     <Window.Resources>
-        <ControlTemplate x:Key="TextBoxAdd" TargetType="TextBox">
-            <TextBox
-                    Text="{TemplateBinding Text}"
-                    Width="336" 
-                    Height="53.6" 
-                    BorderThickness="0.5" 
-                    materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
-                    VerticalContentAlignment="Center"
-                    Padding="12,2.4"
-                HorizontalAlignment="Left"
-                Margin="0,0,0,0"
-                    Background="#D9D9D9"
-                    FontFamily="Inter" 
-                    FontSize="12" 
-                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden" />
-        </ControlTemplate>
+
         <Style x:Key="TextBlockLogin" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontSize" Value="19.2"/>
@@ -44,7 +30,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Border Background="White" CornerRadius="32">
+        <Border Background="White" CornerRadius="20" BorderBrush="Black" BorderThickness="1">
             <Grid>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -71,28 +57,77 @@
                                    Margin="73.6,34.6,0,14.6" 
                                    Height="23" 
                                    VerticalAlignment="Top"/>
-                            <TextBox Template="{StaticResource TextBoxAdd}" Margin="73.6,0,0,0"/>
+                            <TextBox Width="336" 
+                                    Height="53.6" 
+                                    BorderThickness="0.5" 
+                                    materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
+                                    VerticalContentAlignment="Center"
+                                    Padding="12,2.4"
+                                    HorizontalAlignment="Left"
+                                    Margin="73.6,0,0,0"
+                                    Background="#D9D9D9"
+                                    FontFamily="Inter" 
+                                    FontSize="12" 
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"  
+                                     Text="{Binding EditName}"/>
                             <TextBlock Style="{DynamicResource TextBlockLogin}" 
                                        Text="Email" 
                                        Margin="73.6,20.8,0,20.8" 
                                        VerticalAlignment="Top"/>
-                            <TextBox Template="{StaticResource TextBoxAdd}" 
+                            <TextBox Width="336" 
+                                    Height="53.6" 
+                                    BorderThickness="0.5" 
+                                    materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
+                                    VerticalContentAlignment="Center"
+                                    Padding="12,2.4"
+                                    HorizontalAlignment="Left"
+                                    
+                                    Background="#D9D9D9"
+                                    FontFamily="Inter" 
+                                    FontSize="12" 
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                     Text="{Binding EditEmail}"
                                      Margin="73.6,0,0,0"/>
                             <TextBlock Style="{DynamicResource TextBlockLogin}" 
                                        Text="Chi Tiêu" 
                                        Margin="73.6,20.8,0,20.8" 
                                        VerticalAlignment="Top"/>
-                            <TextBox Template="{StaticResource TextBoxAdd}" 
-                                     Margin="73.6,0,0,0"/>
+                            <TextBox Width="336" 
+                                    Height="53.6" 
+                                    BorderThickness="0.5" 
+                                    materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
+                                    VerticalContentAlignment="Center"
+                                    Padding="12,2.4"
+                                    HorizontalAlignment="Left"
+                                    Margin="73.6,0,0,0"
+                                    Background="#D9D9D9"
+                                    FontFamily="Inter" 
+                                    FontSize="12" 
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                     Text="{Binding EditSpend}"
+                                     />
                         </StackPanel>
                         <StackPanel Grid.Column="1">
                             <TextBlock Style="{StaticResource TextBlockLogin}" Text="Số Điện Thoại" Margin="40.8,34.6,0,14.6"/>
-                            <TextBox Template="{StaticResource TextBoxAdd}" Margin="40.8,0,0,0"/>
+                            <TextBox Width="336" 
+                                    Height="53.6" 
+                                    BorderThickness="0.5" 
+                                    materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
+                                    VerticalContentAlignment="Center"
+                                    Padding="12,2.4"
+                                    HorizontalAlignment="Left"
+                                    Margin="40.8,0,0,0"
+                                    Background="#D9D9D9"
+                                    FontFamily="Inter" 
+                                    FontSize="12" 
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"  
+                                     Text="{Binding EditPhoneNumber}"/>
                             <TextBlock Style="{DynamicResource TextBlockLogin}" 
                                        Text="Ghi chú" 
                                        Margin="40.8,20.8,0,20.8" 
                                        VerticalAlignment="Top"/>
                             <TextBox
+                                Text="{Binding EditDescription}"
                                 VerticalContentAlignment="Top"
                                 Margin="40.8,0,0,0"
                                 Width="336" 
@@ -112,7 +147,9 @@
                     </Grid>
                     <StackPanel Grid.Row="2"
                                 Orientation="Horizontal">
-                        <Button Width="320.8"
+                        <Button Command="{Binding EditCusListCM}"
+                                CommandParameter="{Binding ElementName=EditCusPage}"
+                                Width="320.8"
                                 Height="61.6"
                                 materialDesign:ButtonAssist.CornerRadius="24"
                                 Background="#F0BD70"
@@ -121,8 +158,10 @@
                                 FontSize="24"
                                 FontWeight="Bold"
                                 VerticalAlignment="Top"
-                                Margin="348.8,0,29.6,0"/>
-                        <Button Width="120"
+                                Margin="348.8,0,29.6,0" />
+                        <Button Command="{Binding CloseWdCM}"
+                                CommandParameter="{Binding ElementName=EditCusPage}"
+                                Width="120"
                                 Height="61.6"
                                 materialDesign:ButtonAssist.CornerRadius="24"
                                 Background="#EFD8B4"

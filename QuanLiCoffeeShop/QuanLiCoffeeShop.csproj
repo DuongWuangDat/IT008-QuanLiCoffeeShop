@@ -147,6 +147,7 @@
     <Compile Include="ViewModel\AdminVM\MainAdminViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\LoginVM\LoginViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\StaffManagementVM\StaffViewModel.cs" />
     <Compile Include="ViewModel\StaffVM\MainStaffViewModel.cs" />
     <Compile Include="View\Admin\CustomerManagement\AddCustomerWindow.xaml.cs">
       <DependentUpon>AddCustomerWindow.xaml</DependentUpon>
@@ -171,6 +172,9 @@
     </Compile>
     <Compile Include="View\Admin\SanPham\SanPhamPage.xaml.cs">
       <DependentUpon>SanPhamPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\StaffManagement\AddStaff.xaml.cs">
+      <DependentUpon>AddStaff.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MessageBox\ConfirmDelete.xaml.cs">
       <DependentUpon>ConfirmDelete.xaml</DependentUpon>
@@ -252,6 +256,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Admin\StaffManagement\AddStaff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MessageBox\ConfirmDelete.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -264,7 +272,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-
     <Page Include="View\Admin\ThongKe\DoanhThu\DoanhThuTable.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -389,7 +396,6 @@
     <Resource Include="Resources\Icon\Magnifying_Glass.png" />
     <Resource Include="Resources\Icon\Add_NoBackground.png" />
     <Resource Include="Resources\Icon\Remove_NoBackground.png" />
-
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

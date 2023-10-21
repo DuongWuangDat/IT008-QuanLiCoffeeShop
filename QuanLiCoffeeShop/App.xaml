@@ -1,25 +1,9 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 <Application
     x:Class="QuanLiCoffeeShop.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:QuanLiCoffeeShop"
-    StartupUri="View/Admin/StaffManagement/StaffPage.xaml">
-
-=======
-
-=======
->>>>>>> 74eb99baa78cb12b28b46174cad7415fc3979590
-<Application x:Class="QuanLiCoffeeShop.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:QuanLiCoffeeShop"
-             StartupUri="View/Admin/CustomerManagement/CustomerPage.xaml">
-<<<<<<< HEAD
->>>>>>> ae9ad7777b4495165583fafcd2bd5640bf71c0ac
-=======
->>>>>>> 74eb99baa78cb12b28b46174cad7415fc3979590
+    StartupUri="View/Admin/StaffManagement/AddStaff.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

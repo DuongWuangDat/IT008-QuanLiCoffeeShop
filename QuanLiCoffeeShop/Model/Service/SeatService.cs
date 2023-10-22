@@ -24,5 +24,7 @@ namespace QuanLiCoffeeShop.Model.Service
 			private set { _ins = value; }
 		}
 
+		//Get all seat
+		
 	}
 }

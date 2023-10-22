@@ -30,9 +30,12 @@ namespace QuanLiCoffeeShop.Model.Service
 			}
 			private set { _ins = value; }
 		}
+
+		//Get all staff
 		public async Task<List<StaffDTO>> GetAllStaff()
 		{
 			var staffList = (from c in DataProvider.Ins.DB.Staff
+							 where c.IsDeleted == false
 						   select new StaffDTO
 						   {
 							   ID = c.ID,
@@ -51,6 +54,8 @@ namespace QuanLiCoffeeShop.Model.Service
 						   }).ToListAsync();
 			return await staffList;
 		}
+
+		//Add staff
 		public async Task<(bool,string)> AddNewStaff(Staff newStaff)
 		{
 		
@@ -92,6 +97,34 @@ namespace QuanLiCoffeeShop.Model.Service
             await DataProvider.Ins.DB.SaveChangesAsync();
             return (true, "Them thanh cong");
 		}
-		
+
+
+		// Edit staff
+		public async Task<(bool, string)> EditStaff(Staff newStaff)
+		{
+			var staff = await DataProvider.Ins.DB.Staff.Where(p => p.ID == newStaff.ID).FirstOrDefaultAsync();
+            staff.DisplayName = newStaff.DisplayName;
+            staff.StartDate = newStaff.StartDate;
+            staff.UserName = newStaff.UserName;
+            staff.PassWord = newStaff.PassWord;
+            staff.PhoneNumber = newStaff.PhoneNumber;
+            staff.BirthDay = newStaff.BirthDay;
+            staff.Wage = newStaff.Wage;
+            staff.Status = newStaff.Status;
+            staff.Email = newStaff.Email;
+            staff.Gender = newStaff.Gender;
+            staff.Role = newStaff.Role;
+            await DataProvider.Ins.DB.SaveChangesAsync();
+            return (true, "Cap that thanh cong");
+		}
+
+		//Delete staff
+		public async Task<(bool, string)>  DeleteStaff(int ID)
+		{
+            var staff = await DataProvider.Ins.DB.Staff.Where(p => p.ID == ID).FirstOrDefaultAsync();
+			if (staff.IsDeleted == false) staff.IsDeleted = true;
+            await DataProvider.Ins.DB.SaveChangesAsync();
+            return (true, "Da xoa");
+		}
 	}
 }

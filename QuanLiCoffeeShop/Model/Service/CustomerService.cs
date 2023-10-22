@@ -44,8 +44,6 @@ namespace QuanLiCoffeeShop.Model.Service
 		}
 		public async Task<(bool, string)> AddNewCus(Customer newCus)
 		{
-            if (newCus.DisplayName == null || newCus.PhoneNumber == null || newCus.Spend == null || newCus.DisplayName == null) return (false, "Nhap khong du du lieu");
-            if (newCus.Description == null) newCus.Description = "";
             bool IsEmailExist = await DataProvider.Ins.DB.Customer.AnyAsync(p => p.Email == newCus.Email);
 			bool IsPhoneExist = await DataProvider.Ins.DB.Customer.AnyAsync(p => p.PhoneNumber == newCus.PhoneNumber);
 			

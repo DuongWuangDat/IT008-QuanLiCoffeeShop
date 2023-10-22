@@ -13,6 +13,7 @@ namespace QuanLiCoffeeShop.DTOs
         public int IDProduct { get; set; }
         public Nullable<decimal> PriceItem { get; set; }
         public Nullable<int> Count { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
 
         public virtual Bill Bill { get; set; }
         public virtual Product Product { get; set; }

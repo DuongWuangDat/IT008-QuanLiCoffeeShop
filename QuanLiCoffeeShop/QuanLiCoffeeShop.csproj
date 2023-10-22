@@ -135,6 +135,7 @@
     <Compile Include="Model\Service\BillService.cs" />
     <Compile Include="Model\Service\CustomerService.cs" />
     <Compile Include="Model\Service\ErrorService.cs" />
+    <Compile Include="Model\Service\GenreService.cs" />
     <Compile Include="Model\Service\ProductService.cs" />
     <Compile Include="Model\Service\SeatService.cs" />
     <Compile Include="Model\Service\StaffService.cs" />

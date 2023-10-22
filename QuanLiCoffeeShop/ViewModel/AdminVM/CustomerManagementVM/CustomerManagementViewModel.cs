@@ -140,26 +140,35 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
             });
             AddCusListCM = new RelayCommand<Window>((p) => { return true; }, async (p) =>
             {
-                Customer newCus = new Customer
+                if (this.Name == null || this.PhoneNumber == null || this.Spend == null || this.Email == null)
                 {
-                    Description = this.Description,
-                    DisplayName = this.Name,
-                    PhoneNumber = this.PhoneNumber,
-                    Spend = decimal.Parse(this.Spend),
-                    Email = this.Email,
-                    IsDeleted = false,
-                    
-                };
-                (bool IsAdded, string messageAdd) = await CustomerService.Ins.AddNewCus(newCus);
-                if(IsAdded)
-                {
-                    p.Close();
-                    CustomerList= new ObservableCollection<CustomerDTO>(await CustomerService.Ins.GetAllCus());
+                    MessageBox.Show("Khong nhap du du lieu");
                 }
                 else
                 {
-                    MessageBox.Show(messageAdd);
+                    if (this.Description == null) this.Description = "";
+                    Customer newCus = new Customer
+                    {
+                        Description = this.Description,
+                        DisplayName = this.Name,
+                        PhoneNumber = this.PhoneNumber,
+                        Spend = decimal.Parse(this.Spend),
+                        Email = this.Email,
+                        IsDeleted = false,
+
+                    };
+                    (bool IsAdded, string messageAdd) = await CustomerService.Ins.AddNewCus(newCus);
+                    if (IsAdded)
+                    {
+                        p.Close();
+                        CustomerList = new ObservableCollection<CustomerDTO>(await CustomerService.Ins.GetAllCus());
+                    }
+                    else
+                    {
+                        MessageBox.Show(messageAdd);
+                    }
                 }
+                
             });
             CloseWdCM = new RelayCommand<Window>((p) => { return true; }, (p) => 
             {
@@ -176,25 +185,35 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
             });
             EditCusListCM = new RelayCommand<Window>((p) => { return true; }, async (p) =>
             {
-                Customer newCus = new Customer {
-                    ID = SelectedItem.ID,
-                    Description = EditDescription,
-                    PhoneNumber = EditPhoneNumber,
-                    Email = EditEmail,
-                    DisplayName = EditName,
-                    Spend= decimal.Parse(EditSpend),
-                    IsDeleted = false,
-                };
-                (bool success, string messageEdit) = await CustomerService.Ins.EditCusList(newCus, SelectedItem.ID);
-                if (success)
+                if (this.EditName == null || this.EditPhoneNumber == null || this.EditSpend == null || this.EditEmail == null)
                 {
-                    p.Close();
-                    CustomerList = new ObservableCollection<CustomerDTO>(await CustomerService.Ins.GetAllCus());
+                    MessageBox.Show("Khong nhap du du lieu");
                 }
                 else
                 {
-                    MessageBox.Show(messageEdit);
+                    if (this.EditDescription == null) this.EditDescription = "";
+                    Customer newCus = new Customer
+                    {
+                        ID = SelectedItem.ID,
+                        Description = EditDescription,
+                        PhoneNumber = EditPhoneNumber,
+                        Email = EditEmail,
+                        DisplayName = EditName,
+                        Spend = decimal.Parse(EditSpend),
+                        IsDeleted = false,
+                    };
+                    (bool success, string messageEdit) = await CustomerService.Ins.EditCusList(newCus, SelectedItem.ID);
+                    if (success)
+                    {
+                        p.Close();
+                        CustomerList = new ObservableCollection<CustomerDTO>(await CustomerService.Ins.GetAllCus());
+                    }
+                    else
+                    {
+                        MessageBox.Show(messageEdit);
+                    }
                 }
+                
             });
             DeleteCusListCM = new RelayCommand<object>((p) => { return true; }, async (p) => 
             { 

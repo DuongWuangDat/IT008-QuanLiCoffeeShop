@@ -44,7 +44,9 @@ namespace QuanLiCoffeeShop.Model.Service
 		}
 		public async Task<(bool, string)> AddNewCus(Customer newCus)
 		{
-			bool IsEmailExist = await DataProvider.Ins.DB.Customer.AnyAsync(p => p.Email == newCus.Email);
+            if (newCus.DisplayName == null || newCus.PhoneNumber == null || newCus.Spend == null || newCus.DisplayName == null) return (false, "Nhap khong du du lieu");
+            if (newCus.Description == null) newCus.Description = "";
+            bool IsEmailExist = await DataProvider.Ins.DB.Customer.AnyAsync(p => p.Email == newCus.Email);
 			bool IsPhoneExist = await DataProvider.Ins.DB.Customer.AnyAsync(p => p.PhoneNumber == newCus.PhoneNumber);
 			
 			var cus = await DataProvider.Ins.DB.Customer.Where(p => p.Email == newCus.Email || p.PhoneNumber == newCus.PhoneNumber).FirstOrDefaultAsync();
@@ -79,6 +81,8 @@ namespace QuanLiCoffeeShop.Model.Service
 		}
 		public async Task<(bool, string)> EditCusList(Customer newCus, int ID)
 		{
+			
+
 			var cus = await DataProvider.Ins.DB.Customer.Where(p => p.ID == ID).FirstOrDefaultAsync();
 			if (cus == null) return (false, "Không tìm thấy ID");
 			cus.Email= newCus.Email;

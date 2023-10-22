@@ -10,28 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.Admin.StaffManagemet
+namespace QuanLiCoffeeShop.View.Admin.Table.Table_card
 {
     /// <summary>
-    /// Interaction logic for ConfirmDelete.xaml
+    /// Interaction logic for card_table.xaml
     /// </summary>
-    public partial class ConfirmDelete : Window
+    public partial class card_table : UserControl
     {
-        public ConfirmDelete()
+        public card_table()
         {
             InitializeComponent();
         }
-
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-        }
     }
-
-
 }

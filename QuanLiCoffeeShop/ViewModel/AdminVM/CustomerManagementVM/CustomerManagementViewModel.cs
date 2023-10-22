@@ -2,6 +2,7 @@
 using QuanLiCoffeeShop.Model;
 using QuanLiCoffeeShop.Model.Service;
 using QuanLiCoffeeShop.View.Admin.CustomerManagement;
+using QuanLiCoffeeShop.View.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,6 +17,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
 {
     public class CustomerManagementViewModel : BaseViewModel
     {
+        public static List<CustomerDTO> cusList;
         private ObservableCollection<CustomerDTO> _customerList;
 
         public ObservableCollection<CustomerDTO> CustomerList
@@ -116,7 +118,9 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
             FirstLoadCM = new RelayCommand<Page>((p) => { return true; }, async (p) => 
             {
                 CustomerList = new ObservableCollection<CustomerDTO>(await CustomerService.Ins.GetAllCus());
+                cusList = new List<CustomerDTO>(CustomerList);
             });
+            
             SearchCustomerCM = new RelayCommand<TextBox>((p) => { return true; }, async (p) =>
             {
                 if(p.Text == "")
@@ -125,7 +129,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
                 }
                 else
                 {
-                    CustomerList = new ObservableCollection<CustomerDTO>(await CustomerService.Ins.SearchCus(p.Text));
+                    CustomerList = new ObservableCollection<CustomerDTO>(cusList.FindAll(x=>x.DisplayName.ToLower().Contains(p.Text.ToLower())));
                 }
                
             });
@@ -194,15 +198,21 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
             });
             DeleteCusListCM = new RelayCommand<object>((p) => { return true; }, async (p) => 
             { 
-                (bool sucess, string messageDelete) = await CustomerService.Ins.DeleteCustomer(SelectedItem.ID);
-                if (sucess)
+                DeleteMessage wd = new DeleteMessage();
+                wd.ShowDialog();
+                if (wd.DialogResult == true)
                 {
-                    CustomerList.Remove(SelectedItem);
+                    (bool sucess, string messageDelete) = await CustomerService.Ins.DeleteCustomer(SelectedItem.ID);
+                    if (sucess)
+                    {
+                        CustomerList.Remove(SelectedItem);
+                    }
+                    else
+                    {
+                        MessageBox.Show(messageDelete);
+                    }
                 }
-                else
-                {
-                    MessageBox.Show(messageDelete);
-                }
+                
             });
         }
     }

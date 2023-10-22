@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace QuanLiCoffeeShop.Model.Service
 {
@@ -65,7 +66,7 @@ namespace QuanLiCoffeeShop.Model.Service
 				Customer= newBill.Customer,
 				Staff= newBill.Staff,
 			};
-			DataProvider.Ins.DB.Bill.Add(bill);
+			
 			foreach(var g in newBill.BillInfo)
 			{
 				BillInfo billInfo = new BillInfo
@@ -78,11 +79,59 @@ namespace QuanLiCoffeeShop.Model.Service
 					Bill = g.Bill,
 					Product = g.Product,
 				};
+				bill.BillInfo.Add(billInfo);
 				DataProvider.Ins.DB.BillInfo.Add(billInfo);
 			}
-			await DataProvider.Ins.DB.SaveChangesAsync();
+            DataProvider.Ins.DB.Bill.Add(bill);
+            await DataProvider.Ins.DB.SaveChangesAsync();
 			return (true, "Them thanh cong");
 		}
+        //Delete bill
+        public async Task<(bool, string)> DeleteBill(BillDTO Bill)
+		{
+			var bill = await DataProvider.Ins.DB.Bill.Where(p=>p.ID==Bill.ID).FirstOrDefaultAsync();
+			if(bill.IsDeleted== false) bill.IsDeleted = true;
+			foreach(var b in Bill.BillInfo)
+			{
+				var billInfo = await DataProvider.Ins.DB.BillInfo.Where(p => p.IDBill == b.IDBill && p.IDProduct == b.IDProduct).FirstOrDefaultAsync();
+				if(billInfo.IsDeleted== false) billInfo.IsDeleted = true;
+            }
+			return (true, "Xoa thanh cong");
+		}
+
 		//Edit bill
-	}
+		public async Task<(bool, string)> EditBill(BillDTO newBill)
+		{
+            var bill = await DataProvider.Ins.DB.Bill.Where(p => p.ID == newBill.ID).FirstOrDefaultAsync();
+			bill.IDStaff = newBill.IDStaff;
+			bill.Staff=newBill.Staff;
+			bill.Customer=newBill.Customer;
+			bill.IDCus= newBill.IDCus;
+			bill.CreateAt = newBill.CreateAt;
+			bill.TotalPrice = newBill.TotalPrice;
+			foreach(var b in newBill.BillInfo)
+			{
+                var billInfo = await DataProvider.Ins.DB.BillInfo.Where(p => p.IDBill == b.IDBill && p.IDProduct == b.IDProduct).FirstOrDefaultAsync();
+				billInfo.IDBill = b.IDBill;
+				billInfo.IDProduct = b.IDProduct;
+				billInfo.PriceItem = b.PriceItem;
+				billInfo.IsDeleted = false;
+				billInfo.Product = b.Product;
+				billInfo.Count = b.Count;
+				billInfo.Bill = b.Bill;
+                bill.BillInfo.Add(new BillInfo
+				{
+					IDBill=b.IDBill,
+					IDProduct=b.IDProduct,
+					PriceItem=b.PriceItem,
+					IsDeleted=false,
+					Product=b.Product,
+					Count=b.Count,
+					Bill=b.Bill,
+				});
+			}
+			return (true, "Cap nhat thanh cong");
+        }
+
+    }
 }

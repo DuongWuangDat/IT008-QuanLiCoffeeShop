@@ -177,12 +177,6 @@
     <Compile Include="View\Admin\SanPham\SanPhamPage.xaml.cs">
       <DependentUpon>SanPhamPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Admin\StaffManagement\AddStaff.xaml.cs">
-      <DependentUpon>AddStaff.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Admin\StaffManagement\ModifyStaff.xaml.cs">
-      <DependentUpon>ModifyStaff.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Admin\Table\Table_card\card_table.xaml.cs">
       <DependentUpon>card_table.xaml</DependentUpon>
     </Compile>
@@ -269,14 +263,6 @@
     <Page Include="View\Admin\SanPham\SanPhamPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\Admin\StaffManagement\AddStaff.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Admin\StaffManagement\ModifyStaff.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Admin\Table\Table_card\card_table.xaml">
       <Generator>MSBuild:Compile</Generator>

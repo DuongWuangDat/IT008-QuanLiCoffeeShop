@@ -147,7 +147,7 @@
     <Compile Include="ViewModel\AdminVM\MainAdminViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\LoginVM\LoginViewModel.cs" />
-    <Compile Include="ViewModel\StaffViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\StaffManagementVM\StaffViewModel.cs" />
     <Compile Include="ViewModel\StaffVM\MainStaffViewModel.cs" />
     <Compile Include="View\Admin\CustomerManagement\AddCustomerWindow.xaml.cs">
       <DependentUpon>AddCustomerWindow.xaml</DependentUpon>
@@ -176,14 +176,17 @@
     <Compile Include="View\Admin\SanPham\SanPhamPage.xaml.cs">
       <DependentUpon>SanPhamPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Admin\StaffManagement\AddStaff.xaml.cs">
+      <DependentUpon>AddStaff.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Admin\StaffManagement\ModifyStaff.xaml.cs">
+      <DependentUpon>ModifyStaff.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Admin\Table\Table_card\card_table.xaml.cs">
       <DependentUpon>card_table.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Admin\Table\Table_page_main\Page_main.xaml.cs">
       <DependentUpon>Page_main.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\MessageBox\ConfirmDelete.xaml.cs">
-      <DependentUpon>ConfirmDelete.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Admin\StaffManagement\StaffPage.xaml.cs">
       <DependentUpon>StaffPage.xaml</DependentUpon>
@@ -266,15 +269,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Admin\StaffManagement\AddStaff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\StaffManagement\ModifyStaff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Admin\Table\Table_card\card_table.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Admin\Table\Table_page_main\Page_main.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\MessageBox\ConfirmDelete.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

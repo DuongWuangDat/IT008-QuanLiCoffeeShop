@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLiCoffeeShop.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -28,6 +29,20 @@ namespace QuanLiCoffeeShop.Model.Service
                 return (-1, null);
             }
             return (prD.ID, prD);
+        }
+
+        //Get  all gerne seat
+        public async Task<List<string>> GetAllSeat()
+        {
+            var seatGenreList = (from c in DataProvider.Ins.DB.GenreSeat select c.DisplayName).ToListAsync();
+            return await seatGenreList;
+        }
+
+        // Get all genre prD
+        public async Task<List<string>> GetAllPrD()
+        {
+            var seatGenreList = (from c in DataProvider.Ins.DB.GenreProduct select c.DisplayName).ToListAsync();
+            return await seatGenreList;
         }
     }
 }

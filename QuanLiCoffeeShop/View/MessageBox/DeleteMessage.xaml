@@ -36,13 +36,13 @@
                         Text="Bạn có chắc chắn muốn xóa không" />
                     <StackPanel 
                         VerticalAlignment="Center" 
+                        HorizontalAlignment="Center"
                         Orientation="Horizontal"
                         Margin="0 5 0 0">
                         
                         <Button
                             Width="98.304"  
-                            Height="37.888"  
-                            Margin="55.04,0,19.2,0" 
+                            Height="37.888"
                             Padding="0"
                             materialDesign:ButtonAssist.CornerRadius="15.36"  
                             Background="#42a9e3"
@@ -54,7 +54,7 @@
                         <Button
                             Width="98.304"  
                             Height="37.888" 
-                            Margin="19.2,0,19.2,0"  
+                            Margin="30,0,0,0"  
                             Padding="0"
                             materialDesign:ButtonAssist.CornerRadius="15.36" 
                             Background="#ef4444"

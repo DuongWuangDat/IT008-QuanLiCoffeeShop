@@ -182,6 +182,17 @@
                     Header="Trạng thái"
                     SortDirection="{x:Null}" />
 
+                <DataGridTextColumn
+                    Width="auto"
+                    Binding="{Binding UserName}"
+                    Header="Tài khoản"
+                    SortDirection="{x:Null}" />
+                <DataGridTextColumn
+                    Width="auto"
+                    Binding="{Binding PassWord}"
+                    Header="Mật khẩu"
+                    SortDirection="{x:Null}" />
+
                 <!--  Button chỉnh sửa, xóa cho mỗi staff  -->
                 <DataGridTemplateColumn Header="">
                     <DataGridTemplateColumn.CellTemplate>

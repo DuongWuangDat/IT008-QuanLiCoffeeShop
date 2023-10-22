@@ -182,9 +182,6 @@
     <Compile Include="View\Admin\StaffManagement\ModifyStaff.xaml.cs">
       <DependentUpon>ModifyStaff.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Admin\StaffManagement\ViewStaff.xaml.cs">
-      <DependentUpon>ViewStaff.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Admin\Table\Table_card\card_table.xaml.cs">
       <DependentUpon>card_table.xaml</DependentUpon>
     </Compile>
@@ -277,10 +274,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Admin\StaffManagement\ModifyStaff.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Admin\StaffManagement\ViewStaff.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

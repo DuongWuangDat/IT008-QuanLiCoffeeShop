@@ -10,6 +10,7 @@ namespace QuanLiCoffeeShop.DTOs
     {
         public int ID { get; set; }
         public Nullable<int> IDGenre { get; set; }
+        public string GenreName { get; set; }
         public string Status { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
     }

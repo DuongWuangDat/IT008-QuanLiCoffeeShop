@@ -62,6 +62,7 @@
                                     Height="53.6" 
                                     BorderThickness="0.5" 
                                     materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
+                                    BorderBrush="Transparent"
                                     VerticalContentAlignment="Center"
                                     Padding="12,2.4"
                                     HorizontalAlignment="Left"
@@ -81,7 +82,7 @@
                                     VerticalContentAlignment="Center"
                                     Padding="12,2.4"
                                     HorizontalAlignment="Left"
-                                    
+                                    BorderBrush="Transparent"
                                     Background="#D9D9D9"
                                     FontFamily="Inter" 
                                     FontSize="12" 
@@ -96,6 +97,7 @@
                                     Height="53.6" 
                                     BorderThickness="0.5" 
                                     materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
+                                    BorderBrush="Transparent"
                                     VerticalContentAlignment="Center"
                                     Padding="12,2.4"
                                     HorizontalAlignment="Left"
@@ -113,6 +115,7 @@
                                     Height="53.6" 
                                     BorderThickness="0.5" 
                                     materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
+                                    BorderBrush="Transparent"
                                     VerticalContentAlignment="Center"
                                     Padding="12,2.4"
                                     HorizontalAlignment="Left"
@@ -127,6 +130,7 @@
                                        Margin="40.8,20.8,0,20.8" 
                                        VerticalAlignment="Top"/>
                             <TextBox
+                                BorderBrush="Transparent"
                                 Text="{Binding Description}"
                                 MinLines="1"
                                 TextWrapping="Wrap"

@@ -1,15 +1,35 @@
-﻿using QuanLiCoffeeShop.DTOs;
-using QuanLiCoffeeShop.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using QuanLiCoffeeShop.View.Admin.StaffManagement;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace QuanLiCoffeeShop.ViewModel.AdminVM
 {
     public class MainAdminViewModel : BaseViewModel
     {
-        public StaffDTO currentStaff;
+        private Page currentPage;
+        public Page CurrentPage
+        {
+            get { return currentPage; }
+            set
+            {
+                currentPage = value;
+                OnPropertyChanged(nameof(CurrentPage));
+            }
+        }
+        public ICommand LoadNhanVienPage { get; }
+        public MainAdminViewModel()
+        {
+            LoadNhanVienPage = new RelayCommand<object>(canExecute: CanExecuteLoadStaffPage, execute: ExecuteLoadStaffPage);
+        }
+
+        private void ExecuteLoadStaffPage(object obj)
+        {
+            CurrentPage = new StaffPage();
+        }
+
+        private bool CanExecuteLoadStaffPage(object obj)
+        {
+            return true;
+        }
     }
 }

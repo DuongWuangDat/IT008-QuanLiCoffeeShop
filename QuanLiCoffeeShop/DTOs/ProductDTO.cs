@@ -12,6 +12,7 @@ namespace QuanLiCoffeeShop.DTOs
         public string DisplayName { get; set; }
         public Nullable<decimal> Price { get; set; }
         public Nullable<int> IDGenre { get; set; }
+        public string GenreName { get; set; }
         public Nullable<int> Count { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }

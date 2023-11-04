@@ -1,8 +1,7 @@
-﻿using QuanLiCoffeeShop.ViewModel;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace QuanLiCoffeeShop.View.Admin.StaffManagemet
+namespace QuanLiCoffeeShop.View.Admin.StaffManagement
 {
     /// <summary>
     /// Interaction logic for StaffPage.xaml
@@ -12,7 +11,6 @@ namespace QuanLiCoffeeShop.View.Admin.StaffManagemet
         public StaffPage()
         {
             InitializeComponent();
-            DataContext = new StaffViewModel();
 
         }
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

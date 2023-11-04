@@ -12,29 +12,30 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.MessageBox
+namespace QuanLiCoffeeShop.View.Admin.StaffManagement
 {
     /// <summary>
-    /// Interaction logic for DeleteMessage.xaml
+    /// Interaction logic for ModifyStaff.xaml
     /// </summary>
-    public partial class DeleteMessage : Window
+    public partial class ModifyStaff : Window
     {
-        
-        public DeleteMessage()
+        public ModifyStaff()
         {
             InitializeComponent();
         }
 
-        private void No_btn_Click(object sender, RoutedEventArgs e)
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            this.DialogResult = false;
-            Window.GetWindow(this).Close();
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
 
-        private void Yes_btn_Click(object sender, RoutedEventArgs e)
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            this.DialogResult = true; 
-            this.Close();
+
         }
     }
+
 }

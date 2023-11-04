@@ -1,10 +1,12 @@
-﻿using QuanLiCoffeeShop.View.Admin.StaffManagement;
+﻿using QuanLiCoffeeShop.View.Admin;
+using QuanLiCoffeeShop.View.Admin.StaffManagement;
+using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace QuanLiCoffeeShop.ViewModel.AdminVM
 {
-    public class MainAdminViewModel : BaseViewModel
+    internal class MainAdminViewModel : BaseViewModel
     {
         private Page currentPage;
         public Page CurrentPage
@@ -16,6 +18,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM
                 OnPropertyChanged(nameof(CurrentPage));
             }
         }
+
         public ICommand LoadNhanVienPage { get; }
         public MainAdminViewModel()
         {
@@ -24,6 +27,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM
 
         private void ExecuteLoadStaffPage(object obj)
         {
+
             CurrentPage = new StaffPage();
         }
 

@@ -146,10 +146,12 @@
     <Compile Include="Resources\Image\placeHolder.cs" />
     <Compile Include="ViewModel\AdminVM\CustomerManagementVM\CustomerManagementViewModel.cs" />
     <Compile Include="ViewModel\AdminVM\MainAdminViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\StaffManagementVM\ButtonThemViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\LoginVM\LoginViewModel.cs" />
     <Compile Include="ViewModel\AdminVM\StaffManagementVM\StaffViewModel.cs" />
     <Compile Include="ViewModel\StaffVM\MainStaffViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\ButtonViewModel.cs" />
     <Compile Include="View\Admin\CustomerManagement\AddCustomerWindow.xaml.cs">
       <DependentUpon>AddCustomerWindow.xaml</DependentUpon>
     </Compile>
@@ -406,6 +408,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Icon\SuCoIcon.png" />
     <Resource Include="Resources\Image\table.png" />
     <Resource Include="Resources\Icon\plus.png" />
     <Resource Include="Resources\Icon\Log_Out_Caution.png" />

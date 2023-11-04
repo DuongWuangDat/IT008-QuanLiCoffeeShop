@@ -97,6 +97,9 @@
                     Click="ButtonThem_Click"
                     Foreground="White"
                     Style="{StaticResource MaterialDesignRaisedLightButton}">
+                    <Button.Command>
+                        <Binding Path="OpenAddWindowCommand" />
+                    </Button.Command>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />

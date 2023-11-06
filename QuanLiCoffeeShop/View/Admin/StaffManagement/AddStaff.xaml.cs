@@ -9,26 +9,27 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.MainFrame
+namespace QuanLiCoffeeShop.View.Admin.StaffManagement
 {
     /// <summary>
-    /// Interaction logic for MainFrame.xaml
+    /// Interaction logic for AddStaff.xaml
     /// </summary>
-    public partial class MainFrame : Window
+    public partial class AddStaff : Window
     {
-        public MainFrame()
+        public AddStaff()
         {
             InitializeComponent();
         }
 
-        private void Overlay_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
-            BeginStoryboard((Storyboard)Resources["MenuClose"]);
+            if(e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
     }
 }

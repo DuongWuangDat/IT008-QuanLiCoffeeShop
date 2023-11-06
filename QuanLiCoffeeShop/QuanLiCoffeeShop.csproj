@@ -258,9 +258,6 @@
     <Compile Include="View\LoginWindow\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MainFrame\MainFrame.xaml.cs">
-      <DependentUpon>MainFrame.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\MenuBar\MenuBar.xaml.cs">
       <DependentUpon>MenuBar.xaml</DependentUpon>
     </Compile>
@@ -355,10 +352,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\LoginWindow\LoginWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\MainFrame\MainFrame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

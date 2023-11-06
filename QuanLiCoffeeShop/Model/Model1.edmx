@@ -14,6 +14,7 @@
           <Property Name="IDStaff" Type="int" />
           <Property Name="CreateAt" Type="smalldatetime" />
           <Property Name="TotalPrice" Type="money" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="BillInfo">
           <Key>
@@ -24,6 +25,7 @@
           <Property Name="IDProduct" Type="int" Nullable="false" />
           <Property Name="PriceItem" Type="money" />
           <Property Name="Count" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -46,6 +48,7 @@
           <Property Name="DisplayName" Type="nvarchar(max)" />
           <Property Name="Status" Type="nvarchar" MaxLength="100" />
           <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="GenreProduct">
           <Key>
@@ -276,6 +279,7 @@
           <Property Name="IDStaff" Type="Int32" />
           <Property Name="CreateAt" Type="DateTime" Precision="0" />
           <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="Customer" Relationship="QuanLiCoffeShopModel.FK_Bill_Cus" FromRole="Bill" ToRole="Customer" />
           <NavigationProperty Name="Staff" Relationship="QuanLiCoffeShopModel.FK_Bill_Staff" FromRole="Bill" ToRole="Staff" />
           <NavigationProperty Name="BillInfo" Relationship="QuanLiCoffeShopModel.FK_BillInfo_Bill" FromRole="Bill" ToRole="BillInfo" />
@@ -289,6 +293,7 @@
           <Property Name="IDProduct" Type="Int32" Nullable="false" />
           <Property Name="PriceItem" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Count" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="Bill" Relationship="QuanLiCoffeShopModel.FK_BillInfo_Bill" FromRole="BillInfo" ToRole="Bill" />
           <NavigationProperty Name="Product" Relationship="QuanLiCoffeShopModel.FK_BillInfo_PrD" FromRole="BillInfo" ToRole="Product" />
         </EntityType>
@@ -315,6 +320,7 @@
           <Property Name="DisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
         </EntityType>
         <EntityType Name="GenreProduct">
           <Key>
@@ -470,6 +476,7 @@
           <EntitySetMapping Name="Bill">
             <EntityTypeMapping TypeName="QuanLiCoffeShopModel.Bill">
               <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
                 <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
                 <ScalarProperty Name="IDStaff" ColumnName="IDStaff" />
@@ -481,6 +488,7 @@
           <EntitySetMapping Name="BillInfo">
             <EntityTypeMapping TypeName="QuanLiCoffeShopModel.BillInfo">
               <MappingFragment StoreEntitySet="BillInfo">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="PriceItem" ColumnName="PriceItem" />
                 <ScalarProperty Name="IDProduct" ColumnName="IDProduct" />
@@ -505,6 +513,7 @@
           <EntitySetMapping Name="Error">
             <EntityTypeMapping TypeName="QuanLiCoffeShopModel.Error">
               <MappingFragment StoreEntitySet="Error">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />

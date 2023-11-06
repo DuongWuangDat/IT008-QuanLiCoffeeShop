@@ -9,5 +9,6 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM
 {
     public class MainStaffViewModel : BaseViewModel
     {
+        public MainStaffViewModel() { }
     }
 }

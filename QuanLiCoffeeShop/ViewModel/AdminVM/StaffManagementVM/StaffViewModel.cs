@@ -1,4 +1,5 @@
-﻿using QuanLiCoffeeShop.Model;
+﻿using QuanLiCoffeeShop.DTOs;
+using QuanLiCoffeeShop.Model;
 using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -10,11 +11,11 @@ namespace QuanLiCoffeeShop.ViewModel
 
     public class StaffViewModel : BaseViewModel
     {
-        public ObservableCollection<Staff> Employees { get; set; }
+        public ObservableCollection<StaffDTO> Employees { get; set; }
 
         public StaffViewModel()
         {
-            Employees = new ObservableCollection<Staff>();
+            Employees = new ObservableCollection<StaffDTO>();
 
         }
     }

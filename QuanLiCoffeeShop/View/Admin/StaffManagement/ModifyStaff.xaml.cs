@@ -12,26 +12,30 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.Admin.StaffManagemet
+namespace QuanLiCoffeeShop.View.Admin.StaffManagement
 {
     /// <summary>
-    /// Interaction logic for ConfirmDelete.xaml
+    /// Interaction logic for ModifyStaff.xaml
     /// </summary>
-    public partial class ConfirmDelete : Window
+    public partial class ModifyStaff : Window
     {
-        public ConfirmDelete()
+        public ModifyStaff()
         {
             InitializeComponent();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            if (e.ButtonState == MouseButtonState.Pressed)
             {
                 DragMove();
             }
         }
-    }
 
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+    }
 
 }

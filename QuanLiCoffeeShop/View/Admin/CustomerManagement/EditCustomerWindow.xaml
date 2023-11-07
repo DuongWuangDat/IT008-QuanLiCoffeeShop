@@ -30,7 +30,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Border Background="White" CornerRadius="32">
+        <Border Background="White" CornerRadius="20" BorderBrush="Black" BorderThickness="1">
             <Grid>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -61,6 +61,7 @@
                                     Height="53.6" 
                                     BorderThickness="0.5" 
                                     materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
+                                    BorderBrush="Transparent"
                                     VerticalContentAlignment="Center"
                                     Padding="12,2.4"
                                     HorizontalAlignment="Left"
@@ -78,6 +79,7 @@
                                     Height="53.6" 
                                     BorderThickness="0.5" 
                                     materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
+                                    BorderBrush="Transparent"
                                     VerticalContentAlignment="Center"
                                     Padding="12,2.4"
                                     HorizontalAlignment="Left"
@@ -96,6 +98,7 @@
                                     Height="53.6" 
                                     BorderThickness="0.5" 
                                     materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
+                                    BorderBrush="Transparent"
                                     VerticalContentAlignment="Center"
                                     Padding="12,2.4"
                                     HorizontalAlignment="Left"
@@ -114,6 +117,7 @@
                                     BorderThickness="0.5" 
                                     materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
                                     VerticalContentAlignment="Center"
+                                    BorderBrush="Transparent"
                                     Padding="12,2.4"
                                     HorizontalAlignment="Left"
                                     Margin="40.8,0,0,0"
@@ -134,6 +138,7 @@
                                 Height="209" 
                                 BorderThickness="0.5" 
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
+                                BorderBrush="Transparent"
                                 MaxLines="20"
                                 Padding="12"
                                 HorizontalAlignment="Left"

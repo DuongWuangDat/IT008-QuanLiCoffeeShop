@@ -5,7 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="clr-namespace:QuanLiCoffeeShop.ViewModel"
     Title="StaffPage"
+    d:DataContext="{d:DesignInstance Type=viewmodel:StaffViewModel}"
     d:Height="550"
     d:Width="800"
     Background="White"
@@ -84,80 +86,33 @@
                             VerticalAlignment="Center"
                             Source="pack://application:,,,/QuanLiCoffeeShop;component/Resources/Icon\Magnifying_Glass.png" />
                     </Grid>
-
                 </Border>
-
-
 
                 <!--  Button Thêm  -->
                 <Button
                     Width="auto"
-                    Margin="20,3,5,3"
+                    Margin="10,3,30,3"
                     Background="#E0AE8A"
-                    BorderBrush="DarkGray"
+                    BorderBrush="Gray"
                     Click="ButtonThem_Click"
                     Foreground="White"
                     Style="{StaticResource MaterialDesignRaisedLightButton}">
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="6*" />
-                            <RowDefinition Height="5*" />
-                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Image
-                            Grid.RowSpan="2"
                             Grid.Column="0"
                             Width="14"
                             Height="16"
-                            Margin="2,2,6,1"
+                            Margin="0,2,6,1"
                             Source="pack://application:,,,/QuanLiCoffeeShop;component/Resources/Icon/Add_NoBackGround.png" />
 
 
-                        <TextBlock
-                            Grid.RowSpan="2"
-                            Grid.Column="1"
-                            Text="Thêm" />
+                        <TextBlock Grid.Column="1" Text="Thêm" />
                     </Grid>
                 </Button>
-
-                <!--  Button Xóa  -->
-                <Button
-                    Width="auto"
-                    Margin="20,3,30,3"
-                    Background="#E0AE8A"
-                    BorderBrush="DarkGray"
-                    Click="ButtonXoa_Click"
-                    Foreground="White"
-                    Style="{StaticResource MaterialDesignRaisedLightButton}">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition Height="8*" />
-                            <RowDefinition Height="10*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Image
-                            Grid.Row="1"
-                            Grid.RowSpan="2"
-                            Grid.Column="0"
-                            Width="14"
-                            Height="16"
-                            Margin="2,1,6,1"
-                            Source="pack://application:,,,/QuanLiCoffeeShop;component/Resources/Icon\Remove_NoBackground.png" />
-                        <TextBlock
-                            Grid.RowSpan="3"
-                            Grid.Column="1"
-                            Text="Xóa" />
-                    </Grid>
-                </Button>
-
-
             </StackPanel>
 
 
@@ -188,43 +143,54 @@
                     SortDirection="{x:Null}" />
                 <DataGridTextColumn
                     Width="auto"
-                    Header="Số điện thoại"
                     Binding="{Binding PhoneNumber}"
+                    Header="Số điện thoại"
                     SortDirection="{x:Null}" />
                 <DataGridTextColumn
                     Width="auto"
-                    Header="Email"
                     Binding="{Binding Email}"
+                    Header="Email"
                     SortDirection="{x:Null}" />
                 <DataGridTextColumn
                     Width="auto"
-                    Header="Ngày bắt đầu"
                     Binding="{Binding StartDate}"
+                    Header="Ngày bắt đầu"
                     SortDirection="{x:Null}" />
                 <DataGridTextColumn
                     Width="auto"
-                    Header="Giới tính"
                     Binding="{Binding Gender}"
+                    Header="Giới tính"
                     SortDirection="{x:Null}" />
                 <DataGridTextColumn
                     Width="auto"
-                    Header="Ngày sinh"
                     Binding="{Binding BirthDay}"
+                    Header="Ngày sinh"
                     SortDirection="{x:Null}" />
                 <DataGridTextColumn
                     Width="auto"
-                    Header="Chức vụ"
                     Binding="{Binding Role}"
+                    Header="Chức vụ"
                     SortDirection="{x:Null}" />
                 <DataGridTextColumn
                     Width="auto"
-                    Header="Lương"
                     Binding="{Binding Wage}"
+                    Header="Lương"
                     SortDirection="{x:Null}" />
                 <DataGridTextColumn
                     Width="auto"
-                    Header="Trạng thái"
                     Binding="{Binding Status}"
+                    Header="Trạng thái"
+                    SortDirection="{x:Null}" />
+
+                <DataGridTextColumn
+                    Width="auto"
+                    Binding="{Binding UserName}"
+                    Header="Tài khoản"
+                    SortDirection="{x:Null}" />
+                <DataGridTextColumn
+                    Width="auto"
+                    Binding="{Binding PassWord}"
+                    Header="Mật khẩu"
                     SortDirection="{x:Null}" />
 
                 <!--  Button chỉnh sửa, xóa cho mỗi staff  -->
@@ -249,7 +215,6 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

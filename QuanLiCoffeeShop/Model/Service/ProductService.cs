@@ -77,9 +77,9 @@ namespace QuanLiCoffeeShop.Model.Service
 		}
 
         //Delete product
-        public async Task<(bool, string)> DeletePrD(Product newPrD)
+        public async Task<(bool, string)> DeletePrD(int ID)
         {
-			var prD = await DataProvider.Ins.DB.Product.Where(p => p.ID == newPrD.ID).FirstOrDefaultAsync();
+			var prD = await DataProvider.Ins.DB.Product.Where(p => p.ID == ID).FirstOrDefaultAsync();
 			if(prD.IsDeleted==false) prD.IsDeleted = true;
             await DataProvider.Ins.DB.SaveChangesAsync();
             return (true, "Xoa thanh cong");

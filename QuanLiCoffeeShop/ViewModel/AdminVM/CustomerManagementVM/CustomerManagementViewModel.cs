@@ -116,11 +116,9 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
         public ICommand EditCusListCM { get; set; }
         public ICommand DeleteCusListCM { get; set; }
         public CustomerManagementViewModel() {
-            FirstLoadCM = new RelayCommand<ListView>((p) => { return true; }, async (p) => 
+            FirstLoadCM = new RelayCommand<Page>((p) => { return true; }, async (p) => 
             {
-                if (CustomerList == null) {
-                    CustomerList = new ObservableCollection<CustomerDTO>(await CustomerService.Ins.GetAllCus());
-                }
+                CustomerList = new ObservableCollection<CustomerDTO>(await CustomerService.Ins.GetAllCus());
                 if (CustomerList != null)
                     cusList = new List<CustomerDTO>(CustomerList);
                 

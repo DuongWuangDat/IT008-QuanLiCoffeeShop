@@ -45,11 +45,5 @@ namespace QuanLiCoffeeShop.View.Admin.Problem.Problem_page_main
             }
         }
     }
-    class problem
-    {
-        public string STT { get; set; }
-        public string Name { get; set; }
-        public string Status { get; set; }
-        public string Node { get; set; }
-    }
+    
 }

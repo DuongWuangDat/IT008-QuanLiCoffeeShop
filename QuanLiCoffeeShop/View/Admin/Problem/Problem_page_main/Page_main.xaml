@@ -5,13 +5,19 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:QuanLiCoffeeShop.View.Admin.Problem.Problem_page_main"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       mc:Ignorable="d"
       Height="800"
       Width="1536"
       d:DesignHeight="800"
       d:DesignWidth="1536"
       Title="Page_main">
-
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding FirstLoadProblem}"
+                                   CommandParameter="{Binding ElementName=ProblemPage}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid Background="#FFFFFF">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="236"></ColumnDefinition>
@@ -42,7 +48,8 @@
                     <!--Add_problemm-->
                     <Button Height="70"
                             Width="140"
-                            Margin="0,0,0,0">
+                            Margin="0,0,0,0"
+                            Command="{Binding AddProblem}">
                         <Button.Template>
                             <ControlTemplate>
                                 <Border Height="50"
@@ -78,7 +85,8 @@
                                       Width="25"
                                       Height="30"
                                       Margin="24 0 0 0" />
-                            <TextBox  BorderBrush="#FFF4F4"
+                            <TextBox x:Name="Searchtable" 
+                                     BorderBrush="#FFF4F4"
                                       TextDecorations="None"
                                       Width="130"
                                       Tag="Tìm kiếm"
@@ -88,7 +96,18 @@
                                       Margin="13,0,0,0"
                                       Foreground="Black"
                                       GotFocus="TextBox_GotFocus"
-                                      LostFocus="TextBox_LostFocus" />
+                                      LostFocus="TextBox_LostFocus">
+
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="TextChanged">
+                                        <i:InvokeCommandAction Command="{Binding SearchProblem}"
+                                                               CommandParameter="{Binding ElementName=search}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+
+                            </TextBox>
+                               
+                                      
                         </StackPanel>
                     </Border>
                 </StackPanel>

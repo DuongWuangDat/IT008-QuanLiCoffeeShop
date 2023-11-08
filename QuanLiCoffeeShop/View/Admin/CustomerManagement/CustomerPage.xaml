@@ -88,6 +88,7 @@
                           
                           ItemsSource="{Binding CustomerList}"
                           SelectedItem="{Binding SelectedItem}" >
+                    
                     <ListView.ItemContainerStyle>
                         
                         <Style TargetType="ListViewItem"

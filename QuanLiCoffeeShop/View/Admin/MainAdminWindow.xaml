@@ -73,7 +73,13 @@
                 </Grid.RowDefinitions>
 
                 <!--Main Frame-->
-                <Frame Grid.Row="1" x:Name="MainFrame" Content="{Binding CurrentPage}"/>
+                <Frame Grid.Row="1" x:Name="MainFrame" >
+                    <Frame.Style>
+                        <Style TargetType="Frame">
+                            <Setter Property="NavigationUIVisibility" Value="Hidden"/>
+                        </Style>
+                    </Frame.Style>
+                </Frame>
 
                 <materialDesign:ColorZone
                     Grid.Row="0"
@@ -271,7 +277,7 @@
                     <Button
                         Height="58"
                         Command="{Binding LoadNhanVienPage}"
-                        CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
+                        CommandParameter="{Binding ElementName=MainFrame}">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Height="58" CornerRadius="16">

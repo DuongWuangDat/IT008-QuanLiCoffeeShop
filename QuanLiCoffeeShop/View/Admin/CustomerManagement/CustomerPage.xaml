@@ -19,11 +19,7 @@
      FontFamily="{DynamicResource MaterialDesignFont}"
       DataContext="{StaticResource CustomerPageVM}"
       >
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding FirstLoadCM}" CommandParameter="{Binding ElementName=customerPage}"/>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
+   
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="106.59"/>
@@ -88,6 +84,11 @@
                           
                           ItemsSource="{Binding CustomerList}"
                           SelectedItem="{Binding SelectedItem}" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Loaded">
+                            <i:InvokeCommandAction Command="{Binding FirstLoadCM}" CommandParameter="{Binding ElementName=CusList}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <ListView.ItemContainerStyle>
                         
                         <Style TargetType="ListViewItem"

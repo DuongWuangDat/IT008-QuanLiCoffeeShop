@@ -64,16 +64,16 @@ namespace QuanLiCoffeeShop.Model.Service
 					prD.Image = newPrD.Image;
 					prD.IsDeleted = false;
                     await DataProvider.Ins.DB.SaveChangesAsync();
-                    return (true, "Them thanh cong");
+                    return (true, "Thêm thành công");
                 }
 				else
 				{
-                    return (false, "Da ton tai san pham");
+                    return (false, "Đã tồn tại sản phẩm");
                 }
 			}
 			DataProvider.Ins.DB.Product.Add(newPrD);
 			await DataProvider.Ins.DB.SaveChangesAsync();
-			return (true, "Them thanh cong");
+			return (true, "Thêm thành công");
 		}
 
         //Delete product
@@ -82,7 +82,7 @@ namespace QuanLiCoffeeShop.Model.Service
 			var prD = await DataProvider.Ins.DB.Product.Where(p => p.ID == newPrD.ID).FirstOrDefaultAsync();
 			if(prD.IsDeleted==false) prD.IsDeleted = true;
             await DataProvider.Ins.DB.SaveChangesAsync();
-            return (true, "Xoa thanh cong");
+            return (true, "Xóa thành công");
         }
 
 		//Edit product
@@ -98,7 +98,7 @@ namespace QuanLiCoffeeShop.Model.Service
             prD.Image = newPrD.Image;
             prD.IsDeleted = false;
 			await DataProvider.Ins.DB.SaveChangesAsync();
-            return (true, "Cap nhat thanh cong");
+            return (true, "Cập nhật thành công");
 
         }
     }

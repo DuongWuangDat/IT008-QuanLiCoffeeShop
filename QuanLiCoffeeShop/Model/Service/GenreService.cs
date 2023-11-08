@@ -41,8 +41,8 @@ namespace QuanLiCoffeeShop.Model.Service
         // Get all genre prD
         public async Task<List<string>> GetAllPrD()
         {
-            var seatGenreList = (from c in DataProvider.Ins.DB.GenreProduct select c.DisplayName).ToListAsync();
-            return await seatGenreList;
+            var productGenreList = (from c in DataProvider.Ins.DB.GenreProduct select c.DisplayName).ToListAsync();
+            return await productGenreList;
         }
     }
 }

@@ -36,9 +36,9 @@ namespace QuanLiCoffeeShop.View.Admin.SanPham
                 ImageSource = new BitmapImage(new Uri(openFileDialog.FileName));
             }
         }
-        private void BoQua_btn_Click(object obj, RoutedEventArgs e)
-        {
-            Window.GetWindow(this).Close();
-        }
+        //private void BoQua_btn_Click(object obj, RoutedEventArgs e)
+        //{
+        //    Window.GetWindow(this).Close();
+        //}
     }
 }

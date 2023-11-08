@@ -28,11 +28,6 @@ namespace QuanLiCoffeeShop.View.Admin.SanPham
             DataContext = this;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Window.GetWindow(this).Close();
-        }
-
         private void AddImage_btn_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -43,5 +38,6 @@ namespace QuanLiCoffeeShop.View.Admin.SanPham
                 ImageSource = new BitmapImage(new Uri(openFileDialog.FileName));
             }
         }
+
     }
 }

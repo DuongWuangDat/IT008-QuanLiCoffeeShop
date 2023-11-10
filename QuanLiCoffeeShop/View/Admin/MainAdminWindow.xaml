@@ -5,7 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     Title="MainFrame"
+    x:Name="AdminWD"
     d:DesignHeight="864"
     d:DesignWidth="1536"
     Background="White"
@@ -41,7 +43,11 @@
         </Storyboard>
 
     </Window.Resources>
-
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding FirstLoadCM}" CommandParameter="{Binding ElementName=MainFrame}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="OpenMenu_btn">
             <BeginStoryboard Storyboard="{StaticResource MenuOpen}" />
@@ -50,7 +56,7 @@
             <BeginStoryboard Storyboard="{StaticResource MenuClose}" />
         </EventTrigger>
     </Window.Triggers>
-
+    
     <Grid>
         <!--  Overlay  -->
         <Border
@@ -73,7 +79,7 @@
                 </Grid.RowDefinitions>
 
                 <!--Main Frame-->
-                <Frame Grid.Row="1" x:Name="MainFrame" >
+                <Frame Grid.Row="1" x:Name="MainFrame" Navigated="MainFrame_Navigated" >
                     <Frame.Style>
                         <Style TargetType="Frame">
                             <Setter Property="NavigationUIVisibility" Value="Hidden"/>

@@ -5,6 +5,7 @@ using QuanLiCoffeeShop.View.Staff;
 using QuanLiCoffeeShop.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,8 +45,8 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
                 }
                 return true;
             }, 
-            (p) => { 
-                Login(p); 
+            async (p) => { 
+                await Login(p); 
             });
             PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { 
                 return true;
@@ -55,43 +56,33 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
             });
         }
         #region methods
-        void Login(Window p)
+        async Task Login(Window p)
         {
-            int accCount = DataProvider.Ins.DB.Staff.Where(x=> x.UserName == Username && x.PassWord == Password).Count();
-            if(accCount > 0)
+            using(var context = new QuanLiCoffeShopEntities())
             {
-                p.Visibility = Visibility.Collapsed;
-                StaffDTO staff = (from s in DataProvider.Ins.DB.Staff select new StaffDTO 
-                {   ID = s.ID, 
-                    DisplayName= s.DisplayName, 
-                    BirthDay=s.BirthDay, 
-                    Email= s.Email, 
-                    Gender= s.Gender,
-                    UserName = s.UserName,
-                    PassWord= s.PassWord,
-                    Role = s.Role,
-                    Wage=s.Wage,
-                    IsDeleted=s.IsDeleted,
-                    PhoneNumber=s.PhoneNumber,
-                    Status=s.Status,
-                    StartDate=s.StartDate,
-                }).FirstOrDefault();
-                if(staff.Role == "Quản lí")
+                Staff staff = await context.Staff.Where(x => x.UserName == Username && x.PassWord == Password).FirstOrDefaultAsync();
+                if (staff != null)
                 {
-                    MainAdminWindow ad = new MainAdminWindow();
-                    ad.Show();
+                    p.Visibility = Visibility.Collapsed;
+
+                    if (staff.Role == "Quản lí")
+                    {
+                        MainAdminWindow ad = new MainAdminWindow();
+                        ad.Show();
+                    }
+                    else
+                    {
+                        MainStaffWindow st = new MainStaffWindow();
+                        st.Show();
+                    }
+
                 }
                 else
                 {
-                    MainStaffWindow st = new MainStaffWindow();
-                    st.Show();
+                    MessageBox.Show("Dang nhap khong hop le");
                 }
-                
             }
-            else
-            {
-                MessageBox.Show("Dang nhap khong hop le");
-            }
+            
             
         }
         #endregion

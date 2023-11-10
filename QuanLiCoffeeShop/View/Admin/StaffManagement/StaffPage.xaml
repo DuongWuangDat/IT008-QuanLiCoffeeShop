@@ -9,7 +9,6 @@
     xmlns:viewmodel="clr-namespace:QuanLiCoffeeShop.ViewModel"
     x:Name="staffPage"
     Title="StaffPage"
-    d:DataContext="{d:DesignInstance Type=viewmodel:StaffViewModel}"
     d:Height="550"
     d:Width="800"
     Background="White"
@@ -108,7 +107,6 @@
                     Margin="10,3,30,3"
                     Background="#E0AE8A"
                     BorderBrush="Gray"
-                    Click="ButtonThem_Click"
                     Command="{Binding OpenAddWindowCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Page}}}"
                     Foreground="White"
@@ -153,7 +151,7 @@
                     CanUserSortColumns="True"
                     ColumnWidth="SizeToCells"
                     IsReadOnly="True"
-                    ItemsSource="{Binding Employees}">
+                    ItemsSource="{Binding StaffObservation}">
                     <DataGrid.Columns>
                         <DataGridTextColumn
                             Width="auto"
@@ -216,7 +214,7 @@
                             Binding="{Binding PassWord}"
                             Header="Mật khẩu"
                             SortDirection="{x:Null}" />
-
+                        
                         <!--  Button chỉnh sửa, xóa cho mỗi staff  -->
                         <DataGridTemplateColumn Header="">
                             <DataGridTemplateColumn.CellTemplate>

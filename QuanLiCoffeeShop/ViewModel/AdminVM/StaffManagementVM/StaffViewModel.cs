@@ -1,15 +1,14 @@
 ﻿using QuanLiCoffeeShop.DTOs;
 using QuanLiCoffeeShop.Model;
 using QuanLiCoffeeShop.Model.Service;
-using QuanLiCoffeeShop.View.Admin.CustomerManagement;
 using QuanLiCoffeeShop.View.Admin.StaffManagement;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Navigation;
 
 namespace QuanLiCoffeeShop.ViewModel
 {
@@ -22,7 +21,7 @@ namespace QuanLiCoffeeShop.ViewModel
         public ObservableCollection<StaffDTO> StaffObservation
         {
             get { return staffObservation; }
-            set { staffObservation = value; OnPropertyChanged(); }
+            set{ staffObservation = value; OnPropertyChanged(); }
         }
 
         public ICommand FirstLoadStaffPage { get; }
@@ -135,13 +134,14 @@ namespace QuanLiCoffeeShop.ViewModel
         public ICommand ConfirmPasswordChangedCommand { get; }
         public StaffViewModel()
         {
-            FirstLoadStaffPage = new RelayCommand<object>((p) => { return true; }, async (p) =>
+            FirstLoadStaffPage = new RelayCommand<object>( null, async (p) =>
             {
                 StaffObservation = new ObservableCollection<StaffDTO>(await StaffService.Ins.GetAllStaff());
-                staffList = new List<StaffDTO>(StaffObservation);
+                if(StaffObservation.Count > 0)
+                    staffList = new List<StaffDTO>(StaffObservation);
             });
 
-            SearchStaff = new RelayCommand<TextBox>((p) => { return true; }, (p) =>
+            SearchStaff = new RelayCommand<TextBox>(null, (p) =>
             {
                 if (p.Text != null)
                 {
@@ -172,10 +172,12 @@ namespace QuanLiCoffeeShop.ViewModel
                         Email = this.Email,
                         Gender = this.Gender,
                         Role = this.Role,
+                        IsDeleted = false
                     };
                     (bool IsAdded, string messageAdd) = await StaffService.Ins.AddNewStaff(newStaff);
                     if (IsAdded)
                     {
+                        MessageBox.Show("Thêm thành công");
                         p.Close();
                         StaffObservation = new ObservableCollection<StaffDTO>(await StaffService.Ins.GetAllStaff());
                     }

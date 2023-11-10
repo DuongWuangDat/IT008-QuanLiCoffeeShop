@@ -34,15 +34,15 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
         }
         private string _name;
         public string Name
-        { get { return _name; } set { _name = value; } }
+        { get { return _name; } set { _name = value; OnPropertyChanged(); } }
 
         private string _status;
         public string Status
-        { get { return _status; } set { _status = value; } }
+        { get { return _status; } set { _status = value; OnPropertyChanged(); } }
 
         private string _description;
         public string Description
-        { get { return _description; } set { _description = value; } }
+        { get { return _description; } set { _description = value; OnPropertyChanged(); } }
         private bool isPopupOpenEdit = false;
         public bool IsPopupOpenEdit
         {
@@ -50,6 +50,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
             set
             {
                 isPopupOpenEdit = value;
+                IsOpenMain = !value;
                 OnPropertyChanged(nameof(IsPopupOpenEdit)); // Đảm bảo cập nhật giao diện người dùng khi giá trị này thay đổi.
             }
         }
@@ -60,6 +61,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
             set
             {
                 isPopupOpenDelete = value;
+                IsOpenMain = !value;
                 OnPropertyChanged(nameof(IsPopupOpenDelete)); // Đảm bảo cập nhật giao diện người dùng khi giá trị này thay đổi.
             }
         }
@@ -82,6 +84,28 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
         public ICommand OpenAdd { get; set; }
         public ICommand CloseAdd { get; set; }
         public ICommand AddProblem { get; set; }
+        public ICommand Edit { get; set; }
+        public ICommand OpenEdit { get; set; }
+        public ICommand CloseEdit { get; set; }
+        public ICommand OpenDelete { get; set; }
+        public ICommand CloseDelete { get; set; }
+        public ICommand Delete {  get; set; }
+        private void resetdata()
+        {
+            Name = null; Description=null;Status = null;
+        }
+        private void ExecuteOpenEdit(ErrorDTO Item)
+        {
+            IsPopupOpenEdit = true;
+            SelectedItem = null;
+          SelectedItem = Item;
+        }
+        private void ExecuteOpenDelete(ErrorDTO Item)
+        {          
+            SelectedItem = null;
+            SelectedItem = Item;
+        }
+
         public ProblemViewModel()
         {
             FirstLoadProblem = new RelayCommand<Page>((p) => { return true; }, async (p) =>
@@ -99,7 +123,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
             });
             AddProblem = new RelayCommand<object>((p) => { return true; },async (p) =>
             {
-                if (this.Name == null || this.Status == null)
+                if (Name == null || Status == null)
                 {
                     IsPopupOpenAdd = false;
                     MessageBox.Show("Bạn chưa nhập đủ thông tin!!");
@@ -107,34 +131,88 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                 }
                 else
                 {
-                    if (this.Description == null) { this.Description = ""; }
+                    if (Description == null) { Description = ""; }
                     Error newerror = new Error
                     {
-                        DisplayName = this.Name,
-                        Status = this.Status,
-                        Description = this.Description,
+                        DisplayName = Name,
+                        Status = Status,
+                        Description = Description,
                         IsDeleted = false,
+
                     };
+                   
                     (bool IsAdded, string messageAdd) = await ErrorService.Ins.AddNewError(newerror);
                     if (IsAdded)
                     {
                         ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
                         IsPopupOpenAdd = false;
+                        resetdata();
                     }
                     else
                     {
                         IsPopupOpenAdd= false;
                         MessageBox.Show(messageAdd);
-
-
-
-
                     }
                 }
 
             });
-
-
+            OpenEdit = new RelayCommand<ErrorDTO>((p) => { return true; }, (p)=>
+            {
+                ExecuteOpenEdit(p);
+                Name = SelectedItem.DisplayName;
+                Status = SelectedItem.Status;
+                Description = SelectedItem.Description;            
+            });
+            CloseEdit = new RelayCommand<object>((p) => { return true; }, (p) => 
+            { 
+                IsPopupOpenEdit = false;
+                resetdata() ;
+               
+            });
+            Edit=new RelayCommand<object>((p) => { return true; },async (p)=>
+            {
+              
+               
+                    if (Description == null) { Description = ""; }
+                    Error newerror = new Error
+                    {
+                        ID = SelectedItem.ID,
+                        DisplayName = SelectedItem.DisplayName,
+                        Status = this.Status,
+                        Description = this.Description,
+                        IsDeleted = false,
+                    };
+                    (bool success, string messageEdit) = await ErrorService.Ins.EditError(newerror);
+                    if (success)
+                    {
+                        IsPopupOpenEdit= false;
+                        ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
+                    MessageBox.Show(messageEdit);
+                    resetdata() ;
+                    }
+                                      
+            });
+            OpenDelete = new RelayCommand<ErrorDTO>((p) => { return true; }, (p) =>
+            {
+                ExecuteOpenDelete(p);
+                IsPopupOpenDelete = true;
+              
+            });
+            CloseDelete = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                IsPopupOpenDelete = false;
+            });
+            Delete = new RelayCommand<object>((p) => { return true; },async (p) =>
+            {
+              
+                (bool sucess, string messageDelete) = await ErrorService.Ins.DeleteError(SelectedItem.ID);
+                if (sucess)
+                {
+                    ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
+                    IsPopupOpenDelete = false;
+                    MessageBox.Show(messageDelete);
+                }
+            });
         }
     }
 }

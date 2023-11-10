@@ -5,13 +5,22 @@ using System.Windows.Input;
 namespace QuanLiCoffeeShop.View.MessageBox
 {
     /// <summary>
-    /// Interaction logic for ConfirmLogOut.xaml
+    /// Interaction logic for MessageBox.xaml
     /// </summary>
-    public partial class ConfirmLogOut : Window
+    public partial class AddedSuccessfully : Window
     {
-        public ConfirmLogOut()
+        MessageBoxViewModel messageBoxViewModel;
+
+        public AddedSuccessfully()
         {
             InitializeComponent();
+            messageBoxViewModel = new MessageBoxViewModel();
+            DataContext = messageBoxViewModel;
+        }
+
+        public void SetText(string text)
+        {
+            messageBoxViewModel.Text = text;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -22,16 +31,9 @@ namespace QuanLiCoffeeShop.View.MessageBox
             }
         }
 
-        private void No_btn_Click(object sender, RoutedEventArgs e)
+        private void Ok_btn_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = false;
             Window.GetWindow(this).Close();
-        }
-
-        private void Yes_btn_Click(object sender, RoutedEventArgs e)
-        {
-            this.DialogResult = true;
-            this.Close();
         }
     }
 }

@@ -25,6 +25,14 @@ namespace QuanLiCoffeeShop.View.MessageBox
             InitializeComponent();
         }
 
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
         private void No_btn_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;

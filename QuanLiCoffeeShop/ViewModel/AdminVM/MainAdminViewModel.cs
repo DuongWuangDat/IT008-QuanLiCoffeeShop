@@ -8,32 +8,16 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM
 {
     internal class MainAdminViewModel : BaseViewModel
     {
-        private Page currentPage;
-        public Page CurrentPage
-        {
-            get { return currentPage; }
-            set
-            {
-                currentPage = value;
-                OnPropertyChanged(nameof(CurrentPage));
-            }
-        }
+        private StaffPage staffPage;
 
         public ICommand LoadNhanVienPage { get; }
         public MainAdminViewModel()
         {
-            LoadNhanVienPage = new RelayCommand<object>(canExecute: CanExecuteLoadStaffPage, execute: ExecuteLoadStaffPage);
-        }
-
-        private void ExecuteLoadStaffPage(object obj)
-        {
-
-            CurrentPage = new StaffPage();
-        }
-
-        private bool CanExecuteLoadStaffPage(object obj)
-        {
-            return true;
+            staffPage = new StaffPage();
+            LoadNhanVienPage = new RelayCommand<Frame>(null, (p) =>
+            {
+                p.Content = staffPage;
+            });
         }
     }
 }

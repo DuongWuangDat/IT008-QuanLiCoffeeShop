@@ -17,6 +17,7 @@
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
+    MouseLeftButtonDown="Window_MouseLeftButtonDown"
     TextOptions.TextRenderingMode="Auto"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"

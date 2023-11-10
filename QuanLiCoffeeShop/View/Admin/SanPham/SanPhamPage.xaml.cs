@@ -31,10 +31,5 @@ namespace QuanLiCoffeeShop.View.Admin.SanPham
             scv.ScrollToVerticalOffset(scv.VerticalOffset - e.Delta);
             e.Handled = true;
         }
-
-        private void Category_Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

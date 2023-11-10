@@ -86,9 +86,13 @@ namespace QuanLiCoffeeShop.Model.Service
         }
 
 		//Edit product
-		public async Task<(bool, string)> EditPrD(Product newPrD)
+		public async Task<(bool, string)> EditPrD(Product newPrD, int ID)
 		{
-            var prD = await DataProvider.Ins.DB.Product.Where(p => p.ID == newPrD.ID).FirstOrDefaultAsync();
+
+
+            var prD = await DataProvider.Ins.DB.Product.Where(p => p.ID == ID).FirstOrDefaultAsync();
+
+            if (prD == null) return (false, "Không tìm thấy ID");
             prD.DisplayName = newPrD.DisplayName;
             prD.Price = newPrD.Price;
             prD.IDGenre = newPrD.IDGenre;

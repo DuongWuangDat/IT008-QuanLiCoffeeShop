@@ -147,14 +147,14 @@
                                     Style="{StaticResource TextBlock}"
                                     Text="Hình ảnh" />
                                 <Button
+                                    Command="{Binding EditImageCM}"
                                     Grid.Column="1"
                                     Width="25"
                                     Height="25"
                                     Margin="10,20,0,0"
                                     Padding="0"
                                     Background="{x:Null}"
-                                    BorderBrush="{x:Null}"
-                                    Click="AddImage_btn_Click"
+                                    BorderBrush="{x:Null}"                                    
                                     Foreground="{x:Null}">
                                     <Image
                                         Width="25"

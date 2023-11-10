@@ -10,9 +10,9 @@ namespace QuanLiCoffeeShop.Model.Service
 {
     public class GenreService
     {
-		private GenreService _ins;
+		private static GenreService _ins;
 
-		public GenreService Ins
+		public static GenreService Ins
 		{
 			get 
 			{ 

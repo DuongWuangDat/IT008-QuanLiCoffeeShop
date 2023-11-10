@@ -1,6 +1,7 @@
 ﻿using QuanLiCoffeeShop.DTOs;
 using QuanLiCoffeeShop.Model;
 using QuanLiCoffeeShop.Model.Service;
+using QuanLiCoffeeShop.Utils;
 using QuanLiCoffeeShop.View.Admin.SanPham;
 using QuanLiCoffeeShop.View.MessageBox;
 using System;
@@ -12,6 +13,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
+using Microsoft.Win32;
 
 namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
 {
@@ -31,49 +35,6 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
         {
             get { return _selectedItem; }
             set { _selectedItem = value; OnPropertyChanged(); }
-        }
-
-        //Edit page
-        private string _editname;
-        public string EditName
-        {
-            get { return _editname; }
-            set { _editname = value; }
-        }
-
-        private string _editPrice;
-        public string EditPrice
-        {
-            get { return _editPrice; }
-            set { _editPrice = value; }
-        }
-
-        private string _editGenre;
-        public string EditGenre
-        {
-            get { return _editGenre; }
-            set { _editGenre = value;}
-        }
-
-        private string _editCount;
-        public string EditCount
-        {
-            get { return _editCount; }
-            set { _editCount = value; }
-        }
-
-        private string _editDescription;
-        public string EditDescription
-        {
-            get { return _editDescription; }
-            set { _editDescription = value;}
-        }
-
-        private string _editImage;
-        public string EditImage
-        {
-            get { return _editImage; }
-            set { _editImage = value;}
         }
 
         //Add page
@@ -116,8 +77,52 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
         public string Image
         {
             get { return _image; }
-            set { _image = value; }
+            set { _image = value; OnPropertyChanged(); }
         }
+
+        //Edit page
+        private string _editname;
+        public string EditName
+        {
+            get { return _editname; }
+            set { _editname = value; }
+        }
+
+        private string _editPrice;
+        public string EditPrice
+        {
+            get { return _editPrice; }
+            set { _editPrice = value; }
+        }
+
+        private string _editGenre;
+        public string EditGenre
+        {
+            get { return _editGenre; }
+            set { _editGenre = value;}
+        }
+
+        private string _editCount;
+        public string EditCount
+        {
+            get { return _editCount; }
+            set { _editCount = value; }
+        }
+
+        private string _editDescription;
+        public string EditDescription
+        {
+            get { return _editDescription; }
+            set { _editDescription = value;}
+        }
+
+        private string _editImage;
+        public string EditImage
+        {
+            get { return _editImage; }
+            set { _editImage = value; OnPropertyChanged(); }
+        }
+        private string OriginImage { get; set; }
 
         public ICommand FirstLoadCM { get; set; }
         public ICommand SearchSanPhamCM { get; set; }
@@ -127,12 +132,17 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
         public ICommand OpenEditWdCM { get; set; }
         public ICommand EditSanPhamListCM { get; set; }
         public ICommand DeleteSanPhamListCM { get; set; }
+        public ICommand UploadImageCM { get; set; }
+        public ICommand EditImageCM { get; set; }
         public SanPhamViewModel()
         {
             FirstLoadCM = new RelayCommand<Page>((p) => { return true; }, async (p) =>
             {
                 ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProduct());
-                prdList = new List<ProductDTO>(ProductList);
+                if (ProductList != null)
+                {
+                    prdList = new List<ProductDTO>(ProductList);
+                }
             });
 
             SearchSanPhamCM = new RelayCommand<TextBox>((p) => { return true; }, async (p) =>
@@ -154,21 +164,25 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
             });
             AddSanPhamListCM = new RelayCommand<Window>((p) => { return true; }, async (p) =>
             {
-                if (this.Name == null || this.Genre == null || this.Description == null || this.Image == null)
+                if (this.Name == null || this.Genre == null || this.Image == null)
                 {
                     MessageBox.Show("Không nhập đủ dữ liệu!");
                 }
                 else
                 {
+                    int id; 
+                    GenreProduct genrePrD;
+                    (id, genrePrD) = await GenreService.Ins.FindGenrePrD(Genre);
                     if (this.Description == null) this.Description = "";
                     Product newPrd = new Product
                     {
                         DisplayName = this.Name,
                         Price = decimal.Parse(this.Price),
                         Description = this.Description,
-                        //Genre
+                        IDGenre = id,
+                        GenreProduct = genrePrD,
                         Count=int.Parse(this.Count),
-                        Image=this.Image,
+                        Image= await CloudService.Ins.UploadImage(this.Image),
                         IsDeleted = false,
 
                     };
@@ -185,6 +199,45 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                 }
 
             });
+
+            UploadImageCM = new RelayCommand<object>((p) => { return true; }, async (p) =>
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Image Files|*.jpg;*.png;*.jpeg;*.gif|All Files|*.*";
+                if (openFileDialog.ShowDialog() == true)
+                {                   
+                    Image = openFileDialog.FileName;                  
+                    if (Image != null)
+                    {
+                        // Image was uploaded successfully.                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tải ảnh lên thất bại!");
+                    }                   
+                }
+
+            });
+
+            EditImageCM = new RelayCommand<object>((p) => { return true; }, async (p) =>
+            {              
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Image Files|*.jpg;*.png;*.jpeg;*.gif|All Files|*.*";
+                if (openFileDialog.ShowDialog() == true)
+                {
+
+                    EditImage = openFileDialog.FileName;
+                    if (EditImage != null)
+                    {
+                        // Image was uploaded successfully.                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tải ảnh lên thất bại!");
+                    }
+                }
+            });
+
             CloseWdCM = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 p.Close();
@@ -197,61 +250,70 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                 EditCount = SelectedItem.Count.ToString();
                 EditImage = SelectedItem.Image;
                 EditDescription = SelectedItem.Description;
-
+                OriginImage = SelectedItem.Image;
                 EditSanPham wd = new EditSanPham();
                 wd.ShowDialog();
             });
 
-            //EditCusListCM = new RelayCommand<Window>((p) => { return true; }, async (p) =>
-            //{
-            //    if (this.EditName == null || this.EditPhoneNumber == null || this.EditSpend == null || this.EditEmail == null)
-            //    {
-            //        MessageBox.Show("Khong nhap du du lieu");
-            //    }
-            //    else
-            //    {
-            //        if (this.EditDescription == null) this.EditDescription = "";
-            //        Customer newCus = new Customer
-            //        {
-            //            ID = SelectedItem.ID,
-            //            Description = EditDescription,
-            //            PhoneNumber = EditPhoneNumber,
-            //            Email = EditEmail,
-            //            DisplayName = EditName,
-            //            Spend = decimal.Parse(EditSpend),
-            //            IsDeleted = false,
-            //        };
-            //        (bool success, string messageEdit) = await CustomerService.Ins.EditCusList(newCus, SelectedItem.ID);
-            //        if (success)
-            //        {
-            //            p.Close();
-            //            CustomerList = new ObservableCollection<CustomerDTO>(await CustomerService.Ins.GetAllCus());
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show(messageEdit);
-            //        }
-            //    }
+            EditSanPhamListCM = new RelayCommand<Window>((p) => { return true; }, async (p) =>
+            {
+                if (this.EditName == null || this.EditGenre == null || this.EditImage == null)
+                {
+                    MessageBox.Show("Không nhập đủ dữ liệu!");
+                }
+                else
+                {
+                    if (this.EditDescription == null) this.EditDescription = "";
+                    int id;
 
-            //});
-            //DeleteCusListCM = new RelayCommand<object>((p) => { return true; }, async (p) =>
-            //{
-            //    DeleteMessage wd = new DeleteMessage();
-            //    wd.ShowDialog();
-            //    if (wd.DialogResult == true)
-            //    {
-            //        (bool sucess, string messageDelete) = await CustomerService.Ins.DeleteCustomer(SelectedItem.ID);
-            //        if (sucess)
-            //        {
-            //            CustomerList.Remove(SelectedItem);
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show(messageDelete);
-            //        }
-            //    }
+                    GenreProduct genrePrD;
+                    (id, genrePrD) = await GenreService.Ins.FindGenrePrD(EditGenre);
 
-            //});
+                    if(OriginImage!=EditImage) 
+                        await CloudService.Ins.DeleteImage(OriginImage);
+                    Product newPrD = new Product
+                    {
+                        ID = SelectedItem.ID,
+                        DisplayName = EditName,
+                        GenreProduct = genrePrD,
+                        IDGenre = id,
+                        Price = decimal.Parse(EditPrice),
+                        Count = int.Parse(EditCount),
+                        Image = EditImage,
+                        Description = EditDescription,
+                        IsDeleted = false,
+                    };
+                    (bool success, string messageEdit) = await ProductService.Ins.EditPrD(newPrD, SelectedItem.ID);
+                    if (success)
+                    {
+                        p.Close();
+                        ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProduct());
+                    }
+                    else
+                    {
+                        MessageBox.Show(messageEdit);
+                    }
+                }
+
+            });
+            DeleteSanPhamListCM = new RelayCommand<object>((p) => { return true; }, async (p) =>
+            {
+                DeleteMessage wd = new DeleteMessage();
+                wd.ShowDialog();
+                if (wd.DialogResult == true)
+                {
+                    (bool sucess, string messageDelete) = await ProductService.Ins.DeletePrD(SelectedItem.ID);
+                    if (sucess)
+                    {
+                        ProductList.Remove(SelectedItem);
+                    }
+                    else
+                    {
+                        MessageBox.Show(messageDelete);
+                    }
+                }
+
+            });
         }
     }
 }

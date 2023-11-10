@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLiCoffeeShop.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace QuanLiCoffeeShop.View.Admin.StaffManagement
         public AddStaff()
         {
             InitializeComponent();
+            DataContext = new StaffViewModel();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

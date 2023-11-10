@@ -1,4 +1,5 @@
-﻿using QuanLiCoffeeShop.View.Admin.StaffManagement;
+﻿using QuanLiCoffeeShop.View.Admin;
+using QuanLiCoffeeShop.View.Admin.StaffManagement;
 using QuanLiCoffeeShop.View.Admin.CustomerManagement;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,7 +11,7 @@ using QuanLiCoffeeShop.View.Admin.SanPham;
 
 namespace QuanLiCoffeeShop.ViewModel.AdminVM
 {
-    public class MainAdminViewModel : BaseViewModel
+    internal class MainAdminViewModel : BaseViewModel
     {
         public ICommand FirstLoadCM { get; set; }
         public ICommand LoadNhanVienPage { get; }

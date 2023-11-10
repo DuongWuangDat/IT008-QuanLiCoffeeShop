@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using QuanLiCoffeeShop.ViewModel.MessageBoxVM;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -30,6 +26,18 @@ namespace QuanLiCoffeeShop.View.MessageBox
             {
                 DragMove();
             }
+        }
+
+        private void No_btn_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+            Window.GetWindow(this).Close();
+        }
+
+        private void Yes_btn_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+            this.Close();
         }
     }
 }

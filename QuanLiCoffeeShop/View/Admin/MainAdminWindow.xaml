@@ -253,15 +253,19 @@
 
                     <!--  SanPham-Menu_btn  -->
                     <Button
+                        x:Name="SPbtn"
                         Height="58"
                         Command="{Binding LoadSanPhamPage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
+
+                        
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border
                                     Height="58"
                                     Background="#FFE0AE8A"
                                     CornerRadius="16">
+                                    
                                     <StackPanel Cursor="Hand" Orientation="Horizontal">
                                         <Image
                                             Width="27"
@@ -281,6 +285,7 @@
 
                     <!--  NhanVien-Menu_btn  -->
                     <Button
+                        x:Name="NVbtn"
                         Height="58"
                         Command="{Binding LoadNhanVienPage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
@@ -306,8 +311,9 @@
 
                     <!--  Ban-Menu_btn  -->
                     <Button
+                        Name="Banbtn"
                         Height="58"
-                        Command="{Binding LoadMenuPage}"
+                        Command="{Binding LoadTablePage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
@@ -331,6 +337,7 @@
 
                     <!--  KhachHang-Menu_btn  -->
                     <Button
+                        x:Name="KHbtn"
                         Height="58"
                         Command="{Binding LoadKhachHangPage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
@@ -356,9 +363,13 @@
 
                     <!--  ThongKe-Menu_btn  -->
                     <Button
+                        x:Name="ThongKebtn"
                         Height="58"
                         Command="{Binding LoadThongKePage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
+                        <Style>
+                            
+                        </Style>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Height="58" CornerRadius="16">
@@ -381,8 +392,9 @@
 
                     <!--  TaiKhoan-Menu_btn  -->
                     <Button
+                        x:Name="Errbtn"
                         Height="58"
-                        Command="{Binding LoadNhanVienPage}"
+                        Command="{Binding LoadErrorPage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">

@@ -118,7 +118,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
         public CustomerManagementViewModel() {
             FirstLoadCM = new RelayCommand<Page>((p) => { return true; }, async (p) => 
             {
-                CustomerList = new ObservableCollection<CustomerDTO>(await CustomerService.Ins.GetAllCus());
+                CustomerList = new ObservableCollection<CustomerDTO>(await Task.Run(()=>CustomerService.Ins.GetAllCus()));
                 if (CustomerList != null)
                     cusList = new List<CustomerDTO>(CustomerList);
                 

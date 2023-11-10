@@ -14,7 +14,6 @@
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
     ResizeMode="NoResize"
     WindowStyle="None"
-    MouseLeftButtonDown="Window_MouseLeftButtonDown"
     mc:Ignorable="d">
     <Grid>
         <Border Background="White" CornerRadius="12.8">

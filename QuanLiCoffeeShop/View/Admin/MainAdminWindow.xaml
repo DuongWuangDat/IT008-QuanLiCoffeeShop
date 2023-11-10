@@ -5,7 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     Title="MainFrame"
+    x:Name="AdminWD"
     d:DesignHeight="864"
     d:DesignWidth="1536"
     Background="White"
@@ -42,7 +44,11 @@
         </Storyboard>
 
     </Window.Resources>
-
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding FirstLoadCM}" CommandParameter="{Binding ElementName=MainFrame}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="OpenMenu_btn">
             <BeginStoryboard Storyboard="{StaticResource MenuOpen}" />
@@ -51,7 +57,7 @@
             <BeginStoryboard Storyboard="{StaticResource MenuClose}" />
         </EventTrigger>
     </Window.Triggers>
-
+    
     <Grid>
         <!--  Overlay  -->
         <Border
@@ -257,15 +263,19 @@
 
                     <!--  SanPham-Menu_btn  -->
                     <Button
+                        x:Name="SPbtn"
                         Height="58"
                         Command="{Binding LoadSanPhamPage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
+
+                        
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border
                                     Height="58"
                                     Background="#FFE0AE8A"
                                     CornerRadius="16">
+                                    
                                     <StackPanel Cursor="Hand" Orientation="Horizontal">
                                         <Image
                                             Width="27"
@@ -285,6 +295,7 @@
 
                     <!--  NhanVien-Menu_btn  -->
                     <Button
+                        x:Name="NVbtn"
                         Height="58"
                         Command="{Binding LoadNhanVienPage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
@@ -313,8 +324,9 @@
 
                     <!--  Ban-Menu_btn  -->
                     <Button
+                        Name="Banbtn"
                         Height="58"
-                        Command="{Binding LoadMenuPage}"
+                        Command="{Binding LoadTablePage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
@@ -338,6 +350,7 @@
 
                     <!--  KhachHang-Menu_btn  -->
                     <Button
+                        x:Name="KHbtn"
                         Height="58"
                         Command="{Binding LoadKhachHangPage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
@@ -363,9 +376,13 @@
 
                     <!--  ThongKe-Menu_btn  -->
                     <Button
+                        x:Name="ThongKebtn"
                         Height="58"
                         Command="{Binding LoadThongKePage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
+                        <Style>
+                            
+                        </Style>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Height="58" CornerRadius="16">
@@ -388,8 +405,9 @@
 
                     <!--  SuCo-Menu_btn  -->
                     <Button
+                        x:Name="Errbtn"
                         Height="58"
-                        Command="{Binding LoadSuCoPage}"
+                        Command="{Binding LoadErrorPage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">

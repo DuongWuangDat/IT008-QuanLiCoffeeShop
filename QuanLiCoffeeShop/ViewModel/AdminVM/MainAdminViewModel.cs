@@ -4,22 +4,23 @@ using QuanLiCoffeeShop.View.Admin.CustomerManagement;
 using System.Windows.Controls;
 using System.Windows.Input;
 using QuanLiCoffeeShop.View.Admin;
+using System.Windows.Media.Animation;
+using System;
+using System.Windows;
+using QuanLiCoffeeShop.View.Admin.SanPham;
 
 namespace QuanLiCoffeeShop.ViewModel.AdminVM
 {
     internal class MainAdminViewModel : BaseViewModel
     {
-    
-        private StaffPage staffPage { get; set; }
-        private CustomerPage cusPage { get; set; }
+        public ICommand FirstLoadCM { get; set; }
         public ICommand LoadNhanVienPage { get; }
         public ICommand LoadKhachHangPage { get; set; }
         public MainAdminViewModel()
         {
-            staffPage = new StaffPage();
-            cusPage = new CustomerPage();
-            LoadNhanVienPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = staffPage; });
-            LoadKhachHangPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = cusPage; });
+            FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, (p)=> { p.Content = new SanPhamPage(); });
+            LoadNhanVienPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new StaffPage(); });
+            LoadKhachHangPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new CustomerPage(); });
         }
     }
 }

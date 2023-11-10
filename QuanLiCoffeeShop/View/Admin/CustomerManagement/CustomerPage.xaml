@@ -79,23 +79,22 @@
                 </Button.Background>
             </Button>
         </StackPanel>
-        <Border
-            Grid.Row="1"
-            Width="1424.8"
-            Height="624.8"
-            VerticalAlignment="Top"
-            Background="#E6B89F"
-            CornerRadius="55.29"
-            Opacity="0.58">
-            <Border
-                Margin="24"
-                Background="White"
-                CornerRadius="32">
-                <ListView
-                    x:Name="CusList"
-                    Margin="11"
-                    ItemsSource="{Binding CustomerList}"
-                    SelectedItem="{Binding SelectedItem}">
+        <Border Grid.Row="1" 
+                Background="#E6B89F"
+                Opacity="0.58" 
+                Width="1424.8"
+                Height="624.8"
+                VerticalAlignment="Top"
+                CornerRadius="55.29">
+            <Border Background="White" 
+                    Margin="24" 
+                    CornerRadius="32">
+                <ListView x:Name="CusList"  
+                          Margin="11"
+                          
+                          ItemsSource="{Binding CustomerList}"
+                          SelectedItem="{Binding SelectedItem}" >
+                    
                     <ListView.ItemContainerStyle>
 
                         <Style BasedOn="{StaticResource MaterialDesignGridViewItem}" TargetType="ListViewItem">

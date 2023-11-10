@@ -16,7 +16,8 @@ namespace QuanLiCoffeeShop.Model.Service
     public class StaffService
     {
         public StaffService() { }
-		private static StaffService _ins;
+		private QuanLiCoffeShopEntities context;
+        private static StaffService _ins;
 
 		public static StaffService Ins
 		{
@@ -26,6 +27,10 @@ namespace QuanLiCoffeeShop.Model.Service
 				{
 					_ins = new StaffService();
 				}
+				if (_ins.context == null)
+				{
+					_ins.context = new QuanLiCoffeShopEntities();
+				}
 				return _ins;
 			}
 			private set { _ins = value; }
@@ -34,34 +39,33 @@ namespace QuanLiCoffeeShop.Model.Service
 		//Get all staff
 		public async Task<List<StaffDTO>> GetAllStaff()
 		{
-			var staffList = (from c in DataProvider.Ins.DB.Staff
-							 where c.IsDeleted == false
-						   select new StaffDTO
-						   {
-							   ID = c.ID,
-							   DisplayName= c.DisplayName,
-							   StartDate = c.StartDate,
-							   UserName= c.UserName,
-							   PassWord= c.PassWord,
-							   PhoneNumber= c.PhoneNumber,
-							   BirthDay= c.BirthDay,
-							   Wage= c.Wage,
-							   Status= c.Status,
-							   Email= c.Email,
-							   Gender= c.Gender,
-							   Role= c.Role,
-							   IsDeleted= c.IsDeleted,
-						   }).ToListAsync();
-			return await staffList;
-		}
+				var staffList = (from c in context.Staff
+								 where c.IsDeleted == false
+								 select new StaffDTO
+								 {
+									 ID = c.ID,
+									 DisplayName = c.DisplayName,
+									 StartDate = c.StartDate,
+									 UserName = c.UserName,
+									 PassWord = c.PassWord,
+									 PhoneNumber = c.PhoneNumber,
+									 BirthDay = c.BirthDay,
+									 Wage = c.Wage,
+									 Status = c.Status,
+									 Email = c.Email,
+									 Gender = c.Gender,
+									 Role = c.Role,
+									 IsDeleted = c.IsDeleted,
+								 }).ToListAsync();
+				return await staffList;
+			}
 
 		//Add staff
 		public async Task<(bool,string)> AddNewStaff(Staff newStaff)
 		{
-		
-			bool IsEsixtEmail = await DataProvider.Ins.DB.Staff.AnyAsync(p=> p.Email== newStaff.Email );
-			bool IsExistPhone = await DataProvider.Ins.DB.Staff.AnyAsync(p => p.PhoneNumber == newStaff.PhoneNumber);
-			var staff = await DataProvider.Ins.DB.Staff.Where(p => p.Email == newStaff.Email || p.PhoneNumber == newStaff.PhoneNumber).FirstOrDefaultAsync();
+			bool IsEsixtEmail = await context.Staff.AnyAsync(p=> p.Email== newStaff.Email );
+			bool IsExistPhone = await context.Staff.AnyAsync(p => p.PhoneNumber == newStaff.PhoneNumber);
+			var staff = await context.Staff.Where(p => p.Email == newStaff.Email || p.PhoneNumber == newStaff.PhoneNumber).FirstOrDefaultAsync();
 			if (staff != null)
 			{
 				if (staff.IsDeleted == true)
@@ -78,7 +82,7 @@ namespace QuanLiCoffeeShop.Model.Service
 					staff.Gender = newStaff.Gender;
 					staff.Role = newStaff.Role;
 					staff.IsDeleted = false;
-					await DataProvider.Ins.DB.SaveChangesAsync();
+					await context.SaveChangesAsync();
 					return (true, "Them thanh cong");
                 }
 				else

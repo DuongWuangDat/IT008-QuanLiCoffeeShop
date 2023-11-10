@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Media3D;
 
 namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
 {
@@ -118,7 +119,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
             FirstLoadCM = new RelayCommand<Page>((p) => { return true; }, async (p) => 
             {
                 CustomerList = new ObservableCollection<CustomerDTO>(await CustomerService.Ins.GetAllCus());
-                cusList = new List<CustomerDTO>(CustomerList);
+                if (CustomerList != null)
+                    cusList = new List<CustomerDTO>(CustomerList);
             });
             
             SearchCustomerCM = new RelayCommand<TextBox>((p) => { return true; }, async (p) =>

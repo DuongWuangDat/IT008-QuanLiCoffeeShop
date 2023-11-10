@@ -27,20 +27,23 @@ namespace QuanLiCoffeeShop.Model.Service
 		}
 		public async Task<List<CustomerDTO>> GetAllCus()
 		{
-			var cusList = (from s in DataProvider.Ins.DB.Customer
-						   where s.IsDeleted == false
-						   select new CustomerDTO
-						   {
-							   ID = s.ID,
-							   Description = s.Description,
-							   DisplayName = s.DisplayName,
-							   Email = s.Email,
-							   IDSeat = s.IDSeat,
-							   IsDeleted = s.IsDeleted,
-							   PhoneNumber = s.PhoneNumber,
-							   Spend = s.Spend,
-						   }).ToListAsync();
-			return await cusList;
+			using (var context = new QuanLiCoffeShopEntities())
+			{
+				var cusList = (from s in context.Customer
+							   where s.IsDeleted == false
+							   select new CustomerDTO
+							   {
+								   ID = s.ID,
+								   Description = s.Description,
+								   DisplayName = s.DisplayName,
+								   Email = s.Email,
+								   IDSeat = s.IDSeat,
+								   IsDeleted = s.IsDeleted,
+								   PhoneNumber = s.PhoneNumber,
+								   Spend = s.Spend,
+							   }).ToListAsync();
+				return await cusList;
+			}
 		}
 		public async Task<(bool, string)> AddNewCus(Customer newCus)
 		{

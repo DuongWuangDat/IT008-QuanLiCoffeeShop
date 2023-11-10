@@ -9,6 +9,7 @@
     d:DesignHeight="864"
     d:DesignWidth="1536"
     Background="White"
+    DataContext="{StaticResource MainAdminVM}"
     FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontFamily="Roboto Condensed"
     TextElement.FontSize="18"

@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using Microsoft.Win32;
+using System.Diagnostics.Eventing.Reader;
 
 namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
 {
@@ -29,12 +30,21 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
             get { return _productList; }
             set {  _productList = value; OnPropertyChanged(); }
         }
+
         private ProductDTO _selectedItem;
 
         public ProductDTO SelectedItem
         {
             get { return _selectedItem; }
             set { _selectedItem = value; OnPropertyChanged(); }
+        }
+
+
+        private ObservableCollection <string> _genreList;
+        public ObservableCollection <string> GenreList
+        {
+            get { return _genreList;}
+            set { _genreList = value;OnPropertyChanged(); }
         }
 
         //Add page
@@ -143,6 +153,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                 {
                     prdList = new List<ProductDTO>(ProductList);
                 }
+                GenreList = new ObservableCollection<string>(await GenreService.Ins.GetAllPrD());
             });
 
             SearchSanPhamCM = new RelayCommand<TextBox>((p) => { return true; }, async (p) =>
@@ -166,6 +177,9 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
             {
                 if (this.Name == null || this.Genre == null || this.Image == null)
                 {
+                    if(this.Name == null) { MessageBox.Show("1");}
+                    if (this.Genre == null) { MessageBox.Show("2"); }
+                    if (this.Image == null) { MessageBox.Show("3"); }
                     MessageBox.Show("Không nhập đủ dữ liệu!");
                 }
                 else

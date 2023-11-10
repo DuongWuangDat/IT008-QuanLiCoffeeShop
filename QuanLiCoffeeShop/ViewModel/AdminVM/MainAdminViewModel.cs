@@ -9,7 +9,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM
     public class MainAdminViewModel : BaseViewModel
     {
    
-        public ICommand LoadNhanVienPage { get; }
+        public ICommand LoadNhanVienPage { get; set; }
         public ICommand LoadKhachHangPage { get; set; }
         public MainAdminViewModel()
         {

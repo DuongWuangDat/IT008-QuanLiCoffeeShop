@@ -29,7 +29,7 @@ namespace QuanLiCoffeeShop.Model.Service
 				return _ins;
 			}
 			private set { _ins = value; }
-		}
+		}// test
 
 		//Get all staff
 		public async Task<List<StaffDTO>> GetAllStaff()

@@ -71,6 +71,7 @@ namespace QuanLiCoffeeShop.Model.Service
 			{
                 bool IsEsixtEmail = await context.Staff.AnyAsync(p => p.Email == newStaff.Email);
                 bool IsExistPhone = await context.Staff.AnyAsync(p => p.PhoneNumber == newStaff.PhoneNumber);
+                bool IsExistUsername = await context.Staff.AnyAsync(p => p.UserName == newStaff.UserName);
                 var staff = await context.Staff.Where(p => p.Email == newStaff.Email || p.PhoneNumber == newStaff.PhoneNumber).FirstOrDefaultAsync();
                 if (staff != null)
                 {
@@ -100,6 +101,10 @@ namespace QuanLiCoffeeShop.Model.Service
                         if (IsExistPhone)
                         {
                             return (false, "SDT da ton tai");
+                        }
+                        if (IsExistUsername)
+                        {
+                            return (false, "Username da ton tai");
                         }
                     }
                 }

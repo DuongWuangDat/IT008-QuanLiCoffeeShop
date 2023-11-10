@@ -3,7 +3,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:QuanLiCoffeeShop"
+<<<<<<< HEAD
     StartupUri="View\Admin\MainAdminWindow.xaml">
+=======
+    StartupUri="View/LoginWindow/LoginWindow.xaml">
+>>>>>>> 04e0fde67cd440c0da3907ac429aa5ad960e9121
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

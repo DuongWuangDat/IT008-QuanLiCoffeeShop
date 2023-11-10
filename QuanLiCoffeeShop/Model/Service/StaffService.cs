@@ -16,10 +16,6 @@ namespace QuanLiCoffeeShop.Model.Service
     public class StaffService
     {
         public StaffService() { }
-<<<<<<< HEAD
-=======
-		private QuanLiCoffeShopEntities context;
->>>>>>> 6ca42fdfd3238d361e538f39725a5c3f1077ad60
         private static StaffService _ins;
 
 		public static StaffService Ins
@@ -29,10 +25,6 @@ namespace QuanLiCoffeeShop.Model.Service
 				if (_ins == null)
 				{
 					_ins = new StaffService();
-				}
-				if (_ins.context == null)
-				{
-					_ins.context = new QuanLiCoffeShopEntities();
 				}
 				return _ins;
 			}

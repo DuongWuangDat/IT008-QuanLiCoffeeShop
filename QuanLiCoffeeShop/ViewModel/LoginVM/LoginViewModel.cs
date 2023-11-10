@@ -58,27 +58,31 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
         #region methods
         async Task Login(Window p)
         {
-            Staff staff = await DataProvider.Ins.DB.Staff.Where(x=> x.UserName == Username && x.PassWord == Password).FirstOrDefaultAsync();
-            if(staff != null)
+            using(var context = new QuanLiCoffeShopEntities())
             {
-                p.Visibility = Visibility.Collapsed;
-                
-                if(staff.Role == "Quản lí")
+                Staff staff = await context.Staff.Where(x => x.UserName == Username && x.PassWord == Password).FirstOrDefaultAsync();
+                if (staff != null)
                 {
-                    MainAdminWindow ad = new MainAdminWindow();
-                    ad.Show();
+                    p.Visibility = Visibility.Collapsed;
+
+                    if (staff.Role == "Quản lí")
+                    {
+                        MainAdminWindow ad = new MainAdminWindow();
+                        ad.Show();
+                    }
+                    else
+                    {
+                        MainStaffWindow st = new MainStaffWindow();
+                        st.Show();
+                    }
+
                 }
                 else
                 {
-                    MainStaffWindow st = new MainStaffWindow();
-                    st.Show();
+                    MessageBox.Show("Dang nhap khong hop le");
                 }
-                
             }
-            else
-            {
-                MessageBox.Show("Dang nhap khong hop le");
-            }
+            
             
         }
         #endregion

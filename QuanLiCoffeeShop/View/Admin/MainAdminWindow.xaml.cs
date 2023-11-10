@@ -24,7 +24,7 @@ namespace QuanLiCoffeeShop.View.Admin
 
         private void MainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
-            BeginStoryboard((Storyboard)Resources["MenuClose"]);
+          //  BeginStoryboard((Storyboard)Resources["MenuClose"]);
         }
     }
 }

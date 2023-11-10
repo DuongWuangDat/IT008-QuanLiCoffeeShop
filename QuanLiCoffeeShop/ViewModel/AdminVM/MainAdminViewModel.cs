@@ -1,35 +1,26 @@
-﻿using QuanLiCoffeeShop.View.Admin.StaffManagement;
+﻿using QuanLiCoffeeShop.View.Admin;
+using QuanLiCoffeeShop.View.Admin.StaffManagement;
+using QuanLiCoffeeShop.View.Admin.CustomerManagement;
 using System.Windows.Controls;
 using System.Windows.Input;
+using QuanLiCoffeeShop.View.Admin;
+using System.Windows.Media.Animation;
+using System;
+using System.Windows;
+using QuanLiCoffeeShop.View.Admin.SanPham;
 
 namespace QuanLiCoffeeShop.ViewModel.AdminVM
 {
-    public class MainAdminViewModel : BaseViewModel
+    internal class MainAdminViewModel : BaseViewModel
     {
-        private Page currentPage;
-        public Page CurrentPage
-        {
-            get { return currentPage; }
-            set
-            {
-                currentPage = value;
-                OnPropertyChanged(nameof(CurrentPage));
-            }
-        }
+        public ICommand FirstLoadCM { get; set; }
         public ICommand LoadNhanVienPage { get; }
+        public ICommand LoadKhachHangPage { get; set; }
         public MainAdminViewModel()
         {
-            LoadNhanVienPage = new RelayCommand<object>(canExecute: CanExecuteLoadStaffPage, execute: ExecuteLoadStaffPage);
-        }
-
-        private void ExecuteLoadStaffPage(object obj)
-        {
-            CurrentPage = new StaffPage();
-        }
-
-        private bool CanExecuteLoadStaffPage(object obj)
-        {
-            return true;
+            FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, (p)=> { p.Content = new SanPhamPage(); });
+            LoadNhanVienPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new StaffPage(); });
+            LoadKhachHangPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new CustomerPage(); });
         }
     }
 }

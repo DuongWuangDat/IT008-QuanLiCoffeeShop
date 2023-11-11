@@ -109,9 +109,19 @@
                                 Style="{DynamicResource TextBlock}"
                                 Text="Tên sản phẩm" />
                             <TextBox 
-                                Margin="50,0,0,0" 
                                 Text="{Binding Name}"
-                                Template="{StaticResource TextBoxAdd}" />
+                                Width="224"
+                                Height="48"                               
+                                Padding="12,2.4"
+                                HorizontalAlignment="Left"
+                                VerticalContentAlignment="Center"
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                Background="#D9D9D9"
+                                BorderThickness="0.5"
+                                FontFamily="Inter"
+                                FontSize="16"
+                                Margin="50,0,0,0" />
                             <TextBlock
                                 Margin="50,31,0,10"
                                 VerticalAlignment="Top"
@@ -140,7 +150,17 @@
                                 Style="{DynamicResource TextBlock}"
                                 Text="Giá bán" />
                             <TextBox                                 
-                                Template="{StaticResource TextBoxAdd}"
+                                Width="224"
+                                Height="48"                               
+                                Padding="12,2.4"
+                                HorizontalAlignment="Left"
+                                VerticalContentAlignment="Center"
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                Background="#D9D9D9"
+                                BorderThickness="0.5"
+                                FontFamily="Inter"
+                                FontSize="16"
                                 Margin="50,0,0,0" 
                                 Text="{Binding Price}"/>
                             <TextBlock
@@ -149,9 +169,19 @@
                                 Style="{DynamicResource TextBlock}"
                                 Text="Số lượng" />
                             <TextBox 
-                                Margin="50,0,0,0" 
                                 Text="{Binding Count}"
-                                Template="{StaticResource TextBoxAdd}" />
+                                Width="224"
+                                Height="48"                               
+                                Padding="12,2.4"
+                                HorizontalAlignment="Left"
+                                VerticalContentAlignment="Center"
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                Background="#D9D9D9"
+                                BorderThickness="0.5"
+                                FontFamily="Inter"
+                                FontSize="16"
+                                Margin="50,0,0,0"  />
                         </StackPanel>
                         <StackPanel
                             Grid.Column="1"
@@ -209,7 +239,22 @@
                                 Text="Ghi chú" />
                             <TextBox 
                                 Text="{Binding Description}"
-                                Template="{StaticResource TextBoxAddBig}" />
+                                Width="196"
+                                Height="157"
+                                Margin="0,5,0,0"
+                                Padding="12,2.4"
+                                MinLines="1"
+                                MaxLines="20"
+                                TextWrapping="Wrap"
+                                HorizontalAlignment="Left"
+                                VerticalContentAlignment="Top"
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                Background="#D9D9D9"
+                                BorderThickness="0.5"
+                                FontFamily="Inter"
+                                FontSize="16"
+                                VerticalAlignment="Top" />
                         </StackPanel>
 
 

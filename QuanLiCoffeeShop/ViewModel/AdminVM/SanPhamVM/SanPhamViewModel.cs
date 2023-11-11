@@ -167,7 +167,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                     ProductList = new ObservableCollection<ProductDTO>(prdList.FindAll(x => x.DisplayName.ToLower().Contains(p.Text.ToLower())));
                 }
 
-            });
+            });            
             AddSanPhamCM = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 AddSanPham wd = new AddSanPham();
@@ -176,10 +176,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
             AddSanPhamListCM = new RelayCommand<Window>((p) => { return true; }, async (p) =>
             {
                 if (this.Name == null || this.Genre == null || this.Image == null)
-                {
-                    if(this.Name == null) { MessageBox.Show("1");}
-                    if (this.Genre == null) { MessageBox.Show("2"); }
-                    if (this.Image == null) { MessageBox.Show("3"); }
+                {                    
                     MessageBox.Show("Không nhập đủ dữ liệu!");
                 }
                 else
@@ -193,8 +190,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                         DisplayName = this.Name,
                         Price = decimal.Parse(this.Price),
                         Description = this.Description,
+                        GenreProduct = genrePrD,                      
                         IDGenre = id,
-                        GenreProduct = genrePrD,
                         Count=int.Parse(this.Count),
                         Image= await CloudService.Ins.UploadImage(this.Image),
                         IsDeleted = false,
@@ -214,7 +211,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
 
             });
 
-            UploadImageCM = new RelayCommand<object>((p) => { return true; }, async (p) =>
+            UploadImageCM = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Filter = "Image Files|*.jpg;*.png;*.jpeg;*.gif|All Files|*.*";
@@ -233,7 +230,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
 
             });
 
-            EditImageCM = new RelayCommand<object>((p) => { return true; }, async (p) =>
+            EditImageCM = new RelayCommand<object>((p) => { return true; }, (p) =>
             {              
                 OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Filter = "Image Files|*.jpg;*.png;*.jpeg;*.gif|All Files|*.*";
@@ -280,7 +277,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                     if (this.EditDescription == null) this.EditDescription = "";
                     int id;
 
-                    GenreProduct genrePrD;
+                    GenreProduct genrePrD = new GenreProduct();
                     (id, genrePrD) = await GenreService.Ins.FindGenrePrD(EditGenre);
 
                     if(OriginImage!=EditImage) 
@@ -290,7 +287,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                         ID = SelectedItem.ID,
                         DisplayName = EditName,
                         GenreProduct = genrePrD,
-                        IDGenre = id,
+                        //IDGenre = id,
                         Price = decimal.Parse(EditPrice),
                         Count = int.Parse(EditCount),
                         Image = EditImage,

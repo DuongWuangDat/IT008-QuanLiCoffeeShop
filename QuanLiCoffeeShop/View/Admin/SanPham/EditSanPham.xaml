@@ -106,9 +106,19 @@
                                 Style="{DynamicResource TextBlock}"
                                 Text="Tên sản phẩm" />
                             <TextBox 
-                                Margin="50,0,0,0" 
                                 Text="{Binding EditName}"
-                                Template="{StaticResource TextBoxAdd}" />
+                                Margin="50,0,0,0" 
+                                Width="224"
+                                Height="48"
+                                Padding="12,2.4"
+                                HorizontalAlignment="Left"
+                                VerticalContentAlignment="Center"
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                Background="#D9D9D9"
+                                BorderThickness="0.5"
+                                FontFamily="Inter"
+                                FontSize="16"/>
                             <TextBlock
                                 Margin="50,31,0,10"
                                 VerticalAlignment="Top"
@@ -118,7 +128,7 @@
                                 Width="224"
                                 Height="48"
                                 ItemsSource="{Binding GenreList }"
-                                SelectedItem="{Binding EditGenre, Mode=TwoWay}"
+                                SelectedItem="{Binding EditGenre}"
                                 Margin="50,0,0,0"
                                 Padding="12,2.4"
                                 HorizontalAlignment="Left"
@@ -137,18 +147,38 @@
                                 Style="{DynamicResource TextBlock}"
                                 Text="Giá bán" />
                             <TextBox 
-                                Margin="50,0,0,0" 
                                 Text="{Binding EditPrice}"
-                                Template="{StaticResource TextBoxAdd}" />
+                                Margin="50,0,0,0" 
+                                Width="224"
+                                Height="48"
+                                Padding="12,2.4"
+                                HorizontalAlignment="Left"
+                                VerticalContentAlignment="Center"
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                Background="#D9D9D9"
+                                BorderThickness="0.5"
+                                FontFamily="Inter"
+                                FontSize="16"/>
                             <TextBlock
                                 Margin="50,27,0,10"
                                 VerticalAlignment="Top"
                                 Style="{DynamicResource TextBlock}"
                                 Text="Số lượng" />
                             <TextBox 
-                                Margin="50,0,0,0" 
                                 Text="{Binding EditCount}"
-                                Template="{StaticResource TextBoxAdd}" />
+                                Margin="50,0,0,0" 
+                                Width="224"
+                                Height="48"
+                                Padding="12,2.4"
+                                HorizontalAlignment="Left"
+                                VerticalContentAlignment="Center"
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                Background="#D9D9D9"
+                                BorderThickness="0.5"
+                                FontFamily="Inter"
+                                FontSize="16"/>
                         </StackPanel>
                         <StackPanel
                             Grid.Column="1"
@@ -205,7 +235,22 @@
                                 Text="Ghi chú" />
                             <TextBox 
                                 Text="{Binding EditDescription}"
-                                Template="{StaticResource TextBoxAddBig}" />
+                                Width="196"
+                                Height="157"
+                                Margin="0,5,0,0"
+                                Padding="12,2.4"
+                                MinLines="1"
+                                MaxLines="20"
+                                TextWrapping="Wrap"
+                                HorizontalAlignment="Left"
+                                VerticalContentAlignment="Top"
+                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                Background="#D9D9D9"
+                                BorderThickness="0.5"
+                                FontFamily="Inter"
+                                FontSize="16"
+                                VerticalAlignment="Top" />
                         </StackPanel>
 
                     </Grid>

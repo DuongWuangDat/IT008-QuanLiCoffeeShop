@@ -16,7 +16,7 @@ namespace QuanLiCoffeeShop.Model.Service
     public class StaffService
     {
         public StaffService() { }
-		private static StaffService _ins;
+        private static StaffService _ins;
 
 		public static StaffService Ins
 		{
@@ -29,7 +29,7 @@ namespace QuanLiCoffeeShop.Model.Service
 				return _ins;
 			}
 			private set { _ins = value; }
-		}
+		}// test
 
 		//Get all staff
 		public async Task<List<StaffDTO>> GetAllStaff()

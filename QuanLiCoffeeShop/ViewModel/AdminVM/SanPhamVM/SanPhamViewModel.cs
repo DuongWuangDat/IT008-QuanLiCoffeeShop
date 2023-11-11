@@ -290,9 +290,6 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
             });
 
             OpenEditWdCM = new RelayCommand<object>((p) => { return true; }, (p) => {                
-                ProductDTO a = new ProductDTO();
-                a = SelectedItem;
-
                 EditName = SelectedItem.DisplayName;
                 EditGenre = SelectedItem.GenreName;
                 EditPrice = FormalPrice(SelectedItem.Price.ToString());
@@ -302,14 +299,12 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                 OriginImage = SelectedItem.Image;                
                 EditSanPham wd = new EditSanPham();               
                 wd.ShowDialog();
-                SelectedItem = null;
-                SelectedItem = a;
             });
 
             EditSanPhamListCM = new RelayCommand<Window>((p) => { return true; }, async (p) =>
             {               
                 if (SelectedItem == null)
-                    MessageBox.Show("0");
+                    MessageBox.Show("SelectedItem null");
                 else
                 {
 
@@ -347,6 +342,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                     {
                         p.Close();
                         ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProduct());
+                        prdList = new List<ProductDTO>(ProductList);
                     }
                     else
                     {
@@ -372,6 +368,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                     if (sucess)
                     {
                         ProductList.Remove(SelectedItem);
+                        prdList = new List<ProductDTO>(ProductList);
                         AddedSuccessfully addedSuccessfully = new AddedSuccessfully();
                         addedSuccessfully.Show();
                     }

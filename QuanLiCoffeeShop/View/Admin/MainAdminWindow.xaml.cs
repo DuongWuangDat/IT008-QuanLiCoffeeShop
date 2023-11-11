@@ -22,9 +22,9 @@ namespace QuanLiCoffeeShop.View.Admin
             BeginStoryboard((Storyboard)Resources["MenuClose"]);
         }
 
-        private void MainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        private void AdminWD_Closed(object sender, System.EventArgs e)
         {
-          //  BeginStoryboard((Storyboard)Resources["MenuClose"]);
+            this.Owner.Visibility = Visibility.Visible;
         }
     }
 }

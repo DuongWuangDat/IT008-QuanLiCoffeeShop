@@ -1,5 +1,4 @@
-﻿using QuanLiCoffeeShop.View.Admin.CustomerManagement;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,21 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.Admin
+namespace QuanLiCoffeeShop.View.Admin.Problem.Problem_page_main
 {
     /// <summary>
-    /// Interaction logic for CustomerPage.xaml
+    /// Interaction logic for MessageCautionAdd.xaml
     /// </summary>
-    public partial class CustomerPage : Page
+    public partial class MessageCautionAdd : Window
     {
-        public CustomerPage()
+        public MessageCautionAdd()
         {
             InitializeComponent();
         }
-
-       
     }
 }

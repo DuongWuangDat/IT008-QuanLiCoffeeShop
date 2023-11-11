@@ -88,23 +88,20 @@
                                       Width="25"
                                       Height="30"
                                       Margin="24 0 0 0" />
-                            <TextBox x:Name="Searchtable" 
+                            <TextBox x:Name="SearchPro" 
                                      BorderBrush="#FFF4F4"
                                       TextDecorations="None"
-                                      Width="130"
-                                      Tag="Tìm kiếm"
-                                      Text="Tìm kiếm"
+                                      Width="130"                                    
                                       FontSize="18"
                                       VerticalAlignment="Center"
                                       Margin="13,0,0,0"
                                       Foreground="Black"
-                                      GotFocus="TextBox_GotFocus"
-                                      LostFocus="TextBox_LostFocus">
+                                     materialDesign:HintAssist.Hint="Tìm Kiếm"
+                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden">
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="TextChanged">
-                                        <i:InvokeCommandAction Command="{Binding SearchProblem}"
-                                                               CommandParameter="{Binding ElementName=search}" />
+                                        <i:InvokeCommandAction Command="{Binding Search}" CommandParameter="{Binding ElementName=SearchPro}" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
 

@@ -12,6 +12,7 @@ using System.Web;
 using System.Windows.Input;
 using System.Windows.Controls;
 using System.Windows;
+using QuanLiCoffeeShop.View.Admin.Problem.Problem_page_main;
 
 namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
 {
@@ -90,6 +91,11 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
         public ICommand OpenDelete { get; set; }
         public ICommand CloseDelete { get; set; }
         public ICommand Delete {  get; set; }
+        public ICommand Search { get; set; }
+        public ICommand CloseMessAdd { get; set; }
+        public ICommand CloseMessCauAdd { get; set; }   
+        public ICommand CloseMessEdit { get; set; }
+        public ICommand CloseMessDelete { get; set; }   
         private void resetdata()
         {
             Name = null; Description=null;Status = null;
@@ -120,13 +126,15 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
             CloseAdd = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 IsPopupOpenAdd = false;
+                resetdata();
             });
             AddProblem = new RelayCommand<object>((p) => { return true; },async (p) =>
             {
                 if (Name == null || Status == null)
                 {
                     IsPopupOpenAdd = false;
-                    MessageBox.Show("Bạn chưa nhập đủ thông tin!!");
+                    MessageCautionAdd wd= new MessageCautionAdd();
+                    wd.ShowDialog();
                     IsPopupOpenAdd = true;
                 }
                 else
@@ -140,19 +148,16 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                         IsDeleted = false,
 
                     };
-                   
+                    resetdata();
                     (bool IsAdded, string messageAdd) = await ErrorService.Ins.AddNewError(newerror);
                     if (IsAdded)
                     {
                         ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
                         IsPopupOpenAdd = false;
-                        resetdata();
+                       MessageAdd wd = new MessageAdd();
+                        wd.ShowDialog();
                     }
-                    else
-                    {
-                        IsPopupOpenAdd= false;
-                        MessageBox.Show(messageAdd);
-                    }
+                   
                 }
 
             });
@@ -188,7 +193,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                     {
                         IsPopupOpenEdit= false;
                         ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
-                    MessageBox.Show(messageEdit);
+                    MessageEdit wd = new MessageEdit();
+                    wd.ShowDialog();
                     resetdata() ;
                     }
                                       
@@ -212,8 +218,36 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                 {
                     ProblemList.Remove(SelectedItem);
                     IsPopupOpenDelete = false;
-                    MessageBox.Show(messageDelete);
+                    MessageDelete wd =new MessageDelete();
+                    wd.ShowDialog();
                 }
+            });
+            Search = new RelayCommand<TextBox>((p) => { return true; },async (p) =>
+            {
+                if(p.Text == "" )
+                {
+                    ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
+                }    
+                else
+                {
+                    ProblemList = new ObservableCollection<ErrorDTO>(ProList.FindAll(x => x.DisplayName.ToLower().Contains(p.Text.ToLower())));
+                }    
+            });
+            CloseMessAdd = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
+                p.Close();
+            });
+            CloseMessCauAdd = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
+                p.Close();
+            });
+            CloseMessEdit = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
+                p.Close();
+            });
+            CloseMessDelete = new RelayCommand<Window>((p) => { return true; }, (p) =>
+            {
+                p.Close();
             });
         }
     }

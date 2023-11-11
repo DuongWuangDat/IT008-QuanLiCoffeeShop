@@ -52,35 +52,35 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set { _name = value; OnPropertyChanged(); }
         }
 
         private string _price;
         public string Price
         {
             get { return _price; }
-            set { _price = value; }
+            set { _price = value; OnPropertyChanged(); }
         }
 
         private string _genre;
         public string Genre
         {
             get { return _genre; }
-            set { _genre = value; }
+            set { _genre = value; OnPropertyChanged(); }
         }
 
         private string _count;
         public string Count
         {
             get { return _count; }
-            set { _count = value; }
+            set { _count = value; OnPropertyChanged(); }
         }
 
         private string _description;
         public string Description
         {
             get { return _description; }
-            set { _description = value; }
+            set { _description = value; OnPropertyChanged(); }
         }
 
         private string _image;
@@ -95,35 +95,35 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
         public string EditName
         {
             get { return _editname; }
-            set { _editname = value; }
+            set { _editname = value; OnPropertyChanged(); }
         }
 
         private string _editPrice;
         public string EditPrice
         {
             get { return _editPrice; }
-            set { _editPrice = value; }
+            set { _editPrice = value; OnPropertyChanged(); }
         }
 
         private string _editGenre;
         public string EditGenre
         {
             get { return _editGenre; }
-            set { _editGenre = value;}
+            set { _editGenre = value; OnPropertyChanged(); }
         }
 
         private string _editCount;
         public string EditCount
         {
             get { return _editCount; }
-            set { _editCount = value; }
+            set { _editCount = value; OnPropertyChanged(); }
         }
 
         private string _editDescription;
         public string EditDescription
         {
             get { return _editDescription; }
-            set { _editDescription = value;}
+            set { _editDescription = value; OnPropertyChanged(); }
         }
 
         private string _editImage;
@@ -138,6 +138,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
         public ICommand SearchSanPhamCM { get; set; }
         public ICommand AddSanPhamCM { get; set; }
         public ICommand AddSanPhamListCM { get; set; }
+        public ICommand ProductFilter {  get; set; }
+        public ICommand AllPrDFilter { get; set; }
         public ICommand CloseWdCM { get; set; }
         public ICommand OpenEditWdCM { get; set; }
         public ICommand EditSanPhamListCM { get; set; }
@@ -155,7 +157,14 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                 }
                 GenreList = new ObservableCollection<string>(await GenreService.Ins.GetAllPrD());
             });
-
+            ProductFilter = new RelayCommand<TextBlock>((p) => { return true; }, (p) =>
+            {
+                ProductList = new ObservableCollection<ProductDTO>(prdList.FindAll(x => x.GenreName.ToLower().Contains(p.Text.ToString().ToLower())));
+            });
+            AllPrDFilter = new RelayCommand<Button>((p) => { return true; }, async (p) =>
+            {
+                ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProduct());
+            });
             SearchSanPhamCM = new RelayCommand<TextBox>((p) => { return true; }, async (p) =>
             {
                 if (p.Text == "")
@@ -168,13 +177,23 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                 }
 
             });            
+
+
             AddSanPhamCM = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
+                Name = null;
+                Genre = null;
+                Price = null;
+                Image = null;
+                Count = null;
+                Description = null;
                 AddSanPham wd = new AddSanPham();
                 wd.ShowDialog();
+
             });
             AddSanPhamListCM = new RelayCommand<Window>((p) => { return true; }, async (p) =>
-            {
+            {               
+
                 if (this.Name == null || this.Genre == null || this.Image == null)
                 {                    
                     MessageBox.Show("Không nhập đủ dữ liệu!");
@@ -182,15 +201,14 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                 else
                 {
                     int id; 
-                    GenreProduct genrePrD;
+                    GenreProduct genrePrD = new GenreProduct();
                     (id, genrePrD) = await GenreService.Ins.FindGenrePrD(Genre);
                     if (this.Description == null) this.Description = "";
                     Product newPrd = new Product
                     {
                         DisplayName = this.Name,
                         Price = decimal.Parse(this.Price),
-                        Description = this.Description,
-                        GenreProduct = genrePrD,                      
+                        Description = this.Description,                                           
                         IDGenre = id,
                         Count=int.Parse(this.Count),
                         Image= await CloudService.Ins.UploadImage(this.Image),
@@ -202,6 +220,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                     {
                         p.Close();
                         ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProduct());
+                        AddedSuccessfully addedSuccessfully = new AddedSuccessfully();
+                        addedSuccessfully.Show();
                     }
                     else
                     {
@@ -232,8 +252,9 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
 
             EditImageCM = new RelayCommand<object>((p) => { return true; }, (p) =>
             {              
+
                 OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "Image Files|*.jpg;*.png;*.jpeg;*.gif|All Files|*.*";
+                openFileDialog.Filter = "Image Files|*.jpg;*.png;*.jpeg;*.webp;*.gif|All Files|*.*";
                 if (openFileDialog.ShowDialog() == true)
                 {
 
@@ -250,16 +271,31 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
             });
 
             CloseWdCM = new RelayCommand<Window>((p) => { return true; }, (p) =>
-            {
+            {                
+                EditName = null;
+                EditGenre = null;
+                EditPrice = null;
+                EditCount = null;
+                EditImage = null;
+                EditDescription = null;
+                OriginImage = null;
+                Name = null;
+                Genre = null;
+                Price = null;
+                Image = null;
+                Count = null;
+                Description = null;
+                SelectedItem = null;
                 p.Close();
             });
 
-            OpenEditWdCM = new RelayCommand<object>((p) => { return true; }, (p) => {
+            OpenEditWdCM = new RelayCommand<object>((p) => { return true; }, (p) => {                
                 ProductDTO a = new ProductDTO();
                 a = SelectedItem;
+
                 EditName = SelectedItem.DisplayName;
                 EditGenre = SelectedItem.GenreName;
-                EditPrice = SelectedItem.Price.ToString();
+                EditPrice = FormalPrice(SelectedItem.Price.ToString());
                 EditCount = SelectedItem.Count.ToString();
                 EditImage = SelectedItem.Image;
                 EditDescription = SelectedItem.Description;
@@ -271,9 +307,15 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
             });
 
             EditSanPhamListCM = new RelayCommand<Window>((p) => { return true; }, async (p) =>
-            {
+            {               
+                if (SelectedItem == null)
+                    MessageBox.Show("0");
+                else
+                {
+
                 ProductDTO a = new ProductDTO();
                 a = SelectedItem;
+
                 if (this.EditName == null || this.EditGenre == null || this.EditImage == null)
                 {
                     MessageBox.Show("Không nhập đủ dữ liệu!");
@@ -291,8 +333,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                     {
                         ID = SelectedItem.ID,
                         DisplayName = EditName,
-                        GenreProduct = genrePrD,
-                        //IDGenre = id,
+                        IDGenre = id,
                         Price = decimal.Parse(EditPrice),
                         Count = int.Parse(EditCount),
                         Image = EditImage,
@@ -311,6 +352,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                     {
                         MessageBox.Show(messageEdit);
                     }
+                }
                 }
 
             });
@@ -340,6 +382,13 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                 }
 
             });
+        }       
+
+        private string FormalPrice(string s)
+        {
+            string valuePrice ="";            
+            valuePrice += s.Substring(0,s.Length-5);
+            return valuePrice;
         }
     }
 }

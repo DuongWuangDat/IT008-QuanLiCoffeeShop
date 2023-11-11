@@ -26,7 +26,7 @@ namespace QuanLiCoffeeShop.Model.Service
             using (var context = new QuanLiCoffeShopEntities())
             {
                 var prD = await context.GenreProduct.Where(p => p.DisplayName == name).FirstOrDefaultAsync();
-                if (prD != null)
+                if (prD == null)
                 {
                     return (-1, null);
                 }

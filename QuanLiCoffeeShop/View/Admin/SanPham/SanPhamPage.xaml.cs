@@ -23,6 +23,56 @@ namespace QuanLiCoffeeShop.View.Admin.SanPham
         public SanPhamPage()
         {
             InitializeComponent();
+        }
+
+        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer.ScrollToVerticalOffset(ScrollViewer.VerticalOffset - e.Delta);
+            e.Handled = true;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                string borderName = button.Tag.ToString();
+                ResetBorders(); 
+                HighlightBorder(borderName); 
+            }
+        }
+        private void ResetBorders()
+        {
+            AllBd.Background = new SolidColorBrush(Colors.White);
+            CoffeeBd.Background = new SolidColorBrush(Colors.White);
+            FreezeBd.Background = new SolidColorBrush(Colors.White);
+            FoodBd.Background = new SolidColorBrush(Colors.White);
+            OtherBd.Background = new SolidColorBrush(Colors.White);
+            TeaBd.Background = new SolidColorBrush(Colors.White);
+        }
+
+        private void HighlightBorder(string borderName)
+        {
+            switch (borderName)
+            {
+                case "AllBd":
+                    AllBd.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xF4, 0xF4));
+                    break;
+                case "CoffeeBd":
+                    CoffeeBd.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xF4, 0xF4));
+                    break;
+                case "FreezeBd":
+                    FreezeBd.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xF4, 0xF4));
+                    break;
+                case "FoodBd":
+                    FoodBd.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xF4, 0xF4));
+                    break;
+                case "TeaBd":
+                    TeaBd.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xF4, 0xF4));
+                    break;
+                case "OtherBd":
+                    OtherBd.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xF4, 0xF4));
+                    break;
+            }
         }       
     }
 }

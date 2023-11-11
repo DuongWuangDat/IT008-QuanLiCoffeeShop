@@ -111,11 +111,14 @@
                     <!--  List danh mục  -->
                     <StackPanel Margin="0,14,0,0">
                         <Border
+                            x:Name="AllBd"
                             Width="180"
                             Height="46"
                             Background="#FFF4F4"
                             CornerRadius="16">
                             <Button
+                                Command="{Binding AllPrDFilter}"
+                                Click="Button_Click" Tag="AllBd"
                                 Width="180"
                                 Height="46"
                                 Padding="0"
@@ -129,21 +132,57 @@
                                     VerticalAlignment="Center"
                                     FontFamily="Roboto Condensed"
                                     FontSize="17"
+                                    Text="Tất cả"
                                     FontWeight="DemiBold"
                                     Foreground="#E0AE8A">
-                                    Tất cả
                                 </TextBlock>
 
                             </Button>
                         </Border>
 
+                        <Border                           
+                            x:Name="CoffeeBd"
+                            Width="180"
+                            Height="46"
+                            HorizontalAlignment="Center"
+                            Background="#FFFFFF"
+                            CornerRadius="16">
+                            <Button  
+                                Command="{Binding ProductFilter}"
+                                CommandParameter="{Binding ElementName=Coffee}"
+                                Click="Button_Click" Tag="CoffeeBd"                                
+                                Width="180"
+                                Height="46" 
+                                Padding="0"
+                                VerticalAlignment="Center"
+                                HorizontalContentAlignment="Left"
+                                Background="{x:Null}"
+                                BorderBrush="{x:Null}"
+                                Foreground="{x:Null}">
+                                <TextBlock      
+                                    x:Name="Coffee"
+                                    Margin="40,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Roboto Condensed"
+                                    FontSize="17"
+                                    Text="Coffee"
+                                    FontWeight="DemiBold"
+                                    Foreground="#E0AE8A">
+                                </TextBlock>
+
+                            </Button>
+                        </Border>
                         <Border
+                            x:Name="FreezeBd"
                             Width="180"
                             Height="46"
                             HorizontalAlignment="Center"
                             Background="#FFFFFF"
                             CornerRadius="16">
                             <Button
+                                Command="{Binding ProductFilter}"
+                                CommandParameter="{Binding ElementName=Freeze}"
+                                Click="Button_Click" Tag="FreezeBd"
                                 Width="180"
                                 Height="46"
                                 Padding="0"
@@ -153,24 +192,29 @@
                                 BorderBrush="{x:Null}"
                                 Foreground="{x:Null}">
                                 <TextBlock
+                                    x:Name="Freeze"
                                     Margin="40,0,0,0"
                                     VerticalAlignment="Center"
                                     FontFamily="Roboto Condensed"
                                     FontSize="17"
                                     FontWeight="DemiBold"
+                                    Text="Freeze"
                                     Foreground="#E0AE8A">
-                                    Coffee
                                 </TextBlock>
 
                             </Button>
                         </Border>
                         <Border
+                            x:Name="FoodBd"
                             Width="180"
                             Height="46"
                             HorizontalAlignment="Center"
                             Background="#FFFFFF"
                             CornerRadius="16">
                             <Button
+                                Command="{Binding ProductFilter}"
+                                CommandParameter="{Binding ElementName=Food}"
+                                Click="Button_Click" Tag="FoodBd"
                                 Width="180"
                                 Height="46"
                                 Padding="0"
@@ -180,24 +224,29 @@
                                 BorderBrush="{x:Null}"
                                 Foreground="{x:Null}">
                                 <TextBlock
+                                    x:Name="Food"
                                     Margin="40,0,0,0"
                                     VerticalAlignment="Center"
                                     FontFamily="Roboto Condensed"
                                     FontSize="17"
+                                    Text="Đồ ăn"
                                     FontWeight="DemiBold"
                                     Foreground="#E0AE8A">
-                                    Freeze
                                 </TextBlock>
 
                             </Button>
                         </Border>
                         <Border
+                            x:Name="TeaBd"
                             Width="180"
                             Height="46"
                             HorizontalAlignment="Center"
                             Background="#FFFFFF"
                             CornerRadius="16">
                             <Button
+                                Command="{Binding ProductFilter}"
+                                CommandParameter="{Binding ElementName=Tea}"
+                                Click="Button_Click" Tag="TeaBd"
                                 Width="180"
                                 Height="46"
                                 Padding="0"
@@ -207,40 +256,46 @@
                                 BorderBrush="{x:Null}"
                                 Foreground="{x:Null}">
                                 <TextBlock
+                                    x:Name="Tea"
                                     Margin="40,0,0,0"
                                     VerticalAlignment="Center"
                                     FontFamily="Roboto Condensed"
                                     FontSize="17"
+                                    Text="Trà"
                                     FontWeight="DemiBold"
                                     Foreground="#E0AE8A">
-                                    Đồ ăn
                                 </TextBlock>
 
                             </Button>
                         </Border>
                         <Border
+                            x:Name="OtherBd"
                             Width="180"
                             Height="46"
                             HorizontalAlignment="Center"
                             Background="#FFFFFF"
                             CornerRadius="16">
                             <Button
+                                Command="{Binding ProductFilter}"
+                                CommandParameter="{Binding ElementName=Other}"
                                 Width="180"
                                 Height="46"
                                 Padding="0"
+                                Click="Button_Click" Tag="OtherBd"
                                 VerticalAlignment="Center"
                                 HorizontalContentAlignment="Left"
                                 Background="{x:Null}"
                                 BorderBrush="{x:Null}"
                                 Foreground="{x:Null}">
-                                <TextBlock
+                              <TextBlock
+                                    x:Name="Other"
                                     Margin="40,0,0,0"
                                     VerticalAlignment="Center"
                                     FontFamily="Roboto Condensed"
                                     FontSize="17"
                                     FontWeight="DemiBold"
                                     Foreground="#E0AE8A">
-                                    Trà
+                                    Khác
                                 </TextBlock>
 
                             </Button>
@@ -254,12 +309,12 @@
         </Grid>
 
         <!--  Hien thi cac san pham  -->
-        <ScrollViewer
+        <ScrollViewer x:Name="ScrollViewer"
                 Grid.Column="1"
                 Height="728"
-                Margin="10,40,10,0"
+                Margin="10,30,10,10"
                 VerticalScrollBarVisibility="Auto"
-                VerticalAlignment="Top">
+                VerticalAlignment="Top" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
             <ListView
                 x:Name="SanPhamList"
                 VerticalAlignment="Top"               

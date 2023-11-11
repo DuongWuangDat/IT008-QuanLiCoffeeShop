@@ -255,19 +255,25 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
             });
 
             OpenEditWdCM = new RelayCommand<object>((p) => { return true; }, (p) => {
+                ProductDTO a = new ProductDTO();
+                a = SelectedItem;
                 EditName = SelectedItem.DisplayName;
                 EditGenre = SelectedItem.GenreName;
                 EditPrice = SelectedItem.Price.ToString();
                 EditCount = SelectedItem.Count.ToString();
                 EditImage = SelectedItem.Image;
                 EditDescription = SelectedItem.Description;
-                OriginImage = SelectedItem.Image;
-                EditSanPham wd = new EditSanPham();
+                OriginImage = SelectedItem.Image;                
+                EditSanPham wd = new EditSanPham();               
                 wd.ShowDialog();
+                SelectedItem = null;
+                SelectedItem = a;
             });
 
             EditSanPhamListCM = new RelayCommand<Window>((p) => { return true; }, async (p) =>
             {
+                ProductDTO a = new ProductDTO();
+                a = SelectedItem;
                 if (this.EditName == null || this.EditGenre == null || this.EditImage == null)
                 {
                     MessageBox.Show("Không nhập đủ dữ liệu!");
@@ -279,9 +285,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
 
                     GenreProduct genrePrD = new GenreProduct();
                     (id, genrePrD) = await GenreService.Ins.FindGenrePrD(EditGenre);
-
-                    if(OriginImage!=EditImage) 
-                        await CloudService.Ins.DeleteImage(OriginImage);
+                    SelectedItem = null;
+                    SelectedItem = a;
                     Product newPrD = new Product
                     {
                         ID = SelectedItem.ID,
@@ -295,6 +300,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                         IsDeleted = false,
                     };
                     (bool success, string messageEdit) = await ProductService.Ins.EditPrD(newPrD, SelectedItem.ID);
+                    if (OriginImage != EditImage)
+                        await CloudService.Ins.DeleteImage(OriginImage);
                     if (success)
                     {
                         p.Close();
@@ -309,14 +316,22 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
             });
             DeleteSanPhamListCM = new RelayCommand<object>((p) => { return true; }, async (p) =>
             {
+                ProductDTO a = new ProductDTO();
+                a = SelectedItem;
                 DeleteMessage wd = new DeleteMessage();
                 wd.ShowDialog();
+                SelectedItem = null;
+                SelectedItem = a;
                 if (wd.DialogResult == true)
                 {
+                    string deleteImg = SelectedItem.Image;
+                    await CloudService.Ins.DeleteImage(deleteImg);
                     (bool sucess, string messageDelete) = await ProductService.Ins.DeletePrD(SelectedItem.ID);
                     if (sucess)
                     {
                         ProductList.Remove(SelectedItem);
+                        AddedSuccessfully addedSuccessfully = new AddedSuccessfully();
+                        addedSuccessfully.Show();
                     }
                     else
                     {

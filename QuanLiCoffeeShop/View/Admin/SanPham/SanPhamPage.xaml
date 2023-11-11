@@ -258,18 +258,17 @@
                 Grid.Column="1"
                 Height="728"
                 Margin="10,40,10,0"
+                VerticalScrollBarVisibility="Auto"
                 VerticalAlignment="Top">
             <ListView
                 x:Name="SanPhamList"
                 VerticalAlignment="Top"               
                 ItemsSource="{Binding ProductList}"
-                SelectedItem="{Binding SelectedItem}"
-                materialDesign:ListBoxItemAssist.ShowSelection="False"
-                materialDesign:ListBoxAssist.IsToggle="False"
-                >
+                SelectedItem="{Binding SelectedItem}">
                 <ListView.ItemContainerStyle>
-                    <Style BasedOn="{StaticResource MaterialDesignListBoxItem}" TargetType="ListViewItem">
-
+                    <Style 
+                        BasedOn="{StaticResource MaterialDesignListBoxItem}" 
+                        TargetType="ListViewItem">
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="IsSelected" Value="True" />
@@ -279,7 +278,7 @@
                         <Setter Property="Padding"
                                 Value="0" />
                         <Setter Property="Margin"
-                                Value="5 5 6 5" />
+                                Value="0 5 10 5" />
                         <Setter Property="materialDesign:ListBoxItemAssist.ShowSelection" Value="False" />
                     </Style>
                 </ListView.ItemContainerStyle>
@@ -346,21 +345,21 @@
                                     </TextBlock>
                                     <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
                                         <Button                           
-                                                Width="30"
-                                                Padding="0"
-                                                VerticalAlignment="Center"
-                                                Background="{x:Null}"
-                                                BorderBrush="{x:Null}"
-                                                Foreground="{x:Null}">
+                                            
+                                            Width="30"
+                                            Padding="0"
+                                            VerticalAlignment="Center"
+                                            Background="{x:Null}"
+                                            BorderBrush="{x:Null}"
+                                            Foreground="{x:Null}">
                                             <Image 
                                                     Width="22" 
                                                     Source="/QuanLiCoffeeShop;component/Resources/Icon/ChangeBrown_Icon.png" />
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="Click">
                                                     <i:InvokeCommandAction Command="{Binding ElementName=SanPhamList, Path=DataContext.OpenEditWdCM}" />
-                                                </i:EventTrigger>                    
+                                                </i:EventTrigger>
                                             </i:Interaction.Triggers>
-                                            
                                         </Button>
                                         <Button                                            
                                                 Width="30"

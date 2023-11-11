@@ -1,6 +1,8 @@
 ﻿using QuanLiCoffeeShop.ViewModel.AdminVM;
+using System.Drawing;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 
 namespace QuanLiCoffeeShop.View.Admin
@@ -21,9 +23,11 @@ namespace QuanLiCoffeeShop.View.Admin
             BeginStoryboard((Storyboard)Resources["MenuClose"]);
         }
 
-        private void MainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        private void AdminWD_Closed(object sender, System.EventArgs e)
         {
-          //  BeginStoryboard((Storyboard)Resources["MenuClose"]);
+            //  this.Owner.Visibility = Visibility.Visible;
         }
+
+        
     }
 }

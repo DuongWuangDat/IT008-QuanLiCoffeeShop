@@ -8,11 +8,13 @@ using System.Windows.Media.Animation;
 using System;
 using System.Windows;
 using QuanLiCoffeeShop.View.Admin.SanPham;
+using QuanLiCoffeeShop.DTOs;
 
 namespace QuanLiCoffeeShop.ViewModel.AdminVM
 {
     internal class MainAdminViewModel : BaseViewModel
     {
+        public static StaffDTO curentstaff;
         public ICommand FirstLoadCM { get; set; }
         public ICommand LoadNhanVienPage { get; }
         public ICommand LoadKhachHangPage { get; set; }

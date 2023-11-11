@@ -460,6 +460,13 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Icon\ThongKe_White_Icon.png" />
+    <Resource Include="Resources\Icon\SuCo_White_Icon.png" />
+    <Resource Include="Resources\Icon\KhachHang_White_Icon.png" />
+    <Resource Include="Resources\Icon\Ban_White_Icon.png" />
+    <Resource Include="Resources\Icon\NhanVien_White_Icon.png" />
+    <Resource Include="Resources\Icon\SanPham_Brown_Icon.png" />
+    <Resource Include="Resources\Icon\SuCo_Brown_Icon.png" />
     <Resource Include="Resources\Image\table.png" />
     <Resource Include="Resources\Icon\plus.png" />
     <Resource Include="Resources\Icon\Log_Out_Caution.png" />

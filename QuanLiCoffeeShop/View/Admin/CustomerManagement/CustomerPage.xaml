@@ -26,14 +26,14 @@
     </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="106.59"/>
+            <RowDefinition Height="95"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <StackPanel.Resources>
                 <ControlTemplate x:Key="TextSearchCustomer" TargetType="TextBox">
                     <Border Width="332"
-                            Height="53.6"
+                            Height="40"
                             Background="#FFF4F4"
                             BorderThickness="1"
                             BorderBrush="Black"
@@ -63,8 +63,8 @@
                 </ControlTemplate>
             </StackPanel.Resources>
             <TextBox Template="{StaticResource TextSearchCustomer}" Margin="59.2,23.39,19.2,29.6"/>
-            <Button Width="53" 
-                    Height="53" 
+            <Button Width="40" 
+                    Height="40" 
                     BorderThickness="0" 
                     Margin="0,21.79,0,31.2"
                     Command="{Binding AddCusWdCM}">

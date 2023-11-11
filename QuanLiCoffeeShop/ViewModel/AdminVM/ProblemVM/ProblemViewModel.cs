@@ -182,6 +182,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                         Description = this.Description,
                         IsDeleted = false,
                     };
+              
                     (bool success, string messageEdit) = await ErrorService.Ins.EditError(newerror);
                     if (success)
                     {
@@ -195,8 +196,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
             OpenDelete = new RelayCommand<ErrorDTO>((p) => { return true; }, (p) =>
             {
                 ExecuteOpenDelete(p);
-                IsPopupOpenDelete = true;
-              
+                IsPopupOpenDelete = true;           
+
             });
             CloseDelete = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
@@ -205,10 +206,11 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
             Delete = new RelayCommand<object>((p) => { return true; },async (p) =>
             {
               
+
                 (bool sucess, string messageDelete) = await ErrorService.Ins.DeleteError(SelectedItem.ID);
                 if (sucess)
                 {
-                    ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
+                    ProblemList.Remove(SelectedItem);
                     IsPopupOpenDelete = false;
                     MessageBox.Show(messageDelete);
                 }

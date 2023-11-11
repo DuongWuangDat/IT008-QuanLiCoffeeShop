@@ -233,7 +233,8 @@
                                                 <Button Margin="10,0,0,10"
                                                         Background="White"
                                                         VerticalAlignment="Center"
-                                                        Command="{Binding DataContext.OpenDelete, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}">
+                                                        Command="{Binding DataContext.OpenDelete, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                        CommandParameter="{Binding}">
                                                     <Button.Template>
                                                         <ControlTemplate>
                                                             <Border  CornerRadius="100"
@@ -329,7 +330,7 @@
                             </ComboBox.ItemContainerStyle>
                             <TextBlock   Text="Đang sửa chữa"
                                          FontSize="18"></TextBlock>
-                            <TextBlock Text="Đang sửa"
+                            <TextBlock Text="Đã sửa"
                                        FontSize="18"></TextBlock>
                         </ComboBox>
                     </Border>
@@ -445,7 +446,7 @@
                             </ComboBox.ItemContainerStyle>
                             <TextBlock   Text="Đang sửa chữa"
                                          FontSize="18"></TextBlock>
-                            <TextBlock Text="Đang sửa"
+                            <TextBlock Text="Đã sửa"
                                        FontSize="18"></TextBlock>
                         </ComboBox>
                     </Border>

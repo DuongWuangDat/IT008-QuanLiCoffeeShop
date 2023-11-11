@@ -201,6 +201,7 @@
     <Compile Include="ViewModel\AdminVM\CustomerManagementVM\CustomerManagementViewModel.cs" />
     <Compile Include="ViewModel\AdminVM\MainAdminViewModel.cs" />
     <Compile Include="ViewModel\AdminVM\ProblemVM\ProblemViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\TableVM\TableViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\LoginVM\LoginViewModel.cs" />
     <Compile Include="ViewModel\AdminVM\StaffManagementVM\StaffViewModel.cs" />

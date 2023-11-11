@@ -1,4 +1,5 @@
-﻿using QuanLiCoffeeShop.View.Admin.StaffManagement;
+﻿using QuanLiCoffeeShop.View.Admin;
+using QuanLiCoffeeShop.View.Admin.StaffManagement;
 using QuanLiCoffeeShop.View.Admin.CustomerManagement;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -11,7 +12,7 @@ using QuanLiCoffeeShop.DTOs;
 
 namespace QuanLiCoffeeShop.ViewModel.AdminVM
 {
-    public class MainAdminViewModel : BaseViewModel
+    internal class MainAdminViewModel : BaseViewModel
     {
         public static StaffDTO curentstaff;
         public ICommand FirstLoadCM { get; set; }

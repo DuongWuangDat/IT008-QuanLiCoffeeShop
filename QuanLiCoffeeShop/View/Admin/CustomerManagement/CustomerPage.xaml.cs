@@ -25,6 +25,5 @@ namespace QuanLiCoffeeShop.View.Admin
         {
             InitializeComponent();
         }
-
     }
 }

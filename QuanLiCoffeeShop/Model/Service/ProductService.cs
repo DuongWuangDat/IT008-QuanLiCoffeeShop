@@ -29,80 +29,94 @@ namespace QuanLiCoffeeShop.Model.Service
         //Get all product
         public async Task<List<ProductDTO>> GetAllProduct()
 		{
-			var productList = (from c in DataProvider.Ins.DB.Product
-							   where c.IsDeleted== false
-							   select new ProductDTO
-							   {
-								   ID = c.ID,
-								   DisplayName = c.DisplayName,
-								   Price = c.Price,
-								   IDGenre = c.IDGenre,
-								   GenreName = c.GenreProduct.DisplayName,
-								   Count = c.Count,
-								   Description = c.Description,
-								   Image = c.Image,
-								   IsDeleted = c.IsDeleted,
-							   }).ToListAsync();
-			return await productList;
+			using(var context = new QuanLiCoffeShopEntities())
+			{
+                var productList = (from c in context.Product
+                                   where c.IsDeleted == false
+                                   select new ProductDTO
+                                   {
+                                       ID = c.ID,
+                                       DisplayName = c.DisplayName,
+                                       Price = c.Price,
+                                       IDGenre = c.IDGenre,
+                                       GenreName = c.GenreProduct.DisplayName,
+                                       Count = c.Count,
+                                       Description = c.Description,
+                                       Image = c.Image,
+                                       IsDeleted = c.IsDeleted,
+                                   }).ToListAsync();
+                return await productList;
+            }
+			
 		}
 		
 		//Add new product
 
 		public async Task<(bool, string)> AddNewPrD(Product newPrD)
 		{
-			var prD = await DataProvider.Ins.DB.Product.Where(p => p.DisplayName == newPrD.DisplayName).FirstOrDefaultAsync();
-			if(prD != null)
+			using(var context = new QuanLiCoffeShopEntities())
 			{
-				if(prD.IsDeleted== true)
-				{
-					prD.DisplayName = newPrD.DisplayName;
-					prD.Price = newPrD.Price;
-					prD.IDGenre = newPrD.IDGenre;
-					prD.GenreProduct = newPrD.GenreProduct;
-					prD.Count = newPrD.Count;
-					prD.Description = newPrD.Description;
-					prD.Image = newPrD.Image;
-					prD.IsDeleted = false;
-                    await DataProvider.Ins.DB.SaveChangesAsync();
-                    return (true, "Thêm thành công");
+                var prD = await context.Product.Where(p => p.DisplayName == newPrD.DisplayName).FirstOrDefaultAsync();
+                if (prD != null)
+                {
+                    if (prD.IsDeleted == true)
+                    {
+                        prD.DisplayName = newPrD.DisplayName;
+                        prD.Price = newPrD.Price;
+                        prD.IDGenre = newPrD.IDGenre;
+                        prD.GenreProduct = newPrD.GenreProduct;
+                        prD.Count = newPrD.Count;
+                        prD.Description = newPrD.Description;
+                        prD.Image = newPrD.Image;
+                        prD.IsDeleted = false;
+                        await context.SaveChangesAsync();
+                        return (true, "Thêm thành công");
+                    }
+                    else
+                    {
+                        return (false, "Đã tồn tại sản phẩm");
+                    }
                 }
-				else
-				{
-                    return (false, "Đã tồn tại sản phẩm");
-                }
-			}
-			DataProvider.Ins.DB.Product.Add(newPrD);
-			await DataProvider.Ins.DB.SaveChangesAsync();
-			return (true, "Thêm thành công");
+                context.Product.Add(newPrD);
+                await context.SaveChangesAsync();
+                return (true, "Them thanh cong");
+            }
+			
 		}
 
         //Delete product
         public async Task<(bool, string)> DeletePrD(int ID)
         {
-			var prD = await DataProvider.Ins.DB.Product.Where(p => p.ID == ID).FirstOrDefaultAsync();
-			if(prD.IsDeleted==false) prD.IsDeleted = true;
-            await DataProvider.Ins.DB.SaveChangesAsync();
-            return (true, "Xóa thành công");
+            using(var context = new QuanLiCoffeShopEntities())
+            {
+                var prD = await context.Product.Where(p => p.ID == ID).FirstOrDefaultAsync();
+                if (prD.IsDeleted == false) prD.IsDeleted = true;
+                await context.SaveChangesAsync();
+                return (true, "Xóa thành công");
+            }
+			
         }
 
 		//Edit product
 		public async Task<(bool, string)> EditPrD(Product newPrD, int ID)
 		{
+            using(var context = new QuanLiCoffeShopEntities())
+            {
+                var prD = await context.Product.Where(p => p.ID == newPrD.ID).FirstOrDefaultAsync();
 
-
-            var prD = await DataProvider.Ins.DB.Product.Where(p => p.ID == ID).FirstOrDefaultAsync();
-
-            if (prD == null) return (false, "Không tìm thấy ID");
-            prD.DisplayName = newPrD.DisplayName;
-            prD.Price = newPrD.Price;
-            prD.IDGenre = newPrD.IDGenre;
-            prD.GenreProduct = newPrD.GenreProduct;
-            prD.Count = newPrD.Count;
-            prD.Description = newPrD.Description;
-            prD.Image = newPrD.Image;
-            prD.IsDeleted = false;
-			await DataProvider.Ins.DB.SaveChangesAsync();
-            return (true, "Cập nhật thành công");
+                if (prD == null) return (false, "Không tìm thấy ID");
+                prD.DisplayName = newPrD.DisplayName;
+                prD.Price = newPrD.Price;
+                prD.IDGenre = newPrD.IDGenre;
+                prD.GenreProduct = newPrD.GenreProduct;
+                prD.Count = newPrD.Count;
+                prD.Description = newPrD.Description;
+                prD.Image = newPrD.Image;
+                prD.IsDeleted = false;
+                await context.SaveChangesAsync();
+                return (true, "Cập nhật thành công");
+            }
+            
 
         }
     }

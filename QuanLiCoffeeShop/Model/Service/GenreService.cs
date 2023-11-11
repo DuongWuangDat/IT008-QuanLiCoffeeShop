@@ -23,26 +23,38 @@ namespace QuanLiCoffeeShop.Model.Service
 		}
         public async Task<(int, GenreProduct)> FindGenrePrD(string name)
         {
-            var prD = await DataProvider.Ins.DB.GenreProduct.Where(p => p.DisplayName == name).FirstOrDefaultAsync();
-            if (prD != null)
+            using (var context = new QuanLiCoffeShopEntities())
             {
-                return (-1, null);
+                var prD = await context.GenreProduct.Where(p => p.DisplayName == name).FirstOrDefaultAsync();
+                if (prD != null)
+                {
+                    return (-1, null);
+                }
+                return (prD.ID, prD);
             }
-            return (prD.ID, prD);
+                
         }
 
         //Get  all gerne seat
         public async Task<List<string>> GetAllSeat()
         {
-            var seatGenreList = (from c in DataProvider.Ins.DB.GenreSeat select c.DisplayName).ToListAsync();
-            return await seatGenreList;
+            using(var context = new QuanLiCoffeShopEntities())
+            {
+                var seatGenreList = (from c in context.GenreSeat select c.DisplayName).ToListAsync();
+                return await seatGenreList;
+            }
+            
         }
 
         // Get all genre prD
         public async Task<List<string>> GetAllPrD()
         {
-            var productGenreList = (from c in DataProvider.Ins.DB.GenreProduct select c.DisplayName).ToListAsync();
-            return await productGenreList;
+            using(var context = new QuanLiCoffeShopEntities())
+            {
+                var productGenreList = (from c in context.GenreProduct select c.DisplayName).ToListAsync();
+                return await productGenreList;
+            }
+            
         }
     }
 }

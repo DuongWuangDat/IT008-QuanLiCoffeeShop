@@ -5,7 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     Title="MainFrame"
+    x:Name="AdminWD"
     d:DesignHeight="864"
     d:DesignWidth="1536"
     Background="White"
@@ -17,6 +19,7 @@
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
+    WindowState="Maximized"
     mc:Ignorable="d">
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
@@ -42,7 +45,11 @@
         </Storyboard>
 
     </Window.Resources>
-
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding FirstLoadCM}" CommandParameter="{Binding ElementName=MainFrame}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="OpenMenu_btn">
             <BeginStoryboard Storyboard="{StaticResource MenuOpen}" />
@@ -51,7 +58,7 @@
             <BeginStoryboard Storyboard="{StaticResource MenuClose}" />
         </EventTrigger>
     </Window.Triggers>
-
+    
     <Grid>
         <!--  Overlay  -->
         <Border
@@ -69,15 +76,17 @@
 
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="64"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="64" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <!--Main Frame-->
-                <Frame Grid.Row="1" x:Name="MainFrame" >
+                <!--  Main Frame  -->
+                <Frame
+                    x:Name="MainFrame"
+                    Grid.Row="1">
                     <Frame.Style>
                         <Style TargetType="Frame">
-                            <Setter Property="NavigationUIVisibility" Value="Hidden"/>
+                            <Setter Property="NavigationUIVisibility" Value="Hidden" />
                         </Style>
                     </Frame.Style>
                 </Frame>
@@ -88,43 +97,51 @@
                     VerticalAlignment="Stretch"
                     Background="#FFF2E9"
                     Mode="PrimaryLight">
-                    <StackPanel Orientation="Horizontal">
+
+
+
+                    <Grid>
+
                         <!--  OpenMenu_btn  -->
-                        <Button
-                            x:Name="OpenMenu_btn"
-                            Margin="10,0,0,0"
-                            Cursor="Hand">
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}">
-                                        <ContentPresenter />
-                                    </Border>
-                                </ControlTemplate>
-                            </Button.Template>
-                            <Button.Content>
-                                <Image Width="27" Source="/QuanLiCoffeeShop;component/Resources/Icon/Menu_Icon.png" />
-                            </Button.Content>
-                            <Button.Style>
-                                <Style TargetType="Button">
-                                    <Setter Property="Background" Value="{x:Null}" />
-                                    <Setter Property="BorderBrush" Value="{x:Null}" />
-                                    <Setter Property="Foreground" Value="{x:Null}" />
-                                </Style>
-                            </Button.Style>
-                        </Button>
-                        <TextBlock
-                            Margin="13,0,0,0"
-                            VerticalAlignment="Center"
-                            FontSize="20"
-                            FontWeight="Bold"
-                            Foreground="#FFE0AE8A">
-                            Coffee Shop
-                        </TextBlock>
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                            <Button
+                                x:Name="OpenMenu_btn"
+                                Margin="10,0,0,0"
+                                Cursor="Hand">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Button.Template>
+                                <Button.Content>
+                                    <Image
+                                        Width="27"
+                                        RenderTransformOrigin="0.5,0.645"
+                                        Source="/QuanLiCoffeeShop;component/Resources/Icon/Menu_Icon.png" />
+                                </Button.Content>
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="{x:Null}" />
+                                        <Setter Property="BorderBrush" Value="{x:Null}" />
+                                        <Setter Property="Foreground" Value="{x:Null}" />
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                            <TextBlock
+                                Margin="13,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="20"
+                                FontWeight="Bold"
+                                Foreground="#FFE0AE8A">
+                                Coffee Shop
+                            </TextBlock>
+                        </StackPanel>
 
                         <!--  Admin_btn  -->
-                        <StackPanel Orientation="Horizontal">
+                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                             <TextBlock
-                                Margin="1170,0,0,0"
                                 VerticalAlignment="Center"
                                 FontSize="20"
                                 FontWeight="Bold"
@@ -203,8 +220,7 @@
                                 </StackPanel>
                             </materialDesign:PopupBox>
                         </StackPanel>
-
-                    </StackPanel>
+                    </Grid>
 
                 </materialDesign:ColorZone>
 
@@ -248,15 +264,19 @@
 
                     <!--  SanPham-Menu_btn  -->
                     <Button
+                        x:Name="SPbtn"
                         Height="58"
                         Command="{Binding LoadSanPhamPage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
+
+                        
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border
                                     Height="58"
                                     Background="#FFE0AE8A"
                                     CornerRadius="16">
+                                    
                                     <StackPanel Cursor="Hand" Orientation="Horizontal">
                                         <Image
                                             Width="27"
@@ -276,12 +296,16 @@
 
                     <!--  NhanVien-Menu_btn  -->
                     <Button
+                        x:Name="NVbtn"
                         Height="58"
                         Command="{Binding LoadNhanVienPage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Height="58" CornerRadius="16">
+                                <Border
+                                    Height="58"
+                                    Background="White"
+                                    CornerRadius="16">
                                     <StackPanel Cursor="Hand" Orientation="Horizontal">
                                         <Image
                                             Width="27"
@@ -301,8 +325,9 @@
 
                     <!--  Ban-Menu_btn  -->
                     <Button
+                        Name="Banbtn"
                         Height="58"
-                        Command="{Binding LoadMenuPage}"
+                        Command="{Binding LoadTablePage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
@@ -326,6 +351,7 @@
 
                     <!--  KhachHang-Menu_btn  -->
                     <Button
+                        x:Name="KHbtn"
                         Height="58"
                         Command="{Binding LoadKhachHangPage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
@@ -351,9 +377,13 @@
 
                     <!--  ThongKe-Menu_btn  -->
                     <Button
+                        x:Name="ThongKebtn"
                         Height="58"
                         Command="{Binding LoadThongKePage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
+                        <Style>
+                            
+                        </Style>
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Height="58" CornerRadius="16">
@@ -374,31 +404,32 @@
                         </Button.Template>
                     </Button>
 
-                    <!--  TaiKhoan-Menu_btn  -->
+                    <!--  SuCo-Menu_btn  -->
                     <Button
+                        x:Name="Errbtn"
                         Height="58"
-                        Command="{Binding LoadNhanVienPage}"
+                        Command="{Binding LoadErrorPage}"
                         CommandParameter="{Binding ElementName=MainFrame}">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Height="58" CornerRadius="16">
                                     <StackPanel Cursor="Hand" Orientation="Horizontal">
                                         <Image
-                                            Width="27"
+                                            Width="8"
+                                            Height="20"
                                             Margin="24,0,0,0"
-                                            Source="/QuanLiCoffeeShop;component/Resources/Icon/TaiKhoan_Brown_Icon.png" />
+                                            Source="/QuanLiCoffeeShop;component/Resources/Icon/SuCoIcon.png" />
                                         <TextBlock
                                             Margin="13,0,0,0"
                                             VerticalAlignment="Center"
                                             FontSize="18"
                                             Foreground="#FFE0AE8A"
-                                            Text="Tài khoản" />
+                                            Text="Sự cố" />
                                     </StackPanel>
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-
                 </StackPanel>
             </Grid>
         </Grid>

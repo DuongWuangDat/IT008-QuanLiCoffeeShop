@@ -18,8 +18,12 @@ namespace QuanLiCoffeeShop.View.Admin
 
         private void Overlay_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
             BeginStoryboard((Storyboard)Resources["MenuClose"]);
+        }
+
+        private void MainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+          //  BeginStoryboard((Storyboard)Resources["MenuClose"]);
         }
     }
 }

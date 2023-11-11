@@ -318,8 +318,7 @@
             <ListView
                 x:Name="SanPhamList"
                 VerticalAlignment="Top"               
-                ItemsSource="{Binding ProductList}"
-                SelectedItem="{Binding SelectedItem}">
+                ItemsSource="{Binding ProductList}">
                 <ListView.ItemContainerStyle>
                     <Style 
                         BasedOn="{StaticResource MaterialDesignListBoxItem}" 
@@ -356,8 +355,8 @@
                                     Height="216">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="146" />
-                                    <RowDefinition Height="35" />
-                                    <RowDefinition Height="35" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="30" />
                                 </Grid.RowDefinitions>
                                 <Image
                                         Grid.Row="0"
@@ -406,17 +405,22 @@
                                             VerticalAlignment="Center"
                                             Background="{x:Null}"
                                             BorderBrush="{x:Null}"
-                                            Foreground="{x:Null}">
+                                            Foreground="{x:Null}"
+                                            Command="{Binding DataContext.OpenEditWdCM, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                            CommandParameter="{Binding}"
+                                            >
                                             <Image 
                                                     Width="22" 
                                                     Source="/QuanLiCoffeeShop;component/Resources/Icon/ChangeBrown_Icon.png" />
-                                            <i:Interaction.Triggers>
+                                            <!--<i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="Click">
                                                     <i:InvokeCommandAction Command="{Binding ElementName=SanPhamList, Path=DataContext.OpenEditWdCM}" />
                                                 </i:EventTrigger>
-                                            </i:Interaction.Triggers>
+                                            </i:Interaction.Triggers>-->
                                         </Button>
-                                        <Button                                            
+                                        <Button                         
+                                            Command="{Binding DataContext.DeleteSanPhamListCM, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                            CommandParameter="{Binding}"
                                                 Width="30"
                                                 Padding="0"
                                                 VerticalAlignment="Center"
@@ -426,11 +430,11 @@
                                             <Image 
                                                     Width="22" 
                                                     Source="/QuanLiCoffeeShop;component/Resources/Icon/DeleteBlue_Icon.png" />
-                                            <i:Interaction.Triggers>
+                                            <!--<i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="Click">
                                                     <i:InvokeCommandAction Command="{Binding ElementName=SanPhamList, Path=DataContext.DeleteSanPhamListCM}" />
                                                 </i:EventTrigger>
-                                            </i:Interaction.Triggers>
+                                            </i:Interaction.Triggers>-->
                                         </Button>
 
                                     </StackPanel>

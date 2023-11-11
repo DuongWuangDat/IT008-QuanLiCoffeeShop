@@ -18,11 +18,13 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM
         public ICommand FirstLoadCM { get; set; }
         public ICommand LoadNhanVienPage { get; }
         public ICommand LoadKhachHangPage { get; set; }
+        public ICommand LoadSanPhamPage { get; set; }
         public MainAdminViewModel()
         {
             FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, (p)=> { p.Content = new SanPhamPage(); });
             LoadNhanVienPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new StaffPage(); });
             LoadKhachHangPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new CustomerPage(); });
+            LoadSanPhamPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new SanPhamPage(); });
         }
     }
 }

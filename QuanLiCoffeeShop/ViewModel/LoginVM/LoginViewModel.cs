@@ -3,6 +3,8 @@ using QuanLiCoffeeShop.Model;
 using QuanLiCoffeeShop.View.Admin;
 using QuanLiCoffeeShop.View.Staff;
 using QuanLiCoffeeShop.ViewModel;
+using QuanLiCoffeeShop.ViewModel.AdminVM;
+using QuanLiCoffeeShop.ViewModel.StaffVM;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -64,15 +66,35 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
                 if (staff != null)
                 {
                     p.Visibility = Visibility.Collapsed;
-
+                    StaffDTO curStaff = new StaffDTO
+                    {
+                        ID = staff.ID,
+                        DisplayName = staff.DisplayName,
+                        StartDate = staff.StartDate,
+                        UserName = staff.UserName,
+                        PassWord = staff.PassWord,
+                        PhoneNumber = staff.PhoneNumber,
+                        BirthDay = staff.BirthDay,
+                        Wage = staff.Wage,
+                        Status = staff.Status,
+                        Email = staff.Email,
+                        Gender = staff.Gender,
+                        Role = staff.Role,
+                        IsDeleted = staff.IsDeleted,
+                    };
                     if (staff.Role == "Quản lí")
                     {
                         MainAdminWindow ad = new MainAdminWindow();
+                        MainAdminViewModel.curentstaff = curStaff;
+                        ad.Owner = p;
                         ad.Show();
+                        
                     }
                     else
                     {
                         MainStaffWindow st = new MainStaffWindow();
+                        MainStaffViewModel.curentstaff = curStaff;
+                        st.Owner = p;
                         st.Show();
                     }
 

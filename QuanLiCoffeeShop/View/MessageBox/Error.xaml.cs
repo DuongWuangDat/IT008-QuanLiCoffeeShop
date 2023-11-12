@@ -1,22 +1,32 @@
 ﻿using QuanLiCoffeeShop.ViewModel.MessageBoxVM;
-using System.Security.Policy;
-using System.Security.RightsManagement;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace QuanLiCoffeeShop.View.MessageBox
 {
     /// <summary>
-    /// Interaction logic for MessageBox.xaml
+    /// Interaction logic for Error.xaml
     /// </summary>
-    public partial class AddedSuccessfully : Window
+    public partial class Error : Window
     {
-
-        public AddedSuccessfully(string text)
+        public Error(string message)
         {
-            InitializeComponent(); 
-            DataContext = new MessageBoxViewModel(text);
+            InitializeComponent();
+            DataContext = new MessageBoxViewModel(message);
         }
+
+        public Error() { }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)

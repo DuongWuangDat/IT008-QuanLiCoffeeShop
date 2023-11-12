@@ -2,6 +2,7 @@
 using QuanLiCoffeeShop.Model;
 using QuanLiCoffeeShop.Model.Service;
 using QuanLiCoffeeShop.View.Admin.StaffManagement;
+using QuanLiCoffeeShop.View.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -134,9 +135,11 @@ namespace QuanLiCoffeeShop.ViewModel
         public ICommand ConfirmPasswordChangedCommand { get; }
         public StaffViewModel()
         {
+            StartDate = DateTime.Now;
+            BirthDay = DateTime.Now;
             FirstLoadStaffPage = new RelayCommand<object>( null, async (p) =>
             {
-                StaffObservation = new ObservableCollection<StaffDTO>(await StaffService.Ins.GetAllStaff());
+                StaffObservation = new ObservableCollection<StaffDTO>(await Task.Run(()=> StaffService.Ins.GetAllStaff()));
                 if(StaffObservation.Count > 0)
                     staffList = new List<StaffDTO>(StaffObservation);
             });
@@ -152,10 +155,10 @@ namespace QuanLiCoffeeShop.ViewModel
 
             AddStaffCommand = new RelayCommand<Window>(null, async (p) =>
             {
-                decimal dWage;
-                if (DisplayName == null || StartDate == null || UserName == null || PassWord == null || PhoneNumber == null || BirthDay == null || Wage == null || Status == null || Email == null || Gender == null || Role == null || !decimal.TryParse(Wage, out dWage))
+                int dWage;
+                if (DisplayName == null || StartDate == null || UserName == null || PassWord == null || PhoneNumber == null || BirthDay == null || Wage == null || Status == null || Email == null || Gender == null || Role == null || !int.TryParse(Wage, out dWage))
                 {
-                    MessageBox.Show("Nhập thiếu hoặc sai dữ liệu");
+                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đang nhập thiếu hoặc sai thông tin");
                 }
                 else
                 {
@@ -177,13 +180,13 @@ namespace QuanLiCoffeeShop.ViewModel
                     (bool IsAdded, string messageAdd) = await StaffService.Ins.AddNewStaff(newStaff);
                     if (IsAdded)
                     {
-                        MessageBox.Show("Thêm thành công");
-                        p.Close();
+                        MessageBoxCustom.Show(MessageBoxCustom.Add, "Bạn đã thêm thành công nhân viên");
                         StaffObservation = new ObservableCollection<StaffDTO>(await StaffService.Ins.GetAllStaff());
+                        p.Close();
                     }
                     else
                     {
-                        MessageBox.Show(messageAdd);
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, messageAdd);
                     }
                 }
                     

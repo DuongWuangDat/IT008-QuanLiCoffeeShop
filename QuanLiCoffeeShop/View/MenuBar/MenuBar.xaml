@@ -13,7 +13,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="White"
-        FontFamily="{DynamicResource MaterialDesignFont}" 
+        FontFamily="{DynamicResource MaterialDesignFont}"
         >
 
     <Grid
@@ -69,7 +69,7 @@
                 <Button
                     Height="58"
                     Command="{Binding LoadSanPhamPage}" 
-                    CommandParameter="{Binding ElementName=MainFrame}" Click="Button_Click_1">
+                    CommandParameter="{Binding ElementName=MainFrame}">
                     <Button.Template>
                         <ControlTemplate 
                             TargetType="Button">
@@ -101,7 +101,7 @@
                 <Button
                     Height="58"
                     Command="{Binding LoadNhanVienPage}" 
-                    CommandParameter="{Binding ElementName=MainFrame}" Click="Button_Click">
+                    CommandParameter="{Binding ElementName=MainFrame}">
                     <Button.Template>
                         <ControlTemplate 
                             TargetType="Button">

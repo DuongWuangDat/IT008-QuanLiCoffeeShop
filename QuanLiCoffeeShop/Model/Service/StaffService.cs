@@ -1,17 +1,22 @@
 ﻿using QuanLiCoffeeShop.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QuanLiCoffeeShop.Model.Service
 {
     public class StaffService
     {
         public StaffService() { }
-		private static StaffService _ins;
+        private static StaffService _ins;
 
 		public static StaffService Ins
 		{

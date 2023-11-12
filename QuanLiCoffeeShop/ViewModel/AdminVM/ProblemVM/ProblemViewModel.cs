@@ -230,6 +230,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                 }    
                 else
                 {
+                    ProList = new List<ErrorDTO>(ProblemList);
                     ProblemList = new ObservableCollection<ErrorDTO>(ProList.FindAll(x => x.DisplayName.ToLower().Contains(p.Text.ToLower())));
                 }    
             });

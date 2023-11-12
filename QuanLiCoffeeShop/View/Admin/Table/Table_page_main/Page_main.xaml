@@ -208,7 +208,7 @@
                                     <TextBox  BorderBrush="Transparent"
                                               TextDecorations="None"
                                               Width="250"
-                                              FontSize="18"
+                                              FontSize="18"                                              
                                               VerticalAlignment="Center"
                                               Margin="10,0,0,0"
                                               Foreground="Black"
@@ -340,7 +340,9 @@
                                     <StackPanel>
                                         <Button Width="120"
                                                 Height="120"
-                                                Margin="0,5,0,0">
+                                                Margin="0,5,0,0"
+                                                Command="{Binding Datacontext.OpenInfo, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                CommandParameter="{Binding}">
                                             <Button.Template>
                                                 <ControlTemplate>
                                                     <Image Width="90.4"
@@ -362,7 +364,9 @@
                                             <Button Margin="55,0,83,0"
                                                     Height="23"
                                                     Width="23"
-                                                    Background="White">
+                                                    Background="White"
+                                                    Command="{Binding Datacontext.OpenEdit, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                    CommandParameter="{Binding}">
                                                 <Button.Template>
                                                     <ControlTemplate>
                                                         <Border CornerRadius="100"
@@ -380,7 +384,9 @@
                                                     Width="23"
                                                     Background="White"
                                                     Margin="83,0,55,0"
-                                                    VerticalAlignment="Center">
+                                                    VerticalAlignment="Center"
+                                                    Command="{Binding Datacontext.OpenDelete, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                    CommandParameter="{Binding}">
                                                 <Button.Template>
                                                     <ControlTemplate>
                                                         <Border CornerRadius="100"
@@ -660,7 +666,8 @@
                                                 <Button Height="48"
                                                         Width="97"
                                                         HorizontalAlignment="Left"
-                                                        Margin="70,0,0,0">
+                                                        Margin="70,0,0,0"
+                                                        Command="{Binding Delete}">
                                                     <Button.Template>
                                                         <ControlTemplate>
                                                             <Border      CornerRadius="24"
@@ -678,7 +685,8 @@
                                                 <Button Height="48"
                                                         Width="97"
                                                         HorizontalAlignment="Right"
-                                                        Margin="0,0,70,0">
+                                                        Margin="0,0,70,0"
+                                                        Command="{Binding CloseDelete}">
                                                     <Button.Template>
                                                         <ControlTemplate>
                                                             <Border      CornerRadius="24"

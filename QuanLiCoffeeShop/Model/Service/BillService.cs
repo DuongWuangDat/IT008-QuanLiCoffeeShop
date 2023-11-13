@@ -152,6 +152,20 @@ namespace QuanLiCoffeeShop.Model.Service
             }
                 
         }
+        public async Task<int> getBillByDate(DateTime date)
+        {
+            using (var context = new QuanLiCoffeShopEntities())
+            {
+                var billTotal = await context.Bill.Where(p => p.CreateAt == date && p.IsDeleted==false).ToListAsync();
+                int totalPrice = 0;
+                foreach (var bill in billTotal)
+                {
+                    totalPrice += (int)bill.TotalPrice;
+                }
+                return totalPrice;
+            }
+        }
 
     }
+    
 }

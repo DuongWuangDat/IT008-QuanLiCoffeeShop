@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:QuanLiCoffeeShop.View.Admin.ThongKe"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Regular"
@@ -11,7 +12,7 @@
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}"
-      xmlns:local="clr-namespace:QuanLiCoffeeShop.View.Admin.ThongKe"
+      DataContext="{StaticResource ThongKeVM}"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1536"
       ShowsNavigationUI="False"
@@ -28,21 +29,25 @@
             <StackPanel Margin="10 20 10 20">
                 <!--List lua chon loai thong ke-->
                 <StackPanel
-                        Margin="0 14 0 0">
+                    Margin="0 14 0 0">
                     <Border
+                        x:Name="HistoryBd" 
                              Width="180"
                              Height="46"
                              Background="#FFF4F4"
                              CornerRadius="16"
                             Margin="0 0 0 10">
                         <Button
-                                 Background="{x:Null}" 
-                                 BorderBrush="{x:Null}" 
-                                 Foreground="{x:Null}"
-                                 Width="180"
-                                 Height="46"
-                                 Padding="0"  
-                                 HorizontalContentAlignment="Left"
+                            Command="{Binding HistoryCM}"
+                            CommandParameter="{Binding ElementName=TableFrame}"
+                            Background="{x:Null}" 
+                            BorderBrush="{x:Null}" 
+                            Foreground="{x:Null}"
+                            Width="180"
+                            Height="46"
+                            Padding="0"  
+                            HorizontalContentAlignment="Left" 
+                            Click="Button_Click" Tag="HistoryBd"
                                  >
                             <TextBlock
                                  Text="Lịch sử bán"
@@ -59,6 +64,7 @@
                         </Button>
                     </Border>
                     <Border
+                        x:Name="RevenueBd"
                             Margin="0 0 0 10"
                              Width="180"
                              Height="46"
@@ -66,6 +72,9 @@
                              CornerRadius="16"
                              HorizontalAlignment="Center">
                         <Button
+                            Command="{Binding RevenueCM}"
+                            CommandParameter="{Binding ElementName=TableFrame}"
+                            Click="Button_Click" Tag="RevenueBd"
                                  Background="{x:Null}" 
                                  BorderBrush="{x:Null}" 
                                  Foreground="{x:Null}"
@@ -85,6 +94,7 @@
                         </Button>
                     </Border>
                     <Border
+                        x:Name="FavorBd"
                             Margin="0 0 0 10"
                             Width="180"
                             Height="46"
@@ -92,6 +102,9 @@
                             CornerRadius="16"
                             HorizontalAlignment="Center">
                         <Button
+                            Command="{Binding FavorCM}"
+                            CommandParameter="{Binding ElementName=TableFrame}"
+                            Click="Button_Click" Tag="FavorBd"
                                  Background="{x:Null}" 
                                  BorderBrush="{x:Null}" 
                                  Foreground="{x:Null}"
@@ -212,12 +225,12 @@
                 Height="702"
                 VerticalAlignment="Top"
                 CornerRadius="55.29">
-                <Border 
+                <Border
+                    
                     Background="White" 
                     Margin="24" 
                     CornerRadius="32">
-
-                    <!--Load table here-->
+                    <Frame x:Name="TableFrame"></Frame>
                 </Border>
 
             </Border>

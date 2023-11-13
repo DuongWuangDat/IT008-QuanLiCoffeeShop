@@ -7,6 +7,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="clr-namespace:QuanLiCoffeeShop.Converter"
     DataContext="{StaticResource SanPhamVM}"
     mc:Ignorable="d"
     Title="SanPhamPage"
@@ -27,6 +28,9 @@
             <i:InvokeCommandAction Command="{Binding FirstLoadCM}" CommandParameter="{Binding ElementName=sanPhamPage}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <Page.Resources>
+        <converters:PriceConverter x:Key="PriceConverter"></converters:PriceConverter>
+    </Page.Resources>
     <Grid Background="#FFFFFF">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="311*" />
@@ -386,7 +390,7 @@
                                             FontSize="13"
                                             FontWeight="Bold"
                                             Foreground="#EA6A12"
-                                            Text="{Binding Price}" />
+                                            Text="{Binding Price, Converter={StaticResource PriceConverter}}" />
                                     <TextBlock
                                             Margin="1,0,0,0"
                                             HorizontalAlignment="Left"

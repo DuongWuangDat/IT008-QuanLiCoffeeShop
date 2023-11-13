@@ -4,12 +4,20 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:QuanLiCoffeeShop.View.Admin.ThongKe.DoanhThu"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"     
+      DataContext="{StaticResource ThongKeVM}"
       mc:Ignorable="d" 
       d:DesignHeight="702" d:DesignWidth="1153"
       ShowsNavigationUI="False"
       Title="DoanhThuTable">
-
     <Grid>
-        
+        <lvc:CartesianChart Series="{Binding RevenueSeries}">
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis Title="Date" Labels="{Binding Labels}" />
+            </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Title="Revenue" LabelFormatter="{Binding YFormatter}" />
+            </lvc:CartesianChart.AxisY>
+        </lvc:CartesianChart>
     </Grid>
 </Page>

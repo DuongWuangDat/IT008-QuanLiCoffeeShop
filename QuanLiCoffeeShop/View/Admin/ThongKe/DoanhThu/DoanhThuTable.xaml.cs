@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LiveCharts;
+using QuanLiCoffeeShop.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +20,13 @@ namespace QuanLiCoffeeShop.View.Admin.ThongKe.DoanhThu
     /// <summary>
     /// Interaction logic for DoanhThuTable.xaml
     /// </summary>
+    /// 
     public partial class DoanhThuTable : Page
-    {
+    {     
         public DoanhThuTable()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
+
     }
 }

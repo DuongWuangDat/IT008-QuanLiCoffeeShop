@@ -7,6 +7,7 @@
     xmlns:local="clr-namespace:QuanLiCoffeeShop.View.Admin"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="clr-namespace:QuanLiCoffeeShop.Converter"
     x:Name="customerPage"
     Title="CustomerPage"
     d:DesignHeight="778.4"
@@ -25,6 +26,9 @@
             <i:InvokeCommandAction Command="{Binding FirstLoadCM}" CommandParameter="{Binding ElementName=customerPage}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <Page.Resources>
+        <converters:PriceConverter x:Key="PriceConverter"></converters:PriceConverter>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="106.59" />
@@ -194,7 +198,7 @@
                                         <TextBlock
                                             HorizontalAlignment="Center"
                                             FontSize="17.6"
-                                            Text="{Binding Spend}" />
+                                            Text="{Binding Spend, Converter={StaticResource PriceConverter}}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

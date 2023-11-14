@@ -9,14 +9,15 @@ namespace QuanLiCoffeeShop.View.MessageBox
     /// <summary>
     /// Interaction logic for MessageBox.xaml
     /// </summary>
-    public partial class AddedSuccessfully : Window
+    public partial class Success : Window
     {
 
-        public AddedSuccessfully(string text)
+        public Success(string text)
         {
             InitializeComponent(); 
             DataContext = new MessageBoxViewModel(text);
         }
+
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)

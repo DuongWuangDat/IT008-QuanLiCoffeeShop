@@ -9,13 +9,13 @@ namespace QuanLiCoffeeShop.View.MessageBox
 {
     internal class MessageBoxCustom
     {
-        public static int Add = 1;
+        public static int Success = 1;
         public static int Error = 2;
         public static void Show(int type, string message)
         {
-            if (type == Add)
+            if (type == Success)
             {
-                new AddedSuccessfully(message).ShowDialog();
+                new Success(message).ShowDialog();
             }
             else if (type == Error)
             {

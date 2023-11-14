@@ -77,7 +77,7 @@
                 <Button.Background>
                     <ImageBrush ImageSource="/QuanLiCoffeeShop;component/Resources/Icon/AddCusBtn.png" />
                 </Button.Background>
-            </Button>
+            </Button> 
         </StackPanel>
         <Border Grid.Row="1" 
                 Background="#E6B89F"

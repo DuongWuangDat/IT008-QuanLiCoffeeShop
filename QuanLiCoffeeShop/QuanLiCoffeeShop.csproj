@@ -283,8 +283,8 @@
     <Compile Include="View\MessageBox\DeleteMessage.xaml.cs">
       <DependentUpon>DeleteMessage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MessageBox\AddedSuccessfully.xaml.cs">
-      <DependentUpon>AddedSuccessfully.xaml</DependentUpon>
+    <Compile Include="View\MessageBox\Success.xaml.cs">
+      <DependentUpon>Success.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MessageBox\Error.xaml.cs">
       <DependentUpon>Error.xaml</DependentUpon>
@@ -342,6 +342,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Admin\StaffManagement\ButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Admin\StaffManagement\ModifyStaff.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -394,7 +398,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MessageBox\AddedSuccessfully.xaml">
+    <Page Include="View\MessageBox\Success.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

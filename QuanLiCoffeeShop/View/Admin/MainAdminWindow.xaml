@@ -106,7 +106,7 @@
                                           VerticalAlignment="Stretch"
                                           Background="#FFF2E9"
                                           Mode="PrimaryLight">
-                    <StackPanel Orientation="Horizontal">
+                    <DockPanel >
                         <!--  OpenMenu_btn  -->
                         <Button x:Name="OpenMenu_btn"
                                 Margin="10,0,0,0"
@@ -140,15 +140,16 @@
                                    Foreground="#FFE0AE8A">
                             Coffee Shop
                         </TextBlock>
-
+                        
                         <!--  Admin_btn  -->
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="1170,0,0,0"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock Margin="0,0,0,0"
                                        VerticalAlignment="Center"
                                        FontSize="20"
                                        FontWeight="Bold"
-                                       Foreground="#FFE0AE8A">
-                                Administrator
+                                       Foreground="#FFE0AE8A"
+                                       Text="{Binding currentName}">
+                               
                             </TextBlock>
                             <materialDesign:PopupBox Margin="0"
                                                      HorizontalAlignment="Right"
@@ -220,7 +221,7 @@
                             </materialDesign:PopupBox>
                         </StackPanel>
 
-                    </StackPanel>
+                    </DockPanel>
 
                 </materialDesign:ColorZone>
 

@@ -120,7 +120,7 @@ namespace QuanLiCoffeeShop.Model.Service
                 staff.DisplayName = newStaff.DisplayName;
                 staff.StartDate = newStaff.StartDate;
                 staff.UserName = newStaff.UserName;
-                staff.PassWord = newStaff.PassWord;
+                staff.PassWord =  newStaff.PassWord == null ? staff.PassWord : newStaff.PassWord;
                 staff.PhoneNumber = newStaff.PhoneNumber;
                 staff.BirthDay = newStaff.BirthDay;
                 staff.Wage = newStaff.Wage;

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using QuanLiCoffeeShop.Utils;
 
 namespace QuanLiCoffeeShop.Model.Service
 {
@@ -146,5 +147,30 @@ namespace QuanLiCoffeeShop.Model.Service
             }
            
 		}
+        //update mk
+        public async Task<(bool, string,string)> UpdatePassword(string email, string newPass)
+        {
+            try
+            {
+                using (var context = new QuanLiCoffeShopEntities())
+                {
+                    var staff = await context.Staff.Where(p => p.Email == email).FirstOrDefaultAsync();
+                    if (staff != null && staff.IsDeleted == false)
+                    {
+                        staff.PassWord = Helper.MD5Hash(newPass);
+                    }
+                    else
+                    {
+                        return (false, "Không tồn tại email này", null);
+                    }
+                    await context.SaveChangesAsync();
+                    return (true, "Update mật khẩu thành công", staff.UserName);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, "Có lỗi xuất hiện", null);
+            }
+        }
 	}
 }

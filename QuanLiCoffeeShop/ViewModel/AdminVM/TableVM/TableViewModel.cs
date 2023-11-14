@@ -6,6 +6,7 @@ using QuanLiCoffeeShop.View.Admin.Table;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using QuanLiCoffeeShop.View.MessageBox;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -156,7 +157,10 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.TableVM
             });
             Add=new RelayCommand<object>((p) => { return true;},(p)=>
             {
-
+                if(Status==null || GenreName==null)
+                {
+                    messageCustom
+                }
             });
 
 

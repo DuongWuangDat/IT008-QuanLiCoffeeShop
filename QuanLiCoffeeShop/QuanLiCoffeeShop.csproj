@@ -198,6 +198,7 @@
     <Compile Include="Model\Service\CustomerService.cs" />
     <Compile Include="Model\Service\ErrorService.cs" />
     <Compile Include="Model\Service\GenreService.cs" />
+    <Compile Include="Model\Service\LoginService.cs" />
     <Compile Include="Model\Service\ProductService.cs" />
     <Compile Include="Model\Service\SeatService.cs" />
     <Compile Include="Model\Service\StaffService.cs" />
@@ -272,6 +273,9 @@
     </Compile>
     <Compile Include="View\Admin\ThongKe\ThongKeMainPage.xaml.cs">
       <DependentUpon>ThongKeMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LoginWindow\ForgotPassword.xaml.cs">
+      <DependentUpon>ForgotPassword.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginWindow\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -383,6 +387,10 @@
     <Page Include="View\Admin\ThongKe\ThongKeMainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\LoginWindow\ForgotPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LoginWindow\LoginWindow.xaml">
       <SubType>Designer</SubType>

@@ -23,5 +23,10 @@ namespace QuanLiCoffeeShop.View.Staff
         {
             InitializeComponent();
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            this.Owner.Visibility = Visibility.Visible;
+        }
     }
 }

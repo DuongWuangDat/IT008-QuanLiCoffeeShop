@@ -9,9 +9,9 @@ namespace QuanLiCoffeeShop.Utils
 {
     public class CloudService
     {
-		private CloudService _ins;
+		private static CloudService _ins;
 
-		public CloudService Ins
+		public static CloudService Ins
 		{
 			get 
 			{ 
@@ -77,11 +77,11 @@ namespace QuanLiCoffeeShop.Utils
                     ResourceType = ResourceType.Image
                 };
                 var result = await cloudinary.DestroyAsync(deleteParams);
-				return "Da xoa thanh cong";
+				return "Đã xóa thành công!";
             }
 			catch (System.Exception)
 			{
-				return "Co loi xuat hien";
+				return "Có lỗi xuất hiện!";
 			}
 			
 		}

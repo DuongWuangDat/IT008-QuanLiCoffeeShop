@@ -1,6 +1,8 @@
 ﻿using QuanLiCoffeeShop.DTOs;
 using QuanLiCoffeeShop.Model;
+using QuanLiCoffeeShop.Utils;
 using QuanLiCoffeeShop.View.Admin;
+using QuanLiCoffeeShop.View.MessageBox;
 using QuanLiCoffeeShop.View.Staff;
 using QuanLiCoffeeShop.ViewModel;
 using QuanLiCoffeeShop.ViewModel.AdminVM;
@@ -62,7 +64,8 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
         {
             using(var context = new QuanLiCoffeShopEntities())
             {
-                Staff staff = await context.Staff.Where(x => x.UserName == Username && x.PassWord == Password).FirstOrDefaultAsync();
+                string password = Helper.MD5Hash(Password);
+                Staff staff = await context.Staff.Where(x => x.UserName == Username && x.PassWord == password).FirstOrDefaultAsync();
                 if (staff != null)
                 {
                     p.Visibility = Visibility.Collapsed;
@@ -101,7 +104,7 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
                 }
                 else
                 {
-                    MessageBox.Show("Dang nhap khong hop le");
+                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Đăng nhập thất bại");
                 }
             }
             

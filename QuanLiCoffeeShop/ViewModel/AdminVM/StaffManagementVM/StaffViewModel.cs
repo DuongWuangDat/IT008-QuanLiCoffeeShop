@@ -1,6 +1,7 @@
 ﻿using QuanLiCoffeeShop.DTOs;
 using QuanLiCoffeeShop.Model;
 using QuanLiCoffeeShop.Model.Service;
+using QuanLiCoffeeShop.Utils;
 using QuanLiCoffeeShop.View.Admin.StaffManagement;
 using QuanLiCoffeeShop.View.MessageBox;
 using System;
@@ -264,6 +265,7 @@ namespace QuanLiCoffeeShop.ViewModel
                 }
                 else
                 {
+                 
                     Staff newStaff = new Staff
                     {
                         DisplayName = this.DisplayName,

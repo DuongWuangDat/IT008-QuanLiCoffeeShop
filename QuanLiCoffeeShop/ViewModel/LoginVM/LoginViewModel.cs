@@ -89,7 +89,7 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
                 }
                 else
                 {
-                    await LoginService.Ins.sendEmail(forgotEmail, newPass);
+                    await LoginService.Ins.sendEmail(forgotEmail, newPass,username);
                     MessageBoxCustom.Show(MessageBoxCustom.Success, "Đã gửi email thành công");
                 }
                 

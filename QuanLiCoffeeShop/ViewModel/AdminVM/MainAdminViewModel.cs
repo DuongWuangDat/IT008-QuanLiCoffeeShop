@@ -15,13 +15,21 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM
     internal class MainAdminViewModel : BaseViewModel
     {
         public static StaffDTO curentstaff;
+        private string _currentName;
+
+        public string currentName
+        {
+            get { return _currentName; }
+            set { _currentName = value; OnPropertyChanged(); }
+        }
+
         public ICommand FirstLoadCM { get; set; }
         public ICommand LoadNhanVienPage { get; }
         public ICommand LoadKhachHangPage { get; set; }
         public ICommand LoadSanPhamPage { get; set; }
         public MainAdminViewModel()
         {
-            FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, (p)=> { p.Content = new SanPhamPage(); });
+            FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, (p)=> { p.Content = new SanPhamPage(); currentName = curentstaff.DisplayName; });
             LoadNhanVienPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new StaffPage(); });
             LoadKhachHangPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new CustomerPage(); });
             LoadSanPhamPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new SanPhamPage(); });

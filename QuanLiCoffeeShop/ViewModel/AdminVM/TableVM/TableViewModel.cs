@@ -154,6 +154,10 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.TableVM
                 get_selecteditem(p);
                 IsPopupOpenDelete = true;
             });
+            Add=new RelayCommand<object>((p) => { return true;},(p)=>
+            {
+
+            });
 
 
         }

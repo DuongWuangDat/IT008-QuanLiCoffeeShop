@@ -347,7 +347,7 @@
                                    Foreground="#CC824D"
                                    FontWeight="Bold"></TextBlock>
                         <Grid Margin="0,25,0,0">
-                            <TextBlock Text="Tên bàn"
+                            <TextBlock Text="ID Bàn"
                                        FontWeight="Bold"
                                        Margin="25,0,0,0"></TextBlock>
                             <TextBlock Text="Loại bàn"
@@ -432,48 +432,24 @@
                     IsOpen="{Binding IsPopupOpenEdit}"
                     AllowsTransparency="True"
                     PopupAnimation="Fade">
-                <Border Height="480"
+                <Border Height="400"
                         Width="380"
                         Background="White"
                         CornerRadius="20"
                         BorderBrush="#E0AE8A"
-                        BorderThickness="1">
+                        BorderThickness="2">
                     <StackPanel>
 
-                        <TextBlock FontSize="29"
+                        <TextBlock FontSize="32"
                                    Margin="0,16,0,0"
                                    HorizontalAlignment="Center"
                                    Text="Sửa bàn"
                                    Foreground="#CC824D"
                                    FontWeight="Bold"></TextBlock>
 
-                        <TextBlock Text="Tên bàn"
-                                   FontWeight="Bold"
-                                   Margin="40,20,0,10"
-                                   FontSize="19"></TextBlock>
-
-                        <Border  Height="50"
-                                 Width="300"
-                                 BorderThickness="1.5"
-                                 BorderBrush="#FFE0AE8A"
-                                 CornerRadius="16"
-                                 Background="#FFF4F4">
-
-                            <TextBox  BorderBrush="Transparent"
-                                      TextDecorations="None"
-                                      Width="250"
-                                      FontSize="18"
-                                      VerticalAlignment="Center"
-                                      Margin="13,0,0,0"
-                                      Foreground="Black"
-                                      Background="{x:Null}"
-                                      Text="{Binding Name}" />
-
-                        </Border>
-
                         <TextBlock Text="Loại bàn"
                                    FontWeight="Bold"
-                                   Margin="40,20,0,10"
+                                   Margin="40,25,0,15"
                                    FontSize="19"></TextBlock>
 
                         <Border  Height="50"
@@ -508,7 +484,7 @@
 
                         <TextBlock Text="Trạng thái"
                                    FontWeight="Bold"
-                                   Margin="40,20,0,10"
+                                   Margin="40,20,0,15"
                                    FontSize="19"></TextBlock>
 
                         <Border  Height="50"
@@ -540,7 +516,7 @@
                             </ComboBox>
 
                         </Border>
-                        <Grid Margin="0,30,0,0">
+                        <Grid Margin="0,40,0,0">
                             <Button Height="48"
                                     Width="97"
                                     HorizontalAlignment="Left"
@@ -651,44 +627,20 @@
                     IsOpen="{Binding IsPopupOpenAdd}"
                     AllowsTransparency="True"
                     PopupAnimation="Fade">
-                <Border Height="480"
+                <Border Height="400"
                         Width="380"
                         Background="White"
                         CornerRadius="20"
                         BorderBrush="#E0AE8A"
-                        BorderThickness="1">
+                        BorderThickness="2">
                     <StackPanel>
 
-                        <TextBlock FontSize="29"
+                        <TextBlock FontSize="32"
                                    Margin="0,16,0,0"
                                    HorizontalAlignment="Center"
                                    Text="Thêm bàn"
                                    Foreground="#CC824D"
                                    FontWeight="Bold"></TextBlock>
-
-                        <TextBlock Text="Tên bàn"
-                                   FontWeight="Bold"
-                                   Margin="40,20,0,10"
-                                   FontSize="19"></TextBlock>
-
-                        <Border  Height="50"
-                                 Width="300"
-                                 BorderThickness="1.5"
-                                 BorderBrush="#FFE0AE8A"
-                                 CornerRadius="16"
-                                 Background="#FFF4F4">
-
-                            <TextBox  BorderBrush="Transparent"
-                                      TextDecorations="None"
-                                      Width="250"
-                                      FontSize="18"
-                                      VerticalAlignment="Center"
-                                      Margin="13,0,0,0"
-                                      Foreground="Black"
-                                      Background="{x:Null}"
-                                      Text="{Binding Name}" />
-
-                        </Border>
 
                         <TextBlock Text="Loại bàn"
                                    FontWeight="Bold"
@@ -759,7 +711,7 @@
                             </ComboBox>
 
                         </Border>
-                        <Grid Margin="0,30,0,0">
+                        <Grid Margin="0,40,0,0">
                             <Button Height="48"
                                     Width="97"
                                     HorizontalAlignment="Left"

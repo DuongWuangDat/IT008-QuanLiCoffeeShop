@@ -48,7 +48,7 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
             get { return _forgotEmail; }
             set { _forgotEmail = value; OnPropertyChanged(); }
         }
-
+        private bool IsLogin = false;
         public ICommand LoginCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
         public ICommand ForgotPasswordCM { get; set; }
@@ -65,7 +65,13 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
             },
             async (p) =>
             {
-                await Login(p);
+                if (IsLogin == false)
+                {
+                    IsLogin = true;
+                    await Login(p);
+                    IsLogin = false;
+                }
+              
             });
             PasswordChangedCommand = new RelayCommand<PasswordBox>((p) =>
             {

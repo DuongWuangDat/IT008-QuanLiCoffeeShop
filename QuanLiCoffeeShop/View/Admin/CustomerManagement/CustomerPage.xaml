@@ -93,7 +93,7 @@
                     CornerRadius="32">
                 <ListView x:Name="CusList"  
                           Margin="11"
-                          
+                       
                           ItemsSource="{Binding CustomerList}"
                           SelectedItem="{Binding SelectedItem}" >
                     

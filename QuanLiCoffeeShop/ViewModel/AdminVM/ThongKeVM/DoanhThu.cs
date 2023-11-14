@@ -21,12 +21,7 @@ using LiveCharts;
 namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
 {
     public partial class ThongKeViewModel: BaseViewModel
-    {
-        public class RevenueData
-        {
-            public DateTime Date { get; set; }
-            public double Revenue { get; set; }
-        }
+    {       
         private SeriesCollection _revenueSeries;
         public SeriesCollection RevenueSeries
         {
@@ -48,8 +43,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
             }
         }
 
-        private Func<double, string> _yFormatter;
-        public Func<double, string> YFormatter
+        private Func<int, string> _yFormatter;
+        public Func<int, string> YFormatter
         {
             get { return _yFormatter; }
             set

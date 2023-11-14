@@ -12,9 +12,9 @@ namespace QuanLiCoffeeShop.Model.Service
     public class BillService
     {
         public BillService() { }
-		private static BillService ins;
+		private static BillService _ins;
 
-		public static BillService _ins
+		public static BillService Ins
 		{
 			get 
 			{
@@ -22,9 +22,9 @@ namespace QuanLiCoffeeShop.Model.Service
 				{
 					_ins = new BillService();
 				}
-				return ins; 
+				return _ins; 
 			}
-			private set { ins = value; }
+			private set { _ins = value; }
 		}
 		// Get All Bill
 		public async Task<List<BillDTO>> GetAllBill()
@@ -59,8 +59,22 @@ namespace QuanLiCoffeeShop.Model.Service
             }
 				
 		}
-		//Add new bill
-		public async Task<(bool, string)> AddNewBill(BillDTO newBill)
+        public async Task<List<BillDTO>> GetBillBetweenDate(DateTime dateFrom, DateTime dateTo)
+        {
+            using (var context = new QuanLiCoffeShopEntities())
+            {
+                List<BillDTO> billDTOs = await BillService.Ins.GetAllBill();
+
+                List<BillDTO> billList = billDTOs
+                    .Where(bill => bill.CreateAt >= dateFrom && bill.CreateAt <= dateTo)
+                    .ToList();
+
+                return billList;
+
+            }
+        }
+        //Add new bill
+        public async Task<(bool, string)> AddNewBill(BillDTO newBill)
 		{
 			using (var context = new QuanLiCoffeShopEntities())
 			{

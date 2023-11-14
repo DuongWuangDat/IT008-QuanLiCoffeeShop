@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Compression;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
+using System.Collections;
 
 namespace QuanLiCoffeeShop.Utils
 {
@@ -25,6 +28,17 @@ namespace QuanLiCoffeeShop.Utils
                 strBuilder.Append(result[i].ToString("x2"));
             }
             return strBuilder.ToString();
+        }
+        public static string randomCode()
+        {
+            string code = "";
+            string inital = "QWERTYUIOPASDFGHJKLZXCVBNM123456789";
+            Random rand = new Random();
+            for(int i=0; i < 5; i++)
+            {
+                code = code.Insert(i, inital[rand.Next(0,inital.Length-1)].ToString());
+            }
+            return code;
         }
     }
 }

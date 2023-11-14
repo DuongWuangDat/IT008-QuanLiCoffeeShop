@@ -200,6 +200,7 @@
     <Compile Include="Utils\CloudService.cs" />
     <Compile Include="ViewModel\AdminVM\CustomerManagementVM\CustomerManagementViewModel.cs" />
     <Compile Include="ViewModel\AdminVM\MainAdminViewModel.cs" />
+    <Compile Include="ViewModel\AdminVM\SanPhamVM\SanPhamViewModel.cs" />
     <Compile Include="ViewModel\AdminVM\ProblemVM\ProblemViewModel.cs" />
     <Compile Include="ViewModel\AdminVM\TableVM\TableViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -494,6 +495,13 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Icon\ThongKe_White_Icon.png" />
+    <Resource Include="Resources\Icon\SuCo_White_Icon.png" />
+    <Resource Include="Resources\Icon\KhachHang_White_Icon.png" />
+    <Resource Include="Resources\Icon\Ban_White_Icon.png" />
+    <Resource Include="Resources\Icon\NhanVien_White_Icon.png" />
+    <Resource Include="Resources\Icon\SanPham_Brown_Icon.png" />
+    <Resource Include="Resources\Icon\SuCo_Brown_Icon.png" />
     <Resource Include="Resources\Icon\Oke_Brown_Icon.png" />
     <Resource Include="Resources\Icon\Caution_Brown_Icon.png" />
     <Resource Include="Resources\Icon\CircleTick.png" />

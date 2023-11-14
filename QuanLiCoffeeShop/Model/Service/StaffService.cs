@@ -16,7 +16,6 @@ namespace QuanLiCoffeeShop.Model.Service
     public class StaffService
     {
         public StaffService() { }
-		private QuanLiCoffeShopEntities context;
         private static StaffService _ins;
 
 		public static StaffService Ins
@@ -27,14 +26,10 @@ namespace QuanLiCoffeeShop.Model.Service
 				{
 					_ins = new StaffService();
 				}
-				if (_ins.context == null)
-				{
-					_ins.context = new QuanLiCoffeShopEntities();
-				}
 				return _ins;
 			}
 			private set { _ins = value; }
-		}
+		}// test
 
 		//Get all staff
 		public async Task<List<StaffDTO>> GetAllStaff()

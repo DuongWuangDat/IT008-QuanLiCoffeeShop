@@ -4,7 +4,8 @@
                     xmlns:viewmodel2="clr-namespace:QuanLiCoffeeShop.ViewModel.LoginVM"
                     xmlns:viewmodel3="clr-namespace:QuanLiCoffeeShop.ViewModel.StaffVM"
                     xmlns:viewmodel4="clr-namespace:QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM"
-                    xmlns:viewmodel5="clr-namespace:QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM"                   
+                    xmlns:viewmodel5="clr-namespace:QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM"
+                    xmlns:viewmodel7="clr-namespace:QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM"
                     xmlns:viewmodel="clr-namespace:QuanLiCoffeeShop.ViewModel"
                     xmlns:viewmodel6="clr-namespace:QuanLiCoffeeShop.ViewModel"
                     >
@@ -13,5 +14,6 @@
     <viewmodel3:MainStaffViewModel x:Key="MainStaffVM"/>
     <viewmodel4:CustomerManagementViewModel x:Key="CustomerPageVM"/>
     <viewmodel5:SanPhamViewModel x:Key="SanPhamVM"/>
-    <viewmodel6:StaffViewModel x:Key="StaffPageVM"/>
+    <viewmodel6:ThongKeViewModel x:Key="ThongKeVM"/>
+    <viewmodel7:StaffViewModel x:Key="StaffPageVM"/>
 </ResourceDictionary>

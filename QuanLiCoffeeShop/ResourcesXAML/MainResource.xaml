@@ -14,6 +14,6 @@
     <viewmodel3:MainStaffViewModel x:Key="MainStaffVM"/>
     <viewmodel4:CustomerManagementViewModel x:Key="CustomerPageVM"/>
     <viewmodel5:SanPhamViewModel x:Key="SanPhamVM"/>
-    <viewmodel6:ThongKeViewModel x:Key="ThongKeVM"/>
-    <viewmodel7:StaffViewModel x:Key="StaffPageVM"/>
+    <viewmodel7:ThongKeViewModel x:Key="ThongKeVM"/>
+    <viewmodel6:StaffViewModel x:Key="StaffPageVM"/>
 </ResourceDictionary>

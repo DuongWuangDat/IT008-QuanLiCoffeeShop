@@ -20,7 +20,7 @@
     </i:Interaction.Triggers>
     <Grid Background="#FFFFFF">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="280"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0"
@@ -44,26 +44,28 @@
 
                     </StackPanel.Resources>
                     <!--Add_table-->
-                    <Button Command="{Binding AddTable}" 
-                        Height="80"
-                            Width="160"
-                            Margin="0,0,0,0">
+                    <Button
+                        Margin="0,20,0,0"
+                        Command="{Binding AddTable}" 
+                        Height="50"
+                        HorizontalAlignment="Left"
+                            Width="180">
                         <Button.Template>
                             <ControlTemplate>
-                                <Border Height="50"
-                                        CornerRadius="16"
+                                <Border 
+                                        CornerRadius="18"
                                         Background="#FFE0AE8A">
                                     <StackPanel        Cursor="Hand"
                                                        Orientation="Horizontal">
                                         <Image    Source="/QuanLiCoffeeShop;component/Resources/Icon/WhiteAdd_Icon.png"
                                                   Margin="20,0,0,0"
-                                                  Width="15"
-                                                  Height="15" />
+                                                  Width="18"
+                                                  Height="18" />
                                         <TextBlock   Text="Thêm bàn"
-                                                     FontSize="18"
+                                                     FontSize="20"
                                                      VerticalAlignment="Center"
                                                      HorizontalAlignment="Center"
-                                                     Margin="15,0,0,0"
+                                                     Margin="8,0,0,0"
                                                      Foreground="White" />
                                     </StackPanel>
                                 </Border>
@@ -71,7 +73,7 @@
                         </Button.Template>
                     </Button>
                     <!--search-->
-                    <Border  Height="54"
+                    <!--<Border  Height="54"
                              BorderThickness="1.5"
                              BorderBrush="#FFE0AE8A"
                              CornerRadius="16"
@@ -102,21 +104,64 @@
                                 </i:Interaction.Triggers>
                                 </TextBox>
                         </StackPanel>
+                    </Border>-->
+                    <!--Phanloai-->
+                    <Border  Height="54"
+                             Margin="0,15,0,0"
+                             
+                             BorderThickness="1.5"
+                             BorderBrush="#FFE0AE8A"
+                             CornerRadius="16"
+                             Background="#FFF4F4">
+                        <ComboBox BorderThickness="0"
+                                  FocusVisualStyle="{x:Null}"
+                                  Width="150"
+                                  Height="30"
+                                  Text="{Binding Status}"
+                                  HorizontalAlignment="Center">
+
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="Background"
+                                            Value="#FFF4F4" />
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                            <TextBlock Text="Tất cả loại bàn" 
+                                       FontSize="18" Margin="10,0,0,0"></TextBlock
+>
+                            <TextBlock   Text="Bàn 1"
+                                         FontSize="18"
+                                         Margin="10,0,0,0"></TextBlock>
+                            <TextBlock   Text="Bàn 2"
+                                         FontSize="18"
+                                         Margin="10,0,0,0"></TextBlock>
+                            <TextBlock   Text="Bàn 4"
+                                         FontSize="18"
+                                         Margin="10,0,0,0"></TextBlock>
+                            <TextBlock   Text="Bàn 6"
+                                         FontSize="18"
+                                         Margin="10,0,0,0"></TextBlock>
+
+                        </ComboBox>
                     </Border>
 
 
                     <!--All_table-->
                     <Button Height="54"
-                            Margin="0,20,0,0">
+                            Margin="0,20,0,0"
+                            Width="180">
+                        
 
                         <Button.Template>
                             <ControlTemplate>
                                 <Border  CornerRadius="16"
                                          Background="#FFF4F4">
                                     <TextBlock   Text="Tất cả"
+                                               
                                                  FontSize="18"
                                                  VerticalAlignment="Center"
-                                                 HorizontalAlignment="Center"
+                                                 HorizontalAlignment="Left"
+                                                 Margin="40,0,0,0"
                                                  Foreground="#FFE0AE8A" />
                                 </Border>
                             </ControlTemplate>
@@ -125,15 +170,16 @@
                     <!--empty_table-->
                     <Button Height="54"
                             Margin="0,0,0,0"
-                            Width="220">
+                            Width="180">
                         <Button.Template>
                             <ControlTemplate>
                                 <Border  CornerRadius="16"
                                          Background="White">
-                                    <TextBlock   Text="Bàn trống"
+                                    <TextBlock   Text="Còn trống"
                                                  FontSize="18"
                                                  VerticalAlignment="Center"
-                                                 HorizontalAlignment="Center"
+                                                 HorizontalAlignment="Left"
+                                                 Margin="40,0,0,0"
                                                  Foreground="#FFE0AE8A" />
                                 </Border>
                             </ControlTemplate>
@@ -143,15 +189,16 @@
                     <!--booked_table-->
                     <Button Height="54"
                             Margin="0,0,0,0"
-                            Width="220">
+                            Width="180">
                         <Button.Template>
                             <ControlTemplate>
                                 <Border  CornerRadius="16"
                                          Background="White">
-                                    <TextBlock   Text="Bàn đã đặt"
+                                    <TextBlock   Text="Đã đặt"
                                                  FontSize="18"
                                                  VerticalAlignment="Center"
-                                                 HorizontalAlignment="Center"
+                                                 HorizontalAlignment="Left"
+                                                 Margin="40,0,0,0"
                                                  Foreground="#FFE0AE8A" />
                                 </Border>
                             </ControlTemplate>
@@ -160,15 +207,16 @@
                     <!--Repair_table-->
                     <Button Height="54"
                             Margin="0,0,0,0"
-                            Width="220">
+                            Width="180">
                         <Button.Template>
                             <ControlTemplate>
                                 <Border  CornerRadius="16"
                                          Background="White">
-                                    <TextBlock   Text="Bàn đang sửa chữa"
+                                    <TextBlock   Text="Đang sửa chữa"
                                                  FontSize="18"
                                                  VerticalAlignment="Center"
-                                                 HorizontalAlignment="Center"
+                                                 HorizontalAlignment="Left"
+                                                 Margin="40,0,0,0"
                                                  Foreground="#FFE0AE8A" />
                                 </Border>
                             </ControlTemplate>

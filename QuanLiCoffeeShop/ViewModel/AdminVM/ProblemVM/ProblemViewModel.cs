@@ -153,6 +153,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                     if (IsAdded)
                     {
                         ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
+                         ProList = new List<ErrorDTO>(ProblemList);
                         IsPopupOpenAdd = false;
                        MessageAdd wd = new MessageAdd();
                         wd.ShowDialog();
@@ -176,8 +177,13 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
             });
             Edit=new RelayCommand<object>((p) => { return true; },async (p)=>
             {
-              
-               
+
+                if (Status == "")
+                {
+                    MessageBox.Show("Bạn nhập chưa đủ dữ liệu");
+                }
+                else
+                {
                     if (Description == null) { Description = ""; }
                     Error newerror = new Error
                     {
@@ -187,16 +193,17 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                         Description = this.Description,
                         IsDeleted = false,
                     };
-              
+
                     (bool success, string messageEdit) = await ErrorService.Ins.EditError(newerror);
                     if (success)
                     {
-                        IsPopupOpenEdit= false;
+                        IsPopupOpenEdit = false;
                         ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
-                    MessageEdit wd = new MessageEdit();
-                    wd.ShowDialog();
-                    resetdata() ;
+                        MessageEdit wd = new MessageEdit();
+                        wd.ShowDialog();
+                        resetdata();
                     }
+                }
                                       
             });
             OpenDelete = new RelayCommand<ErrorDTO>((p) => { return true; }, (p) =>

@@ -20,12 +20,12 @@
     </i:Interaction.Triggers>
     <Grid Background="#FFFFFF">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="260"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0"
               HorizontalAlignment="Left">
-            <Border BorderThickness="30">
+            <Border BorderThickness="40,30,20,30">
                 <StackPanel>
                     <StackPanel.Resources>
                         <Style TargetType="Button"
@@ -46,7 +46,7 @@
                     <!--Add_table-->
                     <Button
                         Margin="0,20,0,0"
-                        Command="{Binding AddTable}" 
+                        Command="{Binding OpenAdd}" 
                         Height="50"
                         HorizontalAlignment="Left"
                             Width="180">
@@ -117,7 +117,7 @@
                                   FocusVisualStyle="{x:Null}"
                                   Width="150"
                                   Height="30"
-                                  Text="{Binding Status}"
+                                  Text="{Binding Genre}"
                                   HorizontalAlignment="Center">
 
                             <ComboBox.ItemContainerStyle>
@@ -185,7 +185,6 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-
                     <!--booked_table-->
                     <Button Height="54"
                             Margin="0,0,0,0"
@@ -232,7 +231,7 @@
                 <ListView x:Name="list_table"
                           Width="1250"
                           Height="750"
-                          ItemsSource="{Binding ListTable}"
+                          ItemsSource="{Binding TableList}"
                           SelectedItem="{Binding SelectedItem}">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -265,7 +264,7 @@
                                             </Button.Template>
                                         </Button>
 
-                                        <TextBlock Text="{Binding Name}"
+                                        <TextBlock Text="{Binding GenreName}"
                                                    HorizontalAlignment="Center"
                                                    FontSize="16"></TextBlock>
                                         <TextBlock Text="{Binding Status}"
@@ -299,7 +298,7 @@
                                                     Margin="83,0,55,0"
                                                     VerticalAlignment="Center"
                                                     Command="{Binding Datacontext.OpenDelete, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
-                                                    CommandParameter="{Binding}">
+                                                    CommandParameter="{Binding }">
                                                 <Button.Template>
                                                     <ControlTemplate>
                                                         <Border CornerRadius="100"
@@ -463,7 +462,9 @@
                                       FocusVisualStyle="{x:Null}"
                                       Width="260"
                                       Height="30"
-                                      Text="{Binding GenreName}">
+                                      Text="{Binding GenreName}"
+                                     FontSize="18"
+                                      ItemsSource="{Binding GenreList}">
 
                                 <ComboBox.ItemContainerStyle>
                                     <Style TargetType="ComboBoxItem">
@@ -471,14 +472,7 @@
                                                 Value="#FFF4F4" />
                                     </Style>
                                 </ComboBox.ItemContainerStyle>
-                                <TextBlock   Text="Bàn 1"
-                                             FontSize="18"></TextBlock>
-                                <TextBlock   Text="Bàn 2"
-                                             FontSize="18"></TextBlock>
-                                <TextBlock   Text="Bàn 4"
-                                             FontSize="18"></TextBlock>
-                                <TextBlock   Text="Bàn 6"
-                                             FontSize="18"></TextBlock>
+                               
                             </ComboBox>
                         </Border>
 
@@ -622,7 +616,7 @@
                 </Border>
             </Popup>
             <!--popup thêm bàn-->
-            <Popup  Placement="Left"
+            <Popup  Placement="Center"
                     x:Name="addPopup"
                     IsOpen="{Binding IsPopupOpenAdd}"
                     AllowsTransparency="True"
@@ -658,7 +652,9 @@
                                       FocusVisualStyle="{x:Null}"
                                       Width="260"
                                       Height="30"
-                                      Text="{Binding GenreName}">
+                                      Text="{Binding GenreName}"
+                                      FontSize="18"
+                                      ItemsSource="{Binding GenreList}">
 
                                 <ComboBox.ItemContainerStyle>
                                     <Style TargetType="ComboBoxItem">
@@ -666,15 +662,8 @@
                                                 Value="#FFF4F4" />
                                     </Style>
                                 </ComboBox.ItemContainerStyle>
-                                <TextBlock   Text="Bàn 1"
-                                             FontSize="18"></TextBlock>
-                                <TextBlock   Text="Bàn 2"
-                                             FontSize="18"></TextBlock>
-                                <TextBlock   Text="Bàn 4"
-                                             FontSize="18"></TextBlock>
-                                <TextBlock   Text="Bàn 6"
-                                             FontSize="18"></TextBlock>
                             </ComboBox>
+
                         </Border>
 
                         <TextBlock Text="Trạng thái"
@@ -716,7 +705,7 @@
                                     Width="97"
                                     HorizontalAlignment="Left"
                                     Margin="45,0,0,0"
-                                    Command="{Binding Edit}">
+                                    Command="{Binding Add}">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Border      CornerRadius="24"
@@ -735,7 +724,7 @@
                                     Width="97"
                                     HorizontalAlignment="Right"
                                     Margin="0,0,45,0"
-                                    Command="{Binding Clos}">
+                                    Command="{Binding CloseAdd}">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Border      CornerRadius="24"

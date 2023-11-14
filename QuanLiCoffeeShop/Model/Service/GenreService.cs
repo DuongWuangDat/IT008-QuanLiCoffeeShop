@@ -34,6 +34,19 @@ namespace QuanLiCoffeeShop.Model.Service
             }
                 
         }
+        public async Task<(int, GenreSeat)> FindGenreSeat(string name)
+        {
+            using (var context = new QuanLiCoffeShopEntities())
+            {
+                var seat = await context.GenreSeat.Where(p => p.DisplayName == name).FirstOrDefaultAsync();
+                if (seat == null)
+                {
+                    return (-1, null);
+                }
+                return (seat.ID, seat);
+            }
+
+        }
 
         //Get  all gerne seat
         public async Task<List<string>> GetAllSeat()

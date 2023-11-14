@@ -148,7 +148,7 @@ namespace QuanLiCoffeeShop.Model.Service
            
 		}
         //update mk
-        public async Task<(bool, string)> UpdatePassword(string email, string newPass)
+        public async Task<(bool, string,string)> UpdatePassword(string email, string newPass)
         {
             try
             {
@@ -161,15 +161,15 @@ namespace QuanLiCoffeeShop.Model.Service
                     }
                     else
                     {
-                        return (false, "Không tồn tại email này");
+                        return (false, "Không tồn tại email này", null);
                     }
                     await context.SaveChangesAsync();
-                    return (true, "Update mật khẩu thành công");
+                    return (true, "Update mật khẩu thành công", staff.UserName);
                 }
             }
             catch (Exception ex)
             {
-                return (false, "Có lỗi xuất hiện");
+                return (false, "Có lỗi xuất hiện", null);
             }
         }
 	}

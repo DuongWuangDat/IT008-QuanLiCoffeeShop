@@ -17,8 +17,9 @@ namespace QuanLiCoffeeShop.ViewModel.MessageBoxVM
             get { return text; }
             set { text = value; }
         }
-        public MessageBoxViewModel()
+        public MessageBoxViewModel(string _text)
         {
+            text = _text;
         }
     }
 }

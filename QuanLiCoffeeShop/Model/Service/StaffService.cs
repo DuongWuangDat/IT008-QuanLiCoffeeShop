@@ -36,8 +36,8 @@ namespace QuanLiCoffeeShop.Model.Service
 		{
 			using(var context = new QuanLiCoffeShopEntities())
 			{
-                var staffList = (from c in context.Staff
-                                 where c.IsDeleted == false
+                var staffList = await (from c in context.Staff
+                                 where c.IsDeleted == false || c.IsDeleted == null
                                  select new StaffDTO
                                  {
                                      ID = c.ID,
@@ -54,7 +54,7 @@ namespace QuanLiCoffeeShop.Model.Service
                                      Role = c.Role,
                                      IsDeleted = c.IsDeleted,
                                  }).ToListAsync();
-                return await staffList;
+                return staffList;
             }
         }
 			

@@ -27,19 +27,18 @@
     </i:Interaction.Triggers>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="106.59" />
-            <RowDefinition />
+            <RowDefinition Height="95"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <StackPanel.Resources>
                 <ControlTemplate x:Key="TextSearchCustomer" TargetType="TextBox">
-                    <Border
-                        Width="332"
-                        Height="53.6"
-                        Background="#FFF4F4"
-                        BorderBrush="Black"
-                        BorderThickness="1"
-                        CornerRadius="16">
+                    <Border Width="332"
+                            Height="40"
+                            Background="#FFF4F4"
+                            BorderThickness="1"
+                            BorderBrush="Black"
+                            CornerRadius="16">
                         <StackPanel Orientation="Horizontal">
                             <Image
                                 Width="20"
@@ -67,17 +66,16 @@
                     </Border>
                 </ControlTemplate>
             </StackPanel.Resources>
-            <TextBox Margin="59.2,23.39,19.2,29.6" Template="{StaticResource TextSearchCustomer}" />
-            <Button
-                Width="53"
-                Height="53"
-                Margin="0,21.79,0,31.2"
-                BorderThickness="0"
-                Command="{Binding AddCusWdCM}">
+            <TextBox Template="{StaticResource TextSearchCustomer}" Margin="59.2,23.39,19.2,29.6"/>
+            <Button Width="40" 
+                    Height="40" 
+                    BorderThickness="0" 
+                    Margin="0,21.79,0,31.2"
+                    Command="{Binding AddCusWdCM}">
                 <Button.Background>
                     <ImageBrush ImageSource="/QuanLiCoffeeShop;component/Resources/Icon/AddCusBtn.png" />
                 </Button.Background>
-            </Button>
+            </Button> 
         </StackPanel>
         <Border Grid.Row="1" 
                 Background="#E6B89F"

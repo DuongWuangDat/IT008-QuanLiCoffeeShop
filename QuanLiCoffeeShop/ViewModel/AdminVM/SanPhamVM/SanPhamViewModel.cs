@@ -221,8 +221,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                         p.Close();
                         ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProduct());
                         prdList = new List<ProductDTO>(ProductList);
-                        AddedSuccessfully addedSuccessfully = new AddedSuccessfully();
-                        addedSuccessfully.Show();
+                        //AddedSuccessfully addedSuccessfully = new AddedSuccessfully();
+                        //addedSuccessfully.Show();
                     }
                     else
                     {
@@ -367,8 +367,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                     {
                         ProductList.Remove(SelectedItem);
                         prdList = new List<ProductDTO>(ProductList);
-                        AddedSuccessfully addedSuccessfully = new AddedSuccessfully();
-                        addedSuccessfully.Show();
+                        // Dương sửa phần messageBox
+                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Bạn đã xóa thành công");
                     }
                     else
                     {

@@ -265,13 +265,14 @@ namespace QuanLiCoffeeShop.ViewModel
                 }
                 else
                 {
+                    string pass = Helper.MD5Hash(this.PassWord);
                  
                     Staff newStaff = new Staff
                     {
                         DisplayName = this.DisplayName,
                         StartDate = this.StartDate,
                         UserName = this.UserName,
-                        PassWord = this.PassWord,
+                        PassWord = pass,
                         PhoneNumber = this.PhoneNumber,
                         BirthDay = this.BirthDay,
                         Wage = dWage,
@@ -343,6 +344,7 @@ namespace QuanLiCoffeeShop.ViewModel
                 }
                 else
                 {
+                    string pass = Helper.MD5Hash(this.EditPassWord);
                     Staff newStaff = new Staff
                     {
                         DisplayName = this.EditDisplayName,
@@ -351,7 +353,7 @@ namespace QuanLiCoffeeShop.ViewModel
                         StartDate = this.EditStartDate,
                         Status = this.EditStatus,
                         UserName = this.EditUserName,
-                        PassWord = this.EditPassWord,
+                        PassWord = pass,
                         PhoneNumber = this.EditPhoneNumber,
                         Role = this.EditRole,
                         Wage = this.EditWage,

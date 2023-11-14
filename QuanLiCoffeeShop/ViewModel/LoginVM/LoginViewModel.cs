@@ -82,13 +82,17 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
             SendCM = new RelayCommand<object>((p) => { return true; }, async (p) =>
             {
                 string newPass = Helper.randomCode();
-                (bool updateSuccess, string message) = await StaffService.Ins.UpdatePassword(forgotEmail, newPass);
+                (bool updateSuccess, string message, string username) = await StaffService.Ins.UpdatePassword(forgotEmail, newPass);
                 if (!updateSuccess) 
                 {
                     MessageBoxCustom.Show(MessageBoxCustom.Error, message);
                 }
-                await LoginService.Ins.sendEmail(forgotEmail,newPass);
-                MessageBoxCustom.Show(MessageBoxCustom.Success, "Đã gửi email thành công");
+                else
+                {
+                    await LoginService.Ins.sendEmail(forgotEmail, newPass,username);
+                    MessageBoxCustom.Show(MessageBoxCustom.Success, "Đã gửi email thành công");
+                }
+                
             });
 
         }

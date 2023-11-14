@@ -25,7 +25,7 @@ namespace QuanLiCoffeeShop.Model.Service
             }
             set { _ins = value; }
         }
-        public async Task sendEmail(string email, string pass)
+        public async Task sendEmail(string email, string pass, string username)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace QuanLiCoffeeShop.Model.Service
                 mail.From = new MailAddress("coffeetime2510@gmail.com");
                 mail.To.Add(email);
                 mail.Subject = "Test send email";
-                mail.Body = pass;
+                mail.Body = "Username:" + username + "\n" +"New password:" + pass;
                 await smtpClient.SendMailAsync(mail);
             }
             catch (Exception ex)

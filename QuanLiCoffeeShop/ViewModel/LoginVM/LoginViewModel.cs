@@ -108,7 +108,7 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
             using (var context = new QuanLiCoffeShopEntities())
             {
                 string password = Helper.MD5Hash(Password);
-                Staff staff = await context.Staff.Where(x => x.UserName == Username && x.PassWord == password).FirstOrDefaultAsync();
+                Staff staff = await context.Staff.Where(x => x.UserName == Username && x.PassWord == password && x.IsDeleted == false).FirstOrDefaultAsync();
                 if (staff != null)
                 {
                     p.Visibility = Visibility.Collapsed;

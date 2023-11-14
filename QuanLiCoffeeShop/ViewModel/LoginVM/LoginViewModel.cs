@@ -1,6 +1,10 @@
 ﻿using QuanLiCoffeeShop.DTOs;
 using QuanLiCoffeeShop.Model;
+using QuanLiCoffeeShop.Model.Service;
+using QuanLiCoffeeShop.Utils;
 using QuanLiCoffeeShop.View.Admin;
+using QuanLiCoffeeShop.View.LoginWindow;
+using QuanLiCoffeeShop.View.MessageBox;
 using QuanLiCoffeeShop.View.Staff;
 using QuanLiCoffeeShop.ViewModel;
 using QuanLiCoffeeShop.ViewModel.AdminVM;
@@ -9,6 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,7 +31,7 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
         public string Username
         {
             get { return _Username; }
-            set { _Username = value;  OnPropertyChanged(); }
+            set { _Username = value; OnPropertyChanged(); }
         }
         private string _Password;
 
@@ -35,34 +41,68 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
             set { _Password = value; OnPropertyChanged(); }
         }
 
+        private string _forgotEmail;
+
+        public string forgotEmail
+        {
+            get { return _forgotEmail; }
+            set { _forgotEmail = value; OnPropertyChanged(); }
+        }
 
         public ICommand LoginCommand { get; set; }
         public ICommand PasswordChangedCommand { get; set; }
-        public LoginViewModel() {
-            LoginCommand = new RelayCommand<Window>((p) => 
-            { 
-                if(string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
+        public ICommand ForgotPasswordCM { get; set; }
+        public ICommand SendCM { get; set; }
+        public LoginViewModel()
+        {
+            LoginCommand = new RelayCommand<Window>((p) =>
+            {
+                if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(Password))
                 {
                     return false;
                 }
                 return true;
-            }, 
-            async (p) => { 
-                await Login(p); 
+            },
+            async (p) =>
+            {
+                await Login(p);
             });
-            PasswordChangedCommand = new RelayCommand<PasswordBox>((p) => { 
+            PasswordChangedCommand = new RelayCommand<PasswordBox>((p) =>
+            {
                 return true;
             }, (p) =>
             {
                 Password = p.Password;
             });
+            ForgotPasswordCM = new RelayCommand<TextBlock>((p) => { return true; }, async (p) =>
+            {
+                ForgotPassword wd = new ForgotPassword();
+                wd.ShowDialog();
+            });
+            SendCM = new RelayCommand<object>((p) => { return true; }, async (p) =>
+            {
+                string newPass = Helper.randomCode();
+                (bool updateSuccess, string message, string username) = await StaffService.Ins.UpdatePassword(forgotEmail, newPass);
+                if (!updateSuccess) 
+                {
+                    MessageBoxCustom.Show(MessageBoxCustom.Error, message);
+                }
+                else
+                {
+                    await LoginService.Ins.sendEmail(forgotEmail, newPass,username);
+                    MessageBoxCustom.Show(MessageBoxCustom.Success, "Đã gửi email thành công");
+                }
+                
+            });
+
         }
         #region methods
         async Task Login(Window p)
         {
-            using(var context = new QuanLiCoffeShopEntities())
+            using (var context = new QuanLiCoffeShopEntities())
             {
-                Staff staff = await context.Staff.Where(x => x.UserName == Username && x.PassWord == Password).FirstOrDefaultAsync();
+                string password = Helper.MD5Hash(Password);
+                Staff staff = await context.Staff.Where(x => x.UserName == Username && x.PassWord == password).FirstOrDefaultAsync();
                 if (staff != null)
                 {
                     p.Visibility = Visibility.Collapsed;
@@ -88,7 +128,7 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
                         MainAdminViewModel.curentstaff = curStaff;
                         ad.Owner = p;
                         ad.Show();
-                        
+
                     }
                     else
                     {
@@ -101,12 +141,13 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
                 }
                 else
                 {
-                    MessageBox.Show("Dang nhap khong hop le");
+                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Đăng nhập thất bại");
                 }
             }
-            
-            
+
+
         }
+        
         #endregion
     }
 }

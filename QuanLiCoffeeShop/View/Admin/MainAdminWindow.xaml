@@ -68,16 +68,33 @@
                       SourceName="CloseMenu_btn">
             <BeginStoryboard Storyboard="{StaticResource MenuClose}" />
         </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click"
+                    SourceName="SPbtn">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click"
+              SourceName="KHbtn">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click"
+              SourceName="ThongKebtn">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click"
+              SourceName="Errbtn">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click"
+                SourceName="NVbtn">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click"
+                SourceName="Banbtn">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}" />
+        </EventTrigger>
     </Window.Triggers>
 
     <Grid>
-        <!--  Overlay  -->
-        <Border x:Name="Overlay"
-                Background="#99CCCCCC"
-                MouseDown="Overlay_MouseDown"
-                PreviewMouseDown="Overlay_PreviewMouseDown"
-                Visibility="Collapsed">
-        </Border>
 
         <!--  Frame  -->
         <Grid>
@@ -103,7 +120,7 @@
                                           VerticalAlignment="Stretch"
                                           Background="#FFF2E9"
                                           Mode="PrimaryLight">
-                    <StackPanel Orientation="Horizontal">
+                    <DockPanel >
                         <!--  OpenMenu_btn  -->
                         <Button x:Name="OpenMenu_btn"
                                 Margin="10,0,0,0"
@@ -137,15 +154,16 @@
                                    Foreground="#FFE0AE8A">
                             Coffee Shop
                         </TextBlock>
-
+                        
                         <!--  Admin_btn  -->
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Margin="1170,0,0,0"
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock Margin="0,0,0,0"
                                        VerticalAlignment="Center"
                                        FontSize="20"
                                        FontWeight="Bold"
-                                       Foreground="#FFE0AE8A">
-                                Administrator
+                                       Foreground="#FFE0AE8A"
+                                       Text="{Binding currentName}">
+                               
                             </TextBlock>
                             <materialDesign:PopupBox Margin="0"
                                                      HorizontalAlignment="Right"
@@ -217,15 +235,16 @@
                             </materialDesign:PopupBox>
                         </StackPanel>
 
-                    </StackPanel>
+                    </DockPanel>
 
                 </materialDesign:ColorZone>
 
 
 
             </Grid>
-
-            <Grid x:Name="MenuBar"
+            
+            <Grid x:Name="MenuBar"     
+                  Panel.ZIndex="4"
                   Width="0"
                   Height="864"
                   HorizontalAlignment="Left"
@@ -292,6 +311,7 @@
 
                     <!--  SanPham-Menu_btn  -->
                     <RadioButton x:Name="SPbtn"
+                                 Cursor="Hand"
                                  Command="{Binding LoadSanPhamPage}"
                                  CommandParameter="{Binding ElementName=MainFrame}"
                                  IsChecked="True">
@@ -352,6 +372,7 @@
 
                     <!--  NhanVien-Menu_btn  -->
                     <RadioButton x:Name="NVbtn"
+                                 Cursor="Hand"
                                  Command="{Binding LoadNhanVienPage}"
                                  CommandParameter="{Binding ElementName=MainFrame}">
                         <RadioButton.Style>
@@ -410,6 +431,7 @@
 
                     <!--  Ban-Menu_btn  -->
                     <RadioButton Name="Banbtn"
+                                 Cursor="Hand"
                                  Command="{Binding LoadTablePage}"
                                  CommandParameter="{Binding ElementName=MainFrame}">
                         <RadioButton.Style>
@@ -469,6 +491,7 @@
 
                     <!--  KhachHang-Menu_btn  -->
                     <RadioButton x:Name="KHbtn"
+                                 Cursor="Hand"
                                  Command="{Binding LoadKhachHangPage}"
                                  CommandParameter="{Binding ElementName=MainFrame}">
                         <RadioButton.Style>
@@ -528,6 +551,7 @@
 
                     <!--  ThongKe-Menu_btn  -->
                     <RadioButton x:Name="ThongKebtn"
+                                 Cursor="Hand"
                                  Command="{Binding LoadThongKePage}"
                                  CommandParameter="{Binding ElementName=MainFrame}">
                         <RadioButton.Style>
@@ -586,6 +610,7 @@
 
                     <!--  TaiKhoan-Menu_btn  -->
                     <RadioButton x:Name="Errbtn"
+                                 Cursor="Hand"
                                  Command="{Binding LoadErrorPage}"
                                  CommandParameter="{Binding ElementName=MainFrame}">
                         <RadioButton.Style>
@@ -642,6 +667,20 @@
                     </RadioButton>
 
                 </StackPanel>
+            </Grid>
+            <Grid
+                Panel.ZIndex="2">
+                <!--  Overlay  -->
+                <Border 
+                    HorizontalAlignment="Right"           
+                    x:Name="Overlay"
+                    Width="1536"
+                    Background="#99CCCCCC"
+                    MouseDown="Overlay_MouseDown"
+                    Visibility="Collapsed" Panel.ZIndex="2">
+                    <Grid>
+                    </Grid>
+                </Border>
             </Grid>
         </Grid>
     </Grid>

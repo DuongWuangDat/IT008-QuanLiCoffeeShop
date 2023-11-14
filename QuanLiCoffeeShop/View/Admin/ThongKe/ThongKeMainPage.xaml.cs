@@ -24,5 +24,38 @@ namespace QuanLiCoffeeShop.View.Admin.ThongKe
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                string borderName = button.Tag.ToString();
+                ResetBorders();
+                HighlightBorder(borderName);
+            }
+        }
+        private void ResetBorders()
+        {
+            HistoryBd.Background = new SolidColorBrush(Colors.White);
+            RevenueBd.Background = new SolidColorBrush(Colors.White);
+            FavorBd.Background = new SolidColorBrush(Colors.White);           
+        }
+
+        private void HighlightBorder(string borderName)
+        {
+            switch (borderName)
+            {
+                case "HistoryBd":
+                    HistoryBd.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xF4, 0xF4));
+                    break;
+                case "RevenueBd":
+                    RevenueBd.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xF4, 0xF4));
+                    break;
+                case "FavorBd":
+                    FavorBd.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xFF, 0xF4, 0xF4));
+                    break;               
+            }
+        }
+
     }
 }

@@ -12,16 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.Admin.ThongKe.LichSuBan
+namespace QuanLiCoffeeShop.View.LoginWindow
 {
     /// <summary>
-    /// Interaction logic for ChiTietHoaDon.xaml
+    /// Interaction logic for ForgotPassword.xaml
     /// </summary>
-    public partial class ChiTietHoaDon : Window
+    public partial class ForgotPassword : Window
     {
-        public ChiTietHoaDon()
+        public ForgotPassword()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

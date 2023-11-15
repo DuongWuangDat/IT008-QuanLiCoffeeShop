@@ -45,7 +45,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
         public ICommand HistoryCM { get; set; }
         public ICommand RevenueCM { get; set; }
         public ICommand FavorCM { get; set; }
-        public ICommand InfoBillCM {  get; set; }
+        public ICommand InfoBillCM {  get; set; }   
+        public ICommand DeleteBillCM {  get; set; }
         public ICommand DateChange {  get; set; }
 
         public ThongKeViewModel()
@@ -63,7 +64,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
             {
                 //UpdateBillList
                 BillList = new ObservableCollection<BillDTO>(billList.FindAll(x => x.CreateAt >= SelectedDateFrom && x.CreateAt <= SelectedDateTo));
-                
+
                 //UpdateRevenueSeries
                 List<int> revenueValues = new List<int>();
                 List<DateTime> dates = new List<DateTime>();
@@ -98,14 +99,31 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
             });
             HistoryCM = new RelayCommand<Frame>((p) => { return true; }, (p) =>
             {
-                p.Content = new LichSuTable();                
-                
-                BillList = new ObservableCollection<BillDTO>(billList.FindAll(x => x.CreateAt>=SelectedDateFrom&&x.CreateAt<=SelectedDateTo));
+                p.Content = new LichSuTable();
+
+                BillList = new ObservableCollection<BillDTO>(billList.FindAll(x => x.CreateAt >= SelectedDateFrom && x.CreateAt <= SelectedDateTo));
             });
             CloseWdCM = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
-                
                 p.Close();
+            });
+            DeleteBillCM = new RelayCommand<object>((p) => { return true; }, async (p) =>
+            {
+                DeleteMessage wd = new DeleteMessage();
+                wd.ShowDialog();
+                if (wd.DialogResult == true)
+                {
+                    (bool sucess, string messageDelete) = await BillService.Ins.DeleteBill(SelectedItem);
+                    if (sucess)
+                    {
+                        BillList.Remove(SelectedItem);
+                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Xóa thành công");
+                    }
+                    else
+                    {
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, messageDelete);
+                    }
+                }
             });
             #region DoanhThu
             RevenueCM = new RelayCommand<Frame>((p) => { return true; }, async (p) =>

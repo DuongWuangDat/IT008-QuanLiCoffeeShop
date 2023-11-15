@@ -164,7 +164,9 @@
                             </Border>
                         </WrapPanel>
                     </Border>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer x:Name="ScrollViewer"                               
+                                  VerticalScrollBarVisibility="Auto"
+                                  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
                         <ListView x:Name="prb_list"
                                   ItemsSource="{Binding ProblemList}"
                                   SelectedItem="{Binding SelectedItem}"
@@ -432,8 +434,7 @@
                                   Width="260"
                                   Height="32"
                                   HorizontalContentAlignment="Left"
-                                  Text="{Binding Status}"
-                                 >
+                                  Text="{Binding Status}">
 
                             <ComboBox.ItemContainerStyle>
                                 <Style TargetType="ComboBoxItem">

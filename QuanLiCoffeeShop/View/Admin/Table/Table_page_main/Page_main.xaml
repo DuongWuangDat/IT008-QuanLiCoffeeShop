@@ -18,7 +18,34 @@
                                    CommandParameter="{Binding ElementName=TablePage}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <Grid Background="#FFFFFF">
+    <Page.Resources>
+        <ControlTemplate TargetType="Button"
+                         x:Key="BtnClick">
+            <Border  CornerRadius="16"
+                     Background="#FFF4F4">
+                <TextBlock   Text="{TemplateBinding Content}"
+                             FontSize="18"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Margin="30,0,0,0"
+                             Foreground="#FFE0AE8A" />
+            </Border>
+        </ControlTemplate>
+        <ControlTemplate TargetType="Button"
+                         x:Key="BtnDefault">
+            <Border  CornerRadius="16"
+                     Background="#FFFF">
+                <TextBlock   Text="{TemplateBinding Content}"
+                             FontSize="18"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Left"
+                             Margin="30,0,0,0"
+                             Foreground="#FFE0AE8A" />
+            </Border>
+        </ControlTemplate>
+    </Page.Resources>
+    <Grid Background="#FFFFFF"
+          IsHitTestVisible="{Binding IsOpenMain}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="260"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -28,19 +55,22 @@
             <Border BorderThickness="40,30,20,30">
                 <StackPanel>
                     <StackPanel.Resources>
-                        <Style TargetType="Button"
+                        <ResourceDictionary>
+                                                    <Style TargetType="Button"
                                BasedOn="{StaticResource MaterialDesignFlatAccentBgButton}">
                             <Style.Setters>
                                 <Setter Property="Foreground"
                                         Value="White" />
                             </Style.Setters>
                         </Style>
-                        <Style TargetType="materialDesign:PackIcon">
-                            <Style.Setters>
-                                <Setter Property="Foreground"
-                                        Value="White" />
-                            </Style.Setters>
-                        </Style>
+                            <Style TargetType="materialDesign:PackIcon">
+                                <Style.Setters>
+                                    <Setter Property="Foreground"
+                                            Value="White" />
+                                </Style.Setters>
+                            </Style>
+                        </ResourceDictionary>
+
 
                     </StackPanel.Resources>
                     <!--Add_table-->
@@ -72,39 +102,7 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                    <!--search-->
-                    <!--<Border  Height="54"
-                             BorderThickness="1.5"
-                             BorderBrush="#FFE0AE8A"
-                             CornerRadius="16"
-                             Background="#FFF4F4">
-                        <StackPanel    Cursor="Hand"
-                                       Orientation="Horizontal">
-                            <Image    Source="/QuanLiCoffeeShop;component/Resources/Icon/SearchIconCus.png"
-                                      Width="25"
-                                      Height="30"
-                                      Margin="24 0 0 0" />
-                            <TextBox  BorderBrush="#FFF4F4"
-                                      TextDecorations="None"
-                                      Width="130"
-                                      Tag="Tìm kiếm"
-                                      Text="Tìm kiếm"
-                                      FontSize="18"
-                                      VerticalAlignment="Center"
-                                      Margin="13,0,0,0"
-                                      Foreground="Black"
-                                      GotFocus="TextBox_GotFocus"
-                                      LostFocus="TextBox_LostFocus" >
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="TextChanged">
-                                        <i:InvokeCommandAction Command="{Binding SearchTable}" CommandParameter="{Binding ElementName=Search}">
-                                            
-                                        </i:InvokeCommandAction>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                                </TextBox>
-                        </StackPanel>
-                    </Border>-->
+                  
                     <!--Phanloai-->
                     <Border  Height="54"
                              Margin="0,15,0,0"
@@ -113,35 +111,20 @@
                              BorderBrush="#FFE0AE8A"
                              CornerRadius="16"
                              Background="#FFF4F4">
-                        <ComboBox BorderThickness="0"
-                                  FocusVisualStyle="{x:Null}"
-                                  Width="150"
-                                  Height="30"
-                                  Text="{Binding Genre}"
-                                  HorizontalAlignment="Center">
-
-                            <ComboBox.ItemContainerStyle>
-                                <Style TargetType="ComboBoxItem">
-                                    <Setter Property="Background"
-                                            Value="#FFF4F4" />
-                                </Style>
-                            </ComboBox.ItemContainerStyle>
-                            <TextBlock Text="Tất cả loại bàn" 
-                                       FontSize="18" Margin="10,0,0,0"></TextBlock
->
-                            <TextBlock   Text="Bàn 1"
-                                         FontSize="18"
-                                         Margin="10,0,0,0"></TextBlock>
-                            <TextBlock   Text="Bàn 2"
-                                         FontSize="18"
-                                         Margin="10,0,0,0"></TextBlock>
-                            <TextBlock   Text="Bàn 4"
-                                         FontSize="18"
-                                         Margin="10,0,0,0"></TextBlock>
-                            <TextBlock   Text="Bàn 6"
-                                         FontSize="18"
-                                         Margin="10,0,0,0"></TextBlock>
-
+                        <ComboBox Width="165"
+                                  Height="40"
+                                  ItemsSource="{Binding ComboList }"
+                                  SelectedItem="{Binding Genre}"
+                                  Margin="0,0,0,0"
+                                  Padding="12,2.4"
+                                  Background="#FFF4F4"
+                                  HorizontalAlignment="Right"
+                                  VerticalContentAlignment="Center"
+                                  materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                  materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                  BorderThickness="0"
+                                  FontFamily="Inter"
+                                  FontSize="18">
                         </ComboBox>
                     </Border>
 
@@ -149,77 +132,53 @@
                     <!--All_table-->
                     <Button Height="54"
                             Margin="0,20,0,0"
-                            Width="180">
+                            Width="180"
+                            Tag="All"
+                            Content="Tất cả"
+                            Name="BtnAll"
+                            Foreground="#FFE0AE8A"
+                            Command="{Binding  Classify}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                            Template="{StaticResource BtnClick}"
+                            Click="Button_Click">
                         
 
-                        <Button.Template>
-                            <ControlTemplate>
-                                <Border  CornerRadius="16"
-                                         Background="#FFF4F4">
-                                    <TextBlock   Text="Tất cả"
-                                               
-                                                 FontSize="18"
-                                                 VerticalAlignment="Center"
-                                                 HorizontalAlignment="Left"
-                                                 Margin="40,0,0,0"
-                                                 Foreground="#FFE0AE8A" />
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
+                        
                     </Button>
                     <!--empty_table-->
                     <Button Height="54"
                             Margin="0,0,0,0"
-                            Width="180">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <Border  CornerRadius="16"
-                                         Background="White">
-                                    <TextBlock   Text="Còn trống"
-                                                 FontSize="18"
-                                                 VerticalAlignment="Center"
-                                                 HorizontalAlignment="Left"
-                                                 Margin="40,0,0,0"
-                                                 Foreground="#FFE0AE8A" />
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
+                            Width="180"
+                            Name="BtnEmpty"
+                            Command="{Binding  Classify}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                            Content="Còn trống"
+                            Template="{StaticResource BtnDefault}"
+                            Click="Button_Click">
+                      
                     </Button>
                     <!--booked_table-->
                     <Button Height="54"
                             Margin="0,0,0,0"
-                            Width="180">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <Border  CornerRadius="16"
-                                         Background="White">
-                                    <TextBlock   Text="Đã đặt"
-                                                 FontSize="18"
-                                                 VerticalAlignment="Center"
-                                                 HorizontalAlignment="Left"
-                                                 Margin="40,0,0,0"
-                                                 Foreground="#FFE0AE8A" />
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
+                            Width="180"
+                            Name="BtnBooked"
+                            Content="Đã đặt"
+                            Command="{Binding  Classify}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                            Template="{StaticResource BtnDefault}"
+                            Click="Button_Click">
                     </Button>
                     <!--Repair_table-->
                     <Button Height="54"
                             Margin="0,0,0,0"
-                            Width="180">
-                        <Button.Template>
-                            <ControlTemplate>
-                                <Border  CornerRadius="16"
-                                         Background="White">
-                                    <TextBlock   Text="Đang sửa chữa"
-                                                 FontSize="18"
-                                                 VerticalAlignment="Center"
-                                                 HorizontalAlignment="Left"
-                                                 Margin="40,0,0,0"
-                                                 Foreground="#FFE0AE8A" />
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
+                            Width="180"
+                            Content="Đang sửa chữa"
+                            Name="BtnRepair"
+                            Command="{Binding  Classify}"
+                            CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
+                            Template="{StaticResource BtnDefault}"
+                            Click="Button_Click">
+                      
                     </Button>
                    
 
@@ -227,33 +186,79 @@
             </Border>
         </Grid>
         <Grid Grid.Column="1">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ScrollViewer x:Name="ScrollViewer"
+                          Grid.Column="1"
+                          Height="728"
+                          Margin="10,30,10,15"
+                          VerticalScrollBarVisibility="Auto"
+                          VerticalAlignment="Top"
+                          PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
                 <ListView x:Name="list_table"
-                          Width="1250"
-                          Height="750"
-                          ItemsSource="{Binding TableList}"
-                          SelectedItem="{Binding SelectedItem}">
+                         
+                          VerticalAlignment="Top"
+                          ItemsSource="{Binding TableList}">
+                    <ListView.ItemContainerStyle>
+                    <Style BasedOn="{StaticResource MaterialDesignListBoxItem}"
+                           TargetType="ListViewItem">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter Property="IsSelected"
+                                        Value="True" />
+                                <Setter Property="Background"
+                                        Value="#FFEAF8FF" />
+                            </Trigger>
+                        </Style.Triggers>
+                        <Setter Property="Padding"
+                                Value="1" />
+                        <Setter Property="Margin"
+                                Value="0 5 10 5" />
+                        <Setter Property="materialDesign:ListBoxItemAssist.ShowSelection"
+                                Value="False" />
+                        
+                    </Style>
+                    </ListView.ItemContainerStyle>
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <UniformGrid Columns="6" />
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
 
-
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
-                                <Border Margin="0,10,20,10"
+                            
+                                <Border 
+                                    
                                         Height="216"
                                         Width="164"
-                                        BorderThickness="1.5"
-                                        BorderBrush="#E0AE8A"
+                                        BorderThickness="1"
                                         CornerRadius="15">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Status}"
+                                                             Value="Còn trống">
+                                                    <Setter Property="BorderBrush"
+                                                            Value="#8AE08E" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Status}"
+                                                             Value="Đã đặt">
+                                                    <Setter Property="BorderBrush"
+                                                            Value="#E0AE8A" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Status}"
+                                                             Value="Đang sửa chữa">
+                                                    <Setter Property="BorderBrush"
+                                                            Value="#FF6871" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
                                     <StackPanel>
                                         <Button Width="120"
                                                 Height="120"
                                                 Margin="0,5,0,0"
-                                                Command="{Binding Datacontext.OpenInfo, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                Command="{Binding DataContext.OpenInfo, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
                                                 CommandParameter="{Binding}">
                                             <Button.Template>
                                                 <ControlTemplate>
@@ -266,18 +271,42 @@
 
                                         <TextBlock Text="{Binding GenreName}"
                                                    HorizontalAlignment="Center"
+                                                   
                                                    FontSize="16"></TextBlock>
-                                        <TextBlock Text="{Binding Status}"
-                                                   HorizontalAlignment="Center"
-                                                   FontSize="8.8"
-                                                   Foreground="#FF3DFF3D"></TextBlock>
+                                        <TextBlock HorizontalAlignment="Center"
+                                                   FontSize="9.5"
+                                                   Text="{Binding Status}">
+
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Status}"
+                                                                     Value="Còn trống">
+                                                            <Setter Property="Foreground"
+                                                                    Value="#FF3DFF3D" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Status}"
+                                                                     Value="Đã đặt">
+                                                            <Setter Property="Foreground"
+                                                                    Value="#B57241" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Status}"
+                                                                     Value="Đang sửa chữa">
+                                                            <Setter Property="Foreground"
+                                                                    Value="#F72B37" />
+                                                        </DataTrigger>
+
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
                                         <Grid Margin="0,10,0,0">
                                             <!--button_repair_table-->
                                             <Button Margin="55,0,83,0"
                                                     Height="23"
                                                     Width="23"
                                                     Background="White"
-                                                    Command="{Binding Datacontext.OpenEdit, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                    Command="{Binding DataContext.OpenEdit, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
                                                     CommandParameter="{Binding}">
                                                 <Button.Template>
                                                     <ControlTemplate>
@@ -289,16 +318,16 @@
                                                         </Border>
                                                     </ControlTemplate>
                                                 </Button.Template>
-                                                <!--button_deltete-->
-
                                             </Button>
+                                            <!--button_deltete-->
+
                                             <Button Height="23"
                                                     Width="23"
                                                     Background="White"
                                                     Margin="83,0,55,0"
                                                     VerticalAlignment="Center"
-                                                    Command="{Binding Datacontext.OpenDelete, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
-                                                    CommandParameter="{Binding }">
+                                                    Command="{Binding DataContext.OpenDelete, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                    CommandParameter="{Binding}">
                                                 <Button.Template>
                                                     <ControlTemplate>
                                                         <Border CornerRadius="100"
@@ -319,7 +348,7 @@
                                 </Border>
                                
 
-                            </Grid>
+                            
 
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -364,7 +393,7 @@
                                     BorderThickness="1"
                                     HorizontalAlignment="Left">
                                 <!--tb_ten-->
-                                <TextBlock Text="{Binding Name}"
+                                <TextBlock Text="{Binding ID}"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"></TextBlock>
                             </Border>
@@ -458,21 +487,20 @@
                                  CornerRadius="16"
                                  Background="#FFF4F4">
 
-                            <ComboBox BorderThickness="0"
-                                      FocusVisualStyle="{x:Null}"
-                                      Width="260"
-                                      Height="30"
-                                      Text="{Binding GenreName}"
-                                     FontSize="18"
-                                      ItemsSource="{Binding GenreList}">
-
-                                <ComboBox.ItemContainerStyle>
-                                    <Style TargetType="ComboBoxItem">
-                                        <Setter Property="Background"
-                                                Value="#FFF4F4" />
-                                    </Style>
-                                </ComboBox.ItemContainerStyle>
-                               
+                            <ComboBox Width="280"
+                                      Height="40"
+                                      ItemsSource="{Binding GenreList }"
+                                      SelectedItem="{Binding GenreName}"
+                                      Margin="0,0,0,0"
+                                      Padding="12,2.4"
+                                      Background="#FFF4F4"
+                                      HorizontalAlignment="Center"
+                                      VerticalContentAlignment="Center"
+                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                      materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                      BorderThickness="0"
+                                      FontFamily="Inter"
+                                      FontSize="18">
                             </ComboBox>
                         </Border>
 
@@ -487,28 +515,21 @@
                                  BorderBrush="#FFE0AE8A"
                                  CornerRadius="16"
                                  Background="#FFF4F4">
-
-                            <ComboBox BorderThickness="0"
-                                      FocusVisualStyle="{x:Null}"
-                                      Width="260"
-                                      Height="30"
-                                      Text="{Binding Status}">
-
-                                <ComboBox.ItemContainerStyle>
-                                    <Style TargetType="ComboBoxItem">
-                                        <Setter Property="Background"
-                                                Value="#FFF4F4" />
-                                    </Style>
-                                </ComboBox.ItemContainerStyle>
-                                <TextBlock Text="Còn trống"
-                                           FontSize="18"></TextBlock>
-                                <TextBlock   Text="Đã đặt"
-                                             FontSize="18"></TextBlock>
-                                <TextBlock Text="Đang sửa chữa"
-                                           FontSize="18"></TextBlock>
+                            <ComboBox Width="280"
+                                      Height="40"
+                                      Padding="12,2.4"
+                                      ItemsSource="{Binding StatusList}"
+                                      SelectedItem="{Binding Status}"
+                                      Background="#FFF4F4"
+                                      HorizontalAlignment="Center"
+                                      VerticalContentAlignment="Center"
+                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                      materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                      BorderThickness="0"
+                                      FontFamily="Inter"
+                                      FontSize="18">
 
                             </ComboBox>
-
                         </Border>
                         <Grid Margin="0,40,0,0">
                             <Button Height="48"
@@ -648,20 +669,20 @@
                                  CornerRadius="16"
                                  Background="#FFF4F4">
 
-                            <ComboBox BorderThickness="0"
-                                      FocusVisualStyle="{x:Null}"
-                                      Width="260"
+                            <ComboBox Width="260"
                                       Height="30"
-                                      Text="{Binding GenreName}"
-                                      FontSize="18"
-                                      ItemsSource="{Binding GenreList}">
-
-                                <ComboBox.ItemContainerStyle>
-                                    <Style TargetType="ComboBoxItem">
-                                        <Setter Property="Background"
-                                                Value="#FFF4F4" />
-                                    </Style>
-                                </ComboBox.ItemContainerStyle>
+                                      ItemsSource="{Binding GenreList }"
+                                      SelectedItem="{Binding GenreName}"
+                                      Margin="0,0,0,0"
+                                      Padding="0"
+                                      Background="#FFF4F4"
+                                      HorizontalAlignment="Center"
+                                      VerticalContentAlignment="Center"
+                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                      materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                      BorderThickness="0"
+                                      FontFamily="Inter"
+                                      FontSize="18">
                             </ComboBox>
 
                         </Border>
@@ -677,27 +698,28 @@
                                  BorderBrush="#FFE0AE8A"
                                  CornerRadius="16"
                                  Background="#FFF4F4">
-
-                            <ComboBox BorderThickness="0"
-                                      FocusVisualStyle="{x:Null}"
-                                      Width="260"
+                            <ComboBox Width="260"
                                       Height="30"
-                                      Text="{Binding Status}">
-
-                                <ComboBox.ItemContainerStyle>
-                                    <Style TargetType="ComboBoxItem">
-                                        <Setter Property="Background"
-                                                Value="#FFF4F4" />
-                                    </Style>
-                                </ComboBox.ItemContainerStyle>
+                                      Text="{Binding Status}"                                  
+                                      Margin="0,0,0,0"
+                                      Padding="0"
+                                      Background="#FFF4F4"
+                                      HorizontalAlignment="Center"
+                                      VerticalContentAlignment="Center"
+                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                      materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                      BorderThickness="0"
+                                      FontFamily="Inter"
+                                      FontSize="18">
                                 <TextBlock Text="Còn trống"
                                            FontSize="18"></TextBlock>
                                 <TextBlock   Text="Đã đặt"
                                              FontSize="18"></TextBlock>
                                 <TextBlock Text="Đang sửa chữa"
                                            FontSize="18"></TextBlock>
-
                             </ComboBox>
+
+                           
 
                         </Border>
                         <Grid Margin="0,40,0,0">

@@ -46,6 +46,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
         public ICommand RevenueCM { get; set; }
         public ICommand FavorCM { get; set; }
         public ICommand InfoBillCM {  get; set; }
+        public ICommand DateChange {  get; set; }
 
         public ThongKeViewModel()
         {
@@ -58,10 +59,47 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
                 SelectedDateTo = DateTime.Now;
                 SelectedDateFrom = DateTime.Now.AddDays(-2);
             });
+            DateChange = new RelayCommand<object>((p) => { return true; }, async (p) =>
+            {
+                //UpdateBillList
+                BillList = new ObservableCollection<BillDTO>(billList.FindAll(x => x.CreateAt >= SelectedDateFrom && x.CreateAt <= SelectedDateTo));
+                
+                //UpdateRevenueSeries
+                List<int> revenueValues = new List<int>();
+                List<DateTime> dates = new List<DateTime>();
+
+                BillService billService = new BillService();
+
+                for (DateTime currentDate = SelectedDateFrom; currentDate <= SelectedDateTo; currentDate = currentDate.AddDays(1))
+                {
+                    int revenue = await billService.getBillByDate(currentDate);
+                    revenueValues.Add(revenue);
+                    dates.Add(currentDate);
+                }
+
+                string[] dateStrings = dates.Select(date => date.ToString("dd-MM-yyyy")).ToArray();
+                RevenueSeries = new SeriesCollection
+                {
+                    new LineSeries
+                    {
+                        Title = "Doanh thu",
+                        Values = new ChartValues<int>(revenueValues),
+                    }
+                };
+                Labels = dateStrings;
+                YFormatter = value =>
+                {
+                    return value.ToString("N");
+
+                };
+
+                //Update FavorList
+                FavorList = await Task.Run(() => ThongKeService.Ins.GetTop10SalerBetween(SelectedDateFrom, SelectedDateTo));
+            });
             HistoryCM = new RelayCommand<Frame>((p) => { return true; }, (p) =>
             {
                 p.Content = new LichSuTable();                
-                MessageBox.Show(p.Content.GetType().Name);
+                
                 BillList = new ObservableCollection<BillDTO>(billList.FindAll(x => x.CreateAt>=SelectedDateFrom&&x.CreateAt<=SelectedDateTo));
             });
             CloseWdCM = new RelayCommand<Window>((p) => { return true; }, (p) =>
@@ -72,8 +110,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
             #region DoanhThu
             RevenueCM = new RelayCommand<Frame>((p) => { return true; }, async (p) =>
             {
-                p.Content = new DoanhThuTable();
-                MessageBox.Show(p.Content.GetType().Name);
+                
                 List<int> revenueValues = new List<int>();
                 List<DateTime> dates = new List<DateTime>();
 
@@ -95,21 +132,23 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
                         Values = new ChartValues<int>(revenueValues),
                     }
                 };
-
                 Labels = dateStrings;
                 YFormatter = value =>
                 {                   
                     return value.ToString("N");
+
                 };
+                p.Content = new DoanhThuTable();
             });
             #endregion
 
-            FavorCM = new RelayCommand<Frame>((p) => { return true; }, (p) =>
+            FavorCM = new RelayCommand<Frame>((p) => { return true; },async (p) =>
             {
-                MessageBox.Show(p.Content.GetType().Name);
+                FavorList = await Task.Run(() => ThongKeService.Ins.GetTop10SalerBetween(SelectedDateFrom, SelectedDateTo));                 
                 p.Content = new MonUaThichTable();
                
             });
+
             InfoBillCM = new RelayCommand<BillDTO>((p) => { return true; }, (p) =>
             {
                 if(SelectedItem == null)
@@ -130,5 +169,6 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
                 }
             });
         }
+
     }
 }

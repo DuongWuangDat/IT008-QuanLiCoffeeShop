@@ -166,18 +166,19 @@
                                     Margin="10 0 20 0"
                                     Text="Từ" Height="17"></TextBlock>
                                 <DatePicker
-                                      SelectedDate="{Binding SelectedDateFrom}"
-                                      x:Name="DatePicker1"
+                                      SelectedDate="{Binding SelectedDateFrom, StringFormat=dd/MM/yyyy}"
+                                    x:Name="DatePicker1"
                                       Width="100"
                                     SelectedDateFormat="Short"
                                       materialDesign:CalendarAssist.IsHeaderVisible="False"
                                       materialDesign:HintAssist.Hint="Ngày">
-                                    <DatePicker.Resources>
-                                        <Style TargetType="DatePickerTextBox">
-                                            <Setter Property="Text" Value="{Binding SelectedDateFrom, StringFormat='dd-MM-yyyy'}" />
-                                        </Style>
-                                    </DatePicker.Resources>
-                                    
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectedDateChanged">
+                                            <i:InvokeCommandAction Command="{Binding DateChange}"
+                                                                CommandParameter="{Binding ElementName=DatePicker1}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <!-- SelectedDateChanged="{Binding DateChange}" dd -->  
                                 </DatePicker>
                             </StackPanel>
 
@@ -199,11 +200,18 @@
                                     Margin="10 0 10 0"
                                     Text="Đến" Height="17"></TextBlock>
                                 <DatePicker
-                                    SelectedDate="{Binding SelectedDateTo, StringFormat=d/M/yyyy}"
+                                    SelectedDate="{Binding SelectedDateTo, StringFormat=dd/MM/yyyy}"
                                     x:Name="DatePicker2"                                    
                                     Width="100"
                                     materialDesign:CalendarAssist.IsHeaderVisible="False"
-                                    materialDesign:HintAssist.Hint="Ngày"></DatePicker>
+                                    materialDesign:HintAssist.Hint="Ngày">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectedDateChanged">
+                                            <i:InvokeCommandAction Command="{Binding DateChange}"
+                                                CommandParameter="{Binding ElementName=DatePicker1}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </DatePicker>
                             </StackPanel>
 
                         </Border>

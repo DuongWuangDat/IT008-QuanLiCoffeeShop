@@ -196,7 +196,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
 
                 if (this.Name == null || this.Genre == null || this.Image == null)
                 {                    
-                    MessageBox.Show("Không nhập đủ dữ liệu!");
+                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Không nhập đủ dữ liệu!");
                 }
                 else
                 {
@@ -221,12 +221,13 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                         p.Close();
                         ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProduct());
                         prdList = new List<ProductDTO>(ProductList);
+                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Thêm thành công");
                         //AddedSuccessfully addedSuccessfully = new AddedSuccessfully();
                         //addedSuccessfully.Show();
                     }
                     else
                     {
-                        MessageBox.Show(messageAdd);
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, messageAdd);
                     }
                 }
 
@@ -245,7 +246,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                     }
                     else
                     {
-                        MessageBox.Show("Tải ảnh lên thất bại!");
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Tải ảnh lên thất bại!");
                     }                   
                 }
 
@@ -266,7 +267,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                     }
                     else
                     {
-                        MessageBox.Show("Tải ảnh lên thất bại!");
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Tải ảnh lên thất bại!");
                     }
                 }
             });
@@ -313,7 +314,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                 {
                 if (this.EditName == null || this.EditGenre == null || this.EditImage == null)
                 {
-                    MessageBox.Show("Không nhập đủ dữ liệu!");
+                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Không nhập đủ dữ liệu!");
                 }
                 else
                 {
@@ -322,6 +323,12 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
 
                     GenreProduct genrePrD = new GenreProduct();
                     (id, genrePrD) = await GenreService.Ins.FindGenrePrD(EditGenre);
+                    if (OriginImage != EditImage)
+                        {
+                            await CloudService.Ins.DeleteImage(OriginImage);
+                            EditImage = await CloudService.Ins.UploadImage(EditImage);
+                        }
+
                     Product newPrD = new Product
                     {
                         ID = SelectedItem.ID,
@@ -334,17 +341,16 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                         IsDeleted = false,
                     };
                     (bool success, string messageEdit) = await ProductService.Ins.EditPrD(newPrD, SelectedItem.ID);
-                    if (OriginImage != EditImage)
-                        await CloudService.Ins.DeleteImage(OriginImage);
                     if (success)
                     {
-                        closingWd(p);
                         ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProduct());
                         prdList = new List<ProductDTO>(ProductList);
+                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Sửa thành công");
+                        closingWd(p);
                     }
                     else
                     {
-                        MessageBox.Show(messageEdit);
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, messageEdit);
                     }
                 }
                 }
@@ -372,7 +378,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                     }
                     else
                     {
-                        MessageBox.Show(messageDelete);
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, messageDelete);
                     }
                 }               
             });

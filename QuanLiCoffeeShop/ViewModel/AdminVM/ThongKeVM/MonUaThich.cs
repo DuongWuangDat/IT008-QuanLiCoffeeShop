@@ -17,7 +17,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
 {
     public partial class ThongKeViewModel: BaseViewModel
     {
-        private static List<ProductDTO> favorList;
+        //private static List<ProductDTO> favorList;
         private List<ProductDTO> _favorList;
         public List<ProductDTO> FavorList
         {

@@ -293,6 +293,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.TableVM
                         TableList = new ObservableCollection<SeatDTO>(await SeatService.Ins.GetAllSeat());
                         tablelist = new List<SeatDTO>(TableList);
                         IsPopupOpenAdd = false;
+                        
                         MessageBox.Show("Thêm thành công");
                         resetdata();
                     }    

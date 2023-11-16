@@ -24,7 +24,7 @@
           IsHitTestVisible="{Binding IsOpenMain}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="236"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition > </ColumnDefinition>
         </Grid.ColumnDefinitions>
         <!--grid menu-->
         <Grid Grid.Column="0"
@@ -114,19 +114,20 @@
             </Border>
         </Grid>
         <Grid Grid.Column="1">
-            <Border  Margin="10,15,20,15"
+            <Border Height="750"
+                Margin="10,5,20,15"
                     Padding="0,0,0,0"
                      BorderBrush="#E6B89F"
-                     BorderThickness="25"
+                     BorderThickness="15"
                      CornerRadius="50">
                 <Grid>
-                    <Border Margin="10,20,20,10"
+                    <Border Margin="10,15,20,5"
                             BorderBrush="Black"
                             VerticalAlignment="Top"
                             Height="50"
                             BorderThickness="0,0,0,1">
                         <WrapPanel>
-                            <Border Margin="0,0,0,10"
+                            <Border Margin="0,0,0,5"
                                     Width="100"
                                     Height="30"
                                     BorderThickness="0,0,1,0"
@@ -136,7 +137,7 @@
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"></TextBlock>
                             </Border>
-                            <Border  Margin="0,0,0,10"
+                            <Border  Margin="0,0,0,5"
                                      Width="400"
                                      Height="30"
                                      BorderThickness="0,0,1,0"
@@ -146,7 +147,7 @@
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"></TextBlock>
                             </Border>
-                            <Border  Margin="0,0,0,10"
+                            <Border  Margin="0,0,0,5"
                                      Width="275"
                                      Height="30"
                                      BorderThickness="0,0,1,0"
@@ -156,7 +157,7 @@
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"></TextBlock>
                             </Border>
-                            <Border Margin="0,0,0,10"
+                            <Border Margin="0,0,0,5"
                                     Width="300"
                                     Height="30">
                                 <TextBlock Text="Ghi chú"
@@ -167,8 +168,8 @@
                         </WrapPanel>
                     </Border>
                     <ScrollViewer x:Name="ScrollViewer"
-                                  Height="630"
-                                  Margin="5,0,12,5"
+                                  Height="640"
+                                  Margin="5,0,40,5"
                                   VerticalScrollBarVisibility="Auto"
                                   VerticalAlignment="Bottom">
                         <ListView x:Name="prb_list"
@@ -176,7 +177,7 @@
                                   ItemsSource="{Binding ProblemList}"
                                   SelectedItem="{Binding SelectedItem}"
                                   Height="630"
-                                  Width="1220">
+                                  Width="1230">
                             <ListView.ItemContainerStyle>
                                 <Style BasedOn="{StaticResource MaterialDesignListBoxItem}"
                                        TargetType="ListViewItem">
@@ -206,8 +207,9 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
-                                        <Border Margin="10,0,0,0"
+                                        <Border Margin="0,0,0,0"
                                                 BorderBrush="Black"
+                                                Width="1180"
                                                 BorderThickness="0,0,0,1">
                                             <WrapPanel>
                                                 <Border Margin="0,0,0,10"

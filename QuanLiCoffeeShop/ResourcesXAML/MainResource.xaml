@@ -7,7 +7,7 @@
                     xmlns:viewmodel5="clr-namespace:QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM"
                     xmlns:viewmodel6="clr-namespace:QuanLiCoffeeShop.ViewModel.AdminVM.TableVM"
                     xmlns:viewmodel="clr-namespace:QuanLiCoffeeShop.ViewModel"
-                    xmlns:viewmodel6="clr-namespace:QuanLiCoffeeShop.ViewModel"
+                    xmlns:viewmodel7="clr-namespace:QuanLiCoffeeShop.ViewModel"
                     >
     <viewmodel1:MainAdminViewModel x:Key="MainAdminVM"/>
     <viewmodel2:LoginViewModel x:Key="LoginVM"/>

@@ -146,6 +146,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.TableVM
         }
         async void  UpdateBtn()
         {
+            TableList = new ObservableCollection<SeatDTO>(await SeatService.Ins.GetAllSeat());
+            tablelist = new List<SeatDTO>(TableList);
             if (Genre == "Tất cả loại bàn")
             {
                 switch (Contentbtn)
@@ -195,14 +197,12 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.TableVM
         }
         public ICommand FirstLoadTable { get; set; }
         public ICommand Add {  get; set; }
-        public ICommand Delete { get; set; }
         public ICommand Edit { get; set; }
         public ICommand OpenAdd { get; set; }
         public ICommand CloseAdd { get; set; }
         public ICommand OpenEdit {  get; set; }
         public ICommand CloseEdit { get; set;}
         public ICommand OpenDelete { get; set; }
-        public ICommand CloseDelete { get; set;}
         public ICommand OpenInfo { get; set; }
         public ICommand CloseInfo { get; set; }
         public ICommand Classify {  get; set; }
@@ -251,15 +251,26 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.TableVM
             });
 
 
-            OpenDelete = new RelayCommand<SeatDTO>((p) => { return true; }, (p) =>
+            OpenDelete = new RelayCommand<SeatDTO>((p) => { return true; },async (p) =>
             {
                 get_selecteditem(p);
-                IsPopupOpenDelete = true;
-            });
-            CloseDelete = new RelayCommand<object>((p) => { return true; }, (p) =>
-            {
-                IsPopupOpenDelete = false;
-            });           
+                DeleteMessage wd = new DeleteMessage();
+                wd.ShowDialog();
+                if (wd.DialogResult == true)
+                {
+                    (bool success, string messageEdit) = await SeatService.Ins.DeleteSeat(selecteditem.ID);
+                    if (success)
+                    {
+                        UpdateBtn();
+                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Bạn đã xóa thành công");
+
+                    }
+                    else
+                    {
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đã xóa thất bại");
+                    }
+                }    
+            });          
             OpenAdd = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 resetdata();
@@ -274,10 +285,14 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.TableVM
             {
                 if(Status==null || GenreName==null)
                 {
-                    MessageBox.Show("nhập thiếu thông tin");
+                    IsPopupOpenAdd=false;
+                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đã nhập thiếu thông tin");
+                    IsPopupOpenAdd = true;
+
                 }
                 else
                 {
+                    IsPopupOpenAdd = false;
                     int id;
                     GenreSeat genreseat = new GenreSeat();
                     (id, genreseat) = await GenreService.Ins.FindGenreSeat(GenreName);
@@ -286,26 +301,24 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.TableVM
                         Status = Status,
                         IDGenre = id,
                         IsDeleted = false,
-                    };                   
+                    };
+                    resetdata();
                     (bool IsAdded, string messageAdd) = await SeatService.Ins.AddNewSeat(newseat);
                     if(IsAdded)
                     {
                         TableList = new ObservableCollection<SeatDTO>(await SeatService.Ins.GetAllSeat());
-                        tablelist = new List<SeatDTO>(TableList);
-                        IsPopupOpenAdd = false;
-                        
-                        MessageBox.Show("Thêm thành công");
-                        resetdata();
+                        tablelist = new List<SeatDTO>(TableList);                                               
+                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Bạn đã thêm thành công");                        
                     }    
                     else
                     {
-                        MessageBox.Show("Thêm thất bại");
-                        resetdata();
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đã thêm thất bại");
                     }    
                 }    
             });
             Edit = new RelayCommand<object>((p) => { return true; }, async (p) =>
             {
+                IsPopupOpenEdit = false;
                 int id;
                 GenreSeat genreseat = new GenreSeat();
                 (id, genreseat) = await GenreService.Ins.FindGenreSeat(genreName);              
@@ -316,37 +329,24 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.TableVM
                     IDGenre = id,
                     IsDeleted = false,
                 };
+                resetdata();
                 (bool success, string messageEdit) = await SeatService.Ins.EditSeat(newseat);
                 if(success)
-                {
-                    IsPopupOpenEdit = false;
+                {                   
                     TableList = new ObservableCollection<SeatDTO>(await SeatService.Ins.GetAllSeat());
                     tablelist = new List<SeatDTO>(TableList);
-                    MessageBox.Show("Sửa thành công");
-                    resetdata();
+                    MessageBoxCustom.Show(MessageBoxCustom.Success, "Bạn đã sửa thành công");                   
                 }
                 else
                 {
-                    MessageBox.Show("Sửa thất bại");
+                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đã sửa thất bại");
                 }
 
             });
-            Delete = new RelayCommand<object>((p) => { return true; }, async (p) =>
-            {
-                (bool success, string messageEdit) = await SeatService.Ins.DeleteSeat(selecteditem.ID);
-                if (success)
-                {
-                    IsPopupOpenDelete = false;
-                    MessageBox.Show("Bạn đã xóa thành công");
-                   
-                }
-                else
-                {
-                    MessageBox.Show("Bạn đã xóa thất bại");
-                }    
-            });
             Classify = new RelayCommand<Button>((p) => { return true; }, async (p) =>
             {
+                TableList = new ObservableCollection<SeatDTO>(await SeatService.Ins.GetAllSeat());
+                tablelist = new List<SeatDTO>(TableList);
 
                 if (Genre == "Tất cả loại bàn")
                 {

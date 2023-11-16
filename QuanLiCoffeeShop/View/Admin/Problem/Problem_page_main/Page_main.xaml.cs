@@ -27,12 +27,13 @@ namespace QuanLiCoffeeShop.View.Admin.Problem.Problem_page_main
             InitializeComponent();
            
         }
-        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+       
+
+        private void ScrollViewer_PreviewMouseWheel_1(object sender, MouseWheelEventArgs e)
         {
             ScrollViewer.ScrollToVerticalOffset(ScrollViewer.VerticalOffset - e.Delta);
             e.Handled = true;
         }
-
     }
     
 }

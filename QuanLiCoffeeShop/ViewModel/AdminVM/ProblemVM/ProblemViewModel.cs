@@ -2,6 +2,7 @@
 using QuanLiCoffeeShop.Model;
 using QuanLiCoffeeShop.Model.Service;
 using QuanLiCoffeeShop.View.Admin.Problem;
+using QuanLiCoffeeShop.View.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using System.Windows;
 using QuanLiCoffeeShop.View.Admin.Problem.Problem_page_main;
+
 
 namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
 {
@@ -90,12 +92,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
         public ICommand CloseEdit { get; set; }
         public ICommand OpenDelete { get; set; }
         public ICommand CloseDelete { get; set; }
-        public ICommand Delete {  get; set; }
         public ICommand Search { get; set; }
-        public ICommand CloseMessAdd { get; set; }
-        public ICommand CloseMessCauAdd { get; set; }   
-        public ICommand CloseMessEdit { get; set; }
-        public ICommand CloseMessDelete { get; set; }   
         private void resetdata()
         {
             Name = null; Description=null;Status = null;
@@ -133,14 +130,13 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                 if (Name == null || Status == null)
                 {
                     IsPopupOpenAdd = false;
-                    MessageCautionAdd wd= new MessageCautionAdd();
-                    wd.ShowDialog();
+                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đã nhập thiếu thông tin");
                     IsPopupOpenAdd = true;
                 }
                 else
                 {
                     if (Description == null) { Description = ""; }
-                    Error newerror = new Error
+                    Model.Error newerror = new Model.Error()
                     {
                         DisplayName = Name,
                         Status = Status,
@@ -155,8 +151,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                         ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
                          ProList = new List<ErrorDTO>(ProblemList);
                         IsPopupOpenAdd = false;
-                       MessageAdd wd = new MessageAdd();
-                        wd.ShowDialog();
+                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Bạn đã thêm thành công");           
                     }
                    
                 }
@@ -172,20 +167,22 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
             CloseEdit = new RelayCommand<object>((p) => { return true; }, (p) => 
             { 
                 IsPopupOpenEdit = false;
-                resetdata() ;
-               
+                resetdata() ;               
             });
             Edit=new RelayCommand<object>((p) => { return true; },async (p)=>
             {
 
                 if (Status == "")
                 {
-                    MessageBox.Show("Bạn nhập chưa đủ dữ liệu");
+                    isPopupOpenEdit = false;
+                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đã nhập thiếu dữ liệu");
+                    IsPopupOpenEdit= true;
+                    
                 }
                 else
                 {
                     if (Description == null) { Description = ""; }
-                    Error newerror = new Error
+                    Model.Error newerror = new Model.Error()
                     {
                         ID = SelectedItem.ID,
                         DisplayName = SelectedItem.DisplayName,
@@ -193,41 +190,41 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                         Description = this.Description,
                         IsDeleted = false,
                     };
-
+                    resetdata();
                     (bool success, string messageEdit) = await ErrorService.Ins.EditError(newerror);
                     if (success)
                     {
                         IsPopupOpenEdit = false;
                         ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
-                        MessageEdit wd = new MessageEdit();
-                        wd.ShowDialog();
-                        resetdata();
+                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Bạn đã sửa thành công");
+                       
                     }
+                    else
+                    {
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Sửa thất bại");
+                    }    
                 }
                                       
             });
-            OpenDelete = new RelayCommand<ErrorDTO>((p) => { return true; }, (p) =>
+            OpenDelete = new RelayCommand<ErrorDTO>((p) => { return true; },async (p) =>
             {
                 ExecuteOpenDelete(p);
-                IsPopupOpenDelete = true;           
-
-            });
-            CloseDelete = new RelayCommand<object>((p) => { return true; }, (p) =>
-            {
-                IsPopupOpenDelete = false;
-            });
-            Delete = new RelayCommand<object>((p) => { return true; },async (p) =>
-            {
-              
-
-                (bool sucess, string messageDelete) = await ErrorService.Ins.DeleteError(SelectedItem.ID);
-                if (sucess)
+                DeleteMessage wd = new DeleteMessage();
+                wd.ShowDialog();
+                if (wd.DialogResult == true)
                 {
-                    ProblemList.Remove(SelectedItem);
-                    IsPopupOpenDelete = false;
-                    MessageDelete wd =new MessageDelete();
-                    wd.ShowDialog();
-                }
+                    (bool sucess, string messageDelete) = await ErrorService.Ins.DeleteError(SelectedItem.ID);
+                    if (sucess)
+                    {
+                        ProblemList.Remove(SelectedItem);
+                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Bạn đã xóa thành công");
+                    }
+                    else
+                    {
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Xóa thất bại");
+                    }    
+                }             
+
             });
             Search = new RelayCommand<TextBox>((p) => { return true; },async (p) =>
             {
@@ -240,22 +237,6 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                     ProList = new List<ErrorDTO>(ProblemList);
                     ProblemList = new ObservableCollection<ErrorDTO>(ProList.FindAll(x => x.DisplayName.ToLower().Contains(p.Text.ToLower())));
                 }    
-            });
-            CloseMessAdd = new RelayCommand<Window>((p) => { return true; }, (p) =>
-            {
-                p.Close();
-            });
-            CloseMessCauAdd = new RelayCommand<Window>((p) => { return true; }, (p) =>
-            {
-                p.Close();
-            });
-            CloseMessEdit = new RelayCommand<Window>((p) => { return true; }, (p) =>
-            {
-                p.Close();
-            });
-            CloseMessDelete = new RelayCommand<Window>((p) => { return true; }, (p) =>
-            {
-                p.Close();
             });
         }
     }

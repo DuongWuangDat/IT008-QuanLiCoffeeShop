@@ -574,68 +574,6 @@
                     </StackPanel>
                 </Border>
             </Popup>
-            <!--popup xác nhận xóa -->
-            <Popup  Placement="Center"
-                    x:Name="confirmPopup"
-                    IsOpen="{Binding IsPopupOpenDelete}"
-                    AllowsTransparency="True"
-                    PopupAnimation="Fade">
-                <Border Width="438"
-                        Height="196"
-                        CornerRadius="25"
-                        Background="White"
-                        BorderBrush="#E0AE8A"
-                        BorderThickness="2">
-                    <StackPanel>
-                        <TextBlock Margin="0,40,0,0"
-                                   HorizontalAlignment="Center"
-                                   Text="Bạn có chắc chắn muốn xóa bàn này không?"
-                                   FontSize="18"
-                                   FontWeight="Bold"
-                                   Foreground="#CC824D"></TextBlock>
-                        <Grid Margin="0,40,0,0">
-                            <Button Height="48"
-                                    Width="97"
-                                    HorizontalAlignment="Left"
-                                    Margin="70,0,0,0"
-                                    Command="{Binding Delete}">
-                                <Button.Template>
-                                    <ControlTemplate>
-                                        <Border      CornerRadius="24"
-                                                     Background="#F0BD70">
-                                            <TextBlock   Text="Có"
-                                                         FontWeight="Bold"
-                                                         FontSize="20"
-                                                         VerticalAlignment="Center"
-                                                         HorizontalAlignment="Center"
-                                                         Foreground="White" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                            <Button Height="48"
-                                    Width="97"
-                                    HorizontalAlignment="Right"
-                                    Margin="0,0,70,0"
-                                    Command="{Binding CloseDelete}">
-                                <Button.Template>
-                                    <ControlTemplate>
-                                        <Border      CornerRadius="24"
-                                                     Background="#EFD8B4">
-                                            <TextBlock   Text="Không"
-                                                         FontWeight="Bold"
-                                                         FontSize="20"
-                                                         VerticalAlignment="Center"
-                                                         HorizontalAlignment="Center"
-                                                         Foreground="White" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                        </Grid>
-                    </StackPanel>
-                </Border>
-            </Popup>
             <!--popup thêm bàn-->
             <Popup  Placement="Center"
                     x:Name="addPopup"

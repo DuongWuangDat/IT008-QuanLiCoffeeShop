@@ -114,14 +114,16 @@
             </Border>
         </Grid>
         <Grid Grid.Column="1">
-
             <Border  Margin="10,15,20,15"
+                    Padding="0,0,0,0"
                      BorderBrush="#E6B89F"
                      BorderThickness="25"
                      CornerRadius="50">
-                <StackPanel>
+                <Grid>
                     <Border Margin="10,20,20,10"
                             BorderBrush="Black"
+                            VerticalAlignment="Top"
+                            Height="50"
                             BorderThickness="0,0,0,1">
                         <WrapPanel>
                             <Border Margin="0,0,0,10"
@@ -164,20 +166,47 @@
                             </Border>
                         </WrapPanel>
                     </Border>
-                    <ScrollViewer x:Name="ScrollViewer"                               
+                    <ScrollViewer x:Name="ScrollViewer"
+                                  Height="630"
+                                  Margin="5,0,12,5"
                                   VerticalScrollBarVisibility="Auto"
-                                  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+                                  VerticalAlignment="Bottom">
                         <ListView x:Name="prb_list"
+                                  VerticalAlignment="Top"
                                   ItemsSource="{Binding ProblemList}"
                                   SelectedItem="{Binding SelectedItem}"
                                   Height="630"
-                                  Width="1220"
-                                  >
+                                  Width="1220">
+                            <ListView.ItemContainerStyle>
+                                <Style BasedOn="{StaticResource MaterialDesignListBoxItem}"
+                                       TargetType="ListViewItem">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter Property="IsSelected"
+                                                    Value="True" />
+                                            <Setter Property="Background"
+                                                    Value="#FFEAF8FF" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                    <Setter Property="Padding"
+                                            Value="1" />
+                                    <Setter Property="Margin"
+                                            Value="4.5" />
+                                    <Setter Property="materialDesign:ListBoxItemAssist.ShowSelection"
+                                            Value="False" />
 
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="1" />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
-                                        <Border Margin="10,0,0,10"
+                                        <Border Margin="10,0,0,0"
                                                 BorderBrush="Black"
                                                 BorderThickness="0,0,0,1">
                                             <WrapPanel>
@@ -255,7 +284,9 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </ScrollViewer>
-                </StackPanel>
+                </Grid>
+                  
+                
             </Border>
         </Grid>
         <!--popup thêm sự cố-->
@@ -516,68 +547,7 @@
                 </StackPanel>
             </Border>
         </Popup>
-        <!--popup thông báo xóa-->
-        <Popup  Placement="Center"
-                x:Name="Popup_thong_bao_dong"
-                IsOpen="{Binding IsPopupOpenDelete}"
-                AllowsTransparency="True"
-                PopupAnimation="Fade">
-            <Border Width="438"
-                    Height="196"
-                    CornerRadius="25"
-                    Background="White"
-                    BorderBrush="#E0AE8A"
-                    BorderThickness="1">
-                <StackPanel>
-                    <TextBlock Margin="0,40,0,0"
-                               HorizontalAlignment="Center"
-                               Text="Bạn có chắc chắn muốn xóa bàn này không?"
-                               FontSize="18"
-                               FontWeight="Bold"
-                               Foreground="#CC824D"></TextBlock>
-                    <Grid Margin="0,40,0,0">
-                        <Button Height="48"
-                                Width="97"
-                                HorizontalAlignment="Left"
-                                Margin="70,0,0,0"
-                                Command="{Binding Delete}">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Border      CornerRadius="24"
-                                                 Background="#F0BD70">
-                                        <TextBlock   Text="Có"
-                                                     FontWeight="Bold"
-                                                     FontSize="20"
-                                                     VerticalAlignment="Center"
-                                                     HorizontalAlignment="Center"
-                                                     Foreground="White" />
-                                    </Border>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                        <Button Height="48"
-                                Width="97"
-                                HorizontalAlignment="Right"
-                                Margin="0,0,70,0"
-                                Command="{Binding CloseDelete}">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Border      CornerRadius="24"
-                                                 Background="#EFD8B4">
-                                        <TextBlock   Text="Không"
-                                                     FontWeight="Bold"
-                                                     FontSize="20"
-                                                     VerticalAlignment="Center"
-                                                     HorizontalAlignment="Center"
-                                                     Foreground="White" />
-                                    </Border>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                    </Grid>
-                </StackPanel>
-            </Border>
-        </Popup>
+      
 
 
     </Grid>

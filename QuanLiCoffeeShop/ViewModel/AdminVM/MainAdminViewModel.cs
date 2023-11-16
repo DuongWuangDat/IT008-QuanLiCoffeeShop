@@ -7,6 +7,8 @@ using System.Windows.Media.Animation;
 using System;
 using System.Windows;
 using QuanLiCoffeeShop.View.Admin.SanPham;
+using QuanLiCoffeeShop.View.Admin.Table.Table_page_main;
+using QuanLiCoffeeShop.View.Admin.Problem.Problem_page_main;
 using QuanLiCoffeeShop.DTOs;
 using QuanLiCoffeeShop.View.Admin.ThongKe;
 using LiveCharts;
@@ -36,6 +38,10 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM
         public ICommand LoadKhachHangPage { get; set; }
         public ICommand LoadSanPhamPage { get; set; }
         public ICommand LoadThongKePage { get; set; }
+        public ICommand LoadTablePage { get; set; }
+        public ICommand LoadErrorPage { get; set; }
+
+
         public MainAdminViewModel()
         {
             FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, (p)=> { p.Content = new SanPhamPage(); currentName = curentstaff.DisplayName; });
@@ -43,6 +49,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM
             LoadKhachHangPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new CustomerPage(); });
             LoadSanPhamPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new SanPhamPage(); });
             LoadThongKePage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new ThongKeMainPage(); });
+            LoadErrorPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new QuanLiCoffeeShop.View.Admin.Problem.Problem_page_main.Page_main(); });
+            LoadTablePage= new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new QuanLiCoffeeShop.View.Admin.Table.Table_page_main.Page_main(); });
         }
     }
 }

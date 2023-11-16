@@ -243,18 +243,6 @@
     <Compile Include="View\Admin\MainAdminWindow.xaml.cs">
       <DependentUpon>MainAdminWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Admin\Problem\Problem_page_main\MessageAdd.xaml.cs">
-      <DependentUpon>MessageAdd.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Admin\Problem\Problem_page_main\MessageCautionAdd.xaml.cs">
-      <DependentUpon>MessageCautionAdd.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Admin\Problem\Problem_page_main\MessageDelete.xaml.cs">
-      <DependentUpon>MessageDelete.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Admin\Problem\Problem_page_main\MessageEdit.xaml.cs">
-      <DependentUpon>MessageEdit.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Admin\Problem\Problem_page_main\Page_main.xaml.cs">
       <DependentUpon>Page_main.xaml</DependentUpon>
     </Compile>
@@ -347,22 +335,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Admin\MainAdminWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Admin\Problem\Problem_page_main\MessageAdd.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Admin\Problem\Problem_page_main\MessageCautionAdd.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Admin\Problem\Problem_page_main\MessageDelete.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Admin\Problem\Problem_page_main\MessageEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

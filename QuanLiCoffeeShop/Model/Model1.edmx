@@ -15,6 +15,7 @@
           <Property Name="CreateAt" Type="smalldatetime" />
           <Property Name="TotalPrice" Type="money" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="IDSeat" Type="int" />
         </EntityType>
         <EntityType Name="BillInfo">
           <Key>
@@ -104,6 +105,16 @@
           <Property Name="Role" Type="nvarchar" MaxLength="100" />
           <Property Name="IsDeleted" Type="bit" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <Association Name="FK_Bill_Cus">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
@@ -113,6 +124,18 @@
             </Principal>
             <Dependent Role="Bill">
               <PropertyRef Name="IDCus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bill_Seat">
+          <End Role="Seat" Type="Self.Seat" Multiplicity="0..1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seat">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="IDSeat" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -198,8 +221,13 @@
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Seat" EntityType="Self.Seat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Bill_Cus" Association="Self.FK_Bill_Cus">
             <End Role="Customer" EntitySet="Customer" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_Seat" Association="Self.FK_Bill_Seat">
+            <End Role="Seat" EntitySet="Seat" />
             <End Role="Bill" EntitySet="Bill" />
           </AssociationSet>
           <AssociationSet Name="FK_Bill_Staff" Association="Self.FK_Bill_Staff">
@@ -241,8 +269,13 @@
           <EntitySet Name="Product" EntityType="QuanLiCoffeShopModel.Product" />
           <EntitySet Name="Seat" EntityType="QuanLiCoffeShopModel.Seat" />
           <EntitySet Name="Staff" EntityType="QuanLiCoffeShopModel.Staff" />
+          <EntitySet Name="sysdiagrams" EntityType="QuanLiCoffeShopModel.sysdiagrams" />
           <AssociationSet Name="FK_Bill_Cus" Association="QuanLiCoffeShopModel.FK_Bill_Cus">
             <End Role="Customer" EntitySet="Customer" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_Seat" Association="QuanLiCoffeShopModel.FK_Bill_Seat">
+            <End Role="Seat" EntitySet="Seat" />
             <End Role="Bill" EntitySet="Bill" />
           </AssociationSet>
           <AssociationSet Name="FK_Bill_Staff" Association="QuanLiCoffeShopModel.FK_Bill_Staff">
@@ -280,7 +313,9 @@
           <Property Name="CreateAt" Type="DateTime" Precision="0" />
           <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="IDSeat" Type="Int32" />
           <NavigationProperty Name="Customer" Relationship="QuanLiCoffeShopModel.FK_Bill_Cus" FromRole="Bill" ToRole="Customer" />
+          <NavigationProperty Name="Seat" Relationship="QuanLiCoffeShopModel.FK_Bill_Seat" FromRole="Bill" ToRole="Seat" />
           <NavigationProperty Name="Staff" Relationship="QuanLiCoffeShopModel.FK_Bill_Staff" FromRole="Bill" ToRole="Staff" />
           <NavigationProperty Name="BillInfo" Relationship="QuanLiCoffeShopModel.FK_BillInfo_Bill" FromRole="Bill" ToRole="BillInfo" />
         </EntityType>
@@ -361,6 +396,7 @@
           <Property Name="IDGenre" Type="Int32" />
           <Property Name="Status" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Bill" Relationship="QuanLiCoffeShopModel.FK_Bill_Seat" FromRole="Seat" ToRole="Bill" />
           <NavigationProperty Name="Customer" Relationship="QuanLiCoffeShopModel.FK_Cus_Seat" FromRole="Seat" ToRole="Customer" />
           <NavigationProperty Name="GenreSeat" Relationship="QuanLiCoffeShopModel.FK_SEAT_GENRESEAT" FromRole="Seat" ToRole="GenreSeat" />
         </EntityType>
@@ -383,6 +419,16 @@
           <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="Bill" Relationship="QuanLiCoffeShopModel.FK_Bill_Staff" FromRole="Staff" ToRole="Bill" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <Association Name="FK_Bill_Cus">
           <End Type="QuanLiCoffeShopModel.Customer" Role="Customer" Multiplicity="0..1" />
           <End Type="QuanLiCoffeShopModel.Bill" Role="Bill" Multiplicity="*" />
@@ -392,6 +438,18 @@
             </Principal>
             <Dependent Role="Bill">
               <PropertyRef Name="IDCus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bill_Seat">
+          <End Type="QuanLiCoffeShopModel.Seat" Role="Seat" Multiplicity="0..1" />
+          <End Type="QuanLiCoffeShopModel.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seat">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="IDSeat" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -476,6 +534,7 @@
           <EntitySetMapping Name="Bill">
             <EntityTypeMapping TypeName="QuanLiCoffeShopModel.Bill">
               <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="IDSeat" ColumnName="IDSeat" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
                 <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
@@ -577,6 +636,17 @@
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QuanLiCoffeShopModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

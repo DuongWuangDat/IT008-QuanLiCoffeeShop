@@ -306,8 +306,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.TableVM
                     (bool IsAdded, string messageAdd) = await SeatService.Ins.AddNewSeat(newseat);
                     if(IsAdded)
                     {
-                        TableList = new ObservableCollection<SeatDTO>(await SeatService.Ins.GetAllSeat());
-                        tablelist = new List<SeatDTO>(TableList);                                               
+                        UpdateBtn();
                         MessageBoxCustom.Show(MessageBoxCustom.Success, "Bạn đã thêm thành công");                        
                     }    
                     else
@@ -333,8 +332,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.TableVM
                 (bool success, string messageEdit) = await SeatService.Ins.EditSeat(newseat);
                 if(success)
                 {                   
-                    TableList = new ObservableCollection<SeatDTO>(await SeatService.Ins.GetAllSeat());
-                    tablelist = new List<SeatDTO>(TableList);
+                    UpdateBtn() ;
                     MessageBoxCustom.Show(MessageBoxCustom.Success, "Bạn đã sửa thành công");                   
                 }
                 else

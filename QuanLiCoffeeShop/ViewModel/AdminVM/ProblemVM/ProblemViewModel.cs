@@ -208,11 +208,12 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
             });
             OpenDelete = new RelayCommand<ErrorDTO>((p) => { return true; },async (p) =>
             {
-                ExecuteOpenDelete(p);
+               
                 DeleteMessage wd = new DeleteMessage();
                 wd.ShowDialog();
                 if (wd.DialogResult == true)
                 {
+                    ExecuteOpenDelete(p);
                     (bool sucess, string messageDelete) = await ErrorService.Ins.DeleteError(SelectedItem.ID);
                     if (sucess)
                     {

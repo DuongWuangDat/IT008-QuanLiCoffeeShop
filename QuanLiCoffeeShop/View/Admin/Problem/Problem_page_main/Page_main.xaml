@@ -168,15 +168,17 @@
                         </WrapPanel>
                     </Border>
                     <ScrollViewer x:Name="ScrollViewer"
-                                  Height="640"
-                                  Margin="5,0,40,5"
+                                  Height="650"
+                                  Margin="0,75,-50,5"
                                   VerticalScrollBarVisibility="Auto"
-                                  VerticalAlignment="Bottom">
+                                  VerticalAlignment="Top"
+                                  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+                        
                         <ListView x:Name="prb_list"
                                   VerticalAlignment="Top"
                                   ItemsSource="{Binding ProblemList}"
                                   SelectedItem="{Binding SelectedItem}"
-                                  Height="630"
+                                  Margin="0,0,20,5"
                                   Width="1230">
                             <ListView.ItemContainerStyle>
                                 <Style BasedOn="{StaticResource MaterialDesignListBoxItem}"
@@ -196,6 +198,7 @@
                                             Value="4.5" />
                                     <Setter Property="materialDesign:ListBoxItemAssist.ShowSelection"
                                             Value="False" />
+                                    
 
                                 </Style>
                             </ListView.ItemContainerStyle>
@@ -207,13 +210,14 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
-                                        <Border Margin="0,0,0,0"
+                                        <Border 
                                                 BorderBrush="Black"
                                                 Width="1180"
+                                                Height="50"
                                                 BorderThickness="0,0,0,1">
                                             <WrapPanel>
                                                 <Border Margin="0,0,0,10"
-                                                        Width="100"
+                                                        Width="90"
                                                         Height="30">
                                                     <TextBlock Text="{Binding ID}"
                                                                FontSize="20"
@@ -228,7 +232,7 @@
                                                                HorizontalAlignment="Center"
                                                                VerticalAlignment="Center"></TextBlock>
                                                 </Border>
-                                                <Border  Margin="0,0,0,10"
+                                                <Border  Margin="5,0,0,10"
                                                          Width="275"
                                                          Height="30">
                                                     <TextBlock Text="{Binding Status}"

@@ -10,7 +10,7 @@
                     xmlns:viewmodel8="clr-namespace:QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM"
                     xmlns:viewmodel9="clr-namespace:QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM"
                     xmlns:viewmodel10="clr-namespace:QuanLiCoffeeShop.ViewModel.AdminVM.TableVM"
-                    xmlns:viewmodel="clr-namespace:QuanLiCoffeeShop.ViewModel"                   
+                    xmlns:viewmodel="clr-namespace:QuanLiCoffeeShop.ViewModel">
     <viewmodel1:MainAdminViewModel x:Key="MainAdminVM" />
     <viewmodel2:LoginViewModel x:Key="LoginVM" />
     <viewmodel3:MainStaffViewModel x:Key="MainStaffVM" />

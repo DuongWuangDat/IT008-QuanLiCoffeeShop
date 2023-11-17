@@ -26,8 +26,10 @@ namespace QuanLiCoffeeShop.Model
         public Nullable<System.DateTime> CreateAt { get; set; }
         public Nullable<decimal> TotalPrice { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
+        public Nullable<int> IDSeat { get; set; }
     
         public virtual Customer Customer { get; set; }
+        public virtual Seat Seat { get; set; }
         public virtual Staff Staff { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillInfo> BillInfo { get; set; }

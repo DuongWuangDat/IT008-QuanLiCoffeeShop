@@ -41,6 +41,8 @@ namespace QuanLiCoffeeShop.Model.Service
                                     TotalPrice = c.TotalPrice,
                                     Customer = c.Customer,
                                     Staff = c.Staff,
+                                    Seat = c.Seat,
+                                    IDSeat = c.IDSeat,
                                     BillInfo = (from x in c.BillInfo
                                                 where x.IsDeleted == false
                                                 select new BillInfoDTO
@@ -87,6 +89,8 @@ namespace QuanLiCoffeeShop.Model.Service
                     CreateAt = newBill.CreateAt,
                     Customer = newBill.Customer,
                     Staff = newBill.Staff,
+                    IDSeat = newBill.IDSeat,
+                    Seat = newBill.Seat,
                 };
 
                 foreach (var g in newBill.BillInfo)
@@ -140,6 +144,8 @@ namespace QuanLiCoffeeShop.Model.Service
                 bill.IDCus = newBill.IDCus;
                 bill.CreateAt = newBill.CreateAt;
                 bill.TotalPrice = newBill.TotalPrice;
+                bill.IDSeat = newBill.IDSeat;
+                bill.Seat = newBill.Seat;
                 foreach (var b in newBill.BillInfo)
                 {
                     var billInfo = await context.BillInfo.Where(p => p.IDBill == b.IDBill && p.IDProduct == b.IDProduct).FirstOrDefaultAsync();

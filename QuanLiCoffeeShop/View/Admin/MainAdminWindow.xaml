@@ -609,7 +609,7 @@
 
                     </RadioButton>
 
-                    <!--  TaiKhoan-Menu_btn  -->
+                    <!--  SuCo-Menu_btn  -->
                     <RadioButton x:Name="Errbtn"
                                  Cursor="Hand"
                                  Command="{Binding LoadErrorPage}"
@@ -633,7 +633,7 @@
                                                            Margin="24,0,0,0"
                                                            Source="/QuanLiCoffeeShop;component/Resources/Icon/SuCo_Brown_Icon.png" />
                                                     <TextBlock x:Name="text"
-                                                               Margin="13,0,0,0"
+                                                               Margin="13,5,0,0"
                                                                VerticalAlignment="Center"
                                                                FontSize="18"
                                                                Foreground="#FFE0AE8A"

@@ -169,7 +169,7 @@
                     </Border>
                     <ScrollViewer x:Name="ScrollViewer"
                                   Height="650"
-                                  Margin="0,75,-50,5"
+                                  Margin="0,75,-55,5"
                                   VerticalScrollBarVisibility="Auto"
                                   VerticalAlignment="Top"
                                   PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
@@ -177,7 +177,6 @@
                         <ListView x:Name="prb_list"
                                   VerticalAlignment="Top"
                                   ItemsSource="{Binding ProblemList}"
-                                  SelectedItem="{Binding SelectedItem}"
                                   Margin="0,0,20,5"
                                   Width="1230">
                             <ListView.ItemContainerStyle>

@@ -135,6 +135,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                 }
                 else
                 {
+                    IsPopupOpenAdd = false;
                     if (Description == null) { Description = ""; }
                     Model.Error newerror = new Model.Error()
                     {
@@ -150,9 +151,12 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                     {
                         ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
                          ProList = new List<ErrorDTO>(ProblemList);
-                        IsPopupOpenAdd = false;
                         MessageBoxCustom.Show(MessageBoxCustom.Success, "Bạn đã thêm thành công");           
                     }
+                    else
+                    {
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đã thêm thất bại");
+                    }    
                    
                 }
 
@@ -181,6 +185,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                 }
                 else
                 {
+                    IsPopupOpenEdit = false;
                     if (Description == null) { Description = ""; }
                     Model.Error newerror = new Model.Error()
                     {
@@ -194,7 +199,6 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                     (bool success, string messageEdit) = await ErrorService.Ins.EditError(newerror);
                     if (success)
                     {
-                        IsPopupOpenEdit = false;
                         ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
                         MessageBoxCustom.Show(MessageBoxCustom.Success, "Bạn đã sửa thành công");
                        

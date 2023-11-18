@@ -37,7 +37,7 @@
             <ColumnDefinition Width="1225*" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Margin="10">
-            <StackPanel Margin="10,20,10,20">
+            <StackPanel Margin="10,10,10,20">
                 <StackPanel>
 
                     <!--  Add SanPham btn  -->
@@ -315,8 +315,8 @@
         <!--  Hien thi cac san pham  -->
         <ScrollViewer x:Name="ScrollViewer"
                 Grid.Column="1"
-                Height="720"
-                Margin="10,30,10,10"
+                Height="700"
+                Margin="10,20,10,10"
                 VerticalScrollBarVisibility="Auto"
                 VerticalAlignment="Top" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
             <ListView

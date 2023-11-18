@@ -250,7 +250,7 @@
                                 Background="#D9D9D9"
                                 BorderThickness="0"
                                 FontSize="12.8"
-                                Text="{Binding EditBirthDay}" />
+                                Text="{Binding EditBirthDay, StringFormat=dd/MM/yyyy}" />
 
                         </StackPanel>
 

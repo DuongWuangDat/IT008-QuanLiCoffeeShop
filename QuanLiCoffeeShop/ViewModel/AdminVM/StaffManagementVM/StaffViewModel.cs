@@ -337,7 +337,7 @@ namespace QuanLiCoffeeShop.ViewModel
             EditStaffCommand = new RelayCommand<Window>(null, async (p) =>
             {
                 int dWage;
-                if (DisplayName == null || StartDate == null || UserName == null || PassWord == null || PhoneNumber == null || BirthDay == null || Wage == null || Status == null || Email == null || Gender == null || Role == null || !int.TryParse(Wage, out dWage))
+                if (EditDisplayName == null || EditStartDate == null || EditUserName == null || EditPassWord == null || EditPhoneNumber == null || EditBirthDay == null || EditStatus == null || EditEmail == null || EditGender == null || EditRole == null )
                 {
                     MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đang nhập thiếu hoặc sai thông tin");
                 }

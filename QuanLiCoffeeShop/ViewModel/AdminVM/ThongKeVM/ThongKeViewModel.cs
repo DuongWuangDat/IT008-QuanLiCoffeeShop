@@ -127,11 +127,10 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
             });
             #region DoanhThu
             RevenueCM = new RelayCommand<Frame>((p) => { return true; }, async (p) =>
-            {
-                
+            {              
+                p.Content = new DoanhThuTable();
                 List<int> revenueValues = new List<int>();
                 List<DateTime> dates = new List<DateTime>();
-
                 BillService billService = new BillService();
 
                 for (DateTime currentDate = SelectedDateFrom; currentDate <= SelectedDateTo; currentDate = currentDate.AddDays(1))
@@ -156,7 +155,6 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
                     return value.ToString("N");
 
                 };
-                p.Content = new DoanhThuTable();
             });
             #endregion
 

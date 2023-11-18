@@ -234,8 +234,9 @@
     <Compile Include="ViewModel\AdminVM\StaffManagementVM\StaffViewModel.cs" />
     <Compile Include="ViewModel\MessageBoxVM\MessageBoxViewModel.cs" />
     <Compile Include="ViewModel\StaffVM\MainStaffViewModel.cs" />
-    <Compile Include="ViewModel\StaffVM\SalesVM\ProductPageViewModel.cs" />
+    <Compile Include="ViewModel\StaffVM\SalesVM\ProductPage.cs" />
     <Compile Include="ViewModel\StaffVM\SalesVM\SalesMainPageViewModel.cs" />
+    <Compile Include="ViewModel\StaffVM\SalesVM\SeatPage.cs" />
     <Compile Include="View\Admin\CustomerManagement\AddCustomerWindow.xaml.cs">
       <DependentUpon>AddCustomerWindow.xaml</DependentUpon>
     </Compile>
@@ -535,6 +536,8 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Icon\SaleTableBrown_Icon.png" />
+    <Resource Include="Resources\Icon\SearchGray_Icon.png" />
     <Resource Include="Resources\Icon\HistoryWhite_Icon.png" />
     <Resource Include="Resources\Icon\HistoryBrown_Icon.png" />
     <Resource Include="Resources\Icon\ErrorWhite_Icon.png" />

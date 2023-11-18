@@ -19,7 +19,7 @@ using Microsoft.Win32;
 
 namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
 {
-    internal class SalesMainPageViewModel:BaseViewModel
+    public partial class SalesMainPageViewModel:BaseViewModel
     {
         public ICommand LoadSeatPageCM {  get; set; }
         public ICommand LoadProductPageCM { get; set; }
@@ -31,9 +31,37 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
             LoadSeatPageCM = new RelayCommand<Frame>((p)=> { return true; }, (p)=> {
                 p.Content = new SeatPage();
             });
-            LoadProductPageCM = new RelayCommand<Frame>((p) => { return true; }, (p) => {
-                p.Content = new ProductPage();
+            LoadProductPageCM = new RelayCommand<Frame>((p) => { return true; }, async (p) => {
+                ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProduct());
+                if (ProductList != null)
+                {
+                    prdList = new List<ProductDTO>(ProductList);
+                }
+                p.Content = new View.Staff.Sales.ProductPage();
             });
+
+            #region Product
+            AllPrDFilter = new RelayCommand<RadioButton>((p) => { return true; }, async (p) =>
+            {
+                ProductList = new ObservableCollection<ProductDTO>(prdList);
+            });
+            ProductFilter = new RelayCommand<RadioButton>((p) => { return true; }, (p) =>
+            {
+                ProductList = new ObservableCollection<ProductDTO>(prdList.FindAll(x => x.GenreName.ToLower().Contains(p.Content.ToString().ToLower())));
+            });
+            SearchProductCM = new RelayCommand<TextBox>((p) => { return true; }, async (p) =>
+            {
+                if (p.Text == "")
+                {
+                    ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProduct());
+                }
+                else
+                {
+                    ProductList = new ObservableCollection<ProductDTO>(prdList.FindAll(x => x.DisplayName.ToLower().Contains(p.Text.ToLower())));
+                }
+
+            });
+            #endregion
         }
     }
 }

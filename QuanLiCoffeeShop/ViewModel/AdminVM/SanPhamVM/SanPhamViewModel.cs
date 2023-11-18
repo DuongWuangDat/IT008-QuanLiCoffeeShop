@@ -163,7 +163,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
             });
             AllPrDFilter = new RelayCommand<Button>((p) => { return true; }, async (p) =>
             {
-                ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProduct());
+                ProductList = new ObservableCollection<ProductDTO>(prdList);
             });
             SearchSanPhamCM = new RelayCommand<TextBox>((p) => { return true; }, async (p) =>
             {

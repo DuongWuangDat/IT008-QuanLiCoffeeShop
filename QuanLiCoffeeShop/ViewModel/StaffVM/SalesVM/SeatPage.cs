@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
 {
-    internal class ProductPageViewModel:BaseViewModel
+    public partial class SalesMainPageViewModel : BaseViewModel
     {
-        public ProductPageViewModel() { 
-        
-        }
+
     }
 }

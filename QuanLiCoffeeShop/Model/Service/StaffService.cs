@@ -91,15 +91,15 @@ namespace QuanLiCoffeeShop.Model.Service
                     {
                         if (IsEsixtEmail)
                         {
-                            return (false, "Email da ton tai");
+                            return (false, "Email đã tồn tại");
                         }
                         if (IsExistPhone)
                         {
-                            return (false, "SDT da ton tai");
+                            return (false, "Số điện thoại đã tồn tại");
                         }
                         if (IsExistUsername)
                         {
-                            return (false, "Username da ton tai");
+                            return (false, "Tài khoản đã tồn tại");
                         }
                     }
                 }

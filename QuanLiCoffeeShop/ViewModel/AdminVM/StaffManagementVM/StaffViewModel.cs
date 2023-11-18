@@ -6,6 +6,7 @@ using QuanLiCoffeeShop.View.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -214,7 +215,14 @@ namespace QuanLiCoffeeShop.ViewModel
         public string EditGender
         {
             get { return editGender; }
-            set { editGender = value; }
+            set
+            {
+                if (GenderList.Contains(value))
+                {
+                    editGender = value;
+                    OnPropertyChanged(nameof(EditGender));
+                }
+            }
         }
 
         private string editRole;
@@ -223,6 +231,30 @@ namespace QuanLiCoffeeShop.ViewModel
         {
             get { return editRole; }
             set { editRole = value; }
+        }
+
+        private ObservableCollection<string> _genderList;
+
+        public ObservableCollection<string> GenderList
+        {
+            get { return _genderList; }
+            set
+            {
+                _genderList = value;
+                OnPropertyChanged(nameof(GenderList));
+            }
+        }
+
+        private ObservableCollection<string> _statusList;
+
+        public ObservableCollection<string> StatusList
+        {
+            get { return _statusList; }
+            set
+            {
+                _statusList = value;
+                OnPropertyChanged(nameof(StatusList));
+            }
         }
 
         public ICommand OpenAddWindowCommand { get; }
@@ -239,6 +271,8 @@ namespace QuanLiCoffeeShop.ViewModel
         {
             StartDate = DateTime.Now;
             BirthDay = DateTime.Now;
+            GenderList = new ObservableCollection<string> { "Nam", "Nữ" };
+            StatusList = new ObservableCollection<string> { "Đang làm", "Xin nghỉ" };
             FirstLoadStaffPage = new RelayCommand<object>(null, async (p) =>
             {
                 StaffObservation = new ObservableCollection<StaffDTO>(await StaffService.Ins.GetAllStaff());
@@ -258,7 +292,9 @@ namespace QuanLiCoffeeShop.ViewModel
             AddStaffCommand = new RelayCommand<Window>(null, async (p) =>
             {
                 int dWage;
-                if (DisplayName == null || StartDate == null || UserName == null || PassWord == null || PhoneNumber == null || BirthDay == null || Wage == null || Status == null || Email == null || Gender == null || Role == null || !int.TryParse(Wage, out dWage))
+                if (DisplayName == null || StartDate == null || UserName == null || PassWord == null
+                || PhoneNumber == null || BirthDay == null || Wage == null || Status == null || Email == null
+                || Gender == null || Role == null || !int.TryParse(Wage, out dWage))
                 {
                     MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đang nhập thiếu hoặc sai thông tin");
                 }
@@ -320,8 +356,8 @@ namespace QuanLiCoffeeShop.ViewModel
                 EditBirthDay = SelectedItem.BirthDay;
                 EditDisplayName = SelectedItem.DisplayName;
                 EditEmail = SelectedItem.Email;
-                EditGender = SelectedItem.Gender;
-                EditPassWord = SelectedItem.PassWord;
+                EditGender = SelectedItem.Gender.Trim();
+                EditPassWord = null;
                 EditPhoneNumber = SelectedItem.PhoneNumber;
                 EditRole = SelectedItem.Role;
                 EditStartDate = SelectedItem.StartDate;
@@ -335,7 +371,9 @@ namespace QuanLiCoffeeShop.ViewModel
             EditStaffCommand = new RelayCommand<Window>(null, async (p) =>
             {
                 int dWage;
-                if (DisplayName == null || StartDate == null || UserName == null || PassWord == null || PhoneNumber == null || BirthDay == null || Wage == null || Status == null || Email == null || Gender == null || Role == null || !int.TryParse(Wage, out dWage))
+                if (DisplayName == null || StartDate == null || UserName == null || PassWord == null || PhoneNumber == null
+                || BirthDay == null || Wage == null || Status == null || Email == null || Gender == null
+                || Role == null || !int.TryParse(Wage, out dWage))
                 {
                     MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đang nhập thiếu hoặc sai thông tin");
                 }
@@ -356,7 +394,7 @@ namespace QuanLiCoffeeShop.ViewModel
                         IsDeleted = false
                     };
                     (bool success, string messageEdit) = await StaffService.Ins.EditStaff(newStaff);
-                    if(success)
+                    if (success)
                     {
                         StaffObservation = new ObservableCollection<StaffDTO>(await StaffService.Ins.GetAllStaff());
                         MessageBoxCustom.Show(MessageBoxCustom.Success, "Bạn đã chỉnh sửa thành công");

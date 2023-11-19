@@ -23,7 +23,7 @@
       >
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding FirstLoadCM}"/>
+            <i:InvokeCommandAction Command="{Binding FirstLoadStaffCM}" CommandParameter="{Binding ElementName=TableFrame}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Page.Resources>

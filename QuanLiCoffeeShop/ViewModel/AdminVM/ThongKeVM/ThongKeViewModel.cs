@@ -42,6 +42,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
             set { _selectedDateTo = value; OnPropertyChanged(); }
         }
         public ICommand FirstLoadCM { get; set; }
+        public ICommand FirstLoadStaffCM { get; set; }
         public ICommand CloseWdCM { get; set; }
         public ICommand HistoryCM { get; set; }
         public ICommand HistoryStaffCM { get; set; }
@@ -59,6 +60,15 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
                 if (BillList != null)
                     billList = new List<BillDTO>(BillList);
                 p.Content = new LichSuTable();
+                SelectedDateTo = DateTime.Now;
+                SelectedDateFrom = DateTime.Now.AddDays(-2);
+            });
+            FirstLoadStaffCM = new RelayCommand<Frame>((p) => { return true; }, async (p) =>
+            {
+                BillList = new ObservableCollection<BillDTO>(await Task.Run(() => BillService.Ins.GetAllBill()));
+                if (BillList != null)
+                    billList = new List<BillDTO>(BillList);
+                p.Content = new StaffHistoryTable();
                 SelectedDateTo = DateTime.Now;
                 SelectedDateFrom = DateTime.Now.AddDays(-2);
             });

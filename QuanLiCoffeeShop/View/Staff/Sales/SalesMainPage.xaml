@@ -203,6 +203,7 @@
                                 Source="/QuanLiCoffeeShop;component/Resources/Icon/SearchGray_Icon.png" />
                             <Grid>
                                 <TextBox
+                                    Panel.ZIndex="1"
                                     x:Name="searchCusBox"
                                     Width="170"
                                     Height="40"
@@ -217,7 +218,8 @@
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </TextBox>
-                                <Border 
+                                <Border
+                                    Panel.ZIndex="0"
                                     Margin="0 0 0 12"
                                     BorderThickness="0,0,0,1" 
                                     BorderBrush="#9c9c9c" 

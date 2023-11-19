@@ -179,8 +179,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
 
             FavorCM = new RelayCommand<Frame>((p) => { return true; },async (p) =>
             {
-                FavorList = await Task.Run(() => ThongKeService.Ins.GetTop10SalerBetween(SelectedDateFrom, SelectedDateTo));                 
                 p.Content = new MonUaThichTable();
+                FavorList = await Task.Run(() => ThongKeService.Ins.GetTop10SalerBetween(SelectedDateFrom, SelectedDateTo));                 
                
             });
 

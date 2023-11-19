@@ -16,14 +16,52 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using Microsoft.Win32;
+using QuanLiCoffeeShop.View.Admin.CustomerManagement;
 
 namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
 {
     public partial class SalesMainPageViewModel:BaseViewModel
     {
+        //Add khach hang moi
+        private string _name;
+
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+        private string _email;
+
+        public string Email
+        {
+            get { return _email; }
+            set { _email = value; }
+        }
+        private string _phoneNumber;
+
+        public string PhoneNumber
+        {
+            get { return _phoneNumber; }
+            set { _phoneNumber = value; }
+        }
+        private string _spend;
+
+        public string Spend
+        {
+            get { return _spend; }
+            set { _spend = value; }
+        }
+        private string _description;
+
+        public string Description
+        {
+            get { return _description; }
+            set { _description = value; }
+        }
         public ICommand LoadSeatPageCM {  get; set; }
         public ICommand LoadProductPageCM { get; set; }
         public ICommand FirstLoadCM { get; set; }
+        public ICommand AddCustomerCM {  get; set; }
         public SalesMainPageViewModel() {
             FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, (p) => {
                 p.Content = new SeatPage();
@@ -61,6 +99,14 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 }
 
             });
+            #endregion
+            #region Bill
+            AddCustomerCM = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                AddCustomerWindow wd = new AddCustomerWindow();
+                wd.ShowDialog();
+            });
+
             #endregion
         }
     }

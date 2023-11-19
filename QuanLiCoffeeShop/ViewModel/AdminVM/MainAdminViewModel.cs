@@ -44,7 +44,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM
 
         public MainAdminViewModel()
         {
-            FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, (p)=> { p.Content = new SanPhamPage(); currentName = curentstaff.DisplayName; });
+            FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, (p)=> { p.Content = new SanPhamPage(); currentName = curentstaff == null ? "" : curentstaff.DisplayName; });
             LoadNhanVienPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new StaffPage(); });
             LoadKhachHangPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new CustomerPage(); });
             LoadSanPhamPage = new RelayCommand<Frame>((p) => { return true; }, (p) => { p.Content = new SanPhamPage(); });

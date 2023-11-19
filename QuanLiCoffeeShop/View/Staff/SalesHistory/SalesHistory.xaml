@@ -9,10 +9,10 @@
       xmlns:local="clr-namespace:QuanLiCoffeeShop.View.Staff.SalesHistory"
       mc:Ignorable="d" 
       Title="SalesHistory"
+      DataContext="{StaticResource ThongKeVM}"
     d:DesignHeight="800"
     d:DesignWidth="1536"
     ShowsNavigationUI="False"
-    DataContext="{StaticResource SalesMainPageVM}"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextElement.FontWeight="Regular"
     TextElement.FontSize="13"
@@ -54,7 +54,7 @@
                          CornerRadius="16"
                         Margin="0 0 0 10">
                         <Button
-                        Command="{Binding HistoryCM}"
+                        Command="{Binding HistoryStaffCM}"
                         CommandParameter="{Binding ElementName=TableFrame}"
                         Background="{x:Null}" 
                         BorderBrush="{x:Null}" 

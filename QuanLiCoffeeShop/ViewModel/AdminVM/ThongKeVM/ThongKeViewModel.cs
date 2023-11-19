@@ -8,6 +8,7 @@ using QuanLiCoffeeShop.DTOs;
 using QuanLiCoffeeShop.View.Admin.ThongKe.LichSuBan;
 using QuanLiCoffeeShop.View.Admin.ThongKe.DoanhThu;
 using QuanLiCoffeeShop.View.Admin.ThongKe.MonUaThich;
+using QuanLiCoffeeShop.View.Staff.SalesHistory;
 using QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM;
 using QuanLiCoffeeShop.View.Admin.ThongKe;
 using QuanLiCoffeeShop.Model;
@@ -43,6 +44,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
         public ICommand FirstLoadCM { get; set; }
         public ICommand CloseWdCM { get; set; }
         public ICommand HistoryCM { get; set; }
+        public ICommand HistoryStaffCM { get; set; }
         public ICommand RevenueCM { get; set; }
         public ICommand FavorCM { get; set; }
         public ICommand InfoBillCM {  get; set; }   
@@ -103,6 +105,13 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
 
                 BillList = new ObservableCollection<BillDTO>(billList.FindAll(x => x.CreateAt >= SelectedDateFrom && x.CreateAt <= SelectedDateTo));
             });
+            HistoryStaffCM = new RelayCommand<Frame>((p) => { return true; }, (p) =>
+            {
+                p.Content = new StaffHistoryTable();
+
+                BillList = new ObservableCollection<BillDTO>(billList.FindAll(x => x.CreateAt >= SelectedDateFrom && x.CreateAt <= SelectedDateTo));
+            });
+
             CloseWdCM = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 p.Close();

@@ -22,45 +22,47 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
 {
     public partial class SalesMainPageViewModel:BaseViewModel
     {
-        //Add khach hang moi
-        private string _name;
+        //class InfoBillProduct
+        //{
+        //    public string DisplayName { get; set; }
+        //    public string Description { get; set; }
+        //    public int Count {  get; set; }
+        //    public int PriceItem {  get; set; }
+        //    public int TotalPrice { get
+        //        {
 
-        public string Name
+        //        } }
+        //}
+        private string _tableName;
+        public string TableName
         {
-            get { return _name; }
-            set { _name = value; }
+            get { return _tableName; }
+            set { _tableName = value; OnPropertyChanged(); }
         }
-        private string _email;
+        private CustomerDTO _cusOfBill;
+        public CustomerDTO CusOfBill
+        {
+            get { return _cusOfBill; }
+            set { _cusOfBill = value; OnPropertyChanged(); }
+        }
+        private string _cusInfo;
+        public string CusInfo
+        {
+            get { return _cusInfo; }
+            set { _cusInfo = value; OnPropertyChanged(); }
+        }
+        private string _totalBillValue;
 
-        public string Email
+        public string TotalBillValue
         {
-            get { return _email; }
-            set { _email = value; }
+            get { return _totalBillValue; }
+            set { _totalBillValue = value; OnPropertyChanged(); }
         }
-        private string _phoneNumber;
 
-        public string PhoneNumber
-        {
-            get { return _phoneNumber; }
-            set { _phoneNumber = value; }
-        }
-        private string _spend;
-
-        public string Spend
-        {
-            get { return _spend; }
-            set { _spend = value; }
-        }
-        private string _description;
-
-        public string Description
-        {
-            get { return _description; }
-            set { _description = value; }
-        }
         public ICommand LoadSeatPageCM {  get; set; }
         public ICommand LoadProductPageCM { get; set; }
         public ICommand FirstLoadCM { get; set; }
+        public ICommand SearchCusCM { get; set; }
         public ICommand AddCustomerCM {  get; set; }
         public SalesMainPageViewModel() {
             FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, (p) => {
@@ -106,7 +108,10 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 AddCustomerWindow wd = new AddCustomerWindow();
                 wd.ShowDialog();
             });
+            SearchCusCM = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
 
+            });
             #endregion
         }
     }

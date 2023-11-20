@@ -188,21 +188,29 @@
                             VerticalAlignment="Center"
                             FontFamily="Roboto Condensed"
                             FontSize="17"
-                            Text="{Binding TableGerne}"
+                            Text="{Binding TableName}"
                             FontWeight="DemiBold"
                             Foreground="#E0AE8A">
                         </TextBlock>
                         <StackPanel
                             Margin="30 0 0 0"
                             Orientation="Horizontal">
-                            <Image
-                                Cursor="Hand"
-                                Width="18"
-                                Height="18"
-                                Margin="10,0,10,0"
-                                Source="/QuanLiCoffeeShop;component/Resources/Icon/SearchGray_Icon.png" />
+                            <Button                                
+                                Padding="0"
+                                BorderBrush="{x:Null}"
+                                Foreground="{x:Null}"
+                                Background="{x:Null}"
+                                >
+                                <Image
+                                    Cursor="Hand"
+                                    Width="18"
+                                    Height="18"
+                                    Margin="10,0,10,0"
+                                    Source="/QuanLiCoffeeShop;component/Resources/Icon/SearchGray_Icon.png" />
+                            </Button>
                             <Grid>
                                 <TextBox
+                                    Text="{Binding CusInfo}"
                                     Panel.ZIndex="1"
                                     x:Name="searchCusBox"
                                     Width="170"
@@ -212,11 +220,11 @@
                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                     BorderThickness="0"
                                     FontSize="16">
-                                    <i:Interaction.Triggers>
+                                    <!--<i:Interaction.Triggers>
                                         <i:EventTrigger EventName="TextChanged">
                                             <i:InvokeCommandAction Command="{Binding SearchCusCM}" CommandParameter="{Binding ElementName=searchCusBox}"/>
                                         </i:EventTrigger>
-                                    </i:Interaction.Triggers>
+                                    </i:Interaction.Triggers>-->
                                 </TextBox>
                                 <Border
                                     Panel.ZIndex="0"
@@ -254,7 +262,7 @@
                                 Margin="10 0 0 0"
                                 VerticalAlignment="Center"
                                 x:Name="BillCusName"
-                                Text="{Binding CusBillName}"
+                                Text="{Binding CusOfBill.DisplayName}"
                                 TextWrapping="NoWrap"
                                 FontFamily="Roboto Condensed"
                                 FontWeight="DemiBold"
@@ -355,6 +363,7 @@
                                                                FontSize="17" 
                                                                Margin="31,0,0,0"/>
                                                             <TextBox
+                                                                Text="{Binding Description}"
                                                                 x:Name="NoteBox"
                                                                 Width="170"
                                                                 Height="40"
@@ -363,11 +372,11 @@
                                                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                                                 BorderThickness="0"
                                                                 FontSize="15">
-                                                                <i:Interaction.Triggers>
+                                                                <!--<i:Interaction.Triggers>
                                                                     <i:EventTrigger EventName="TextChanged">
                                                                         <i:InvokeCommandAction Command="{Binding NoteBoxCM}" CommandParameter="{Binding ElementName=NoteBox}"/>
                                                                     </i:EventTrigger>
-                                                                </i:Interaction.Triggers>
+                                                                </i:Interaction.Triggers>-->
                                                             </TextBox>
                                                         </StackPanel>
                                                     </DataTemplate>
@@ -402,8 +411,10 @@
                                                                 Source="/QuanLiCoffeeShop;component/Resources/Icon/SubtractBlack_Icon.png"
                                                                 />
                                                             </Button>
-                                                            <TextBlock Text="{Binding SoLuong}"
-                                                                FontSize="17"/>
+                                                            <TextBox
+                                                                FontSize="17"
+                                                                Text="{Binding Count}">
+                                                            </TextBox>
                                                             <Button
                                                                 Padding="0"
                                                                 BorderBrush="{x:Null}"
@@ -434,7 +445,7 @@
                                                 </GridViewColumn.HeaderContainerStyle>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding Price, Converter={StaticResource PriceConverter}}"
+                                                        <TextBlock Text="{Binding PriceItem, Converter={StaticResource PriceConverter}}"
                                                                 FontSize="17" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -452,7 +463,7 @@
                                                 </GridViewColumn.HeaderContainerStyle>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding ThanhTien, Converter={StaticResource PriceConverter}}"
+                                                        <TextBlock Text="{Binding TotalPrice, Converter={StaticResource PriceConverter}}"
                                                         FontSize="18" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>

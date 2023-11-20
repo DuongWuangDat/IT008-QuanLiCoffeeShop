@@ -234,6 +234,7 @@
     <Compile Include="ViewModel\AdminVM\StaffManagementVM\StaffViewModel.cs" />
     <Compile Include="ViewModel\MessageBoxVM\MessageBoxViewModel.cs" />
     <Compile Include="ViewModel\StaffVM\MainStaffViewModel.cs" />
+    <Compile Include="ViewModel\StaffVM\SalesHistoryVM\SalesHistoryViewModel.cs" />
     <Compile Include="ViewModel\StaffVM\SalesVM\ProductPage.cs" />
     <Compile Include="ViewModel\StaffVM\SalesVM\SalesMainPageViewModel.cs" />
     <Compile Include="ViewModel\StaffVM\SalesVM\SeatPage.cs" />
@@ -323,6 +324,15 @@
     </Compile>
     <Compile Include="View\Staff\MainStaffWindow.xaml.cs">
       <DependentUpon>MainStaffWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Staff\ReportError\ReportError.xaml.cs">
+      <DependentUpon>ReportError.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Staff\SalesHistory\SalesHistory.xaml.cs">
+      <DependentUpon>SalesHistory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Staff\SalesHistory\StaffHistoryTable.xaml.cs">
+      <DependentUpon>StaffHistoryTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Staff\Sales\ProductPage.xaml.cs">
       <DependentUpon>ProductPage.xaml</DependentUpon>
@@ -449,6 +459,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Staff\ReportError\ReportError.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\SalesHistory\SalesHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\SalesHistory\StaffHistoryTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Staff\Sales\ProductPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -536,6 +558,11 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Icon\SubtractBlack_Icon.png" />
+    <Resource Include="Resources\Icon\PenBlack_Icon.png" />
+    <Resource Include="Resources\Icon\DeleteGray_Icon.png" />
+    <Resource Include="Resources\Icon\AddGray_Icon.png" />
+    <Resource Include="Resources\Icon\AddBlack_Icon.png" />
     <Resource Include="Resources\Icon\SaleTableBrown_Icon.png" />
     <Resource Include="Resources\Icon\SearchGray_Icon.png" />
     <Resource Include="Resources\Icon\HistoryWhite_Icon.png" />
@@ -596,10 +623,7 @@
   <ItemGroup>
     <Resource Include="Resources\Icon\Info_Icon.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\Staff\ReportError\" />
-    <Folder Include="View\Staff\SalesHistory\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.9.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

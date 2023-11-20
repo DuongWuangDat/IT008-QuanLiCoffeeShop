@@ -8,6 +8,7 @@ using QuanLiCoffeeShop.DTOs;
 using QuanLiCoffeeShop.View.Admin.ThongKe.LichSuBan;
 using QuanLiCoffeeShop.View.Admin.ThongKe.DoanhThu;
 using QuanLiCoffeeShop.View.Admin.ThongKe.MonUaThich;
+using QuanLiCoffeeShop.View.Staff.SalesHistory;
 using QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM;
 using QuanLiCoffeeShop.View.Admin.ThongKe;
 using QuanLiCoffeeShop.Model;
@@ -41,8 +42,10 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
             set { _selectedDateTo = value; OnPropertyChanged(); }
         }
         public ICommand FirstLoadCM { get; set; }
+        public ICommand FirstLoadStaffCM { get; set; }
         public ICommand CloseWdCM { get; set; }
         public ICommand HistoryCM { get; set; }
+        public ICommand HistoryStaffCM { get; set; }
         public ICommand RevenueCM { get; set; }
         public ICommand FavorCM { get; set; }
         public ICommand InfoBillCM {  get; set; }   
@@ -57,6 +60,15 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
                 if (BillList != null)
                     billList = new List<BillDTO>(BillList);
                 p.Content = new LichSuTable();
+                SelectedDateTo = DateTime.Now;
+                SelectedDateFrom = DateTime.Now.AddDays(-2);
+            });
+            FirstLoadStaffCM = new RelayCommand<Frame>((p) => { return true; }, async (p) =>
+            {
+                BillList = new ObservableCollection<BillDTO>(await Task.Run(() => BillService.Ins.GetAllBill()));
+                if (BillList != null)
+                    billList = new List<BillDTO>(BillList);
+                p.Content = new StaffHistoryTable();
                 SelectedDateTo = DateTime.Now;
                 SelectedDateFrom = DateTime.Now.AddDays(-2);
             });
@@ -103,6 +115,13 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
 
                 BillList = new ObservableCollection<BillDTO>(billList.FindAll(x => x.CreateAt >= SelectedDateFrom && x.CreateAt <= SelectedDateTo));
             });
+            HistoryStaffCM = new RelayCommand<Frame>((p) => { return true; }, (p) =>
+            {
+                p.Content = new StaffHistoryTable();
+
+                BillList = new ObservableCollection<BillDTO>(billList.FindAll(x => x.CreateAt >= SelectedDateFrom && x.CreateAt <= SelectedDateTo));
+            });
+
             CloseWdCM = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
                 p.Close();
@@ -160,8 +179,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
 
             FavorCM = new RelayCommand<Frame>((p) => { return true; },async (p) =>
             {
-                FavorList = await Task.Run(() => ThongKeService.Ins.GetTop10SalerBetween(SelectedDateFrom, SelectedDateTo));                 
                 p.Content = new MonUaThichTable();
+                FavorList = await Task.Run(() => ThongKeService.Ins.GetTop10SalerBetween(SelectedDateFrom, SelectedDateTo));                 
                
             });
 

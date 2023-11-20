@@ -188,7 +188,7 @@
                                             </GridViewColumn.HeaderContainerStyle>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding Price}"
+                                                    <TextBlock Text="{Binding Price, Converter={StaticResource PriceConverter}}"
                                                         FontSize="18" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
@@ -206,7 +206,7 @@
                                             </GridViewColumn.HeaderContainerStyle>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding ThanhTien}"
+                                                    <TextBlock Text="{Binding ThanhTien, Converter={StaticResource PriceConverter}}"
                                                         FontSize="18" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>

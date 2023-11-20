@@ -14,8 +14,10 @@ namespace QuanLiCoffeeShop.DTOs
         public Nullable<int> IDStaff { get; set; }
         public Nullable<System.DateTime> CreateAt { get; set; }
         public Nullable<decimal> TotalPrice { get; set; }
+        public Nullable<int> IDSeat { get; set; }
         public List<BillInfoDTO> BillInfo { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
+        public virtual Seat Seat { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Staff Staff { get; set; }
     }

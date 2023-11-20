@@ -7,6 +7,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="clr-namespace:QuanLiCoffeeShop.Converter"
     DataContext="{StaticResource SanPhamVM}"
     mc:Ignorable="d"
     Title="SanPhamPage"
@@ -27,13 +28,16 @@
             <i:InvokeCommandAction Command="{Binding FirstLoadCM}" CommandParameter="{Binding ElementName=sanPhamPage}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <Page.Resources>
+        <converters:PriceConverter x:Key="PriceConverter"></converters:PriceConverter>
+    </Page.Resources>
     <Grid Background="#FFFFFF">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="311*" />
             <ColumnDefinition Width="1225*" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Margin="10">
-            <StackPanel Margin="10,20,10,20">
+            <StackPanel Margin="10,10,10,20">
                 <StackPanel>
 
                     <!--  Add SanPham btn  -->
@@ -311,8 +315,8 @@
         <!--  Hien thi cac san pham  -->
         <ScrollViewer x:Name="ScrollViewer"
                 Grid.Column="1"
-                Height="728"
-                Margin="10,30,10,10"
+                Height="700"
+                Margin="10,20,10,10"
                 VerticalScrollBarVisibility="Auto"
                 VerticalAlignment="Top" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
             <ListView
@@ -386,7 +390,7 @@
                                             FontSize="13"
                                             FontWeight="Bold"
                                             Foreground="#EA6A12"
-                                            Text="{Binding Price}" />
+                                            Text="{Binding Price, Converter={StaticResource PriceConverter}}" />
                                     <TextBlock
                                             Margin="1,0,0,0"
                                             HorizontalAlignment="Left"

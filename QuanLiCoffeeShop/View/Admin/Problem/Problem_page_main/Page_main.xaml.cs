@@ -27,29 +27,13 @@ namespace QuanLiCoffeeShop.View.Admin.Problem.Problem_page_main
             InitializeComponent();
            
         }
-        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            if (textBox.Text == textBox.Tag.ToString())
-            {
-                textBox.Text = "";
-            }
-        }
-        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            if (string.IsNullOrWhiteSpace(textBox.Text))
-            {
-                textBox.Text = textBox.Tag.ToString();
+       
 
-            }
+        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer.ScrollToVerticalOffset(ScrollViewer.VerticalOffset - e.Delta);
+            e.Handled = true;
         }
     }
-    class problem
-    {
-        public string STT { get; set; }
-        public string Name { get; set; }
-        public string Status { get; set; }
-        public string Node { get; set; }
-    }
+    
 }

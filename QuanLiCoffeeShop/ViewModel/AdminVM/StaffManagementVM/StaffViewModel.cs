@@ -1,6 +1,7 @@
 ﻿using QuanLiCoffeeShop.DTOs;
 using QuanLiCoffeeShop.Model;
 using QuanLiCoffeeShop.Model.Service;
+using QuanLiCoffeeShop.Utils;
 using QuanLiCoffeeShop.View.Admin.StaffManagement;
 using QuanLiCoffeeShop.View.MessageBox;
 using System;
@@ -194,9 +195,9 @@ namespace QuanLiCoffeeShop.ViewModel
             set { editEmail = value; }
         }
 
-        private decimal editWage;
+        private string editWage;
 
-        public decimal EditWage
+        public string EditWage
         {
             get { return editWage; }
             set { editWage = value; }
@@ -291,24 +292,29 @@ namespace QuanLiCoffeeShop.ViewModel
 
             AddStaffCommand = new RelayCommand<Window>(null, async (p) =>
             {
-                int dWage;
-                if (DisplayName == null || StartDate == null || UserName == null || PassWord == null
-                || PhoneNumber == null || BirthDay == null || Wage == null || Status == null || Email == null
-                || Gender == null || Role == null || !int.TryParse(Wage, out dWage))
+                int iWage;
+                if (DisplayName == null || UserName == null || PassWord == null
+                || PhoneNumber == null || Wage == null || Status == null || Email == null
+                || Gender == null || Role == null || !int.TryParse(Wage, out iWage)
+                || DisplayName == "" || UserName == "" || PassWord == ""
+                || PhoneNumber == "" || Wage == "" || Status == "" || Email == ""
+                || Gender == "" || Role == "")
                 {
                     MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đang nhập thiếu hoặc sai thông tin");
                 }
                 else
                 {
+                    string pass = Helper.MD5Hash(this.PassWord);
+
                     Staff newStaff = new Staff
                     {
                         DisplayName = this.DisplayName,
                         StartDate = this.StartDate,
                         UserName = this.UserName,
-                        PassWord = this.PassWord,
+                        PassWord = pass,
                         PhoneNumber = this.PhoneNumber,
                         BirthDay = this.BirthDay,
-                        Wage = dWage,
+                        Wage = iWage,
                         Status = this.Status,
                         Email = this.Email,
                         Gender = this.Gender,
@@ -363,34 +369,43 @@ namespace QuanLiCoffeeShop.ViewModel
                 EditStartDate = SelectedItem.StartDate;
                 EditStatus = SelectedItem.Status;
                 EditUserName = SelectedItem.UserName;
-                EditWage = (int)SelectedItem.Wage;
+                EditWage = ((int)SelectedItem.Wage).ToString();
                 ModifyStaff modifyStaff = new ModifyStaff();
                 modifyStaff.ShowDialog();
             });
 
             EditStaffCommand = new RelayCommand<Window>(null, async (p) =>
             {
-                int dWage;
-                if (DisplayName == null || StartDate == null || UserName == null || PassWord == null || PhoneNumber == null
-                || BirthDay == null || Wage == null || Status == null || Email == null || Gender == null
-                || Role == null || !int.TryParse(Wage, out dWage))
+                int iWage;
+                if (EditDisplayName == null || EditStartDate == null || EditUserName == null || EditPhoneNumber == null
+                || EditBirthDay == null || EditWage == null || EditStatus == null || EditEmail == null || EditGender == null
+                || EditRole == null || !int.TryParse(EditWage, out iWage)
+                || EditDisplayName == "" || EditUserName == "" || EditPhoneNumber == ""
+                || EditWage == "" || EditStatus == "" || EditEmail == "" || EditGender == ""
+                || EditRole == "")
                 {
                     MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đang nhập thiếu hoặc sai thông tin");
                 }
+                
                 else
                 {
+                    if (EditPassWord == null || EditPassWord == "")
+                        EditPassWord = SelectedItem.PassWord;
+                    string pass = Helper.MD5Hash(EditPassWord);
                     Staff newStaff = new Staff
                     {
+                        ID = SelectedItem.ID,
                         DisplayName = this.EditDisplayName,
                         Email = this.EditEmail,
                         Gender = this.EditGender,
                         StartDate = this.EditStartDate,
                         Status = this.EditStatus,
                         UserName = this.EditUserName,
-                        PassWord = this.EditPassWord,
+                        PassWord = pass,
+                        BirthDay = this.EditBirthDay,
                         PhoneNumber = this.EditPhoneNumber,
                         Role = this.EditRole,
-                        Wage = this.EditWage,
+                        Wage = iWage,
                         IsDeleted = false
                     };
                     (bool success, string messageEdit) = await StaffService.Ins.EditStaff(newStaff);

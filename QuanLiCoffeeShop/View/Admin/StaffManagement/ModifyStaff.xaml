@@ -375,7 +375,7 @@
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
                                 FontSize="12"
-                                Text="{Binding EditPassWord}" />
+                                Text="{Binding EditPassWord, Mode=TwoWay}" />
                         </StackPanel>
 
                     </StackPanel>

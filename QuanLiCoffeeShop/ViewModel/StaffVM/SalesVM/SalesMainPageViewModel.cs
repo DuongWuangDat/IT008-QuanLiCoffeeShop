@@ -78,11 +78,15 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
         public ICommand AddCustomerCM {  get; set; }
         public SalesMainPageViewModel() {
             FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, (p) => {
+                LoadPage();
                 p.Content = new SeatPage();
                 BillInfoList = new ObservableCollection<BillInfoDTO>();
             });
-            LoadSeatPageCM = new RelayCommand<Frame>((p)=> { return true; }, (p)=> {
+          LoadSeatPageCM = new RelayCommand<Frame>((p)=> { return true; },async (p)=> {
+              LoadPage();
+              
                 p.Content = new SeatPage();
+               
             });
             LoadProductPageCM = new RelayCommand<Frame>((p) => { return true; }, async (p) => {
                 ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProductCounted());
@@ -94,7 +98,59 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
             });
 
             #region Seat
+            Classify = new RelayCommand<RadioButton>((p) => { return true; }, async (p) =>
+            {
+                TableList = new ObservableCollection<SeatDTO>(await SeatService.Ins.GetAllSeat());
+                tablelist = new List<SeatDTO>(TableList);
 
+                if (Genre == "Tất cả loại bàn")
+                {
+                    switch (p.Content.ToString())
+                    {
+                        case "Tất cả":
+                            Contentbtn = "Tất cả";
+                            TableList = new ObservableCollection<SeatDTO>(await SeatService.Ins.GetAllSeat());
+                            break;
+                        case "Đã đặt":
+                            Contentbtn = "Đã đặt";
+                            TableList = new ObservableCollection<SeatDTO>(tablelist.FindAll(x => (x.Status == "Đã đặt")));
+                            break;
+                        case "Còn trống":
+                            Contentbtn = "Còn trống";
+                            TableList = new ObservableCollection<SeatDTO>(tablelist.FindAll(x => (x.Status == "Còn trống")));
+                            break;
+                        case "Đang sửa chữa":
+                            Contentbtn = "Đang sửa chữa";
+                            TableList = new ObservableCollection<SeatDTO>(tablelist.FindAll(x => (x.Status == "Đang sửa chữa")));
+                            break;
+
+                    }
+                }
+                else
+                {
+                    switch (p.Content.ToString())
+                    {
+                        case "Tất cả":
+                            Contentbtn = "Tất cả";
+                            TableList = new ObservableCollection<SeatDTO>((tablelist.FindAll(x => x.GenreName == Genre)));
+                            break;
+                        case "Đã đặt":
+                            Contentbtn = "Đã đặt";
+                            TableList = new ObservableCollection<SeatDTO>(tablelist.FindAll(x => (x.Status == "Đã đặt" && x.GenreName == Genre)));
+                            break;
+                        case "Còn trống":
+                            Contentbtn = "Còn trống";
+                            TableList = new ObservableCollection<SeatDTO>(tablelist.FindAll(x => (x.Status == "Còn trống" && x.GenreName == Genre)));
+                            break;
+                        case "Đang sửa chữa":
+                            Contentbtn = "Đang sửa chữa";
+                            TableList = new ObservableCollection<SeatDTO>(tablelist.FindAll(x => (x.Status == "Đang sửa chữa" && x.GenreName == Genre)));
+                            break;
+
+                    }
+                }
+
+            });
             #endregion
 
             #region Product

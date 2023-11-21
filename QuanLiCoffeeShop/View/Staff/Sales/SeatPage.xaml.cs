@@ -23,6 +23,12 @@ namespace QuanLiCoffeeShop.View.Staff.Sales
         public SeatPage()
         {
             InitializeComponent();
+
+        }
+        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer.ScrollToVerticalOffset(ScrollViewer.VerticalOffset - e.Delta);
+            e.Handled = true;
         }
     }
 }

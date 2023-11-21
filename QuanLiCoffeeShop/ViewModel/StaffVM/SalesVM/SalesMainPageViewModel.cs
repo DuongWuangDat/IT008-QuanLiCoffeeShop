@@ -39,8 +39,8 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
             get { return _tableName; }
             set { _tableName = value; OnPropertyChanged(); }
         }
-        private CustomerDTO _cusOfBill;
-        public CustomerDTO CusOfBill
+        private Customer _cusOfBill;
+        public Customer CusOfBill
         {
             get { return _cusOfBill; }
             set { _cusOfBill = value; OnPropertyChanged(); }
@@ -72,7 +72,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 p.Content = new SeatPage();
             });
             LoadProductPageCM = new RelayCommand<Frame>((p) => { return true; }, async (p) => {
-                ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProduct());
+                ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProductCounted());
                 if (ProductList != null)
                 {
                     prdList = new List<ProductDTO>(ProductList);
@@ -108,9 +108,25 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 AddCustomerWindow wd = new AddCustomerWindow();
                 wd.ShowDialog();
             });
-            SearchCusCM = new RelayCommand<object>((p) => { return true; }, (p) =>
-            {
-
+            SearchCusCM = new RelayCommand<object>((p) => { return true; }, async(p) =>
+            {              
+                (Customer a, bool success, string messageSearch) = await CustomerService.Ins.findCusbyPhone(CusInfo);
+                if (a != null)
+                {
+                    CusOfBill = a;
+                }
+                else
+                {
+                    (Customer b, bool success1, string messageSearch1) = await CustomerService.Ins.findCusbyEmail(CusInfo);
+                    if(b!= null)
+                    {
+                        CusOfBill = b;
+                    }
+                    else
+                    {
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, messageSearch);
+                    }
+                }
             });
             #endregion
         }

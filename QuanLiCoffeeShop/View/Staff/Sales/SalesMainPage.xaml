@@ -195,7 +195,8 @@
                         <StackPanel
                             Margin="30 0 0 0"
                             Orientation="Horizontal">
-                            <Button                                
+                            <Button   
+                                Command="{Binding SearchCusCM}"
                                 Padding="0"
                                 BorderBrush="{x:Null}"
                                 Foreground="{x:Null}"
@@ -262,7 +263,7 @@
                                 Margin="10 0 0 0"
                                 VerticalAlignment="Center"
                                 x:Name="BillCusName"
-                                Text="{Binding CusOfBill.DisplayName}"
+                                Text="{Binding CusOfBill.DisplayName, UpdateSourceTrigger=PropertyChanged}"
                                 TextWrapping="NoWrap"
                                 FontFamily="Roboto Condensed"
                                 FontWeight="DemiBold"

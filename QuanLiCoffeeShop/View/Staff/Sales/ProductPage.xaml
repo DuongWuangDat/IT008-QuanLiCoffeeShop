@@ -185,31 +185,52 @@
                                         FontSize="16"
                                         FontWeight="Bold"
                                         Text="{Binding DisplayName}" />
-                                    <DockPanel
-                                        HorizontalAlignment="Center"
+                                    <DockPanel                                        
                                         VerticalAlignment="Center"
                                         Grid.Row="2"
-                                        Margin="10,0,10,5"
+                                        Margin="10 5 10 10"
                                         LastChildFill="False">
-                                        <TextBlock
-                                            x:Name="PriceSP"
-                                            HorizontalAlignment='Center'
-                                            VerticalAlignment="Center"
-                                            FontFamily="Poppins"
-                                            FontSize="13"
-                                            FontWeight="Bold"
-                                            Foreground="#EA6A12"
-                                            Text="{Binding Price, Converter={StaticResource PriceConverter}}" />
-                                        <TextBlock
-                                            Margin="1,0,0,0"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
-                                            FontFamily="Poppins"
-                                            FontSize="13"
-                                            FontWeight="Bold"
-                                            Foreground="#EA6A12"
-                                            Text="đ">
-                                        </TextBlock>
+                                        <StackPanel Orientation="Horizontal"
+                                                    DockPanel.Dock="Left">
+                                            <TextBlock
+                                                x:Name="PriceSP"                                                
+                                                FontFamily="Poppins"
+                                                FontSize="13"
+                                                FontWeight="Bold"
+                                                Foreground="#EA6A12"
+                                                Text="{Binding Price, Converter={StaticResource PriceConverter}}" />
+                                            <TextBlock
+                                                Margin="1,0,0,0"                                                
+                                                FontFamily="Poppins"
+                                                FontSize="13"
+                                                FontWeight="Bold"
+                                                Foreground="#EA6A12"
+                                                Text="đ">
+                                            </TextBlock>
+                                        </StackPanel>
+                                        <StackPanel
+                                            Orientation="Horizontal"
+                                            DockPanel.Dock="Right"
+                                            >
+                                            <TextBlock
+                                              Margin="0,0,5,0"
+                                              HorizontalAlignment="Left"
+                                              VerticalAlignment="Center"
+                                              FontFamily="Poppins"
+                                              FontSize="13"
+                                              FontWeight="Bold"
+                                              Foreground="Black"
+                                              Text="SL:"/>
+                                            <TextBlock
+                                                HorizontalAlignment='Center'
+                                                VerticalAlignment="Center"
+                                                FontFamily="Poppins"
+                                                FontSize="13"
+                                                FontWeight="Bold"
+                                                Foreground='Black'
+                                                Text="{Binding Count}" />
+                                        </StackPanel>
+
                                     </DockPanel>
                                 </Grid>
 

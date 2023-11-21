@@ -24,5 +24,10 @@ namespace QuanLiCoffeeShop.View.Staff.ReportError
         {
             InitializeComponent();
         }
+        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer.ScrollToVerticalOffset(ScrollViewer.VerticalOffset - e.Delta);
+            e.Handled = true;
+        }
     }
 }

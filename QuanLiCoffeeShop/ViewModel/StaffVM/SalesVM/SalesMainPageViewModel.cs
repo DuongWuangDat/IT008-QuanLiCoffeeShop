@@ -22,17 +22,29 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
 {
     public partial class SalesMainPageViewModel:BaseViewModel
     {
-        //class InfoBillProduct
-        //{
-        //    public string DisplayName { get; set; }
-        //    public string Description { get; set; }
-        //    public int Count {  get; set; }
-        //    public int PriceItem {  get; set; }
-        //    public int TotalPrice { get
-        //        {
+        public static List<BillInfoDTO> billInfoList;
+        private ObservableCollection<BillInfoDTO> _billInfoList;
 
-        //        } }
-        //}
+        public ObservableCollection<BillInfoDTO> BillInfoList
+        {
+            get { return _billInfoList; }
+            set { _billInfoList = value; OnPropertyChanged(); }
+        }
+
+        private SeatDTO _selectedSeatItem;
+        public SeatDTO SelectedSeatItem
+        {
+            get { return _selectedSeatItem; }
+            set { _selectedSeatItem = value; OnPropertyChanged(); }
+        }
+        
+        private ProductDTO _selectedPrdItem;
+        public ProductDTO SelectedPrdItem
+        {
+            get { return _selectedPrdItem; }
+            set { _selectedPrdItem = value; OnPropertyChanged(); }
+        }
+
         private string _tableName;
         public string TableName
         {
@@ -67,6 +79,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
         public SalesMainPageViewModel() {
             FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, (p) => {
                 p.Content = new SeatPage();
+                BillInfoList = new ObservableCollection<BillInfoDTO>();
             });
             LoadSeatPageCM = new RelayCommand<Frame>((p)=> { return true; }, (p)=> {
                 p.Content = new SeatPage();
@@ -80,8 +93,12 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 p.Content = new View.Staff.Sales.ProductPage();
             });
 
+            #region Seat
+
+            #endregion
+
             #region Product
-            AllPrDFilter = new RelayCommand<RadioButton>((p) => { return true; }, async (p) =>
+            AllPrDFilter = new RelayCommand<RadioButton>((p) => { return true; },  (p) =>
             {
                 ProductList = new ObservableCollection<ProductDTO>(prdList);
             });
@@ -100,6 +117,30 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     ProductList = new ObservableCollection<ProductDTO>(prdList.FindAll(x => x.DisplayName.ToLower().Contains(p.Text.ToLower())));
                 }
 
+            });
+            SelectPrd = new RelayCommand<object>((p) => { return true; }, (p) => {
+                if (SelectedPrdItem != null)
+                {
+                    Product a = new Product(
+                            
+                        );
+                    BillInfoDTO billInfo = new BillInfoDTO
+                    {
+
+                        IDProduct = SelectedPrdItem.ID,
+                        IsDeleted = SelectedPrdItem.IsDeleted,
+                        PriceItem = SelectedPrdItem.Price,
+                        Count = 1
+                        //Product = SelectedPrdItem
+                    };
+                    
+                    BillInfoList.Add(billInfo);
+                }
+                else
+                {
+                    MessageBox.Show("Selected Item null");
+                }
+            
             });
             #endregion
             #region Bill
@@ -128,6 +169,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     }
                 }
             });
+
             #endregion
         }
     }

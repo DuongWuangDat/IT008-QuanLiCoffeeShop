@@ -22,5 +22,6 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
         public ICommand AllPrDFilter { get; set; }
         public ICommand ProductFilter { get; set; }
         public ICommand SearchProductCM { get; set; }
+        public ICommand SelectPrd {  get; set; }
     }
 }

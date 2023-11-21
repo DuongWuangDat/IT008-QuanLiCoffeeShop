@@ -33,6 +33,7 @@
             <Setter Property="FontSize" Value="19.2"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
+        <converters:IndexConverter x:Key="IndexConverter"></converters:IndexConverter>
         <converters:PriceConverter x:Key="PriceConverter"></converters:PriceConverter>
     </Page.Resources>
     <Grid       
@@ -287,7 +288,7 @@
                                 Margin="8" 
                                 CornerRadius="20">
                                 <ListView                                
-                                ItemsSource="{Binding BillPrdInfoList}">
+                                ItemsSource="{Binding BillInfoList}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem"
                                             BasedOn="{StaticResource MaterialDesignGridViewItem}">
@@ -297,7 +298,7 @@
                                     <ListView.View>
                                         <GridView>
 
-                                            <GridViewColumn Header=""  Width="30">
+                                            <GridViewColumn Header=""  Width="25">
                                                 <GridViewColumn.HeaderContainerStyle>
                                                     <Style TargetType="{x:Type GridViewColumnHeader}">
                                                         <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -308,10 +309,11 @@
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <Image
+                                                            Margin="0 22 0 0"
                                                             VerticalAlignment="Center"
                                                             HorizontalAlignment="Center"                                                           
-                                                            Width="25"
-                                                            Height="25"
+                                                            Width="15"
+                                                            Height="15"
                                                             Source="/QuanLiCoffeeShop;component/Resources/Icon/DeleteGray_Icon.png"
                                                             />
                                                     </DataTemplate>
@@ -331,13 +333,17 @@
                                                             VerticalAlignment="Center"
                                                             HorizontalAlignment="Center"
                                                             Orientation="Vertical">
-                                                            <TextBlock Text="{Binding STT}"
+                                                            <TextBlock 
+                                                                Text="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                                                               AncestorType={x:Type ListViewItem}}, 
+                                                                               Converter={StaticResource IndexConverter}}"
                                                                 FontSize="17" />
                                                             <Image
+                                                                Margin="0 15 0 0"
                                                                 VerticalAlignment="Center"
                                                                 HorizontalAlignment="Center"                                                           
-                                                                Width="25"
-                                                                Height="25"
+                                                                Width="15"
+                                                                Height="15"
                                                                 Source="/QuanLiCoffeeShop;component/Resources/Icon/PenBlack_Icon.png"
                                                                 />
                                                         </StackPanel>
@@ -360,7 +366,7 @@
                                                             VerticalAlignment="Center"
                                                             HorizontalAlignment="Left"
                                                             Orientation="Vertical">
-                                                            <TextBlock Text="{Binding DisplayName}"
+                                                            <TextBlock Text="{Binding Product.DisplayName}"
                                                                FontSize="17" 
                                                                Margin="31,0,0,0"/>
                                                             <TextBox
@@ -407,12 +413,13 @@
                                                                 <Image
                                                                 VerticalAlignment="Center"
                                                                 HorizontalAlignment="Center"                                                           
-                                                                Width="25"
-                                                                Height="25"
+                                                                Width="12"
+                                                                Height="12"
                                                                 Source="/QuanLiCoffeeShop;component/Resources/Icon/SubtractBlack_Icon.png"
                                                                 />
                                                             </Button>
                                                             <TextBox
+                                                                Margin="10 0 10 0"
                                                                 FontSize="17"
                                                                 Text="{Binding Count}">
                                                             </TextBox>
@@ -424,8 +431,8 @@
                                                                 <Image
                                                                     VerticalAlignment="Center"
                                                                     HorizontalAlignment="Center"                                                           
-                                                                    Width="25"
-                                                                    Height="25"
+                                                                    Width="12"
+                                                                    Height="12"
                                                                     Source="/QuanLiCoffeeShop;component/Resources/Icon/AddBlack_Icon.png"
                                                                     />
                                                             </Button>
@@ -446,7 +453,7 @@
                                                 </GridViewColumn.HeaderContainerStyle>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding PriceItem, Converter={StaticResource PriceConverter}}"
+                                                        <TextBlock Text="{Binding Product.Price, Converter={StaticResource PriceConverter}}"
                                                                 FontSize="17" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -464,8 +471,12 @@
                                                 </GridViewColumn.HeaderContainerStyle>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock Text="{Binding TotalPrice, Converter={StaticResource PriceConverter}}"
-                                                        FontSize="18" />
+                                                        <TextBlock 
+                                                            VerticalAlignment="Center"
+                                                            HorizontalAlignment="Center"
+                                                            Margin="10 0 0 0"
+                                                            Text="{Binding PriceItem, Converter={StaticResource PriceConverter}}"
+                                                        FontSize="17" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>

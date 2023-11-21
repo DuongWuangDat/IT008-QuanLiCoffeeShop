@@ -5,6 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:command="http://www.galasoft.ch/mvvmlight"
+
       xmlns:converters="clr-namespace:QuanLiCoffeeShop.Converter"
       xmlns:local="clr-namespace:QuanLiCoffeeShop.View.Staff.Sales"
       mc:Ignorable="d" 
@@ -127,7 +129,8 @@
                 VerticalAlignment="Top" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
                 <ListView
                     x:Name="SanPhamList"
-                    VerticalAlignment="Top"               
+                    VerticalAlignment="Top"           
+                    SelectedItem="{Binding SelectedPrdItem}"
                     ItemsSource="{Binding ProductList}">
                     <ListView.ItemContainerStyle>
                         <Style 
@@ -138,6 +141,7 @@
                                     <Setter Property="IsSelected" Value="True" />
                                     <Setter Property="Background" Value="#FFEAF8FF" />
                                 </Trigger>
+                                
                             </Style.Triggers>
                             <Setter Property="Padding"
                                 Value="0" />
@@ -153,7 +157,9 @@
                     </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
+
                             <Border
+                                
                                 Cursor="Hand"
                                 Width="163"
                                 Height="208"
@@ -233,7 +239,12 @@
 
                                     </DockPanel>
                                 </Grid>
-
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                                        <i:InvokeCommandAction Command="{Binding DataContext.SelectPrd, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                            CommandParameter="{Binding}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
                             </Border>
                         </DataTemplate>
                     </ListView.ItemTemplate>

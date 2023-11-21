@@ -168,7 +168,7 @@ namespace QuanLiCoffeeShop.Model.Service
                     });
                 }
                 await context.SaveChangesAsync();
-                return (true, "Cap nhat thanh cong");
+                return (true, "Cập nhật thành công");
             }
                 
         }

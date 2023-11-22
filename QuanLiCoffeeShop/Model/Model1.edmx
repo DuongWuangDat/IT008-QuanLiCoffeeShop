@@ -27,6 +27,7 @@
           <Property Name="PriceItem" Type="money" />
           <Property Name="Count" Type="int" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -329,6 +330,7 @@
           <Property Name="PriceItem" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Count" Type="Int32" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Bill" Relationship="QuanLiCoffeShopModel.FK_BillInfo_Bill" FromRole="BillInfo" ToRole="Bill" />
           <NavigationProperty Name="Product" Relationship="QuanLiCoffeShopModel.FK_BillInfo_PrD" FromRole="BillInfo" ToRole="Product" />
         </EntityType>
@@ -547,6 +549,7 @@
           <EntitySetMapping Name="BillInfo">
             <EntityTypeMapping TypeName="QuanLiCoffeShopModel.BillInfo">
               <MappingFragment StoreEntitySet="BillInfo">
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="PriceItem" ColumnName="PriceItem" />

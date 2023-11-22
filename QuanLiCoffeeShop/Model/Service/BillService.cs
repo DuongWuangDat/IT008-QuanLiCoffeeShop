@@ -51,6 +51,7 @@ namespace QuanLiCoffeeShop.Model.Service
                                                     PriceItem = x.PriceItem,
                                                     IDProduct = x.IDProduct,
                                                     Count = x.Count,
+                                                    Description = x.Description,
                                                     Bill = x.Bill,
                                                     Product = x.Product,
                                                 }).ToList(),
@@ -101,6 +102,7 @@ namespace QuanLiCoffeeShop.Model.Service
                         IDProduct = g.IDProduct,
                         IsDeleted = g.IsDeleted,
                         PriceItem = g.PriceItem,
+                        Description = g.Description,
                         Count = g.Count,
                         Bill = g.Bill,
                         Product = g.Product,
@@ -154,6 +156,7 @@ namespace QuanLiCoffeeShop.Model.Service
                     billInfo.PriceItem = b.PriceItem;
                     billInfo.IsDeleted = false;
                     billInfo.Product = b.Product;
+                    billInfo.Description = b.Description;
                     billInfo.Count = b.Count;
                     billInfo.Bill = b.Bill;
                     bill.BillInfo.Add(new BillInfo

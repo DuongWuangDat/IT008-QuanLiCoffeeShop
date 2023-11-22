@@ -15,9 +15,7 @@ namespace QuanLiCoffeeShop.Converter
             if (value is decimal price)
             {
                 string valuePrice;
-                string a = value.ToString();
-                valuePrice = a.Substring(0, a.Length - 5);
-                int b = int.Parse(valuePrice);
+                int b = Decimal.ToInt32(price);
                 string c = b.ToString("N");               
                 valuePrice = c.Substring(0, c.Length - 3);
                 return valuePrice;

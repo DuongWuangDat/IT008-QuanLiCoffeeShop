@@ -194,21 +194,22 @@
                                        Source="/QuanLiCoffeeShop;component/Resources/Icon/SearchGray_Icon.png" />
                             </Button>
                             <Grid>
-                                <TextBox Text="{Binding CusInfo}"
-                                         Panel.ZIndex="1"
-                                         x:Name="searchCusBox"
-                                         Width="170"
-                                         Height="40"
-                                         VerticalContentAlignment="Center"
-                                         materialDesign:HintAssist.Hint="Khách hàng"
-                                         materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                         BorderThickness="0"
-                                         FontSize="16">
-                                    <!--<i:Interaction.Triggers>
+                                <TextBox
+                                    Text="{Binding CusInfo}"
+                                    Panel.ZIndex="1"
+                                    x:Name="searchCusBox"
+                                    Width="170"
+                                    Height="40"
+                                    VerticalContentAlignment="Center"
+                                    materialDesign:HintAssist.Hint="Khách hàng"
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                    BorderThickness="0"
+                                    FontSize="16">
+                                    <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="TextChanged">
                                             <i:InvokeCommandAction Command="{Binding SearchCusCM}" CommandParameter="{Binding ElementName=searchCusBox}"/>
                                         </i:EventTrigger>
-                                    </i:Interaction.Triggers>-->
+                                    </i:Interaction.Triggers>
                                 </TextBox>
                                 <Border Panel.ZIndex="0"
                                         Margin="0 0 0 12"
@@ -251,17 +252,24 @@
 
                     </StackPanel>
                     <Grid Grid.Row="1">
-                        <Border Margin="0 0 0 0"
-                                Background="#E6B89F"
-                                Opacity="0.58"
-                                Width="720"
-                                Height="510"
-                                VerticalAlignment="Top"
-                                CornerRadius="25">
-                            <Border Background="White"
-                                    Margin="8"
-                                    CornerRadius="20">
-                                <ListView ItemsSource="{Binding BillInfoList}">
+                        <Border
+                            Margin="0 0 0 0"
+                            Background="#E6B89F"
+                            Opacity="0.58" 
+                            Width="720"
+                            Height="510"
+                            VerticalAlignment="Top"
+                            CornerRadius="25">
+                            <Border 
+                                Background="White" 
+                                Margin="8" 
+                                CornerRadius="20">
+                                <ListView
+                                    x:Name="BillInfoList"
+                                    Width="720"
+                                    ItemsSource="{Binding BillInfoList}"
+                                    SelectedItem="{Binding SelectedBillInfo}"
+                                    >
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem"
                                                BasedOn="{StaticResource MaterialDesignGridViewItem}">
@@ -271,8 +279,7 @@
                                     <ListView.View>
                                         <GridView>
 
-                                            <GridViewColumn Header=""
-                                                            Width="25">
+                                            <GridViewColumn Header=""  Width="30">
                                                 <GridViewColumn.HeaderContainerStyle>
                                                     <Style TargetType="{x:Type GridViewColumnHeader}">
                                                         <Setter Property="HorizontalContentAlignment"
@@ -285,12 +292,25 @@
                                                 </GridViewColumn.HeaderContainerStyle>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <Image Margin="0 22 0 0"
-                                                               VerticalAlignment="Center"
-                                                               HorizontalAlignment="Center"
-                                                               Width="15"
-                                                               Height="15"
-                                                               Source="/QuanLiCoffeeShop;component/Resources/Icon/DeleteGray_Icon.png" />
+                                                        <Button
+                                                            Height="18"
+                                                            Width="18"
+                                                            Command="{Binding DataContext.DeleteBillInfoCM, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                            CommandParameter="{Binding}"
+                                                            Margin="0 22 0 0"
+                                                                Padding="0"
+                                                                BorderBrush="{x:Null}"
+                                                                Background="{x:Null}"
+                                                                Foreground="{x:Null}">
+                                                            <Image                                                               
+                                                                VerticalAlignment="Center"
+                                                                HorizontalAlignment="Center"                                                           
+                                                                Width="15"
+                                                                Height="15"
+                                                                Source="/QuanLiCoffeeShop;component/Resources/Icon/DeleteGray_Icon.png"
+                                                                />
+                                                        </Button>
+                                                        
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
@@ -313,21 +333,22 @@
                                                                     Orientation="Vertical">
                                                             <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, 
                                                                                AncestorType={x:Type ListViewItem}}, 
-                                                                               Converter={StaticResource IndexConverter}}"
-                                                                       FontSize="17" />
-                                                            <Image Margin="0 15 0 0"
-                                                                   VerticalAlignment="Center"
-                                                                   HorizontalAlignment="Center"
-                                                                   Width="15"
-                                                                   Height="15"
-                                                                   Source="/QuanLiCoffeeShop;component/Resources/Icon/PenBlack_Icon.png" />
+                                                                               Converter={StaticResource IndexConverter}, UpdateSourceTrigger=PropertyChanged}"
+                                                                FontSize="17" />
+                                                            <Image
+                                                                Margin="0 15 0 0"
+                                                                VerticalAlignment="Center"
+                                                                HorizontalAlignment="Center"                                                           
+                                                                Width="15"
+                                                                Height="15"
+                                                                Source="/QuanLiCoffeeShop;component/Resources/Icon/PenBlack_Icon.png"
+                                                                />
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
 
-                                            <GridViewColumn Header="Tên sản phẩm"
-                                                            Width="268">
+                                            <GridViewColumn Header="Tên sản phẩm" Width="265">
                                                 <GridViewColumn.HeaderContainerStyle>
                                                     <Style TargetType="{x:Type GridViewColumnHeader}">
                                                         <Setter Property="HorizontalContentAlignment"
@@ -346,17 +367,18 @@
                                                                     HorizontalAlignment="Left"
                                                                     Orientation="Vertical">
                                                             <TextBlock Text="{Binding Product.DisplayName}"
-                                                                       FontSize="17"
-                                                                       Margin="31,0,0,0" />
-                                                            <TextBox Text="{Binding Description}"
-                                                                     x:Name="NoteBox"
-                                                                     Width="170"
-                                                                     Height="40"
-                                                                     VerticalContentAlignment="Center"
-                                                                     materialDesign:HintAssist.Hint="Ghi chú..."
-                                                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                                                     BorderThickness="0"
-                                                                     FontSize="15">
+                                                               FontSize="17" 
+                                                               Margin="0,0,0,0"/>
+                                                            <TextBox
+                                                                Text="{Binding Description}"
+                                                                x:Name="NoteBox"
+                                                                Width="170"
+                                                                Height="40"
+                                                                VerticalContentAlignment="Center"
+                                                                materialDesign:HintAssist.Hint="Ghi chú..."
+                                                                materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                                                BorderThickness="0"
+                                                                FontSize="15">
                                                                 <!--<i:Interaction.Triggers>
                                                                     <i:EventTrigger EventName="TextChanged">
                                                                         <i:InvokeCommandAction Command="{Binding NoteBoxCM}" CommandParameter="{Binding ElementName=NoteBox}"/>
@@ -384,31 +406,55 @@
                                                 </GridViewColumn.HeaderContainerStyle>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <Button Padding="0"
-                                                                    BorderBrush="{x:Null}"
-                                                                    Background="{x:Null}"
-                                                                    Foreground="{x:Null}">
-
-                                                                <Image VerticalAlignment="Center"
-                                                                       HorizontalAlignment="Center"
-                                                                       Width="12"
-                                                                       Height="12"
-                                                                       Source="/QuanLiCoffeeShop;component/Resources/Icon/SubtractBlack_Icon.png" />
+                                                        <StackPanel
+                                                            VerticalAlignment="Center"
+                                                            HorizontalAlignment="Center"
+                                                            Orientation="Horizontal"
+                                                            >
+                                                            <Button
+                                                                Command="{Binding DataContext.SubBillInfoCM, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                                CommandParameter="{Binding}"
+                                                                Padding="0"
+                                                                BorderBrush="{x:Null}"
+                                                                Background="{x:Null}"
+                                                                Foreground="{x:Null}">
+                                                                <Image
+                                                                VerticalAlignment="Center"
+                                                                HorizontalAlignment="Center"                                                           
+                                                                Width="12"
+                                                                Height="12"
+                                                                Source="/QuanLiCoffeeShop;component/Resources/Icon/SubtractBlack_Icon.png"
+                                                                />
                                                             </Button>
-                                                            <TextBox Margin="10 0 10 0"
-                                                                     FontSize="17"
-                                                                     Text="{Binding Count}">
+                                                            <TextBox
+                                                                Width="22"
+                                                                MaxWidth="22"
+                                                                Margin="10 0 10 0"
+                                                                FontSize="17"
+                                                                Text="{Binding Count, UpdateSourceTrigger=PropertyChanged}">
+                                                                <i:Interaction.Triggers>
+                                                                    <i:EventTrigger EventName="TextChanged">
+                                                                        <i:InvokeCommandAction Command="{Binding DataContext.ChangeCountCM, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                                                                CommandParameter="{Binding}"/>
+                                                                    </i:EventTrigger>
+                                                                </i:Interaction.Triggers>
                                                             </TextBox>
-                                                            <Button Padding="0"
-                                                                    BorderBrush="{x:Null}"
-                                                                    Background="{x:Null}"
-                                                                    Foreground="{x:Null}">
-                                                                <Image VerticalAlignment="Center"
-                                                                       HorizontalAlignment="Center"
-                                                                       Width="12"
-                                                                       Height="12"
-                                                                       Source="/QuanLiCoffeeShop;component/Resources/Icon/AddBlack_Icon.png" />
+                                                            <Button
+                                                                Height="15"
+                                                                Width="15"
+                                                                Command="{Binding DataContext.PlusBillInfoCM, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                                CommandParameter="{Binding}"
+                                                                Padding="0"
+                                                                BorderBrush="{x:Null}"
+                                                                Background="{x:Null}"
+                                                                Foreground="{x:Null}">
+                                                                <Image
+                                                                    VerticalAlignment="Center"
+                                                                    HorizontalAlignment="Center"                                                           
+                                                                    Width="12"
+                                                                    Height="12"
+                                                                    Source="/QuanLiCoffeeShop;component/Resources/Icon/AddBlack_Icon.png"
+                                                                    />
                                                             </Button>
                                                         </StackPanel>
                                                     </DataTemplate>
@@ -416,8 +462,7 @@
 
                                             </GridViewColumn>
 
-                                            <GridViewColumn Header="Đơn giá"
-                                                            Width="120">
+                                            <GridViewColumn Header="Đơn giá" Width="110">
                                                 <GridViewColumn.HeaderContainerStyle>
                                                     <Style TargetType="{x:Type GridViewColumnHeader}">
                                                         <Setter Property="HorizontalContentAlignment"
@@ -455,11 +500,12 @@
                                                 </GridViewColumn.HeaderContainerStyle>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <TextBlock VerticalAlignment="Center"
-                                                                   HorizontalAlignment="Center"
-                                                                   Margin="10 0 0 0"
-                                                                   Text="{Binding PriceItem, Converter={StaticResource PriceConverter}}"
-                                                                   FontSize="17" />
+                                                        <TextBlock 
+                                                            VerticalAlignment="Center"
+                                                            HorizontalAlignment="Center"
+                                                            Margin="10 0 0 0"
+                                                            Text="{Binding PriceItem, Converter={StaticResource PriceConverter}, UpdateSourceTrigger=PropertyChanged}"
+                                                        FontSize="17" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
@@ -473,24 +519,26 @@
 
                     </Grid>
                     <StackPanel Grid.Row="2"
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Right"
-                                Margin="0 10 30 0">
-                        <TextBlock Style="{DynamicResource TextBlock}"
-                                   Text="Tổng:"
-                                   Height="23"
-                                   VerticalAlignment="Top"
-                                   Margin="0 0 15 0 " />
-                        <TextBlock Style="{DynamicResource TextBlock}"
-                                   Text="{Binding TotalBillValue,  Converter={StaticResource PriceConverter}}"
-                                   Height="23"
-                                   MaxWidth="120"
-                                   Margin="0 0 5 0"
-                                   VerticalAlignment="Top" />
-                        <TextBlock Style="{DynamicResource TextBlock}"
-                                   Text="đ"
-                                   Height="23"
-                                   VerticalAlignment="Top" />
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0 10 30 0">
+                        <TextBlock 
+                            Style="{DynamicResource TextBlock}" 
+                            Text="Tổng:" 
+                            Height="23" 
+                            VerticalAlignment="Top"
+                            Margin="0 0 15 0 "/>
+                        <TextBlock Style="{DynamicResource TextBlock}" 
+                            Text="{Binding TotalBillValue, Converter={StaticResource PriceConverter}}" 
+                            Height="23" 
+                            MaxWidth="120"
+                            Margin="0 0 5 0"
+                            VerticalAlignment="Top"/>
+                        <TextBlock 
+                            Style="{DynamicResource TextBlock}" 
+                            Text="đ"
+                            Height="23"                             
+                            VerticalAlignment="Top"/>
                     </StackPanel>
                     <StackPanel Grid.Row="3"
                                 Margin="0 0 20 0"

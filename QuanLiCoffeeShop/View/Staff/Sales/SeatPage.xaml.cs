@@ -30,5 +30,10 @@ namespace QuanLiCoffeeShop.View.Staff.Sales
             ScrollViewer.ScrollToVerticalOffset(ScrollViewer.VerticalOffset - e.Delta);
             e.Handled = true;
         }
+
+        private void ListViewItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

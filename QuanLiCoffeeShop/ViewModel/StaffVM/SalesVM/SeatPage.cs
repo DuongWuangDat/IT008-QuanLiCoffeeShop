@@ -137,6 +137,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 Genre = "Tất cả loại bàn";
         }
         public ICommand Classify { get; set; }
+        public ICommand LoadBill { get; set; }
 
     }
 }

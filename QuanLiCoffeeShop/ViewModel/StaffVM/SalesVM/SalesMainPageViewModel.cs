@@ -24,6 +24,14 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
     public partial class SalesMainPageViewModel:BaseViewModel
     {
         public static List<BillInfoDTO> billInfoList;
+        public static List<BillDTO> billList;
+
+        private ObservableCollection<BillDTO> _billlist;
+        public ObservableCollection<BillDTO> BillList
+        {
+            get { return _billlist; }
+            set { _billlist = value; OnPropertyChanged(); }
+        }
         private ObservableCollection<BillInfoDTO> _billInfoList;
 
         public ObservableCollection<BillInfoDTO> BillInfoList
@@ -31,7 +39,12 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
             get { return _billInfoList; }
             set { _billInfoList = value; OnPropertyChanged(); }
         }
-
+        private BillDTO _selectedbill;
+        public BillDTO SelectedBill
+        {
+            get { return _selectedbill; }
+            set { _selectedbill = value; OnPropertyChanged(); }
+        }
         private SeatDTO _selectedSeatItem;
         public SeatDTO SelectedSeatItem
         {
@@ -87,10 +100,12 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
         public ICommand PlusBillInfoCM { get; set; }
         public ICommand ChangeCountCM { get; set; }
         public SalesMainPageViewModel() {
-            FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, (p) => {
+            FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, async (p) => {
                 LoadPage();
                 p.Content = new SeatPage();
                 BillInfoList = new ObservableCollection<BillInfoDTO>();
+                BillList = new ObservableCollection<BillDTO>(await BillService.Ins.GetAllBill());
+                billList = new List<BillDTO>(BillList);
             });
           LoadSeatPageCM = new RelayCommand<Frame>((p)=> { return true; },async (p)=> {
               LoadPage();
@@ -161,6 +176,23 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 }
 
             });
+            LoadBill = new RelayCommand<SeatDTO>((p) => { return true; },async (p) =>
+            {
+                TableName ="Bàn "+ SelectedSeatItem.ID;
+                SelectedBill = new BillDTO();
+                SelectedBill = billList.Find((x => x.IDSeat == SelectedSeatItem.ID));
+                if (SelectedBill != null)
+                {
+                    BillInfoList = new ObservableCollection<BillInfoDTO>(SelectedBill.BillInfo);
+                    billInfoList = new List<BillInfoDTO>(BillInfoList);
+                }
+                else
+                {
+                    BillInfoList = null;
+                    billInfoList = null;
+                }    
+            });  
+               
             #endregion
                         
             #region Product

@@ -60,7 +60,7 @@
                              Cursor="Hand"
                              Margin="4"
                              Content="Tất cả"
-                             Command="{Binding  Classify}"
+                             Command="{Binding Classify}"
                              CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
                              IsChecked="True"
                              Style="{StaticResource MaterialDesignTabRadioButton}"
@@ -104,10 +104,12 @@
                           PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
                 <ListView x:Name="list_table"
                           VerticalAlignment="Top"
-                          ItemsSource="{Binding TableList}">
+                          ItemsSource="{Binding TableList}"
+                          SelectedItem="{Binding SelectedSeatItem}">
                     <ListView.ItemContainerStyle>
                         <Style BasedOn="{StaticResource MaterialDesignListBoxItem}"
                                TargetType="ListViewItem">
+
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver"
                                          Value="True">
@@ -117,6 +119,21 @@
                                             Value="#FFEAF8FF" />
                                 </Trigger>
                             </Style.Triggers>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListViewItem">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.LoadBill, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                                           CommandParameter="{Binding}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                            <ContentPresenter />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
                             <Setter Property="Padding"
                                     Value="1" />
                             <Setter Property="Margin"

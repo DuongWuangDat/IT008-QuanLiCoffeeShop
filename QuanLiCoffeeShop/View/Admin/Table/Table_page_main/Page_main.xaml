@@ -188,8 +188,8 @@
         <Grid Grid.Column="1">
             <ScrollViewer x:Name="ScrollViewer"
                           Grid.Column="1"
-                          Height="722"
-                          Margin="10,30,10,15"
+                          Height="730"
+                          Margin="10,25,10,5"
                           VerticalScrollBarVisibility="Auto"
                           VerticalAlignment="Top"
                           PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
@@ -212,7 +212,7 @@
                         <Setter Property="Padding"
                                 Value="0" />
                         <Setter Property="Margin"
-                                Value="0 5 10 5" />
+                                Value="8 2 10 9" />
                         <Setter Property="materialDesign:ListBoxItemAssist.ShowSelection"
                                 Value="False" />
                         

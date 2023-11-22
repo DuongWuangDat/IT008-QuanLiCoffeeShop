@@ -222,11 +222,11 @@
                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                     BorderThickness="0"
                                     FontSize="16">
-                                    <!--<i:Interaction.Triggers>
+                                    <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="TextChanged">
                                             <i:InvokeCommandAction Command="{Binding SearchCusCM}" CommandParameter="{Binding ElementName=searchCusBox}"/>
                                         </i:EventTrigger>
-                                    </i:Interaction.Triggers>-->
+                                    </i:Interaction.Triggers>
                                 </TextBox>
                                 <Border
                                     Panel.ZIndex="0"
@@ -287,8 +287,12 @@
                                 Background="White" 
                                 Margin="8" 
                                 CornerRadius="20">
-                                <ListView                                
-                                ItemsSource="{Binding BillInfoList}">
+                                <ListView
+                                    x:Name="BillInfoList"
+                                    Width="720"
+                                    ItemsSource="{Binding BillInfoList}"
+                                    SelectedItem="{Binding SelectedBillInfo}"
+                                    >
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem"
                                             BasedOn="{StaticResource MaterialDesignGridViewItem}">
@@ -298,7 +302,7 @@
                                     <ListView.View>
                                         <GridView>
 
-                                            <GridViewColumn Header=""  Width="25">
+                                            <GridViewColumn Header=""  Width="30">
                                                 <GridViewColumn.HeaderContainerStyle>
                                                     <Style TargetType="{x:Type GridViewColumnHeader}">
                                                         <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -308,14 +312,25 @@
                                                 </GridViewColumn.HeaderContainerStyle>
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <Image
+                                                        <Button
+                                                            Height="18"
+                                                            Width="18"
+                                                            Command="{Binding DataContext.DeleteBillInfoCM, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                            CommandParameter="{Binding}"
                                                             Margin="0 22 0 0"
-                                                            VerticalAlignment="Center"
-                                                            HorizontalAlignment="Center"                                                           
-                                                            Width="15"
-                                                            Height="15"
-                                                            Source="/QuanLiCoffeeShop;component/Resources/Icon/DeleteGray_Icon.png"
-                                                            />
+                                                                Padding="0"
+                                                                BorderBrush="{x:Null}"
+                                                                Background="{x:Null}"
+                                                                Foreground="{x:Null}">
+                                                            <Image                                                               
+                                                                VerticalAlignment="Center"
+                                                                HorizontalAlignment="Center"                                                           
+                                                                Width="15"
+                                                                Height="15"
+                                                                Source="/QuanLiCoffeeShop;component/Resources/Icon/DeleteGray_Icon.png"
+                                                                />
+                                                        </Button>
+                                                        
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
@@ -336,7 +351,7 @@
                                                             <TextBlock 
                                                                 Text="{Binding RelativeSource={RelativeSource FindAncestor, 
                                                                                AncestorType={x:Type ListViewItem}}, 
-                                                                               Converter={StaticResource IndexConverter}}"
+                                                                               Converter={StaticResource IndexConverter}, UpdateSourceTrigger=PropertyChanged}"
                                                                 FontSize="17" />
                                                             <Image
                                                                 Margin="0 15 0 0"
@@ -351,7 +366,7 @@
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
 
-                                            <GridViewColumn Header="Tên sản phẩm" Width="268">
+                                            <GridViewColumn Header="Tên sản phẩm" Width="265">
                                                 <GridViewColumn.HeaderContainerStyle>
                                                     <Style TargetType="{x:Type GridViewColumnHeader}">
                                                         <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -368,7 +383,7 @@
                                                             Orientation="Vertical">
                                                             <TextBlock Text="{Binding Product.DisplayName}"
                                                                FontSize="17" 
-                                                               Margin="31,0,0,0"/>
+                                                               Margin="0,0,0,0"/>
                                                             <TextBox
                                                                 Text="{Binding Description}"
                                                                 x:Name="NoteBox"
@@ -402,14 +417,17 @@
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <StackPanel
+                                                            VerticalAlignment="Center"
+                                                            HorizontalAlignment="Center"
                                                             Orientation="Horizontal"
                                                             >
                                                             <Button
+                                                                Command="{Binding DataContext.SubBillInfoCM, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                                CommandParameter="{Binding}"
                                                                 Padding="0"
                                                                 BorderBrush="{x:Null}"
                                                                 Background="{x:Null}"
                                                                 Foreground="{x:Null}">
-
                                                                 <Image
                                                                 VerticalAlignment="Center"
                                                                 HorizontalAlignment="Center"                                                           
@@ -419,11 +437,23 @@
                                                                 />
                                                             </Button>
                                                             <TextBox
+                                                                Width="22"
+                                                                MaxWidth="22"
                                                                 Margin="10 0 10 0"
                                                                 FontSize="17"
-                                                                Text="{Binding Count}">
+                                                                Text="{Binding Count, UpdateSourceTrigger=PropertyChanged}">
+                                                                <i:Interaction.Triggers>
+                                                                    <i:EventTrigger EventName="TextChanged">
+                                                                        <i:InvokeCommandAction Command="{Binding DataContext.ChangeCountCM, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                                                                CommandParameter="{Binding}"/>
+                                                                    </i:EventTrigger>
+                                                                </i:Interaction.Triggers>
                                                             </TextBox>
                                                             <Button
+                                                                Height="15"
+                                                                Width="15"
+                                                                Command="{Binding DataContext.PlusBillInfoCM, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                                                                CommandParameter="{Binding}"
                                                                 Padding="0"
                                                                 BorderBrush="{x:Null}"
                                                                 Background="{x:Null}"
@@ -442,7 +472,7 @@
 
                                             </GridViewColumn>
 
-                                            <GridViewColumn Header="Đơn giá" Width="120">
+                                            <GridViewColumn Header="Đơn giá" Width="110">
                                                 <GridViewColumn.HeaderContainerStyle>
                                                     <Style TargetType="{x:Type GridViewColumnHeader}">
                                                         <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -475,7 +505,7 @@
                                                             VerticalAlignment="Center"
                                                             HorizontalAlignment="Center"
                                                             Margin="10 0 0 0"
-                                                            Text="{Binding PriceItem, Converter={StaticResource PriceConverter}}"
+                                                            Text="{Binding PriceItem, Converter={StaticResource PriceConverter}, UpdateSourceTrigger=PropertyChanged}"
                                                         FontSize="17" />
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
@@ -500,7 +530,7 @@
                             VerticalAlignment="Top"
                             Margin="0 0 15 0 "/>
                         <TextBlock Style="{DynamicResource TextBlock}" 
-                            Text="{Binding TotalBillValue,  Converter={StaticResource PriceConverter}}" 
+                            Text="{Binding TotalBillValue, Converter={StaticResource PriceConverter}}" 
                             Height="23" 
                             MaxWidth="120"
                             Margin="0 0 5 0"

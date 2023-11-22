@@ -17,7 +17,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
         public ObservableCollection<SeatDTO> TableList
         {
             get { return _tablelist; }
-            set { _tablelist = value; OnPropertyChanged(); }
+            set { _tablelist = value; OnPropertyChanged(nameof(TableList)); }
         }
         private ObservableCollection<string> combogenrelist;
         public ObservableCollection<string> ComboList

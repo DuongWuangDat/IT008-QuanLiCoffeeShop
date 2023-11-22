@@ -99,6 +99,8 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
         public ICommand SubBillInfoCM { get; set; }
         public ICommand PlusBillInfoCM { get; set; }
         public ICommand ChangeCountCM { get; set; }
+        public ICommand PayBill {  get; set; }
+        public ICommand EndBill { get; set; }
         public SalesMainPageViewModel() {
             FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, async (p) => {
                 LoadPage();
@@ -108,8 +110,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 billList = new List<BillDTO>(BillList);
             });
           LoadSeatPageCM = new RelayCommand<Frame>((p)=> { return true; },async (p)=> {
-              LoadPage();
-              
+                 LoadPage();             
                 p.Content = new SeatPage();
                
             });
@@ -176,22 +177,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 }
 
             });
-            LoadBill = new RelayCommand<SeatDTO>((p) => { return true; },async (p) =>
-            {
-                TableName ="Bàn "+ SelectedSeatItem.ID;
-                SelectedBill = new BillDTO();
-                SelectedBill = billList.Find((x => x.IDSeat == SelectedSeatItem.ID));
-                if (SelectedBill != null)
-                {
-                    BillInfoList = new ObservableCollection<BillInfoDTO>(SelectedBill.BillInfo);
-                    billInfoList = new List<BillInfoDTO>(BillInfoList);
-                }
-                else
-                {
-                    BillInfoList = null;
-                    billInfoList = null;
-                }    
-            });  
+          
                
             #endregion
                         
@@ -297,6 +283,61 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 TotalBillValue = TotalBillValue - SelectedBillInfo.PriceItem ?? 0;
                 SelectedBillInfo.PriceItem = SelectedBillInfo.Count * SelectedBillInfo.Product.Price;
                 TotalBillValue = TotalBillValue + SelectedBillInfo.PriceItem ?? 0;
+            });
+            LoadBill = new RelayCommand<SeatDTO>((p) => { return true; }, async (p) =>
+            {
+                SelectedSeatItem = p;
+                TableName = "Bàn " + SelectedSeatItem.ID;
+                SelectedBill = new BillDTO();
+                SelectedBill = billList.Find((x => x.IDSeat == SelectedSeatItem.ID));
+                if (SelectedBill != null)
+                {
+                    BillInfoList = new ObservableCollection<BillInfoDTO>(SelectedBill.BillInfo);
+                    billInfoList = new List<BillInfoDTO>(BillInfoList);
+                }
+                else
+                {
+                    BillInfoList = null;
+                    billInfoList = null;
+                }
+            });
+            PayBill = new RelayCommand<object>((p) => { return true; }, async (p) => 
+            {
+                if (SelectedSeatItem.Status == "Đang sửa chữa")
+                {
+                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Bàn này đang được sửa chữa");
+                }
+                else
+                {
+                    Seat newseat = new Seat
+                    {
+                        ID = SelectedSeatItem.ID,
+                        Status = "Đã đặt",
+                        IDGenre = SelectedSeatItem.IDGenre,
+                        IsDeleted = false,
+                    };
+                    (bool success, string messageEdit) = await SeatService.Ins.EditSeat(newseat);
+                    UpdateBtn();
+                }
+            });
+            EndBill = new RelayCommand<object>((p) => { return true; }, async (p) =>
+            {
+                if (SelectedSeatItem.Status == "Đang sửa chữa")
+                {
+                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Bàn này đang được sửa chữa");
+                }
+                else
+                {
+                    Seat newseat = new Seat
+                    {
+                        ID = SelectedSeatItem.ID,
+                        Status = "Còn trống",
+                        IDGenre = SelectedSeatItem.IDGenre,
+                        IsDeleted = false,
+                    };
+                    (bool success, string messageEdit) = await SeatService.Ins.EditSeat(newseat);
+                    UpdateBtn();
+                }
             });
             #endregion
         }        

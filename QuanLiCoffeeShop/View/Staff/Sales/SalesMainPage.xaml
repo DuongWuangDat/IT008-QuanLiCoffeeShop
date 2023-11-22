@@ -545,6 +545,7 @@
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Right">
                         <Button Margin="0 0 40 0"
+                                Command="{Binding EndBill}"
                                 Width="200"
                                 Height="62"
                                 materialDesign:ButtonAssist.CornerRadius="24"
@@ -553,7 +554,9 @@
                                 Content="Kết thúc"
                                 FontSize="24"
                                 FontWeight="Bold" />
-                        <Button Width="200"
+                        <Button
+                            Command="{Binding PayBill}"
+                            Width="200"
                                 Height="62"
                                 materialDesign:ButtonAssist.CornerRadius="24"
                                 Background="#F0BD70"

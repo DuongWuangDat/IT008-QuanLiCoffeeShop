@@ -104,8 +104,7 @@
                           PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
                 <ListView x:Name="list_table"
                           VerticalAlignment="Top"
-                          ItemsSource="{Binding TableList}"
-                          SelectedItem="{Binding SelectedSeatItem}">
+                          ItemsSource="{Binding TableList}">
                     <ListView.ItemContainerStyle>
                         <Style BasedOn="{StaticResource MaterialDesignListBoxItem}"
                                TargetType="ListViewItem">

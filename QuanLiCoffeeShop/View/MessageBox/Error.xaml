@@ -1,5 +1,5 @@
 ﻿<Window
-    x:Class="QuanLiCoffeeShop.View.MessageBox.AddedSuccessfully"
+    x:Class="QuanLiCoffeeShop.View.MessageBox.Error"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,13 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="messageBoxWindow"
     Title="MessageBox"
-    Width="409.6"
+    Width="auto"
     Height="180"
     AllowsTransparency="True"
     Background="Transparent"
     FontFamily="{DynamicResource MaterialDesignFont}"
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
     ResizeMode="NoResize"
+    SizeToContent="Width"
     TextElement.FontSize="8.32"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -23,15 +24,19 @@
     WindowStyle="None"
     mc:Ignorable="d">
     <Grid>
-
-        <Border Background="White" CornerRadius="12.8">
+        <Border
+            Background="White"
+            BorderBrush="DarkGray"
+            BorderThickness="1"
+            CornerRadius="12.8">
             <Grid Background="Transparent">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <StackPanel
-                    Margin="0,30,0,20"
+                    Width="auto"
+                    Margin="20,30,20,20"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Orientation="Horizontal">
@@ -39,10 +44,10 @@
                         Grid.Row="0"
                         Width="59"
                         Height="59"
-                        Margin="0,0,25,0"
+                        Margin="0,0,20,0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Source="/QuanLiCoffeeShop;component/Resources/Icon/CircleTick.png" />
+                        Source="/QuanLiCoffeeShop;component/Resources/Icon/Delete_Caution.png" />
                     <TextBlock
                         Grid.Row="1"
                         HorizontalAlignment="Center"
@@ -51,7 +56,6 @@
                         FontSize="18.432"
                         Text="{Binding Text}" />
                 </StackPanel>
-
 
                 <Button
                     Grid.Row="1"
@@ -69,4 +73,5 @@
             </Grid>
         </Border>
     </Grid>
+
 </Window>

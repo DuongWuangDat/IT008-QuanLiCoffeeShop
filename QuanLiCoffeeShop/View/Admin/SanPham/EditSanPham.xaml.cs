@@ -20,25 +20,9 @@ namespace QuanLiCoffeeShop.View.Admin.SanPham
     /// </summary>
     public partial class EditSanPham : Window
     {
-        public ImageSource ImageSource { get; set; }
         public EditSanPham()
         {
             InitializeComponent();
-            DataContext = this;
-        }
-        private void AddImage_btn_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image Files|*.jpg;*.png;*.jpeg;*.gif|All Files|*.*";
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                ImageSource = new BitmapImage(new Uri(openFileDialog.FileName));
-            }
-        }
-        private void BoQua_btn_Click(object obj, RoutedEventArgs e)
-        {
-            Window.GetWindow(this).Close();
         }
     }
 }

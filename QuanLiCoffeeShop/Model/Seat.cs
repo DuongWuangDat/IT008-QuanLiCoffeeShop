@@ -17,14 +17,17 @@ namespace QuanLiCoffeeShop.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Seat()
         {
+            this.Bill = new HashSet<Bill>();
             this.Customer = new HashSet<Customer>();
         }
-    
+        
         public int ID { get; set; }
         public Nullable<int> IDGenre { get; set; }
         public string Status { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Bill> Bill { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Customer> Customer { get; set; }
         public virtual GenreSeat GenreSeat { get; set; }

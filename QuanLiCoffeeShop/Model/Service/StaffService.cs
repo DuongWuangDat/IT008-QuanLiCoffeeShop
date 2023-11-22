@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using QuanLiCoffeeShop.Utils;
 
 namespace QuanLiCoffeeShop.Model.Service
 {
     public class StaffService
     {
         public StaffService() { }
-		private QuanLiCoffeShopEntities context;
         private static StaffService _ins;
 
 		public static StaffService Ins
@@ -27,22 +27,18 @@ namespace QuanLiCoffeeShop.Model.Service
 				{
 					_ins = new StaffService();
 				}
-				if (_ins.context == null)
-				{
-					_ins.context = new QuanLiCoffeShopEntities();
-				}
 				return _ins;
 			}
 			private set { _ins = value; }
-		}
+		}// test
 
 		//Get all staff
 		public async Task<List<StaffDTO>> GetAllStaff()
 		{
 			using(var context = new QuanLiCoffeShopEntities())
 			{
-                var staffList = (from c in context.Staff
-                                 where c.IsDeleted == false
+                var staffList = await (from c in context.Staff
+                                 where c.IsDeleted == false || c.IsDeleted == null
                                  select new StaffDTO
                                  {
                                      ID = c.ID,
@@ -59,7 +55,7 @@ namespace QuanLiCoffeeShop.Model.Service
                                      Role = c.Role,
                                      IsDeleted = c.IsDeleted,
                                  }).ToListAsync();
-                return await staffList;
+                return staffList;
             }
         }
 			
@@ -125,7 +121,7 @@ namespace QuanLiCoffeeShop.Model.Service
                 staff.DisplayName = newStaff.DisplayName;
                 staff.StartDate = newStaff.StartDate;
                 staff.UserName = newStaff.UserName;
-                staff.PassWord = newStaff.PassWord;
+                staff.PassWord =  newStaff.PassWord == null ? staff.PassWord : newStaff.PassWord;
                 staff.PhoneNumber = newStaff.PhoneNumber;
                 staff.BirthDay = newStaff.BirthDay;
                 staff.Wage = newStaff.Wage;
@@ -151,5 +147,30 @@ namespace QuanLiCoffeeShop.Model.Service
             }
            
 		}
+        //update mk
+        public async Task<(bool, string,string)> UpdatePassword(string email, string newPass)
+        {
+            try
+            {
+                using (var context = new QuanLiCoffeShopEntities())
+                {
+                    var staff = await context.Staff.Where(p => p.Email == email).FirstOrDefaultAsync();
+                    if (staff != null && staff.IsDeleted == false)
+                    {
+                        staff.PassWord = Helper.MD5Hash(newPass);
+                    }
+                    else
+                    {
+                        return (false, "Không tồn tại email này", null);
+                    }
+                    await context.SaveChangesAsync();
+                    return (true, "Update mật khẩu thành công", staff.UserName);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, "Có lỗi xuất hiện", null);
+            }
+        }
 	}
 }

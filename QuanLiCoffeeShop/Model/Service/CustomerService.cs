@@ -66,6 +66,7 @@ namespace QuanLiCoffeeShop.Model.Service
                         cus.IsDeleted = false;
                         await context.SaveChangesAsync();
                         return (true, "Khoi phuc tai khoan thanh cong");
+                        
                     }
                     else
                     {
@@ -114,6 +115,62 @@ namespace QuanLiCoffeeShop.Model.Service
             }
            
 		}
-	}
+        // tìm theo email
+        public async Task<(Customer, bool, string)> findCusbyEmail(string email)
+        {
+            using(var context = new QuanLiCoffeShopEntities())
+            {
+                var cus = await context.Customer.Where(p=> p.Email == email).FirstOrDefaultAsync();
+                if(cus == null)
+                {
+                    return (null, false, "Không tìm thấy khách hàng này");
+                }
+                else
+                {
+                    return (cus, true, "Tìm thấy khách hàng");
+                }
+            }
+        }
+        // tìm theo sđt
+        public async Task<(Customer, bool, string)> findCusbyPhone(string phoneNumber)
+        {
+            using (var context = new QuanLiCoffeShopEntities())
+            {
+                var cus = await context.Customer.Where(p => p.PhoneNumber==phoneNumber).FirstOrDefaultAsync();
+                if (cus == null)
+                {
+                    return (null, false, "Không tìm thấy khách hàng này");
+                }
+                else
+                {
+                    return (cus, true, "Tìm thấy khách hàng");
+                }
+            }
+        }
+
+        // cập nhật chi tiêu
+        public async Task<(bool, string)> updateSpend(string spend, int id)
+        {
+            using (var context = new QuanLiCoffeShopEntities())
+            {
+                var cus = await context.Customer.Where(p => p.ID==id).FirstOrDefaultAsync();
+                if (cus == null)
+                {
+                    return (false, "Không tìm thấy khách hàng này");
+                }
+                if(decimal.TryParse(spend, out decimal d))
+                {
+                    cus.Spend = d;
+                }
+                else
+                {
+                    return (false, "Chi tiêu không đúng định dạng");
+                }
+                await context.SaveChangesAsync();
+                return (true, "Đã cập nhật");
+            }
+        }
+
+    }
 }
 

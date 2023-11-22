@@ -46,13 +46,34 @@ namespace QuanLiCoffeeShop.Model.Service
                                        IsDeleted = c.IsDeleted,
                                    }).ToListAsync();
                 return await productList;
-            }
-			
+            }			
 		}
-		
-		//Add new product
+        public async Task<List<ProductDTO>> GetAllProductCounted()
+        {
+            using (var context = new QuanLiCoffeShopEntities())
+            {
+                var productList = (from c in context.Product
+                                   where c.IsDeleted == false && c.Count>0                                 
+                                   select new ProductDTO
+                                   {
+                                       ID = c.ID,
+                                       DisplayName = c.DisplayName,
+                                       Price = c.Price,
+                                       IDGenre = c.IDGenre,
+                                       GenreName = c.GenreProduct.DisplayName,
+                                       Count = c.Count,
+                                       Description = c.Description,
+                                       Image = c.Image,
+                                       IsDeleted = c.IsDeleted,
+                                   }).ToListAsync();
+                return await productList;
+            }
 
-		public async Task<(bool, string)> AddNewPrD(Product newPrD)
+        }
+
+        //Add new product
+
+        public async Task<(bool, string)> AddNewPrD(Product newPrD)
 		{
 			using(var context = new QuanLiCoffeShopEntities())
 			{
@@ -70,11 +91,11 @@ namespace QuanLiCoffeeShop.Model.Service
                         prD.Image = newPrD.Image;
                         prD.IsDeleted = false;
                         await context.SaveChangesAsync();
-                        return (true, "Them thanh cong");
+                        return (true, "Thêm thành công");
                     }
                     else
                     {
-                        return (false, "Da ton tai san pham");
+                        return (false, "Đã tồn tại sản phẩm");
                     }
                 }
                 context.Product.Add(newPrD);
@@ -92,17 +113,19 @@ namespace QuanLiCoffeeShop.Model.Service
                 var prD = await context.Product.Where(p => p.ID == ID).FirstOrDefaultAsync();
                 if (prD.IsDeleted == false) prD.IsDeleted = true;
                 await context.SaveChangesAsync();
-                return (true, "Xoa thanh cong");
+                return (true, "Xóa thành công");
             }
 			
         }
 
 		//Edit product
-		public async Task<(bool, string)> EditPrD(Product newPrD)
+		public async Task<(bool, string)> EditPrD(Product newPrD, int ID)
 		{
             using(var context = new QuanLiCoffeShopEntities())
             {
                 var prD = await context.Product.Where(p => p.ID == newPrD.ID).FirstOrDefaultAsync();
+
+                if (prD == null) return (false, "Không tìm thấy ID");
                 prD.DisplayName = newPrD.DisplayName;
                 prD.Price = newPrD.Price;
                 prD.IDGenre = newPrD.IDGenre;
@@ -112,7 +135,7 @@ namespace QuanLiCoffeeShop.Model.Service
                 prD.Image = newPrD.Image;
                 prD.IsDeleted = false;
                 await context.SaveChangesAsync();
-                return (true, "Cap nhat thanh cong");
+                return (true, "Cập nhật thành công");
             }
             
 

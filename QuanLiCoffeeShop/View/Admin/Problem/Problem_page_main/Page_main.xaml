@@ -24,7 +24,7 @@
           IsHitTestVisible="{Binding IsOpenMain}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="236"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition > </ColumnDefinition>
         </Grid.ColumnDefinitions>
         <!--grid menu-->
         <Grid Grid.Column="0"
@@ -50,25 +50,25 @@
                     </StackPanel.Resources>
                     <!--Add_problemm-->
                     <Button Height="70"
-                            Width="140"
-                            Margin="0,0,0,0"
+                            Width="202"
+                            Margin="0,30,0,0"
                             Command="{Binding OpenAdd}">
                         <Button.Template>
                             <ControlTemplate>
-                                <Border Height="50"
-                                        CornerRadius="20"
+                                <Border Height="60"
+                                        CornerRadius="24"
                                         Background="#FFE0AE8A">
                                     <StackPanel         Cursor="Hand"
                                                         Orientation="Horizontal">
                                         <Image    Source="/QuanLiCoffeeShop;component/Resources/Icon/WhiteAdd_Icon.png"
                                                   Margin="15,0,0,0"
-                                                  Width="13"
-                                                  Height="13" />
+                                                  Width="20"
+                                                  Height="20" />
                                         <TextBlock   Text="Báo cáo sự cố"
-                                                     FontSize="14"
+                                                     FontSize="19"
                                                      VerticalAlignment="Center"
                                                      HorizontalAlignment="Center"
-                                                     Margin="5,0,0,0"
+                                                     Margin="13,0,0,0"
                                                      Foreground="White" />
                                     </StackPanel>
                                 </Border>
@@ -88,23 +88,20 @@
                                       Width="25"
                                       Height="30"
                                       Margin="24 0 0 0" />
-                            <TextBox x:Name="Searchtable" 
+                            <TextBox x:Name="SearchPro" 
                                      BorderBrush="#FFF4F4"
                                       TextDecorations="None"
-                                      Width="130"
-                                      Tag="Tìm kiếm"
-                                      Text="Tìm kiếm"
+                                      Width="130"                                    
                                       FontSize="18"
                                       VerticalAlignment="Center"
                                       Margin="13,0,0,0"
                                       Foreground="Black"
-                                      GotFocus="TextBox_GotFocus"
-                                      LostFocus="TextBox_LostFocus">
+                                     materialDesign:HintAssist.Hint="Tìm Kiếm"
+                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden">
 
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="TextChanged">
-                                        <i:InvokeCommandAction Command="{Binding SearchProblem}"
-                                                               CommandParameter="{Binding ElementName=search}" />
+                                        <i:InvokeCommandAction Command="{Binding Search}" CommandParameter="{Binding ElementName=SearchPro}" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
 
@@ -117,17 +114,21 @@
             </Border>
         </Grid>
         <Grid Grid.Column="1">
-
-            <Border  Margin="10,15,20,15"
-                     BorderBrush="#E6B89F"
-                     BorderThickness="25"
+            <Border Height="720"
+                    
+                Margin="10,-60,20,5"
+                    Padding="10"
+                    BorderBrush="#93E6B89F"
+                    BorderThickness="25"
                      CornerRadius="50">
-                <StackPanel>
-                    <Border Margin="10,20,20,10"
+                <Grid>
+                    <Border Margin="10,15,20,5"
                             BorderBrush="Black"
+                            VerticalAlignment="Top"
+                            Height="50"
                             BorderThickness="0,0,0,1">
                         <WrapPanel>
-                            <Border Margin="0,0,0,10"
+                            <Border Margin="0,0,0,5"
                                     Width="100"
                                     Height="30"
                                     BorderThickness="0,0,1,0"
@@ -137,8 +138,8 @@
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"></TextBlock>
                             </Border>
-                            <Border  Margin="0,0,0,10"
-                                     Width="400"
+                            <Border  Margin="0,0,0,5"
+                                     Width="360"
                                      Height="30"
                                      BorderThickness="0,0,1,0"
                                      BorderBrush="Black">
@@ -147,7 +148,7 @@
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"></TextBlock>
                             </Border>
-                            <Border  Margin="0,0,0,10"
+                            <Border  Margin="0,0,0,5"
                                      Width="275"
                                      Height="30"
                                      BorderThickness="0,0,1,0"
@@ -157,7 +158,7 @@
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"></TextBlock>
                             </Border>
-                            <Border Margin="0,0,0,10"
+                            <Border Margin="0,0,0,5"
                                     Width="300"
                                     Height="30">
                                 <TextBlock Text="Ghi chú"
@@ -167,55 +168,91 @@
                             </Border>
                         </WrapPanel>
                     </Border>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ScrollViewer x:Name="ScrollViewer"
+                                  Height="585"
+                                  Margin="0,69,0,0"
+                                  VerticalScrollBarVisibility="Hidden"
+                                  VerticalAlignment="Top"
+                                  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
+                                  HorizontalAlignment="Center"
+                                  Width="1190">
+                        
                         <ListView x:Name="prb_list"
+                                  VerticalAlignment="Top"
                                   ItemsSource="{Binding ProblemList}"
-                                  SelectedItem="{Binding SelectedItem}"
-                                  Height="630"
-                                  Width="1220"
-                                  >
+                                  Margin="5,5.5,20,20"
+                                  Width="1180">
+                            <ListView.ItemContainerStyle>
+                                <Style BasedOn="{StaticResource MaterialDesignListBoxItem}"
+                                       TargetType="ListViewItem">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter Property="IsSelected"
+                                                    Value="True" />
+                                            <Setter Property="Background"
+                                                    Value="#FFEAF8FF" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                    <Setter Property="Padding"
+                                            Value="1" />
+                                    <Setter Property="Margin"
+                                            Value="0,0.5,0,0.5" />
+                                    <Setter Property="materialDesign:ListBoxItemAssist.ShowSelection"
+                                            Value="False" />
+                                    
 
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="1" />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
-                                        <Border Margin="10,0,0,10"
-                                                BorderBrush="Black"
-                                                BorderThickness="0,0,0,1">
-                                            <WrapPanel>
-                                                <Border Margin="0,0,0,10"
-                                                        Width="100"
-                                                        Height="30">
+                                        <Border BorderBrush="#7F6F6F6F"
+                                                Width="1170"
+                                                Height="52.2"
+                                                BorderThickness="0,0,0,0.7">
+                                            <WrapPanel VerticalAlignment="Center">
+                                                <Border Margin="0,0,0,0"
+                                                        Width="90"
+                                                        Height="25">
                                                     <TextBlock Text="{Binding ID}"
-                                                               FontSize="20"
+                                                               FontSize="18"
                                                                HorizontalAlignment="Center"
                                                                VerticalAlignment="Center"></TextBlock>
                                                 </Border>
-                                                <Border  Margin="0,0,0,10"
-                                                         Width="400"
-                                                         Height="30">
+                                                <Border  Margin="10,0,0,0"
+                                                         Width="360"
+                                                         Height="25">
                                                     <TextBlock Text="{Binding DisplayName}"
-                                                               FontSize="20"
+                                                               FontSize="18"
                                                                HorizontalAlignment="Center"
                                                                VerticalAlignment="Center"></TextBlock>
                                                 </Border>
-                                                <Border  Margin="0,0,0,10"
+                                                <Border  Margin="5,0,0,0"
                                                          Width="275"
-                                                         Height="30">
+                                                         Height="25">
                                                     <TextBlock Text="{Binding Status}"
-                                                               FontSize="20"
+                                                               FontSize="18"
                                                                HorizontalAlignment="Center"
                                                                VerticalAlignment="Center"></TextBlock>
                                                 </Border>
-                                                <Border Margin="0,0,0,10"
+                                                <Border Margin="3,0,0,0"
                                                         Width="300"
-                                                        Height="30">
+                                                        Height="25">
                                                     <TextBlock Text="{Binding Description}"
-                                                               FontSize="20"
+                                                               FontSize="18"
                                                                HorizontalAlignment="Center"
                                                                VerticalAlignment="Center"></TextBlock>
                                                 </Border>
 
-                                                <Button  Margin="10,0,0,10"
+                                                <Button  Margin="10,0,0,0"
+                                                         Width="35"
+                                                         Height="35"
                                                          Background="White"
                                                          Command="{Binding DataContext.OpenEdit, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
                                                          CommandParameter="{Binding}">
@@ -223,14 +260,16 @@
                                                         <ControlTemplate>
                                                             <Border CornerRadius="100"
                                                                     Background="White"
-                                                                    Height="30"
-                                                                    Width="30">
+                                                                    Height="27"
+                                                                    Width="27">
                                                                 <Image Source="/QuanLiCoffeeShop;component/Resources/Icon/ChangeBrown_Icon.png"></Image>
                                                             </Border>
                                                         </ControlTemplate>
                                                     </Button.Template>
                                                 </Button>
-                                                <Button Margin="10,0,0,10"
+                                                <Button Margin="5,0,0,0"
+                                                        Width="35"
+                                                        Height="35"
                                                         Background="White"
                                                         VerticalAlignment="Center"
                                                         Command="{Binding DataContext.OpenDelete, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
@@ -239,8 +278,8 @@
                                                         <ControlTemplate>
                                                             <Border  CornerRadius="100"
                                                                      Background="White"
-                                                                     Height="30"
-                                                                     Width="30">
+                                                                     Height="27"
+                                                                     Width="27">
                                                                 <Image Source="/QuanLiCoffeeShop;component/Resources/Icon/DeleteBlue_Icon.png"></Image>
                                                             </Border>
                                                         </ControlTemplate>
@@ -256,7 +295,9 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </ScrollViewer>
-                </StackPanel>
+                </Grid>
+                  
+                
             </Border>
         </Grid>
         <!--popup thêm sự cố-->
@@ -294,10 +335,11 @@
 
                         <TextBox  BorderBrush="Transparent"
                                   TextDecorations="None"
-                                  Width="250"
-                                  FontSize="18"
+                                  Width="260"
+                                  FontSize="19"
+                                  materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                   VerticalAlignment="Center"
-                                  Margin="13,0,0,0"
+                                  Margin="0,0,0,0"
                                   Foreground="Black"
                                   Background="{x:Null}"
                                   Text="{Binding Name}" />
@@ -315,24 +357,22 @@
                              BorderBrush="#FFE0AE8A"
                              CornerRadius="16"
                              Background="#FFF4F4">
-
-                        <ComboBox BorderThickness="0"
-                                  FocusVisualStyle="{x:Null}"
-                                  Width="260"
-                                  Height="30"
-                                  Text="{Binding Status}">
-
-                            <ComboBox.ItemContainerStyle>
-                                <Style TargetType="ComboBoxItem">
-                                    <Setter Property="Background"
-                                            Value="#FFF4F4" />
-                                </Style>
-                            </ComboBox.ItemContainerStyle>
-                            <TextBlock   Text="Đang sửa chữa"
-                                         FontSize="18"></TextBlock>
-                            <TextBlock Text="Đã sửa"
-                                       FontSize="18"></TextBlock>
+                        <ComboBox Width="265"
+                                  Height="35"
+                                  ItemsSource="{Binding StatusList }"
+                                  SelectedItem="{Binding Status}"
+                                  Margin="0,3,0,0"
+                                  Padding="0"
+                                  Background="#FFF4F4"
+                                  HorizontalAlignment="Center"
+                                  VerticalContentAlignment="Center"
+                                  materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                  materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                  BorderThickness="0"
+                                  FontFamily="Inter"
+                                  FontSize="19">
                         </ComboBox>
+
                     </Border>
 
                     <TextBlock Text="Ghi chú"
@@ -349,10 +389,11 @@
 
                         <TextBox  BorderBrush="#FFF4F4"
                                   TextDecorations="None"
-                                  Width="250"
+                                  Width="260"
+                                  materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                   FontSize="18"
                                   VerticalAlignment="Center"
-                                  Margin="13,0,0,0"
+                                  Margin="0,0,0,0"
                                   Foreground="Black"
                                   Background="{x:Null}"
                                   Text="{Binding Description}" />
@@ -430,24 +471,19 @@
                              BorderBrush="#FFE0AE8A"
                              CornerRadius="16"
                              Background="#FFF4F4">
-                        <ComboBox BorderThickness="0"
-                                  FocusVisualStyle="{x:Null}"
-                                  Width="260"
-                                  Height="32"
-                                  HorizontalContentAlignment="Left"
-                                  Text="{Binding Status}"
-                                 >
-
-                            <ComboBox.ItemContainerStyle>
-                                <Style TargetType="ComboBoxItem">
-                                    <Setter Property="Background"
-                                            Value="#FFF4F4" />
-                                </Style>
-                            </ComboBox.ItemContainerStyle>
-                            <TextBlock   Text="Đang sửa chữa"
-                                         FontSize="18"></TextBlock>
-                            <TextBlock Text="Đã sửa"
-                                       FontSize="18"></TextBlock>
+                        <ComboBox Width="260"
+                                  Height="35"
+                                  ItemsSource="{Binding StatusList }"
+                                  SelectedItem="{Binding Status}"
+                                  Margin="0,3,0,0"
+                                  Padding="0"
+                                  Background="#FFF4F4"
+                                  HorizontalAlignment="Center"
+                                  VerticalContentAlignment="Center"
+                                  materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                  BorderThickness="0"
+                                  FontFamily="Inter"
+                                  FontSize="19">
                         </ComboBox>
                     </Border>
                     <TextBlock Text="Ghi chú"
@@ -462,13 +498,14 @@
                              Background="#FFF4F4">
                         <TextBox  BorderBrush="#FFF4F4"
                                   TextDecorations="None"
-                                  Width="250"
-                                  FontSize="18"
+                                  materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                  materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                  Width="260"
+                                  FontSize="19"
                                   VerticalAlignment="Center"
-                                  Margin="10,0,10,0"
+                                  Margin="5,0,10,0"
                                   Foreground="Black"
                                   Background="{x:Null}"
-                                  HorizontalContentAlignment="Center"
                                   Text="{Binding Description}" />
                     </Border>
 
@@ -518,68 +555,7 @@
                 </StackPanel>
             </Border>
         </Popup>
-        <!--popup thông báo xóa-->
-        <Popup  Placement="Center"
-                x:Name="Popup_thong_bao_dong"
-                IsOpen="{Binding IsPopupOpenDelete}"
-                AllowsTransparency="True"
-                PopupAnimation="Fade">
-            <Border Width="438"
-                    Height="196"
-                    CornerRadius="25"
-                    Background="White"
-                    BorderBrush="#E0AE8A"
-                    BorderThickness="1">
-                <StackPanel>
-                    <TextBlock Margin="0,40,0,0"
-                               HorizontalAlignment="Center"
-                               Text="Bạn có chắc chắn muốn xóa bàn này không?"
-                               FontSize="18"
-                               FontWeight="Bold"
-                               Foreground="#CC824D"></TextBlock>
-                    <Grid Margin="0,40,0,0">
-                        <Button Height="48"
-                                Width="97"
-                                HorizontalAlignment="Left"
-                                Margin="70,0,0,0"
-                                Command="{Binding Delete}">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Border      CornerRadius="24"
-                                                 Background="#F0BD70">
-                                        <TextBlock   Text="Có"
-                                                     FontWeight="Bold"
-                                                     FontSize="20"
-                                                     VerticalAlignment="Center"
-                                                     HorizontalAlignment="Center"
-                                                     Foreground="White" />
-                                    </Border>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                        <Button Height="48"
-                                Width="97"
-                                HorizontalAlignment="Right"
-                                Margin="0,0,70,0"
-                                Command="{Binding CloseDelete}">
-                            <Button.Template>
-                                <ControlTemplate>
-                                    <Border      CornerRadius="24"
-                                                 Background="#EFD8B4">
-                                        <TextBlock   Text="Không"
-                                                     FontWeight="Bold"
-                                                     FontSize="20"
-                                                     VerticalAlignment="Center"
-                                                     HorizontalAlignment="Center"
-                                                     Foreground="White" />
-                                    </Border>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                    </Grid>
-                </StackPanel>
-            </Border>
-        </Popup>
+      
 
 
     </Grid>

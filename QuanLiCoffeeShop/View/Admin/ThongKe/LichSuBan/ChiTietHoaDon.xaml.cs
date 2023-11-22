@@ -23,10 +23,5 @@ namespace QuanLiCoffeeShop.View.Admin.ThongKe.LichSuBan
         {
             InitializeComponent();
         }
-
-        private void Close_btn_Click(object sender, RoutedEventArgs e)
-        {
-            Window.GetWindow(this).Close();
-        }
     }
 }

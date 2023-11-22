@@ -26,28 +26,26 @@ namespace QuanLiCoffeeShop.View.Admin.Table.Table_page_main
             InitializeComponent();
             
         }
-        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
-            if (textBox.Text == textBox.Tag.ToString())
-            {
-                textBox.Text = "";
-            }
+            ScrollViewer.ScrollToVerticalOffset(ScrollViewer.VerticalOffset - e.Delta);
+            e.Handled = true;
         }
-        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
-            if (string.IsNullOrWhiteSpace(textBox.Text))
-            {
-                textBox.Text = textBox.Tag.ToString();
-
-            }
+           Button Btn = (Button)sender;
+            reset();
+            ControlTemplate newTemplate = FindResource("BtnClick") as ControlTemplate;
+            Btn.Template = newTemplate;
         }
-        class table
+        void reset()
         {
-            public string Name { get; set; }
-            public string Status { get; set; }
+            ControlTemplate Template = FindResource("BtnDefault") as ControlTemplate;
+            BtnAll.Template = Template;
+            BtnBooked.Template = Template;
+            BtnEmpty.Template = Template;
+            BtnRepair.Template = Template;
         }
-
     }
+
 }

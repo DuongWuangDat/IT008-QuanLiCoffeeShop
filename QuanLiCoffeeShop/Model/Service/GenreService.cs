@@ -10,9 +10,9 @@ namespace QuanLiCoffeeShop.Model.Service
 {
     public class GenreService
     {
-		private GenreService _ins;
+		private static GenreService _ins;
 
-		public GenreService Ins
+		public static GenreService Ins
 		{
 			get 
 			{ 
@@ -26,13 +26,26 @@ namespace QuanLiCoffeeShop.Model.Service
             using (var context = new QuanLiCoffeShopEntities())
             {
                 var prD = await context.GenreProduct.Where(p => p.DisplayName == name).FirstOrDefaultAsync();
-                if (prD != null)
+                if (prD == null)
                 {
                     return (-1, null);
                 }
                 return (prD.ID, prD);
             }
                 
+        }
+        public async Task<(int, GenreSeat)> FindGenreSeat(string name)
+        {
+            using (var context = new QuanLiCoffeShopEntities())
+            {
+                var seat = await context.GenreSeat.Where(p => p.DisplayName == name).FirstOrDefaultAsync();
+                if (seat == null)
+                {
+                    return (-1, null);
+                }
+                return (seat.ID, seat);
+            }
+
         }
 
         //Get  all gerne seat
@@ -51,8 +64,8 @@ namespace QuanLiCoffeeShop.Model.Service
         {
             using(var context = new QuanLiCoffeShopEntities())
             {
-                var seatGenreList = (from c in context.GenreProduct select c.DisplayName).ToListAsync();
-                return await seatGenreList;
+                var productGenreList = (from c in context.GenreProduct select c.DisplayName).ToListAsync();
+                return await productGenreList;
             }
             
         }

@@ -2,6 +2,7 @@
 using QuanLiCoffeeShop.Model;
 using QuanLiCoffeeShop.Model.Service;
 using QuanLiCoffeeShop.View.Admin.Problem;
+using QuanLiCoffeeShop.View.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +13,8 @@ using System.Web;
 using System.Windows.Input;
 using System.Windows.Controls;
 using System.Windows;
+using QuanLiCoffeeShop.View.Admin.Problem.Problem_page_main;
+
 
 namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
 {
@@ -25,6 +28,14 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
             get { return _problemList; }
             set { _problemList = value; OnPropertyChanged(); }
         }
+        private ObservableCollection<string> statuslist;
+
+        public ObservableCollection<string> StatusList
+        {
+            get { return statuslist; }
+            set { statuslist = value; OnPropertyChanged(); }
+        }
+
         private ErrorDTO _selectedItem;
 
         public ErrorDTO SelectedItem
@@ -89,7 +100,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
         public ICommand CloseEdit { get; set; }
         public ICommand OpenDelete { get; set; }
         public ICommand CloseDelete { get; set; }
-        public ICommand Delete {  get; set; }
+        public ICommand Search { get; set; }
         private void resetdata()
         {
             Name = null; Description=null;Status = null;
@@ -110,6 +121,9 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
         {
             FirstLoadProblem = new RelayCommand<Page>((p) => { return true; }, async (p) =>
             {
+                StatusList = new ObservableCollection<string>();
+                StatusList.Add("Đã sửa");
+                StatusList.Add("Đang sửa chữa");
                 ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
                 ProList = new List<ErrorDTO>(ProblemList);
             });
@@ -120,19 +134,21 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
             CloseAdd = new RelayCommand<object>((p) => { return true; }, (p) =>
             {
                 IsPopupOpenAdd = false;
+                resetdata();
             });
             AddProblem = new RelayCommand<object>((p) => { return true; },async (p) =>
             {
                 if (Name == null || Status == null)
                 {
                     IsPopupOpenAdd = false;
-                    MessageBox.Show("Bạn chưa nhập đủ thông tin!!");
+                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đã nhập thiếu thông tin");
                     IsPopupOpenAdd = true;
                 }
                 else
                 {
+                    IsPopupOpenAdd = false;
                     if (Description == null) { Description = ""; }
-                    Error newerror = new Error
+                    Model.Error newerror = new Model.Error()
                     {
                         DisplayName = Name,
                         Status = Status,
@@ -140,19 +156,19 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                         IsDeleted = false,
 
                     };
-                   
+                    resetdata();
                     (bool IsAdded, string messageAdd) = await ErrorService.Ins.AddNewError(newerror);
                     if (IsAdded)
                     {
                         ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
-                        IsPopupOpenAdd = false;
-                        resetdata();
+                         ProList = new List<ErrorDTO>(ProblemList);
+                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Bạn đã thêm thành công");           
                     }
                     else
                     {
-                        IsPopupOpenAdd= false;
-                        MessageBox.Show(messageAdd);
-                    }
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đã thêm thất bại");
+                    }    
+                   
                 }
 
             });
@@ -166,15 +182,23 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
             CloseEdit = new RelayCommand<object>((p) => { return true; }, (p) => 
             { 
                 IsPopupOpenEdit = false;
-                resetdata() ;
-               
+                resetdata() ;               
             });
             Edit=new RelayCommand<object>((p) => { return true; },async (p)=>
             {
-              
-               
+
+                if (Status == "")
+                {
+                    isPopupOpenEdit = false;
+                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đã nhập thiếu dữ liệu");
+                    IsPopupOpenEdit= true;
+                    
+                }
+                else
+                {
+                    IsPopupOpenEdit = false;
                     if (Description == null) { Description = ""; }
-                    Error newerror = new Error
+                    Model.Error newerror = new Model.Error()
                     {
                         ID = SelectedItem.ID,
                         DisplayName = SelectedItem.DisplayName,
@@ -182,38 +206,54 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                         Description = this.Description,
                         IsDeleted = false,
                     };
-              
+                    resetdata();
                     (bool success, string messageEdit) = await ErrorService.Ins.EditError(newerror);
                     if (success)
                     {
-                        IsPopupOpenEdit= false;
                         ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
-                    MessageBox.Show(messageEdit);
-                    resetdata() ;
+                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Bạn đã sửa thành công");
+                       
                     }
+                    else
+                    {
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Sửa thất bại");
+                    }    
+                }
                                       
             });
-            OpenDelete = new RelayCommand<ErrorDTO>((p) => { return true; }, (p) =>
+            OpenDelete = new RelayCommand<ErrorDTO>((p) => { return true; },async (p) =>
             {
-                ExecuteOpenDelete(p);
-                IsPopupOpenDelete = true;           
-
-            });
-            CloseDelete = new RelayCommand<object>((p) => { return true; }, (p) =>
-            {
-                IsPopupOpenDelete = false;
-            });
-            Delete = new RelayCommand<object>((p) => { return true; },async (p) =>
-            {
-              
-
-                (bool sucess, string messageDelete) = await ErrorService.Ins.DeleteError(SelectedItem.ID);
-                if (sucess)
+               
+                DeleteMessage wd = new DeleteMessage();
+                wd.ShowDialog();
+                if (wd.DialogResult == true)
                 {
-                    ProblemList.Remove(SelectedItem);
-                    IsPopupOpenDelete = false;
-                    MessageBox.Show(messageDelete);
-                }
+                    ExecuteOpenDelete(p);
+                    (bool sucess, string messageDelete) = await ErrorService.Ins.DeleteError(SelectedItem.ID);
+                    if (sucess)
+                    {
+                        ProblemList.Remove(SelectedItem);
+                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Bạn đã xóa thành công");
+                    }
+                    else
+                    {
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Xóa thất bại");
+                    }    
+                }             
+
+            });
+            Search = new RelayCommand<TextBox>((p) => { return true; },async (p) =>
+            {
+                if(p.Text == "" )
+                {
+                    ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
+                }    
+                else
+                {
+                    ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
+                    ProList = new List<ErrorDTO>(ProblemList);
+                    ProblemList = new ObservableCollection<ErrorDTO>(ProList.FindAll(x => x.DisplayName.ToLower().Contains(p.Text.ToLower())));
+                }    
             });
         }
     }

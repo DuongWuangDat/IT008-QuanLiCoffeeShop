@@ -4,15 +4,20 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:QuanLiCoffeeShop.View.Admin.ThongKe.MonUaThich"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:converters="clr-namespace:QuanLiCoffeeShop.Converter"
       mc:Ignorable="d" 
+      DataContext="{StaticResource ThongKeVM}"
       ShowsNavigationUI="False"
       d:DesignHeight="702" d:DesignWidth="1153"
       Title="MonUaThichTable">
-
+    <Page.Resources>
+        <converters:PriceConverter x:Key="PriceConverter"></converters:PriceConverter>
+    </Page.Resources>
     <Grid>
         <ListView 
             Margin="11"
-            ItemsSource="{Binding HoaDonList}"
+            ItemsSource="{Binding FavorList}"
             SelectedItem="{Binding SelectedItem}" >
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem"
@@ -23,7 +28,7 @@
             <ListView.View>
                 <GridView>
 
-                    <GridViewColumn Header="STT"  Width="120">
+                    <GridViewColumn Header="ID"  Width="120">
                         <GridViewColumn.HeaderContainerStyle>
                             <Style TargetType="{x:Type GridViewColumnHeader}">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -33,13 +38,13 @@
                         </GridViewColumn.HeaderContainerStyle>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding STT}"
+                                <TextBlock Text="{Binding ID}"
                        FontSize="18" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-                    <GridViewColumn Header="Tên món" Width="512">
+                    <GridViewColumn Header="Tên món" Width="412">
                         <GridViewColumn.HeaderContainerStyle>
                             <Style TargetType="{x:Type GridViewColumnHeader}">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -57,7 +62,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-                    <GridViewColumn Header="Số lượng" Width="500">
+                    <GridViewColumn Header="Số lượng" Width="200">
                         <GridViewColumn.HeaderContainerStyle>
                             <Style TargetType="{x:Type GridViewColumnHeader}">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -68,9 +73,26 @@
                         </GridViewColumn.HeaderContainerStyle>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding SoLuong}"
+                                <TextBlock Text="{Binding Count}"
                                     FontSize="18" 
                        />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+
+                    </GridViewColumn>
+                    <GridViewColumn Header="Doanh thu" Width="400">
+                        <GridViewColumn.HeaderContainerStyle>
+                            <Style TargetType="{x:Type GridViewColumnHeader}">
+                                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="BorderBrush" Value="Transparent"/>
+                                <Setter Property="Height" Value="47"/>
+                            </Style>
+                        </GridViewColumn.HeaderContainerStyle>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Price, Converter={StaticResource PriceConverter}}"
+                                        FontSize="18"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
 

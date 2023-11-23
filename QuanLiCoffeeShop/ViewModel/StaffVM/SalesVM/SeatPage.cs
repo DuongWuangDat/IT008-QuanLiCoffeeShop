@@ -17,7 +17,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
         public ObservableCollection<SeatDTO> TableList
         {
             get { return _tablelist; }
-            set { _tablelist = value; OnPropertyChanged(); }
+            set { _tablelist = value; OnPropertyChanged(nameof(TableList)); }
         }
         private ObservableCollection<string> combogenrelist;
         public ObservableCollection<string> ComboList
@@ -137,6 +137,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 Genre = "Tất cả loại bàn";
         }
         public ICommand Classify { get; set; }
+        public ICommand LoadBill { get; set; }
 
     }
 }

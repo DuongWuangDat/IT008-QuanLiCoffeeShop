@@ -115,10 +115,11 @@
         </Grid>
         <Grid Grid.Column="1">
             <Border Height="720"
-                Margin="10,-10,20,5"
-                    Padding="0,0,0,0"
+                    
+                Margin="10,-60,20,5"
+                    Padding="10"
                     BorderBrush="#93E6B89F"
-                    BorderThickness="35"
+                    BorderThickness="25"
                      CornerRadius="50">
                 <Grid>
                     <Border Margin="10,15,20,5"

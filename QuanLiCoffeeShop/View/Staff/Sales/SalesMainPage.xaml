@@ -107,9 +107,12 @@
                 </Button>
             </Border>
         </StackPanel>
-        <Grid Margin="15 0 5 50"
-              Grid.Row="1">
-            <Frame x:Name="TabFrame">
+        <Grid 
+            VerticalAlignment="Top"
+            Margin="15 0 5 0"
+            Grid.Row="1">
+            <Frame x:Name="TabFrame"
+                   Height="680">
                 <Frame.Style>
                     <Style TargetType="Frame">
                         <Setter Property="NavigationUIVisibility"
@@ -144,20 +147,25 @@
                        Foreground="#E0AE8A">
             </TextBlock>
         </Border>
-        <Grid Grid.Row="1"
-              Grid.Column="1">
-            <Grid Margin="5 0 15 50"
-                  Height="18"
-                  Width="15"
-                  VerticalAlignment="Top"
-                  HorizontalAlignment="Left"
-                  Panel.ZIndex="1"
-                  Background="White">
+        <Grid
+            Grid.Row="1"
+            Grid.Column="1">
+            <Grid
+                Margin="5 0 15 0"
+                Height="18"
+                Width="15"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                Panel.ZIndex="1"
+                Background="White">
 
             </Grid>
-            <Border CornerRadius="20"
-                    Margin="5 0 15 50"
-                    Background="White">
+            <Border
+                VerticalAlignment="Top"
+                Height="680"
+                CornerRadius="20"
+                Margin="5 0 15 0"
+                Background="White">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="55"></RowDefinition>

@@ -213,12 +213,12 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                             
                     BillInfoDTO billInfo = new BillInfoDTO
                     {
-
+                        
                         IDProduct = SelectedPrdItem.ID,
                         IsDeleted = SelectedPrdItem.IsDeleted,
                         PriceItem = SelectedPrdItem.Price,
-                        Count = 1,
-                        Product = a
+                        Count = 1,                       
+                        Product = a,
                     };
                     
                     BillInfoList.Add(billInfo);

@@ -104,17 +104,17 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
         public SalesMainPageViewModel() {
             FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, async (p) => {
                 LoadPage();
-                p.Content = new SeatPage();
-                BillInfoList = new ObservableCollection<BillInfoDTO>();
+                p.Content = new SeatPage();                
                 BillList = new ObservableCollection<BillDTO>(await BillService.Ins.GetAllBill());
                 billList = new List<BillDTO>(BillList);
             });
           LoadSeatPageCM = new RelayCommand<Frame>((p)=> { return true; },async (p)=> {
-                 LoadPage();             
-                p.Content = new SeatPage();
+                 LoadPage();
+              
+              p.Content = new SeatPage();
                
             });
-            LoadProductPageCM = new RelayCommand<Frame>((p) => { return true; }, async (p) => {
+            LoadProductPageCM = new RelayCommand<Frame>((p) => { return true; }, async (p) => {               
                 ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProductCounted());
                 if (ProductList != null)
                 {
@@ -294,11 +294,13 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 {
                     BillInfoList = new ObservableCollection<BillInfoDTO>(SelectedBill.BillInfo);
                     billInfoList = new List<BillInfoDTO>(BillInfoList);
+                    TotalBillValue = SelectedBill.TotalPrice??0;
                 }
                 else
                 {
-                    BillInfoList = null;
-                    billInfoList = null;
+                    BillInfoList = new ObservableCollection<BillInfoDTO>();
+                    billInfoList = new List<BillInfoDTO>(BillInfoList);
+                    TotalBillValue = 0;
                 }
             });
             PayBill = new RelayCommand<object>((p) => { return true; }, async (p) => 

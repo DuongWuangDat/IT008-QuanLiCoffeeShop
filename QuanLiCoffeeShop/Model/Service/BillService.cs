@@ -81,9 +81,20 @@ namespace QuanLiCoffeeShop.Model.Service
 		{
 			using (var context = new QuanLiCoffeShopEntities())
 			{
+
+                int? maxID = await context.Bill.MaxAsync(b => (int?)b.ID);
+                int curID = 0;
+                if (maxID.HasValue)
+                {
+                    curID = (int)maxID + 1;
+                }
+                else
+                {
+                    curID = 1;
+                }
                 Bill bill = new Bill
                 {
-                    ID = newBill.ID,
+                    ID = curID,
                     IDCus = newBill.IDCus,
                     IDStaff = newBill.IDStaff,
                     IsDeleted = newBill.IsDeleted,
@@ -98,7 +109,7 @@ namespace QuanLiCoffeeShop.Model.Service
                 {
                     BillInfo billInfo = new BillInfo
                     {
-                        IDBill = g.IDBill,
+                        IDBill = curID,
                         IDProduct = g.IDProduct,
                         IsDeleted = g.IsDeleted,
                         PriceItem = g.PriceItem,
@@ -151,7 +162,6 @@ namespace QuanLiCoffeeShop.Model.Service
                 foreach (var b in newBill.BillInfo)
                 {
                     var billInfo = await context.BillInfo.Where(p => p.IDBill == b.IDBill && p.IDProduct == b.IDProduct).FirstOrDefaultAsync();
-                    billInfo.IDBill = b.IDBill;
                     billInfo.IDProduct = b.IDProduct;
                     billInfo.PriceItem = b.PriceItem;
                     billInfo.IsDeleted = false;

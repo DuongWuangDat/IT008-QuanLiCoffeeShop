@@ -105,53 +105,58 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
         #region methods
         async Task Login(Window p)
         {
-            using (var context = new QuanLiCoffeShopEntities())
+            try
             {
-                string password = Helper.MD5Hash(Password);
-                Staff staff = await context.Staff.Where(x => x.UserName == Username && x.PassWord == password && x.IsDeleted == false).FirstOrDefaultAsync();
-                if (staff != null)
+                using (var context = new QuanLiCoffeShopEntities())
                 {
-                    p.Visibility = Visibility.Collapsed;
-                    StaffDTO curStaff = new StaffDTO
+                    string password = Helper.MD5Hash(Password);
+                    Staff staff = await context.Staff.Where(x => x.UserName == Username && x.PassWord == password && x.IsDeleted == false).FirstOrDefaultAsync();
+                    if (staff != null)
                     {
-                        ID = staff.ID,
-                        DisplayName = staff.DisplayName,
-                        StartDate = staff.StartDate,
-                        UserName = staff.UserName,
-                        PassWord = staff.PassWord,
-                        PhoneNumber = staff.PhoneNumber,
-                        BirthDay = staff.BirthDay,
-                        Wage = staff.Wage,
-                        Status = staff.Status,
-                        Email = staff.Email,
-                        Gender = staff.Gender,
-                        Role = staff.Role,
-                        IsDeleted = staff.IsDeleted,
-                    };
-                    if (staff.Role == "Quản lí")
-                    {
-                        MainAdminWindow ad = new MainAdminWindow();
-                        MainAdminViewModel.curentstaff = curStaff;
-                        ad.Owner = p;
-                        ad.Show();
+                        p.Visibility = Visibility.Collapsed;
+                        StaffDTO curStaff = new StaffDTO
+                        {
+                            ID = staff.ID,
+                            DisplayName = staff.DisplayName,
+                            StartDate = staff.StartDate,
+                            UserName = staff.UserName,
+                            PassWord = staff.PassWord,
+                            PhoneNumber = staff.PhoneNumber,
+                            BirthDay = staff.BirthDay,
+                            Wage = staff.Wage,
+                            Status = staff.Status,
+                            Email = staff.Email,
+                            Gender = staff.Gender,
+                            Role = staff.Role,
+                            IsDeleted = staff.IsDeleted,
+                        };
+                        if (staff.Role == "Quản lí")
+                        {
+                            MainAdminWindow ad = new MainAdminWindow();
+                            MainAdminViewModel.currentStaff = curStaff;
+                            ad.Owner = p;
+                            ad.Show();
+
+                        }
+                        else
+                        {
+                            MainStaffWindow st = new MainStaffWindow();
+                            MainStaffViewModel.currentStaff = curStaff;
+                            st.Owner = p;
+                            st.Show();
+                        }
 
                     }
                     else
                     {
-                        MainStaffWindow st = new MainStaffWindow();
-                        MainStaffViewModel.curentstaff = curStaff;
-                        st.Owner = p;
-                        st.Show();
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Đăng nhập thất bại");
                     }
-
-                }
-                else
-                {
-                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Đăng nhập thất bại");
                 }
             }
-
-
+            catch (Exception e)
+            {
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Có lỗi xảy ra khi đăng nhập");
+            }
         }
         
         #endregion

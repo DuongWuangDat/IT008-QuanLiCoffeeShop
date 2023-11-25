@@ -7,6 +7,8 @@ using QuanLiCoffeeShop.View.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -148,9 +150,9 @@ namespace QuanLiCoffeeShop.ViewModel
             set { editDisplayName = value; }
         }
 
-        private DateTime? editStartDate;
+        private string editStartDate;
 
-        public DateTime? EditStartDate
+        public string EditStartDate
         {
             get { return editStartDate; }
             set { editStartDate = value; }
@@ -180,9 +182,9 @@ namespace QuanLiCoffeeShop.ViewModel
             set { editPhoneNumber = value; }
         }
 
-        private DateTime? editBirthDay;
+        private string editBirthDay;
 
-        public DateTime? EditBirthDay
+        public string EditBirthDay
         {
             get { return editBirthDay; }
             set { editBirthDay = value; }
@@ -258,6 +260,15 @@ namespace QuanLiCoffeeShop.ViewModel
             }
         }
 
+        private ObservableCollection<string> _roleList;
+
+        public ObservableCollection<string> RoleList
+        {
+            get { return _roleList; }
+            set { _roleList = value; }
+        }
+
+
         public ICommand OpenAddWindowCommand { get; }
         public ICommand CloseAddWindowCommand { get; }
         public ICommand SearchStaff { get; }
@@ -268,12 +279,14 @@ namespace QuanLiCoffeeShop.ViewModel
         public ICommand EditStaffCommand { get; }
         public ICommand OpenEditStaffCommand { get; }
         public ICommand CloseEditStaffCommand { get; }
+        
         public StaffViewModel()
         {
             StartDate = DateTime.Now;
             BirthDay = DateTime.Now;
             GenderList = new ObservableCollection<string> { "Nam", "Nữ" };
             StatusList = new ObservableCollection<string> { "Đang làm", "Xin nghỉ" };
+            RoleList = new ObservableCollection<string> { "Quản lí", "Nhân viên" };
             FirstLoadStaffPage = new RelayCommand<object>(null, async (p) =>
             {
                 StaffObservation = new ObservableCollection<StaffDTO>(await StaffService.Ins.GetAllStaff());
@@ -292,18 +305,33 @@ namespace QuanLiCoffeeShop.ViewModel
 
             AddStaffCommand = new RelayCommand<Window>(null, async (p) =>
             {
-                int iWage;
+                int iWage = 0;
                 if (DisplayName == null || UserName == null || PassWord == null
                 || PhoneNumber == null || Wage == null || Status == null || Email == null
-                || Gender == null || Role == null || !int.TryParse(Wage, out iWage)
+                || Gender == null || Role == null || !int.TryParse(Wage.Replace(",", ""), out iWage)
                 || DisplayName == "" || UserName == "" || PassWord == ""
                 || PhoneNumber == "" || Wage == "" || Status == "" || Email == ""
                 || Gender == "" || Role == "")
                 {
                     MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đang nhập thiếu hoặc sai thông tin");
                 }
+
+                
                 else
                 {
+                    if (PassWord != ConfirmPassWord)
+                    {
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Xác nhận mật khẩu không đúng");
+                        return;
+                    }
+                    if (DateTime.Compare(BirthDay, new DateTime(1900, 1, 1)) < 0 || DateTime.Compare(BirthDay, DateTime.Now) > 0)
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Ngày sinh không hợp lệ");
+
+                    else if (DateTime.Compare(StartDate, new DateTime(1900, 1, 1)) < 0 || DateTime.Compare(StartDate, DateTime.Now) > 0)
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Ngày bắt đầu không hợp lệ");
+
+                    else if (StartDate.Year - (BirthDay).Year < 16)
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Đảm bảo nhân viên vào làm trên 16 tuổi");
                     string pass = Helper.MD5Hash(this.PassWord);
 
                     Staff newStaff = new Staff
@@ -338,6 +366,18 @@ namespace QuanLiCoffeeShop.ViewModel
 
             OpenAddWindowCommand = new RelayCommand<Page>((mainStaffWindow) => { return true; }, (mainStaffWindow) =>
             {
+                DisplayName = null;
+                StartDate = DateTime.Now;
+                UserName = null;
+                PassWord = null;
+                PhoneNumber = null;
+                BirthDay = DateTime.Now;
+                Wage = null;
+                Status = null;
+                Email = null;
+                Gender = null;
+                Role = null;
+                ConfirmPassWord = null;
                 AddStaff addStaffWindow = new AddStaff();
                 addStaffWindow.ShowDialog();
             });
@@ -359,14 +399,14 @@ namespace QuanLiCoffeeShop.ViewModel
 
             OpenEditStaffCommand = new RelayCommand<object>(null, (p) =>
             {
-                EditBirthDay = SelectedItem.BirthDay;
+                EditBirthDay = SelectedItem.BirthDay.ToString();
                 EditDisplayName = SelectedItem.DisplayName;
                 EditEmail = SelectedItem.Email;
                 EditGender = SelectedItem.Gender.Trim();
                 EditPassWord = null;
                 EditPhoneNumber = SelectedItem.PhoneNumber;
                 EditRole = SelectedItem.Role;
-                EditStartDate = SelectedItem.StartDate;
+                EditStartDate = SelectedItem.StartDate.ToString();
                 EditStatus = SelectedItem.Status;
                 EditUserName = SelectedItem.UserName;
                 EditWage = ((int)SelectedItem.Wage).ToString();
@@ -379,47 +419,83 @@ namespace QuanLiCoffeeShop.ViewModel
                 int iWage;
                 if (EditDisplayName == null || EditStartDate == null || EditUserName == null || EditPhoneNumber == null
                 || EditBirthDay == null || EditWage == null || EditStatus == null || EditEmail == null || EditGender == null
-                || EditRole == null || !int.TryParse(EditWage, out iWage)
+                || EditRole == null || !int.TryParse(EditWage.Replace(",", ""), out iWage)
                 || EditDisplayName == "" || EditUserName == "" || EditPhoneNumber == ""
                 || EditWage == "" || EditStatus == "" || EditEmail == "" || EditGender == ""
                 || EditRole == "")
                 {
                     MessageBoxCustom.Show(MessageBoxCustom.Error, "Bạn đang nhập thiếu hoặc sai thông tin");
                 }
-                
+
                 else
                 {
-                    if (EditPassWord == null || EditPassWord == "")
-                        EditPassWord = SelectedItem.PassWord;
-                    string pass = Helper.MD5Hash(EditPassWord);
-                    Staff newStaff = new Staff
+                    DateTime tempBirthDay;
+                    DateTime.TryParseExact(EditBirthDay, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempBirthDay);
+
+                    DateTime tempStartDate;
+                    DateTime.TryParseExact(EditStartDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempStartDate);
+
+                    if ((EditPassWord == null || EditPassWord == "") && EditDisplayName == SelectedItem.DisplayName && EditEmail == SelectedItem.Email
+                        && EditGender == SelectedItem.Gender.Trim() && tempStartDate == SelectedItem.StartDate && EditStatus == SelectedItem.Status
+                        && EditUserName == SelectedItem.UserName && tempBirthDay == SelectedItem.BirthDay && EditPhoneNumber == SelectedItem.PhoneNumber
+                        && EditRole == SelectedItem.Role && iWage == SelectedItem.Wage)
                     {
-                        ID = SelectedItem.ID,
-                        DisplayName = this.EditDisplayName,
-                        Email = this.EditEmail,
-                        Gender = this.EditGender,
-                        StartDate = this.EditStartDate,
-                        Status = this.EditStatus,
-                        UserName = this.EditUserName,
-                        PassWord = pass,
-                        BirthDay = this.EditBirthDay,
-                        PhoneNumber = this.EditPhoneNumber,
-                        Role = this.EditRole,
-                        Wage = iWage,
-                        IsDeleted = false
-                    };
-                    (bool success, string messageEdit) = await StaffService.Ins.EditStaff(newStaff);
-                    if (success)
-                    {
-                        StaffObservation = new ObservableCollection<StaffDTO>(await StaffService.Ins.GetAllStaff());
-                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Bạn đã chỉnh sửa thành công");
+                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Không có gì mới để chỉnh sửa");
                         p.Close();
+                        return;
                     }
+
+                    if (DateTime.Compare(tempBirthDay, new DateTime(1900, 1, 1)) < 0 || DateTime.Compare(tempBirthDay, DateTime.Now) > 0)
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Ngày sinh không hợp lệ");
+
+                    else if (DateTime.Compare(tempStartDate, new DateTime(1900, 1, 1)) < 0 || DateTime.Compare(tempStartDate, DateTime.Now) > 0)
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Ngày bắt đầu không hợp lệ");
+
+                    else if (tempStartDate.Year - tempBirthDay.Year < 16)
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Đảm bảo nhân viên vào làm trên 16 tuổi");
+
                     else
                     {
-                        MessageBoxCustom.Show(MessageBoxCustom.Error, messageEdit);
+                        string pass;
+                        if (EditPassWord == null || EditPassWord == "")
+                        {
+                            EditPassWord = SelectedItem.PassWord;
+                            pass = EditPassWord;
+                        }
+                        else
+                            pass = Helper.MD5Hash(EditPassWord);
+                        Staff newStaff = new Staff
+                        {
+                            ID = SelectedItem.ID,
+                            DisplayName = this.EditDisplayName,
+                            Email = this.EditEmail,
+                            Gender = this.EditGender,
+                            StartDate = tempStartDate,
+                            Status = this.EditStatus,
+                            UserName = this.EditUserName,
+                            PassWord = pass,
+                            BirthDay = tempBirthDay,
+                            PhoneNumber = this.EditPhoneNumber,
+                            Role = this.EditRole,
+                            Wage = iWage,
+                            IsDeleted = false
+                        };
+                        (bool success, string messageEdit) = await StaffService.Ins.EditStaff(newStaff);
+                        if (success)
+                        {
+                            StaffObservation = new ObservableCollection<StaffDTO>(await StaffService.Ins.GetAllStaff());
+                            MessageBoxCustom.Show(MessageBoxCustom.Success, "Bạn đã chỉnh sửa thành công");
+                            p.Close();
+                        }
+                        else
+                        {
+                            MessageBoxCustom.Show(MessageBoxCustom.Error, messageEdit);
+                        }
                     }
+
                 }
+
+
             });
 
             CloseEditStaffCommand = new RelayCommand<Window>(null, (p) =>
@@ -441,6 +517,7 @@ namespace QuanLiCoffeeShop.ViewModel
                         MessageBoxCustom.Show(MessageBoxCustom.Error, messageDelete);
                 }
             });
+            
 
         }
     }

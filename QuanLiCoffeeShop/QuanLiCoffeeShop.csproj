@@ -238,6 +238,9 @@
     <Compile Include="ViewModel\StaffVM\SalesVM\ProductPage.cs" />
     <Compile Include="ViewModel\StaffVM\SalesVM\SalesMainPageViewModel.cs" />
     <Compile Include="ViewModel\StaffVM\SalesVM\SeatPage.cs" />
+    <Compile Include="View\Admin\AccountInformation.xaml.cs">
+      <DependentUpon>AccountInformation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Admin\CustomerManagement\AddCustomerWindow.xaml.cs">
       <DependentUpon>AddCustomerWindow.xaml</DependentUpon>
     </Compile>
@@ -317,10 +320,12 @@
       <DependentUpon>Error.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MessageBox\MessageBoxCustom.cs" />
-    <Compile Include="View\placeHolder.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\Staff\AccountInformation.xaml.cs">
+      <DependentUpon>AccountInformation.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Staff\MainStaffWindow.xaml.cs">
       <DependentUpon>MainStaffWindow.xaml</DependentUpon>
@@ -344,6 +349,10 @@
       <DependentUpon>SeatPage.xaml</DependentUpon>
     </Compile>
     <Page Include="ResourcesXAML\MainResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Admin\AccountInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -452,6 +461,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MessageBox\Error.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Staff\AccountInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

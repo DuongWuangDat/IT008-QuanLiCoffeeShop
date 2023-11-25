@@ -7,6 +7,7 @@ using QuanLiCoffeeShop.View.MessageBox;
 using QuanLiCoffeeShop.View.Staff.ReportError;
 using QuanLiCoffeeShop.View.Staff.Sales;
 using QuanLiCoffeeShop.View.Staff.SalesHistory;
+using QuanLiCoffeeShop.View.Admin.Problem.Problem_page_main;
 using QuanLiCoffeeShop.ViewModel;
 using System;
 using System.Collections.Generic;

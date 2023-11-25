@@ -315,6 +315,7 @@
         <!--  Hien thi cac san pham  -->
         <ScrollViewer x:Name="ScrollViewer"
                 Grid.Column="1"
+                      
                 Height="700"
                 Margin="10,20,10,10"
                 VerticalScrollBarVisibility="Auto"

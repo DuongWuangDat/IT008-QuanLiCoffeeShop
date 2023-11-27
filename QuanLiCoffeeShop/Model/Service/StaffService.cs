@@ -11,6 +11,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using QuanLiCoffeeShop.Utils;
+using System.Runtime.Remoting.Contexts;
 
 namespace QuanLiCoffeeShop.Model.Service
 {
@@ -19,56 +20,68 @@ namespace QuanLiCoffeeShop.Model.Service
         public StaffService() { }
         private static StaffService _ins;
 
-		public static StaffService Ins
-		{
-			get 
-			{ 
-				if (_ins == null)
-				{
-					_ins = new StaffService();
-				}
-				return _ins;
-			}
-			private set { _ins = value; }
-		}// test
+        public static StaffService Ins
+        {
+            get
+            {
+                if (_ins == null)
+                {
+                    _ins = new StaffService();
+                }
+                return _ins;
+            }
+            private set { _ins = value; }
+        }// test
 
-		//Get all staff
-		public async Task<List<StaffDTO>> GetAllStaff()
-		{
-			using(var context = new QuanLiCoffeShopEntities())
-			{
+        //Get all staff
+        public async Task<List<StaffDTO>> GetAllStaff()
+        {
+            using (var context = new QuanLiCoffeShopEntities())
+            {
                 var staffList = await (from c in context.Staff
-                                 where c.IsDeleted == false || c.IsDeleted == null
-                                 select new StaffDTO
-                                 {
-                                     ID = c.ID,
-                                     DisplayName = c.DisplayName,
-                                     StartDate = c.StartDate,
-                                     UserName = c.UserName,
-                                     PassWord = c.PassWord,
-                                     PhoneNumber = c.PhoneNumber,
-                                     BirthDay = c.BirthDay,
-                                     Wage = c.Wage,
-                                     Status = c.Status,
-                                     Email = c.Email,
-                                     Gender = c.Gender,
-                                     Role = c.Role,
-                                     IsDeleted = c.IsDeleted,
-                                 }).ToListAsync();
+                                       where c.IsDeleted == false || c.IsDeleted == null
+                                       select new StaffDTO
+                                       {
+                                           ID = c.ID,
+                                           DisplayName = c.DisplayName,
+                                           StartDate = c.StartDate,
+                                           UserName = c.UserName,
+                                           PassWord = c.PassWord,
+                                           PhoneNumber = c.PhoneNumber,
+                                           BirthDay = c.BirthDay,
+                                           Wage = c.Wage,
+                                           Status = c.Status,
+                                           Email = c.Email,
+                                           Gender = c.Gender,
+                                           Role = c.Role,
+                                           IsDeleted = c.IsDeleted,
+                                       }).ToListAsync();
                 return staffList;
             }
         }
-			
+        public async Task<(Staff, bool)> FindStaff(int staff)
+        {
+            using (var context = new QuanLiCoffeShopEntities())
+            {
+                var st = await context.Staff.Where(p=>p.ID == staff).FirstOrDefaultAsync();
+                if (st == null)
+                {
+                    return (null, false);
+                }
+                else
+                    return (st, true);
+            }
+        }
 
-		//Add staff
-		public async Task<(bool,string)> AddNewStaff(Staff newStaff)
-		{
-			using(var context = new QuanLiCoffeShopEntities())
-			{
+        //Add staff
+        public async Task<(bool, string)> AddNewStaff(Staff newStaff)
+        {
+            using (var context = new QuanLiCoffeShopEntities())
+            {
                 bool IsEsixtEmail = await context.Staff.AnyAsync(p => p.Email == newStaff.Email);
                 bool IsExistPhone = await context.Staff.AnyAsync(p => p.PhoneNumber == newStaff.PhoneNumber);
                 bool IsExistUsername = await context.Staff.AnyAsync(p => p.UserName == newStaff.UserName);
-                var staff = await context.Staff.Where(p => p.Email == newStaff.Email || p.PhoneNumber == newStaff.PhoneNumber).FirstOrDefaultAsync();
+                var staff = await context.Staff.Where(p => p.Email == newStaff.Email || p.PhoneNumber == newStaff.PhoneNumber || p.UserName == newStaff.UserName).FirstOrDefaultAsync();
                 if (staff != null)
                 {
                     if (staff.IsDeleted == true)
@@ -92,15 +105,15 @@ namespace QuanLiCoffeeShop.Model.Service
                     {
                         if (IsEsixtEmail)
                         {
-                            return (false, "Email da ton tai");
+                            return (false, "Email đã tồn tại");
                         }
                         if (IsExistPhone)
                         {
-                            return (false, "SDT da ton tai");
+                            return (false, "Số điện thoại đã tồn tại");
                         }
                         if (IsExistUsername)
                         {
-                            return (false, "Username da ton tai");
+                            return (false, "Tài khoản đã tồn tại");
                         }
                     }
                 }
@@ -108,20 +121,26 @@ namespace QuanLiCoffeeShop.Model.Service
                 await context.SaveChangesAsync();
                 return (true, "Them thanh cong");
             }
-			
-		}
+
+        }
 
 
-		// Edit staff
-		public async Task<(bool, string)> EditStaff(Staff newStaff)
-		{
-            using(var context = new QuanLiCoffeShopEntities())
+        // Edit staff
+        public async Task<(bool, string)> EditStaff(Staff newStaff)
+        {
+
+            using (var context = new QuanLiCoffeShopEntities())
             {
+                bool IsExistUsername = await context.Staff.AnyAsync(p => p.ID != newStaff.ID && p.UserName == newStaff.UserName && p.IsDeleted == false);
+                if (IsExistUsername)
+                {
+                    return (false, "Tài khoản đã tồn tại");
+                }
                 var staff = await context.Staff.Where(p => p.ID == newStaff.ID).FirstOrDefaultAsync();
                 staff.DisplayName = newStaff.DisplayName;
                 staff.StartDate = newStaff.StartDate;
                 staff.UserName = newStaff.UserName;
-                staff.PassWord =  newStaff.PassWord == null ? staff.PassWord : newStaff.PassWord;
+                staff.PassWord = newStaff.PassWord == null ? staff.PassWord : newStaff.PassWord;
                 staff.PhoneNumber = newStaff.PhoneNumber;
                 staff.BirthDay = newStaff.BirthDay;
                 staff.Wage = newStaff.Wage;
@@ -132,23 +151,23 @@ namespace QuanLiCoffeeShop.Model.Service
                 await context.SaveChangesAsync();
                 return (true, "Cap that thanh cong");
             }
-			
-		}
 
-		//Delete staff
-		public async Task<(bool, string)>  DeleteStaff(int ID)
-		{
-            using(var context = new QuanLiCoffeShopEntities())
+        }
+
+        //Delete staff
+        public async Task<(bool, string)> DeleteStaff(int ID)
+        {
+            using (var context = new QuanLiCoffeShopEntities())
             {
                 var staff = await context.Staff.Where(p => p.ID == ID).FirstOrDefaultAsync();
                 if (staff.IsDeleted == false) staff.IsDeleted = true;
                 await context.SaveChangesAsync();
                 return (true, "Da xoa");
             }
-           
-		}
+
+        }
         //update mk
-        public async Task<(bool, string,string)> UpdatePassword(string email, string newPass)
+        public async Task<(bool, string, string)> UpdatePassword(string email, string newPass)
         {
             try
             {
@@ -172,5 +191,5 @@ namespace QuanLiCoffeeShop.Model.Service
                 return (false, "Có lỗi xuất hiện", null);
             }
         }
-	}
+    }
 }

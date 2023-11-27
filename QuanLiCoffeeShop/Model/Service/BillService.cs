@@ -32,6 +32,7 @@ namespace QuanLiCoffeeShop.Model.Service
 			using (var context = new QuanLiCoffeShopEntities())
 			{
                 var billList = (from c in context.Bill
+                                where c.IsDeleted == false
                                 select new BillDTO
                                 {
                                     ID = c.ID,
@@ -100,6 +101,8 @@ namespace QuanLiCoffeeShop.Model.Service
                     IsDeleted = newBill.IsDeleted,
                     CreateAt = newBill.CreateAt,
                     IDSeat = newBill.IDSeat,
+                    TotalPrice = newBill.TotalPrice
+
                 };
 
                 foreach (var g in newBill.BillInfo)
@@ -112,7 +115,6 @@ namespace QuanLiCoffeeShop.Model.Service
                         PriceItem = g.PriceItem,
                         Description = g.Description,
                         Count = g.Count,
-
                     };
                     context.BillInfo.Add(billInfo);
                 }
@@ -176,15 +178,15 @@ namespace QuanLiCoffeeShop.Model.Service
                     });
                 }
                 await context.SaveChangesAsync();
-                return (true, "Cap nhat thanh cong");
+                return (true, "Cập nhật thành công");
             }
                 
         }
         public async Task<int> getBillByDate(DateTime date)
         {
             using (var context = new QuanLiCoffeShopEntities())
-            {
-                var billTotal = await context.Bill.Where(p => p.CreateAt == date && p.IsDeleted==false).ToListAsync();
+            {               
+                var billTotal = await context.Bill.Where(p => p.CreateAt.Value == date.Date && p.IsDeleted==false).ToListAsync();
                 int totalPrice = 0;
                 foreach (var bill in billTotal)
                 {

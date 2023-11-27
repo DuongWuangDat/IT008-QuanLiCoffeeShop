@@ -10,30 +10,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace QuanLiCoffeeShop.View.Staff.Sales
+namespace QuanLiCoffeeShop.View.Staff
 {
     /// <summary>
-    /// Interaction logic for SeatPage.xaml
+    /// Interaction logic for AccountInformation.xaml
     /// </summary>
-    public partial class SeatPage : Page
+    public partial class AccountInformation : Window
     {
-        public SeatPage()
+        public AccountInformation()
         {
             InitializeComponent();
-
         }
-        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ScrollViewer.ScrollToVerticalOffset(ScrollViewer.VerticalOffset - e.Delta);
-            e.Handled = true;
+            if (e.ButtonState == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
-
-        private void ListViewItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
     }
 }

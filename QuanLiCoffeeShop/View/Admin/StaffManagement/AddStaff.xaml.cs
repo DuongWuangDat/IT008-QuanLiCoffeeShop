@@ -1,4 +1,6 @@
-﻿using QuanLiCoffeeShop.ViewModel;
+﻿using QuanLiCoffeeShop.View.MessageBox;
+using QuanLiCoffeeShop.ViewModel;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -17,16 +19,39 @@ namespace QuanLiCoffeeShop.View.Admin.StaffManagement
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if(e.LeftButton == MouseButtonState.Pressed)
+            if (e.LeftButton == MouseButtonState.Pressed)
             {
                 DragMove();
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void TextBox_TextChanged(object sender, EventArgs e)
         {
-            Window window = sender as Window;
-            window.Close();
+            try
+            {
+                if (!string.IsNullOrEmpty(wageTextBox.Text))
+                {
+                    System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
+                    var valueBefore = Int64.Parse(wageTextBox.Text, System.Globalization.NumberStyles.AllowThousands);
+                    wageTextBox.Text = String.Format(culture, "{0:N0}", valueBefore);
+                    wageTextBox.Select(wageTextBox.Text.Length, 0);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Lương không hợp lệ");
+            }
+        }
+        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (!((e.Key >= Key.D0 && e.Key <= Key.D9) ||  // Số từ 0 đến 9
+            (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9) ||  // Số từ bàn phím số
+            e.Key == Key.Delete ||  // Phím xóa
+            e.Key == Key.Back ||  // Phím backspace
+            (Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.A)))
+            {
+                e.Handled = true; // Ngăn chặn ký tự nếu không phải số từ bàn phím
+            }
         }
     }
 }

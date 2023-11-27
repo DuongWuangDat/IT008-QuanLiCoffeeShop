@@ -15,7 +15,6 @@ namespace QuanLiCoffeeShop.View.Admin
         public MainAdminWindow()
         {
             InitializeComponent();
-            DataContext = new MainAdminViewModel();
         }
 
         private void Overlay_MouseDown(object sender, MouseButtonEventArgs e)
@@ -27,7 +26,5 @@ namespace QuanLiCoffeeShop.View.Admin
         {
             this.Owner.Visibility = Visibility.Visible;
         }
-
-        
     }
 }

@@ -28,6 +28,14 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
             get { return _problemList; }
             set { _problemList = value; OnPropertyChanged(); }
         }
+        private ObservableCollection<string> statuslist;
+
+        public ObservableCollection<string> StatusList
+        {
+            get { return statuslist; }
+            set { statuslist = value; OnPropertyChanged(); }
+        }
+
         private ErrorDTO _selectedItem;
 
         public ErrorDTO SelectedItem
@@ -113,6 +121,9 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
         {
             FirstLoadProblem = new RelayCommand<Page>((p) => { return true; }, async (p) =>
             {
+                StatusList = new ObservableCollection<string>();
+                StatusList.Add("Đã sửa");
+                StatusList.Add("Đang sửa chữa");
                 ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
                 ProList = new List<ErrorDTO>(ProblemList);
             });
@@ -239,6 +250,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ProblemVM
                 }    
                 else
                 {
+                    ProblemList = new ObservableCollection<ErrorDTO>(await ErrorService.Ins.GetAllError());
                     ProList = new List<ErrorDTO>(ProblemList);
                     ProblemList = new ObservableCollection<ErrorDTO>(ProList.FindAll(x => x.DisplayName.ToLower().Contains(p.Text.ToLower())));
                 }    

@@ -26,6 +26,13 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
         public static StaffDTO currentStaff;
         public static List<BillInfoDTO> billInfoList;
         public static List<BillDTO> billList;
+        private bool _prdEnable;
+
+        public bool prdEnable
+        {
+            get { return _prdEnable; }
+            set { _prdEnable = value; OnPropertyChanged(); }
+        }
 
         private ObservableCollection<BillDTO> _billlist;
         public ObservableCollection<BillDTO> BillList
@@ -131,6 +138,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 
                 BillList = new ObservableCollection<BillDTO>();
                 billList = new List<BillDTO>(BillList);
+                prdEnable = false;
             });
           LoadSeatPageCM = new RelayCommand<Frame>((p)=> { return true; },async (p)=> {
                  LoadPage();
@@ -336,7 +344,16 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 SelectedSeatItem = p;
                 TableName = "Bàn " + SelectedSeatItem.ID;
                 SelectedBill = new BillDTO();
-                SelectedBill = billList.Find((x => x.IDSeat == SelectedSeatItem.ID));
+                if(SelectedSeatItem.Status == "Đã đặt" || (SelectedSeatItem.Status == "Đang sửa chữa"))
+                {
+                    SelectedBill = await BillService.Ins.getBillByIdSeat(SelectedSeatItem.ID);
+                    prdEnable = false;
+                }
+                else
+                {
+                    SelectedBill = null;
+                    prdEnable = true;
+                }
                 if (SelectedBill != null)
                 {
                     
@@ -430,11 +447,12 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                                     if(ss==false) { MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa lượng hàng thất bại!"); }
                                 }
                                 MessageBoxCustom.Show(MessageBoxCustom.Success, "Thành công");
+                                resetData();
                             
                             }
                                                 
                         }
-                }
+                    }
 
                 }
             });
@@ -480,6 +498,16 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 }
             });
             #endregion
-        }        
+            #region methods
+            void resetData()
+            {
+                TableName = null;
+                CusInfo = null;
+                CusOfBill = null;
+                BillInfoList = null;
+                TotalBillValue = 0;
+            }
+            #endregion
+        }
     }
 }

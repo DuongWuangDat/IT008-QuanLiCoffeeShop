@@ -100,11 +100,9 @@ namespace QuanLiCoffeeShop.Model.Service
                     IDStaff = newBill.IDStaff,
                     IsDeleted = newBill.IsDeleted,
                     CreateAt = newBill.CreateAt,
-                    Customer = newBill.Customer,
-                    Staff = newBill.Staff,
                     IDSeat = newBill.IDSeat,
-                    Seat = newBill.Seat,
                     TotalPrice = newBill.TotalPrice
+
                 };
 
                 foreach (var g in newBill.BillInfo)
@@ -117,10 +115,7 @@ namespace QuanLiCoffeeShop.Model.Service
                         PriceItem = g.PriceItem,
                         Description = g.Description,
                         Count = g.Count,
-                        Bill = bill,
-                        Product = g.Product,
                     };
-                    bill.BillInfo.Add(billInfo);
                     context.BillInfo.Add(billInfo);
                 }
                 context.Bill.Add(bill);

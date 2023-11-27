@@ -63,6 +63,45 @@ namespace QuanLiCoffeeShop.Model.Service
             }
 				
 		}
+        //Get bill by id seat
+        public async Task<BillDTO> getBillByIdSeat(int id)
+        {
+            using (var context = new QuanLiCoffeShopEntities())
+            {
+                var billList = await (from c in context.Bill
+                                where c.IsDeleted == false && c.IDSeat== id
+                                select new BillDTO
+                                {
+                                    ID = c.ID,
+                                    IDCus = c.IDCus,
+                                    IDStaff = c.IDStaff,
+                                    CreateAt = c.CreateAt,
+                                    TotalPrice = c.TotalPrice,
+                                    Customer = c.Customer,
+                                    Staff = c.Staff,
+                                    Seat = c.Seat,
+                                    IDSeat = c.IDSeat,
+                                    BillInfo = (from x in c.BillInfo
+                                                where x.IsDeleted == false
+                                                select new BillInfoDTO
+                                                {
+                                                    IDBill = x.IDBill,
+                                                    PriceItem = x.PriceItem,
+                                                    IDProduct = x.IDProduct,
+                                                    Count = x.Count,
+                                                    Description = x.Description,
+                                                    Bill = x.Bill,
+                                                    Product = x.Product,
+                                                }).ToList(),
+                                    IsDeleted = c.IsDeleted
+                                }).ToListAsync();
+
+
+                var bill = billList.LastOrDefault();
+                return bill;
+            }
+            
+        }
         public async Task<List<BillDTO>> GetBillBetweenDate(DateTime dateFrom, DateTime dateTo)
         {
             using (var context = new QuanLiCoffeShopEntities())
@@ -98,13 +137,11 @@ namespace QuanLiCoffeeShop.Model.Service
                     ID = curID,
                     IDCus = newBill.IDCus,
                     IDStaff = newBill.IDStaff,
-                    IsDeleted = newBill.IsDeleted,
+                    IsDeleted = false,
                     CreateAt = newBill.CreateAt,
-                    Customer = newBill.Customer,
-                    Staff = newBill.Staff,
                     IDSeat = newBill.IDSeat,
-                    Seat = newBill.Seat,
                     TotalPrice = newBill.TotalPrice
+
                 };
 
                 foreach (var g in newBill.BillInfo)
@@ -113,14 +150,11 @@ namespace QuanLiCoffeeShop.Model.Service
                     {
                         IDBill = curID,
                         IDProduct = g.IDProduct,
-                        IsDeleted = g.IsDeleted,
+                        IsDeleted = false,
                         PriceItem = g.PriceItem,
                         Description = g.Description,
                         Count = g.Count,
-                        Bill = bill,
-                        Product = g.Product,
                     };
-                    bill.BillInfo.Add(billInfo);
                     context.BillInfo.Add(billInfo);
                 }
                 context.Bill.Add(bill);

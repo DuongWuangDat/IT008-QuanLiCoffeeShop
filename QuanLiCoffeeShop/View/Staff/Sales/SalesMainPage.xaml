@@ -87,6 +87,7 @@
                     CornerRadius="16">
                 <Button Command="{Binding LoadProductPageCM}"
                         CommandParameter="{Binding ElementName=TabFrame}"
+                        IsEnabled="{Binding prdEnable}"
                         Click="Tab_btn_Click"
                         Tag="MenuBd"
                         Width="130"

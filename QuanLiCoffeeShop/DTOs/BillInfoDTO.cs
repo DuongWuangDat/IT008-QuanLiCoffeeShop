@@ -40,8 +40,8 @@ namespace QuanLiCoffeeShop.DTOs
         }
         public Nullable<bool> IsDeleted { get; set; }
         public string Description { get; set; }
-        public virtual Bill Bill { get; set; }
-        public virtual Product Product { get; set; }
+        public Bill Bill { get; set; }
+        public Product Product { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {

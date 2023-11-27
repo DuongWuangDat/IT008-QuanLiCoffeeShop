@@ -46,7 +46,19 @@ namespace QuanLiCoffeeShop.Model.Service
             }
 			
 		}
-		
+		public async Task<(Seat, bool)> FindSeat(int seat)
+		{
+			using (var context = new QuanLiCoffeShopEntities())
+			{
+				var s = await context.Seat.Where(p=> p.ID == seat).FirstOrDefaultAsync();
+				if (s == null)
+				{
+					return(null, false);
+				}
+				else
+					return (s, true);
+			} 
+		}
 		//Add new seat
 		public async Task<(bool, string)> AddNewSeat(Seat newSeat)
 		{

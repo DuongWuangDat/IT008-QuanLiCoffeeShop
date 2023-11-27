@@ -563,13 +563,15 @@
                                 FontSize="24"
                                 FontWeight="Bold" />
                         <Button
+                            x:Name="Pay_btn"
                             Command="{Binding PayBill}"
                             Width="200"
+                            IsEnabled="{Binding PayEnabled}"
                                 Height="62"
                                 materialDesign:ButtonAssist.CornerRadius="24"
-                                Background="#F0BD70"
+                                Background="{Binding Brush}"
                                 BorderThickness="0"
-                                Content="Thanh toán"
+                                Content="{Binding PayContent}"
                                 FontSize="24"
                                 FontWeight="Bold" />
                     </StackPanel>

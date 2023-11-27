@@ -10,10 +10,11 @@
       mc:Ignorable="d"
       DataContext="{StaticResource ThongKeVM}"
       ShowsNavigationUI="False"
-      d:DesignHeight="702" d:DesignWidth="1153"
+      d:DesignHeight="594" d:DesignWidth="1127"
       Title="LichSuTable">
     <Page.Resources>
         <converters:PriceConverter x:Key="PriceConverter"></converters:PriceConverter>
+        <converters:IndexConverter x:Key="IndexConverter"></converters:IndexConverter>
     </Page.Resources>
     <Grid>
         <ListView 
@@ -30,7 +31,7 @@
             <ListView.View>
                 <GridView>
 
-                    <GridViewColumn Header="ID"  Width="106.4">
+                    <GridViewColumn Header="STT"  Width="80">
                         <GridViewColumn.HeaderContainerStyle>
                             <Style TargetType="{x:Type GridViewColumnHeader}">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -40,13 +41,15 @@
                         </GridViewColumn.HeaderContainerStyle>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding ID}"
-                                    FontSize="18" />
+                                <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                           AncestorType={x:Type ListViewItem}}, 
+                                           Converter={StaticResource IndexConverter}, UpdateSourceTrigger=PropertyChanged}"
+                            FontSize="17" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-                    <GridViewColumn Header="Tên Khách Hàng" Width="350">
+                    <GridViewColumn Header="Tên Khách Hàng" Width="300">
                         <GridViewColumn.HeaderContainerStyle>
                             <Style TargetType="{x:Type GridViewColumnHeader}">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -58,7 +61,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Customer.DisplayName}"
-                                   FontSize="18" 
+                                   FontSize="17" 
                                    Margin="31,0,0,0"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -76,14 +79,14 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding CreateAt}"
-                       FontSize="18" 
+                       FontSize="17" 
                        />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
 
                     </GridViewColumn>
 
-                    <GridViewColumn Header="Giá trị hóa đơn" Width="350">
+                    <GridViewColumn Header="Giá trị hóa đơn" Width="300">
                         <GridViewColumn.HeaderContainerStyle>
                             <Style TargetType="{x:Type GridViewColumnHeader}">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -95,7 +98,9 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding TotalPrice, Converter={StaticResource PriceConverter}}"
-                                        FontSize="18" />
+                                        FontSize="17" 
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
 
@@ -114,7 +119,7 @@
                                     Cursor="Hand">
                                     <Image Source="/QuanLiCoffeeShop;component/Resources/Icon/Info_Icon.png" />
                                     <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="Click">
+                                        <i:EventTrigger EventName="MouseLeftButtonUp">
                                             <i:InvokeCommandAction Command="{Binding ElementName=billTable, Path=DataContext.InfoBillCM}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
@@ -128,7 +133,7 @@
                                         Cursor="Hand">
                                         <Image Source="/QuanLiCoffeeShop;component/Resources/Icon/DeleteBlue_Icon.png" />
                                         <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="Click">
+                                            <i:EventTrigger EventName="MouseLeftButtonUp">
                                                 <i:InvokeCommandAction Command="{Binding ElementName=billTable, Path=DataContext.DeleteBillCM}" />
                                             </i:EventTrigger>
                                         </i:Interaction.Triggers>

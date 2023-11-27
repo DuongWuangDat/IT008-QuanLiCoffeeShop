@@ -207,7 +207,7 @@
             Background="#E6B89F"
             Opacity="0.58" 
             Width="1153"
-            Height="702"
+            Height="652"
             VerticalAlignment="Top"
             CornerRadius="55.29">
                 <Border

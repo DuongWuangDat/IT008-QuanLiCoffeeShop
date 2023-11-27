@@ -287,7 +287,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     }
                     else
                     {
-                        //MessageBoxCustom.Show(MessageBoxCustom.Error, messageSearch);
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, messageSearch);
                     }
                 }
             });

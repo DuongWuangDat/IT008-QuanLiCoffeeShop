@@ -20,9 +20,10 @@ namespace QuanLiCoffeeShop.View.MessageBox
     public partial class DeleteMessage : Window
     {
         
-        public DeleteMessage()
+        public DeleteMessage(string s = "Bạn có chắc chắn muốn xóa không")
         {
             InitializeComponent();
+            TextboxShow.Text = s;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

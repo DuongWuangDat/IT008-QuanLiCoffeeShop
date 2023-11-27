@@ -215,7 +215,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.TableVM
                 StatusList = new ObservableCollection<string>();
                 StatusList.Add("Còn trống");
                 StatusList.Add("Đã đặt");
-                StatusList.Add("Còn trống");
+                StatusList.Add("Đang sửa chữa");
                 TableList = new ObservableCollection<SeatDTO>(await SeatService.Ins.GetAllSeat());
                 tablelist = new List<SeatDTO>(TableList);
                 GenreList = new ObservableCollection<string>(await GenreService.Ins.GetAllSeat());

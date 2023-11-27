@@ -136,6 +136,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
                     if (sucess)
                     {
                         BillList.Remove(SelectedItem);
+                        billList = new List<BillDTO>(BillList);
                         MessageBoxCustom.Show(MessageBoxCustom.Success, "Xóa thành công");
                     }
                     else
@@ -196,9 +197,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
                     CusName = SelectedItem.Customer.DisplayName;
                     StaffName = SelectedItem.Staff.DisplayName;
                     BillDate = SelectedItem.CreateAt.ToString();
-                    BillValue = SelectedItem.TotalPrice.ToString();
-                    ProductList = BillToProductBill(a);
-
+                    BillValue = SelectedItem.TotalPrice??0;
+                    ProductList = new ObservableCollection<BillInfoDTO>(SelectedItem.BillInfo);
                     ChiTietHoaDon wd = new ChiTietHoaDon();
                     wd.ShowDialog();
                 }

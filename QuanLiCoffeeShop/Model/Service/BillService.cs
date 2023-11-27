@@ -100,6 +100,7 @@ namespace QuanLiCoffeeShop.Model.Service
                     IsDeleted = newBill.IsDeleted,
                     CreateAt = newBill.CreateAt,
                     IDSeat = newBill.IDSeat,
+                    TotalPrice= newBill.TotalPrice,
                 };
 
                 foreach (var g in newBill.BillInfo)

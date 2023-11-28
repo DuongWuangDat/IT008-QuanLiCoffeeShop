@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM;
 using System.Windows.Forms;
+using QuanLiCoffeeShop.View.MessageBox;
 
 namespace QuanLiCoffeeShop.Model.Service
 {
@@ -55,9 +56,10 @@ namespace QuanLiCoffeeShop.Model.Service
                     return await prodStatistic;
                 }
             }
-            catch (Exception e)
+            catch
             {
-                throw e;
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi");
+                return null;
             }
         }
 

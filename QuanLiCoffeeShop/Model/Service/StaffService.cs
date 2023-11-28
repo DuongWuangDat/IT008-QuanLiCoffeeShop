@@ -12,6 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using QuanLiCoffeeShop.Utils;
 using System.Runtime.Remoting.Contexts;
+using QuanLiCoffeeShop.View.MessageBox;
 
 namespace QuanLiCoffeeShop.Model.Service
 {
@@ -36,90 +37,115 @@ namespace QuanLiCoffeeShop.Model.Service
         //Get all staff
         public async Task<List<StaffDTO>> GetAllStaff()
         {
-            using (var context = new QuanLiCoffeShopEntities())
+            try
             {
-                var staffList = await (from c in context.Staff
-                                       where c.IsDeleted == false || c.IsDeleted == null
-                                       select new StaffDTO
-                                       {
-                                           ID = c.ID,
-                                           DisplayName = c.DisplayName,
-                                           StartDate = c.StartDate,
-                                           UserName = c.UserName,
-                                           PassWord = c.PassWord,
-                                           PhoneNumber = c.PhoneNumber,
-                                           BirthDay = c.BirthDay,
-                                           Wage = c.Wage,
-                                           Status = c.Status,
-                                           Email = c.Email,
-                                           Gender = c.Gender,
-                                           Role = c.Role,
-                                           IsDeleted = c.IsDeleted,
-                                       }).ToListAsync();
-                return staffList;
+                using (var context = new QuanLiCoffeShopEntities())
+                {
+                    var staffList = await (from c in context.Staff
+                                           where c.IsDeleted == false || c.IsDeleted == null
+                                           select new StaffDTO
+                                           {
+                                               ID = c.ID,
+                                               DisplayName = c.DisplayName,
+                                               StartDate = c.StartDate,
+                                               UserName = c.UserName,
+                                               PassWord = c.PassWord,
+                                               PhoneNumber = c.PhoneNumber,
+                                               BirthDay = c.BirthDay,
+                                               Wage = c.Wage,
+                                               Status = c.Status,
+                                               Email = c.Email,
+                                               Gender = c.Gender,
+                                               Role = c.Role,
+                                               IsDeleted = c.IsDeleted,
+                                           }).ToListAsync();
+                    return staffList;
+                }
+            }
+            catch
+            {
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi");
+                return null;
             }
         }
         public async Task<(Staff, bool)> FindStaff(int staff)
         {
-            using (var context = new QuanLiCoffeShopEntities())
+            try
             {
-                var st = await context.Staff.Where(p=>p.ID == staff).FirstOrDefaultAsync();
-                if (st == null)
+                using (var context = new QuanLiCoffeShopEntities())
                 {
-                    return (null, false);
+                    var st = await context.Staff.Where(p => p.ID == staff).FirstOrDefaultAsync();
+                    if (st == null)
+                    {
+                        return (null, false);
+                    }
+                    else
+                        return (st, true);
                 }
-                else
-                    return (st, true);
+            }
+            catch
+            {
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi");
+                return (null,false);
             }
         }
 
         //Add staff
         public async Task<(bool, string)> AddNewStaff(Staff newStaff)
         {
-            using (var context = new QuanLiCoffeShopEntities())
+            try
             {
-                bool IsEsixtEmail = await context.Staff.AnyAsync(p => p.Email == newStaff.Email);
-                bool IsExistPhone = await context.Staff.AnyAsync(p => p.PhoneNumber == newStaff.PhoneNumber);
-                bool IsExistUsername = await context.Staff.AnyAsync(p => p.UserName == newStaff.UserName);
-                var staff = await context.Staff.Where(p => p.Email == newStaff.Email || p.PhoneNumber == newStaff.PhoneNumber || p.UserName == newStaff.UserName).FirstOrDefaultAsync();
-                if (staff != null)
+                using (var context = new QuanLiCoffeShopEntities())
                 {
-                    if (staff.IsDeleted == true)
+                    bool IsEsixtEmail = await context.Staff.AnyAsync(p => p.Email == newStaff.Email);
+                    bool IsExistPhone = await context.Staff.AnyAsync(p => p.PhoneNumber == newStaff.PhoneNumber);
+                    bool IsExistUsername = await context.Staff.AnyAsync(p => p.UserName == newStaff.UserName);
+                    var staff = await context.Staff.Where(p => p.Email == newStaff.Email || p.PhoneNumber == newStaff.PhoneNumber || p.UserName == newStaff.UserName).FirstOrDefaultAsync();
+                    if (staff != null)
                     {
-                        staff.DisplayName = newStaff.DisplayName;
-                        staff.StartDate = newStaff.StartDate;
-                        staff.UserName = newStaff.UserName;
-                        staff.PassWord = newStaff.PassWord;
-                        staff.PhoneNumber = newStaff.PhoneNumber;
-                        staff.BirthDay = newStaff.BirthDay;
-                        staff.Wage = newStaff.Wage;
-                        staff.Status = newStaff.Status;
-                        staff.Email = newStaff.Email;
-                        staff.Gender = newStaff.Gender;
-                        staff.Role = newStaff.Role;
-                        staff.IsDeleted = false;
-                        await context.SaveChangesAsync();
-                        return (true, "Them thanh cong");
+                        if (staff.IsDeleted == true)
+                        {
+                            staff.DisplayName = newStaff.DisplayName;
+                            staff.StartDate = newStaff.StartDate;
+                            staff.UserName = newStaff.UserName;
+                            staff.PassWord = newStaff.PassWord;
+                            staff.PhoneNumber = newStaff.PhoneNumber;
+                            staff.BirthDay = newStaff.BirthDay;
+                            staff.Wage = newStaff.Wage;
+                            staff.Status = newStaff.Status;
+                            staff.Email = newStaff.Email;
+                            staff.Gender = newStaff.Gender;
+                            staff.Role = newStaff.Role;
+                            staff.IsDeleted = false;
+                            await context.SaveChangesAsync();
+                            return (true, "Them thanh cong");
+                        }
+                        else
+                        {
+                            if (IsEsixtEmail)
+                            {
+                                return (false, "Email đã tồn tại");
+                            }
+                            if (IsExistPhone)
+                            {
+                                return (false, "Số điện thoại đã tồn tại");
+                            }
+                            if (IsExistUsername)
+                            {
+                                return (false, "Tài khoản đã tồn tại");
+                            }
+                        }
                     }
-                    else
-                    {
-                        if (IsEsixtEmail)
-                        {
-                            return (false, "Email đã tồn tại");
-                        }
-                        if (IsExistPhone)
-                        {
-                            return (false, "Số điện thoại đã tồn tại");
-                        }
-                        if (IsExistUsername)
-                        {
-                            return (false, "Tài khoản đã tồn tại");
-                        }
-                    }
+                    context.Staff.Add(newStaff);
+                    await context.SaveChangesAsync();
+                    return (true, "Them thanh cong");
                 }
-                context.Staff.Add(newStaff);
-                await context.SaveChangesAsync();
-                return (true, "Them thanh cong");
+
+            }
+            catch
+            {
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi");
+                return (false,null);
             }
 
         }
@@ -128,28 +154,35 @@ namespace QuanLiCoffeeShop.Model.Service
         // Edit staff
         public async Task<(bool, string)> EditStaff(Staff newStaff)
         {
-
-            using (var context = new QuanLiCoffeShopEntities())
+            try
             {
-                bool IsExistUsername = await context.Staff.AnyAsync(p => p.ID != newStaff.ID && p.UserName == newStaff.UserName && p.IsDeleted == false);
-                if (IsExistUsername)
+                using (var context = new QuanLiCoffeShopEntities())
                 {
-                    return (false, "Tài khoản đã tồn tại");
+                    bool IsExistUsername = await context.Staff.AnyAsync(p => p.ID != newStaff.ID && p.UserName == newStaff.UserName && p.IsDeleted == false);
+                    if (IsExistUsername)
+                    {
+                        return (false, "Tài khoản đã tồn tại");
+                    }
+                    var staff = await context.Staff.Where(p => p.ID == newStaff.ID).FirstOrDefaultAsync();
+                    staff.DisplayName = newStaff.DisplayName;
+                    staff.StartDate = newStaff.StartDate;
+                    staff.UserName = newStaff.UserName;
+                    staff.PassWord = newStaff.PassWord == null ? staff.PassWord : newStaff.PassWord;
+                    staff.PhoneNumber = newStaff.PhoneNumber;
+                    staff.BirthDay = newStaff.BirthDay;
+                    staff.Wage = newStaff.Wage;
+                    staff.Status = newStaff.Status;
+                    staff.Email = newStaff.Email;
+                    staff.Gender = newStaff.Gender;
+                    staff.Role = newStaff.Role;
+                    await context.SaveChangesAsync();
+                    return (true, "Cap that thanh cong");
                 }
-                var staff = await context.Staff.Where(p => p.ID == newStaff.ID).FirstOrDefaultAsync();
-                staff.DisplayName = newStaff.DisplayName;
-                staff.StartDate = newStaff.StartDate;
-                staff.UserName = newStaff.UserName;
-                staff.PassWord = newStaff.PassWord == null ? staff.PassWord : newStaff.PassWord;
-                staff.PhoneNumber = newStaff.PhoneNumber;
-                staff.BirthDay = newStaff.BirthDay;
-                staff.Wage = newStaff.Wage;
-                staff.Status = newStaff.Status;
-                staff.Email = newStaff.Email;
-                staff.Gender = newStaff.Gender;
-                staff.Role = newStaff.Role;
-                await context.SaveChangesAsync();
-                return (true, "Cap that thanh cong");
+            }
+            catch
+            {
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi");
+                return (false, null);
             }
 
         }
@@ -157,12 +190,20 @@ namespace QuanLiCoffeeShop.Model.Service
         //Delete staff
         public async Task<(bool, string)> DeleteStaff(int ID)
         {
-            using (var context = new QuanLiCoffeShopEntities())
+            try
             {
-                var staff = await context.Staff.Where(p => p.ID == ID).FirstOrDefaultAsync();
-                if (staff.IsDeleted == false) staff.IsDeleted = true;
-                await context.SaveChangesAsync();
-                return (true, "Da xoa");
+                using (var context = new QuanLiCoffeShopEntities())
+                {
+                    var staff = await context.Staff.Where(p => p.ID == ID).FirstOrDefaultAsync();
+                    if (staff.IsDeleted == false) staff.IsDeleted = true;
+                    await context.SaveChangesAsync();
+                    return (true, "Da xoa");
+                }
+            }
+            catch
+            {
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi");
+                return (false, null);
             }
 
         }
@@ -188,6 +229,7 @@ namespace QuanLiCoffeeShop.Model.Service
             }
             catch (Exception ex)
             {
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi");
                 return (false, "Có lỗi xuất hiện", null);
             }
         }

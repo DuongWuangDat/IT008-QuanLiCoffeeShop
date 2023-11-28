@@ -185,10 +185,10 @@
                                 FontSize="12.8"
                                 Text="Lương" />
                             <TextBox
+                                Name="wageTextBox"
                                 Width="300"
                                 Height="30"
                                 Padding="12,2.4"
-                                Name="wageTextBox"
                                 HorizontalAlignment="Left"
                                 VerticalContentAlignment="Center"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
@@ -197,7 +197,9 @@
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
                                 FontSize="13"
-                                Text="{Binding Wage, Mode=TwoWay,StringFormat=N0}" TextChanged="TextBox_TextChanged" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+                                PreviewKeyDown="TextBox_PreviewKeyDown"
+                                Text="{Binding Wage, Mode=TwoWay, StringFormat=N0}"
+                                TextChanged="TextBox_TextChanged" />
                         </StackPanel>
 
                     </StackPanel>
@@ -311,10 +313,8 @@
                                 <ComboBoxItem Content="Xin nghỉ" />
                             </ComboBox>
                         </StackPanel>
-
                     </StackPanel>
                 </StackPanel>
-
             </Grid>
 
 

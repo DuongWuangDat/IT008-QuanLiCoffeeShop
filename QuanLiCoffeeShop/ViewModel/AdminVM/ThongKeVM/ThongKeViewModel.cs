@@ -62,6 +62,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
                 p.Content = new LichSuTable();
                 SelectedDateTo = DateTime.Now;
                 SelectedDateFrom = DateTime.Now.AddDays(-2);
+                SumBillTotal = 0;
             });
             FirstLoadStaffCM = new RelayCommand<Frame>((p) => { return true; }, async (p) =>
             {
@@ -147,18 +148,21 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
             });
             #region DoanhThu
             RevenueCM = new RelayCommand<Frame>((p) => { return true; }, async (p) =>
-            {              
+            {
+                SumBillTotal = 0;
                 p.Content = new DoanhThuTable();
                 List<int> revenueValues = new List<int>();
                 List<DateTime> dates = new List<DateTime>();
-                BillService billService = new BillService();
-
-                for (DateTime currentDate = SelectedDateFrom; currentDate <= SelectedDateTo; currentDate = currentDate.AddDays(1))
-                {                   
-                    int revenue = await billService.getBillByDate(currentDate);
+                DateTime currentDate = SelectedDateFrom;
+                DateTime UpDate = SelectedDateTo.AddDays(1);
+                while (currentDate <= UpDate)
+                {
+                    int revenue = await BillService.Ins.getBillByDate(currentDate);
                     revenueValues.Add(revenue);
+                    SumBillTotal += revenue;
                     dates.Add(currentDate);
-                }
+                    currentDate = currentDate.AddDays(1);
+                }             
 
                 string[] dateStrings = dates.Select(date => date.ToString("dd-MM-yyyy")).ToArray();
                 RevenueSeries = new SeriesCollection

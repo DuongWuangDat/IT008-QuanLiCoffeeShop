@@ -83,7 +83,6 @@
 
         <!--  Frame  -->
         <Grid>
-
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="64" />

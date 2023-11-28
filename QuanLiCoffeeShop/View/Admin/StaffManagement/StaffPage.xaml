@@ -163,7 +163,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTemplateColumn Width="auto" Header="Họ tên" SortMemberPath="DisplayName">
+                        <DataGridTemplateColumn Width="*" Header="Họ tên" SortMemberPath="DisplayName">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
@@ -175,7 +175,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTemplateColumn Width="auto" Header="Số điện thoại" SortMemberPath="PhoneNumber">
+                        <DataGridTemplateColumn Width="*" Header="Số điện thoại" SortMemberPath="PhoneNumber">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
@@ -187,7 +187,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
 
-                        <DataGridTemplateColumn Width="auto" Header="Email" SortMemberPath="Email">
+                        <DataGridTemplateColumn Width="*" Header="Email" SortMemberPath="Email">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock

@@ -40,7 +40,7 @@ namespace QuanLiCoffeeShop.Model.Service
                         Revenue = gr.Sum(pBill => (Decimal?)(pBill.PriceItem)) ?? 0,
                         SalesQuantity = gr.Sum(pBill => (int?)pBill.Count) ?? 0
                     })
-                    .OrderByDescending(m => m.SalesQuantity).Take(5)
+                    .OrderByDescending(m => m.SalesQuantity).Take(10)
                     .Join(
                     context.Product,
                     statis => statis.IDProduct,

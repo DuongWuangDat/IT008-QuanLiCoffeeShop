@@ -27,13 +27,17 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
         public static List<BillInfoDTO> billInfoList;
         public static List<BillDTO> billList;
         private bool _prdEnable;
-
         public bool prdEnable
         {
             get { return _prdEnable; }
             set { _prdEnable = value; OnPropertyChanged(); }
         }
-
+        private bool _endEnable;
+        public bool EndEnable
+        {
+            get { return _endEnable; }
+            set { _endEnable = value; OnPropertyChanged(); }
+        }
         private ObservableCollection<BillDTO> _billlist;
         public ObservableCollection<BillDTO> BillList
         {
@@ -77,6 +81,12 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
         {
             get { return _brush; } 
             set { _brush = value; OnPropertyChanged(); } 
+        }
+        private SolidColorBrush _endBackGround;
+        public SolidColorBrush EndBackGround
+        {
+            get { return _endBackGround; }
+            set { _endBackGround = value; OnPropertyChanged(); }
         }
         private string _payContent;
         public string PayContent
@@ -139,6 +149,9 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 BillList = new ObservableCollection<BillDTO>();
                 billList = new List<BillDTO>(BillList);
                 prdEnable = false;
+
+                EndEnable= false;
+                EndBackGround = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EFD8B4"));
             });
           LoadSeatPageCM = new RelayCommand<Frame>((p)=> { return true; },async (p)=> {
                  LoadPage();
@@ -381,7 +394,11 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
             });
             PayBill = new RelayCommand<object>((p) => { return true; }, async (p) => 
             {
-                if(CusOfBill==null) MessageBoxCustom.Show(MessageBoxCustom.Error, "Vui lòng thêm khách hàng");
+                if (CusOfBill == null)
+                {
+                    (Customer a, bool success, string messageSearch) = await CustomerService.Ins.findCusbyPhone("0000");
+                    CusOfBill = a;
+                }
                 else
                 {
 
@@ -405,19 +422,22 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                             SelectedBill.Customer = CusOfBill;
                             SelectedBill.Staff = a;
                             SelectedBill.TotalPrice = TotalBillValue;
-                        
+
                             (Seat b, bool sucess2) = await SeatService.Ins.FindSeat(SelectedSeatItem.ID);
                             SelectedBill.Seat = b;
                             SelectedBill.IDSeat = SelectedSeatItem.ID;
 
                             (bool isAdded, string messageAdd) = await BillService.Ins.AddNewBill(SelectedBill);
-                            if(isAdded)
+                            if (isAdded)
                             {
                                 billList.Add(SelectedBill);
 
                                 Brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EFD8B4"));
                                 PayEnabled = false;
                                 PayContent = "Đã thanh toán";
+
+                                EndEnable = true;
+                                EndBackGround = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F0BD70"));
 
                                 Seat newseat = new Seat
                                 {
@@ -428,8 +448,8 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                                 };
                                 (bool success, string messageEdit) = await SeatService.Ins.EditSeat(newseat);
                                 UpdateBtn();
-                            
-                                for (int i = 0;i< BillInfoList.Count; i++)
+
+                                for (int i = 0; i < BillInfoList.Count; i++)
                                 {
                                     Product k = BillInfoList[i].Product;
                                     Product prd = new Product
@@ -444,13 +464,28 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                                         IsDeleted = k.IsDeleted,
                                     };
                                     (bool ss, string me) = await ProductService.Ins.EditPrD(prd, BillInfoList[i].Product.ID);
-                                    if(ss==false) { MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa lượng hàng thất bại!"); }
+                                    if (ss == false) { MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa lượng hàng thất bại!"); }
                                 }
+
+                                //Edit chi tiêu khách hàng
+                                Customer newCus = new Customer
+                                {
+                                    ID = CusOfBill.ID,
+                                    Description = CusOfBill.Description,
+                                    PhoneNumber = CusOfBill.PhoneNumber,
+                                    Email = CusOfBill.Email,
+                                    DisplayName = CusOfBill.DisplayName,
+                                    Spend = CusOfBill.Spend + TotalBillValue,
+                                    IsDeleted = false,
+                                };
+                                (bool suc, string mEdit) = await CustomerService.Ins.EditCusList(newCus, CusOfBill.ID);
+                                if (!suc) MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa chi tiêu khách hàng thất bại!");
+
                                 MessageBoxCustom.Show(MessageBoxCustom.Success, "Thành công");
                                 resetData();
-                            
+
                             }
-                                                
+
                         }
                     }
 
@@ -475,10 +510,14 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                         CusInfo = null;
                         CusOfBill = new Customer();
                         BillInfoList = null;
-                        BillInfoList = new ObservableCollection<BillInfoDTO>();                  
+                        BillInfoList = new ObservableCollection<BillInfoDTO>();  
+                        
                         Brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EFD8B4"));
                         PayEnabled = false;
                         PayContent = "";
+                        EndEnable = false;
+
+                        EndBackGround = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EFD8B4"));
                         TotalBillValue = 0;
 
                         Seat newseat = new Seat
@@ -488,6 +527,8 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                             IDGenre = SelectedSeatItem.IDGenre,
                             IsDeleted = false,
                         };
+
+
                         (bool success, string messageEdit) = await SeatService.Ins.EditSeat(newseat);
                         UpdateBtn();
                     }

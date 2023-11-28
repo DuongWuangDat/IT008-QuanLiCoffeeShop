@@ -279,13 +279,17 @@ namespace QuanLiCoffeeShop.Model.Service
             {
                 using (var context = new QuanLiCoffeShopEntities())
                 {
-                    var billTotal = await context.Bill.Where(p => p.CreateAt.Value == date.Date && p.IsDeleted == false).ToListAsync();
+                    var billTotal = await context.Bill.Where(p => p.CreateAt.Value.Day == date.Day
+                                                           && p.CreateAt.Value.Month == date.Month
+                                                           && p.CreateAt.Value.Year == date.Year 
+                                                           && p.IsDeleted==false).ToListAsync();
                     int totalPrice = 0;
                     foreach (var bill in billTotal)
                     {
-                        totalPrice += (int)bill.TotalPrice;
+                        totalPrice = totalPrice + (int)bill.TotalPrice;
                     }
                     return totalPrice;
+
                 }
             }
             catch

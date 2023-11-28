@@ -59,7 +59,19 @@ namespace QuanLiCoffeeShop.Model.Service
                 return staffList;
             }
         }
-
+        public async Task<(Staff, bool)> FindStaff(int staff)
+        {
+            using (var context = new QuanLiCoffeShopEntities())
+            {
+                var st = await context.Staff.Where(p=>p.ID == staff).FirstOrDefaultAsync();
+                if (st == null)
+                {
+                    return (null, false);
+                }
+                else
+                    return (st, true);
+            }
+        }
 
         //Add staff
         public async Task<(bool, string)> AddNewStaff(Staff newStaff)

@@ -22,7 +22,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="Transparent"
         FontFamily="{DynamicResource MaterialDesignFont}">
-    
+
     <Window.Resources>
         <Style x:Key="TextBlock" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Black"/>
@@ -30,6 +30,7 @@
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
         <converters:PriceConverter x:Key="PriceConverter"></converters:PriceConverter>
+        <converters:IndexConverter x:Key="IndexConverter"></converters:IndexConverter>
     </Window.Resources>
     <Grid>
         <Border Background="White" CornerRadius="32" Margin="0,0,0,-13">
@@ -65,6 +66,7 @@
                             <TextBox 
                                     Text="{Binding CusName}"
                                     Width="231.6" 
+                                    IsReadOnly="True"
                                     Height="50" 
                                     BorderThickness="0.5" 
                                     materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
@@ -73,19 +75,21 @@
                                     HorizontalAlignment="Left"             
                                     Background="#D9D9D9"
                                     FontFamily="Inter" 
-                                    FontSize="16" 
+                                    FontSize="17" 
                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                     Margin="50,0,0,0"/>
                         </StackPanel>
                         <StackPanel>
                             <TextBlock Style="{DynamicResource TextBlock}" 
                                     Text="Nhân viên bán" 
+                                       
                                     Margin="50 27 0 10" 
                                     Height="23" 
                                     VerticalAlignment="Top"/>
                             <TextBox 
                                 Text="{Binding StaffName}"
                                     Width="231.6" 
+                                    IsReadOnly="True"
                                     Height="50" 
                                     BorderThickness="0.5" 
                                     materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 
@@ -94,7 +98,7 @@
                                     HorizontalAlignment="Left"             
                                     Background="#D9D9D9"
                                     FontFamily="Inter" 
-                                    FontSize="16" 
+                                    FontSize="17" 
                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                     Margin="50,0,0,0"/>
                         </StackPanel>
@@ -114,18 +118,21 @@
                             Background="White" 
                             Margin="12" 
                             CornerRadius="25">
-                            <ListView                                
+                            <ListView
+                                Margin="10 0 0 0"
+                                Width="600"
                                 ItemsSource="{Binding ProductList}">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem"
                                         BasedOn="{StaticResource MaterialDesignGridViewItem}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                     </Style>
                                 </ListView.ItemContainerStyle>
 
                                 <ListView.View>
                                     <GridView>
 
-                                        <GridViewColumn Header="ID"  Width="60">
+                                        <GridViewColumn Header="STT"  Width="40">
                                             <GridViewColumn.HeaderContainerStyle>
                                                 <Style TargetType="{x:Type GridViewColumnHeader}">
                                                     <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -135,13 +142,16 @@
                                             </GridViewColumn.HeaderContainerStyle>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding ID}"
-                                                        FontSize="18" />
+                                                    <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                                               AncestorType={x:Type ListViewItem}}, 
+                                                               Converter={StaticResource IndexConverter}, UpdateSourceTrigger=PropertyChanged}"
+                                                                FontSize="17" 
+                                                     />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
 
-                                        <GridViewColumn Header="Tên sản phẩm" Width="173">
+                                        <GridViewColumn Header="Tên sản phẩm" Width="180">
                                             <GridViewColumn.HeaderContainerStyle>
                                                 <Style TargetType="{x:Type GridViewColumnHeader}">
                                                     <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -152,14 +162,14 @@
                                             </GridViewColumn.HeaderContainerStyle>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding DisplayName}"
-                                   FontSize="18" 
-                                   Margin="31,0,0,0"/>
+                                                    <TextBlock Text="{Binding Product.DisplayName}"
+                                                               Margin="5 0 0 0"
+                                                                            FontSize="17" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
                                         </GridViewColumn>
 
-                                        <GridViewColumn Header="Số lượng" Width="80" >
+                                        <GridViewColumn Header="Số lượng" Width="70" >
                                             <GridViewColumn.HeaderContainerStyle>
                                                 <Style TargetType="{x:Type GridViewColumnHeader}">
                                                     <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -170,14 +180,16 @@
                                             </GridViewColumn.HeaderContainerStyle>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding SoLuong}"
-                                                        FontSize="18"/>
+                                                    <TextBlock Text="{Binding Count}"
+                                                               HorizontalAlignment="Center"
+                                                               Margin="0 0 15 0"
+                                                        FontSize="17"/>
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
 
                                         </GridViewColumn>
 
-                                        <GridViewColumn Header="Đơn giá" Width="130">
+                                        <GridViewColumn Header="Đơn giá" Width="120">
                                             <GridViewColumn.HeaderContainerStyle>
                                                 <Style TargetType="{x:Type GridViewColumnHeader}">
                                                     <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -188,8 +200,10 @@
                                             </GridViewColumn.HeaderContainerStyle>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding Price, Converter={StaticResource PriceConverter}}"
-                                                        FontSize="18" />
+                                                    <TextBlock Text="{Binding Product.Price, Converter={StaticResource PriceConverter}}"
+                                                               HorizontalAlignment="Center"
+                                                               Margin="0 0 10 0"
+                                                        FontSize="17" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
 
@@ -206,8 +220,10 @@
                                             </GridViewColumn.HeaderContainerStyle>
                                             <GridViewColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock Text="{Binding ThanhTien, Converter={StaticResource PriceConverter}}"
-                                                        FontSize="18" />
+                                                    <TextBlock Text="{Binding PriceItem, Converter={StaticResource PriceConverter}}"
+                                                               HorizontalAlignment="Center"
+                                                               Margin="0 0 10 0"
+                                                        FontSize="17" />
                                                 </DataTemplate>
                                             </GridViewColumn.CellTemplate>
 
@@ -233,6 +249,11 @@
                             Text="{Binding BillDate}" 
                             Height="23" 
                             VerticalAlignment="Top"/>
+                    </StackPanel>
+                    <DockPanel                       
+                        Margin="140 0 0 0"
+                        HorizontalAlignment="Left">
+                        
                         <TextBlock Style="{DynamicResource TextBlock}" 
                             Text="Tổng:" 
                             Height="23" 
@@ -245,13 +266,18 @@
                                    Margin="0 0 5 0"
                             VerticalAlignment="Top"/>
                         <TextBlock Style="{DynamicResource TextBlock}" 
+                            HorizontalAlignment="Left"
                             Text="đ"
                             Height="23"                             
                             VerticalAlignment="Top"/>
-                    </StackPanel>
+                    </DockPanel>
                 </Grid>
 
                 <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="158*"/>
+                        <ColumnDefinition Width="83*"/>
+                    </Grid.ColumnDefinitions>
                     <Button
                         Command="{Binding CloseWdCM}"
                         CommandParameter="{Binding ElementName=BillInfoWd}"
@@ -262,7 +288,7 @@
                         BorderThickness="0"
                         Content="Đóng"
                         FontSize="24"
-                        FontWeight="Bold" Margin="503,44,93,44"/>
+                        FontWeight="Bold" Margin="32,44,97,44" Grid.Column="1"/>
                 </Grid>
             </Grid>
         </Border>

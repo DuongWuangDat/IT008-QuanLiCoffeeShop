@@ -155,6 +155,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
+                                        FontSize="15"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         Text="{Binding ID}" />
@@ -166,6 +167,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
+                                        FontSize="15"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         Text="{Binding DisplayName}" />
@@ -177,6 +179,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
+                                        FontSize="15"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         Text="{Binding PhoneNumber}" />
@@ -188,6 +191,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
+                                        FontSize="15"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         Text="{Binding Email}" />
@@ -199,6 +203,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
+                                        FontSize="15"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         Text="{Binding Gender}" />
@@ -210,6 +215,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <DatePicker
+                                        FontSize="15"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         IsHitTestVisible="False"
@@ -223,6 +229,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <DatePicker
+                                        FontSize="15"
                                         IsHitTestVisible="False"
                                         IsTodayHighlighted="True"
                                         SelectedDate="{Binding StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
@@ -235,6 +242,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
+                                        FontSize="15"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         Text="{Binding Role}" />
@@ -246,6 +254,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
+                                        FontSize="15"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         Text="{Binding Wage, StringFormat={}{0:N0} VNĐ}" />
@@ -257,6 +266,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
+                                        FontSize="15"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Center"
                                         Text="{Binding Status}" />

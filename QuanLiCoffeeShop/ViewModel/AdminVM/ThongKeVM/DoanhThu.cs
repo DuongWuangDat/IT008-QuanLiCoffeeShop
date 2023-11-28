@@ -53,6 +53,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
                 OnPropertyChanged(nameof(YFormatter));
             }
         }
-
+        public void GetRevenueData() { 
+        }
     }
 }

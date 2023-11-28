@@ -41,6 +41,8 @@ namespace QuanLiCoffeeShop.Model.Service
                                     TotalPrice = c.TotalPrice,
                                     Customer = c.Customer,
                                     Staff = c.Staff,
+                                    Seat = c.Seat,
+                                    IDSeat = c.IDSeat,
                                     BillInfo = (from x in c.BillInfo
                                                 where x.IsDeleted == false
                                                 select new BillInfoDTO
@@ -49,6 +51,7 @@ namespace QuanLiCoffeeShop.Model.Service
                                                     PriceItem = x.PriceItem,
                                                     IDProduct = x.IDProduct,
                                                     Count = x.Count,
+                                                    Description = x.Description,
                                                     Bill = x.Bill,
                                                     Product = x.Product,
                                                 }).ToList(),
@@ -78,25 +81,39 @@ namespace QuanLiCoffeeShop.Model.Service
 		{
 			using (var context = new QuanLiCoffeShopEntities())
 			{
+
+                int? maxID = await context.Bill.MaxAsync(b => (int?)b.ID);
+                int curID = 0;
+                if (maxID.HasValue)
+                {
+                    curID = (int)maxID + 1;
+                }
+                else
+                {
+                    curID = 1;
+                }
                 Bill bill = new Bill
                 {
-                    ID = newBill.ID,
+                    ID = curID,
                     IDCus = newBill.IDCus,
                     IDStaff = newBill.IDStaff,
                     IsDeleted = newBill.IsDeleted,
                     CreateAt = newBill.CreateAt,
                     Customer = newBill.Customer,
                     Staff = newBill.Staff,
+                    IDSeat = newBill.IDSeat,
+                    Seat = newBill.Seat,
                 };
 
                 foreach (var g in newBill.BillInfo)
                 {
                     BillInfo billInfo = new BillInfo
                     {
-                        IDBill = g.IDBill,
+                        IDBill = curID,
                         IDProduct = g.IDProduct,
                         IsDeleted = g.IsDeleted,
                         PriceItem = g.PriceItem,
+                        Description = g.Description,
                         Count = g.Count,
                         Bill = g.Bill,
                         Product = g.Product,
@@ -140,14 +157,16 @@ namespace QuanLiCoffeeShop.Model.Service
                 bill.IDCus = newBill.IDCus;
                 bill.CreateAt = newBill.CreateAt;
                 bill.TotalPrice = newBill.TotalPrice;
+                bill.IDSeat = newBill.IDSeat;
+                bill.Seat = newBill.Seat;
                 foreach (var b in newBill.BillInfo)
                 {
                     var billInfo = await context.BillInfo.Where(p => p.IDBill == b.IDBill && p.IDProduct == b.IDProduct).FirstOrDefaultAsync();
-                    billInfo.IDBill = b.IDBill;
                     billInfo.IDProduct = b.IDProduct;
                     billInfo.PriceItem = b.PriceItem;
                     billInfo.IsDeleted = false;
                     billInfo.Product = b.Product;
+                    billInfo.Description = b.Description;
                     billInfo.Count = b.Count;
                     billInfo.Bill = b.Bill;
                     bill.BillInfo.Add(new BillInfo
@@ -162,7 +181,7 @@ namespace QuanLiCoffeeShop.Model.Service
                     });
                 }
                 await context.SaveChangesAsync();
-                return (true, "Cap nhat thanh cong");
+                return (true, "Cập nhật thành công");
             }
                 
         }

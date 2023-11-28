@@ -14,9 +14,10 @@
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
     ResizeMode="NoResize"
     WindowStyle="None"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Grid>
-        <Border Background="White" CornerRadius="12.8" BorderBrush="DarkGray">
+        <Border Background="White" CornerRadius="12.8" BorderBrush="DarkGray" BorderThickness="1">
             <Grid Background="Transparent">
                 <StackPanel Margin="32">
                     <Image Width="57.344" Source="/QuanLiCoffeeShop;component/Resources/Icon/Log_Out_Caution.png" />

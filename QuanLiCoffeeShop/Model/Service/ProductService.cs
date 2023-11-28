@@ -46,13 +46,34 @@ namespace QuanLiCoffeeShop.Model.Service
                                        IsDeleted = c.IsDeleted,
                                    }).ToListAsync();
                 return await productList;
-            }
-			
+            }			
 		}
-		
-		//Add new product
+        public async Task<List<ProductDTO>> GetAllProductCounted()
+        {
+            using (var context = new QuanLiCoffeShopEntities())
+            {
+                var productList = (from c in context.Product
+                                   where c.IsDeleted == false && c.Count>0                                 
+                                   select new ProductDTO
+                                   {
+                                       ID = c.ID,
+                                       DisplayName = c.DisplayName,
+                                       Price = c.Price,
+                                       IDGenre = c.IDGenre,
+                                       GenreName = c.GenreProduct.DisplayName,
+                                       Count = c.Count,
+                                       Description = c.Description,
+                                       Image = c.Image,
+                                       IsDeleted = c.IsDeleted,
+                                   }).ToListAsync();
+                return await productList;
+            }
 
-		public async Task<(bool, string)> AddNewPrD(Product newPrD)
+        }
+
+        //Add new product
+
+        public async Task<(bool, string)> AddNewPrD(Product newPrD)
 		{
 			using(var context = new QuanLiCoffeShopEntities())
 			{

@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using QuanLiCoffeeShop.Model;
 using QuanLiCoffeeShop.Model.Service;
-using QuanLiCoffeeShop.View.Admin.CustomerManagement;
 using QuanLiCoffeeShop.View.MessageBox;
 using System.Collections.ObjectModel;
 using System.Windows;

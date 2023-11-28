@@ -15,7 +15,6 @@ namespace QuanLiCoffeeShop.View.Admin
         public MainAdminWindow()
         {
             InitializeComponent();
-            DataContext = new MainAdminViewModel();
         }
 
         private void Overlay_MouseDown(object sender, MouseButtonEventArgs e)
@@ -26,18 +25,6 @@ namespace QuanLiCoffeeShop.View.Admin
         private void AdminWD_Closed(object sender, System.EventArgs e)
         {
             this.Owner.Visibility = Visibility.Visible;
-        }
-
-        private void Overlay_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (Overlay.Visibility == Visibility.Visible)
-            {
-                // Ngăn chặn sự kiện chuột từ việc truyền đi
-                e.Handled = true;
-
-                // Ẩn Overlay khi click vào bất kỳ vị trí nào khác overlay
-                Overlay.Visibility = Visibility.Collapsed;
-            }
         }
     }
 }

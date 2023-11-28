@@ -8,7 +8,7 @@
     x:Name="editStaffWindow"
     Title="ModifyStaff"
     Width="800"
-    Height="610"
+    Height="auto"
     AllowsTransparency="True"
     Background="Transparent"
     DataContext="{StaticResource StaffPageVM}"
@@ -158,19 +158,19 @@
                                 VerticalAlignment="Center"
                                 FontSize="12.8"
                                 Text="Chức vụ" />
-                            <TextBox
+                            <ComboBox
                                 Width="300"
                                 Height="30"
                                 Padding="12,2.4"
-                                HorizontalAlignment="Left"
-                                VerticalContentAlignment="Center"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
-                                BorderBrush="Transparent"
-                                FontFamily="Inter"
-                                FontSize="12"
-                                Text="{Binding EditRole}" />
+                                BorderThickness="0"
+                                FontSize="12.8"
+                                ItemsSource="{Binding RoleList}"
+                                SelectedItem="{Binding EditRole, Mode=TwoWay}" />
                         </StackPanel>
 
                         <!--  Lương  -->
@@ -185,6 +185,7 @@
                                 FontSize="12.8"
                                 Text="Lương" />
                             <TextBox
+                                Name="wageTextBox"
                                 Width="300"
                                 Height="30"
                                 Padding="12,2.4"
@@ -196,7 +197,9 @@
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
                                 FontSize="12"
-                                Text="{Binding EditWage}" />
+                                PreviewKeyDown="TextBox_PreviewKeyDown"
+                                Text="{Binding EditWage}"
+                                TextChanged="TextBox_TextChanged" />
                         </StackPanel>
                     </StackPanel>
 
@@ -215,19 +218,20 @@
                                 FontSize="12.8"
                                 Text="Giới tính" />
                             <ComboBox
-                                Width="100"
+                                x:Name="genderComboBox"
+                                Width="110"
                                 Height="30"
                                 Margin="12,0,5,0"
                                 Padding="12,0,5,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
                                 FontSize="12.8"
-                                Text="{Binding EditGender}">
-                                <ComboBoxItem Content="Nam" />
-                                <ComboBoxItem Content="Nữ" />
-                            </ComboBox>
+                                ItemsSource="{Binding GenderList}"
+                                SelectedItem="{Binding EditGender, Mode=TwoWay}" />
                         </StackPanel>
 
                         <!--  Ngày sinh  -->
@@ -241,16 +245,18 @@
                                 FontSize="12.8"
                                 Text="Ngày sinh" />
                             <DatePicker
-                                Width="100"
+                                Width="110"
                                 Height="30"
                                 Margin="12,0,5,0"
                                 Padding="12,0,5,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
                                 FontSize="12.8"
-                                Text="{Binding EditBirthDay, StringFormat=dd/MM/yyyy}" />
+                                Text="{Binding EditBirthDay, StringFormat=dd/MM/yyyy, Mode=TwoWay}" />
 
                         </StackPanel>
 
@@ -265,15 +271,17 @@
                                 FontSize="12.8"
                                 Text="Ngày bắt đầu" />
                             <DatePicker
-                                Width="100"
+                                Width="110"
                                 Height="30"
                                 Margin="12,0,5,0"
                                 Padding="12,0,5,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 FontSize="12.8"
-                                Text="{Binding EditStartDate, StringFormat=dd/MM/yyyy}" />
+                                Text="{Binding EditStartDate, StringFormat=dd/MM/yyyy, Mode=TwoWay}" />
                         </StackPanel>
 
                         <!--  Trạng thái  -->
@@ -287,19 +295,19 @@
                                 FontSize="12.8"
                                 Text="Trạng thái" />
                             <ComboBox
-                                Width="100"
+                                Width="110"
                                 Height="30"
                                 Margin="12,0,5,0"
                                 Padding="12,0,5,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
                                 FontSize="12.8"
-                                Text="{Binding EditStatus}">
-                                <ComboBoxItem Content="Đang làm" />
-                                <ComboBoxItem Content="Xin nghỉ" />
-                            </ComboBox>
+                                ItemsSource="{Binding StatusList}"
+                                SelectedItem="{Binding EditStatus, Mode=TwoWay}" />
                         </StackPanel>
 
                     </StackPanel>
@@ -376,7 +384,7 @@
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
                                 FontSize="12"
-                                Text="{Binding EditPassWord}" />
+                                Text="{Binding EditPassWord, Mode=TwoWay}" />
                         </StackPanel>
 
                     </StackPanel>
@@ -384,7 +392,10 @@
             </Grid>
 
             <Grid Grid.Row="3">
-                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <StackPanel
+                    Margin="0,0,0,30"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
                     <Button
                         Width="98.304"
                         Height="37.888"

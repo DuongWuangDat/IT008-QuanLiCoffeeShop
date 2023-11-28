@@ -11,8 +11,8 @@
     Width="800"
     Height="610"
     AllowsTransparency="True"
-    DataContext="{StaticResource StaffPageVM}"
     Background="Transparent"
+    DataContext="{StaticResource StaffPageVM}"
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
@@ -82,7 +82,7 @@
                             <TextBox
                                 Width="300"
                                 Height="30"
-                                Padding="12,2.4"
+                                Padding="12,0,0,0"
                                 HorizontalAlignment="Left"
                                 VerticalContentAlignment="Center"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
@@ -90,7 +90,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="12"
+                                FontSize="13"
                                 Text="{Binding DisplayName}" />
 
                         </StackPanel>
@@ -117,7 +117,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="12"
+                                FontSize="13"
                                 Text="{Binding Email}" />
                         </StackPanel>
 
@@ -143,7 +143,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="12"
+                                FontSize="13"
                                 Text="{Binding PhoneNumber}" />
                         </StackPanel>
 
@@ -166,7 +166,7 @@
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
-                                FontSize="12.8"
+                                FontSize="13"
                                 Text="{Binding Role}">
                                 <ComboBoxItem Content="Quản lí" />
                                 <ComboBoxItem Content="Nhân viên" />
@@ -185,6 +185,7 @@
                                 FontSize="12.8"
                                 Text="Lương" />
                             <TextBox
+                                Name="wageTextBox"
                                 Width="300"
                                 Height="30"
                                 Padding="12,2.4"
@@ -195,8 +196,10 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="12" 
-                                Text="{Binding Wage, Mode=TwoWay, StringFormat={}{0:N0}}"/>
+                                FontSize="13"
+                                PreviewKeyDown="TextBox_PreviewKeyDown"
+                                Text="{Binding Wage, Mode=TwoWay, StringFormat=N0}"
+                                TextChanged="TextBox_TextChanged" />
                         </StackPanel>
 
                     </StackPanel>
@@ -216,15 +219,17 @@
                                 FontSize="12.8"
                                 Text="Giới tính" />
                             <ComboBox
-                                Width="100"
+                                Width="110"
                                 Height="30"
                                 Margin="12,0,5,0"
                                 Padding="12,0,5,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
-                                FontSize="12.8"
+                                FontSize="13"
                                 Text="{Binding Gender}">
                                 <ComboBoxItem Content="Nam" />
                                 <ComboBoxItem Content="Nữ" />
@@ -242,15 +247,17 @@
                                 FontSize="12.8"
                                 Text="Ngày sinh" />
                             <DatePicker
-                                Width="100"
+                                Width="110"
                                 Height="30"
                                 Margin="12,0,5,0"
                                 Padding="12,0,5,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
-                                FontSize="12.8"
+                                FontSize="13"
                                 SelectedDate="{Binding BirthDay, Mode=TwoWay}" />
 
                         </StackPanel>
@@ -266,41 +273,46 @@
                                 FontSize="12.8"
                                 Text="Ngày bắt đầu" />
                             <DatePicker
-                                Width="100"
+                                Width="110"
                                 Height="30"
                                 Margin="12,0,5,0"
                                 Padding="12,0,5,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
-                            FontSize="12.8" />
+                                FontSize="13"
+                                SelectedDate="{Binding StartDate, Mode=TwoWay}" />
                         </StackPanel>
-                    </StackPanel>
 
-                    <!--  Trạng thái  -->
-                    <StackPanel
+                        <!--  Trạng thái  -->
+                        <StackPanel
                             Margin="0,10,0,0"
                             HorizontalAlignment="Right"
                             Orientation="Horizontal">
-                        <TextBlock
+                            <TextBlock
                                 Margin="0,0,10,0"
                                 VerticalAlignment="Center"
                                 FontSize="12.8"
                                 Text="Trạng thái" />
-                        <ComboBox
-                                Width="100"
+                            <ComboBox
+                                Width="110"
                                 Height="30"
                                 Margin="12,0,5,0"
                                 Padding="12,0,5,0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
-                                FontSize="12.8"
+                                FontSize="13"
                                 Text="{Binding Status}">
-                            <ComboBoxItem Content="Đang làm" />
-                            <ComboBoxItem Content="Xin nghỉ" />
-                        </ComboBox>
+                                <ComboBoxItem Content="Đang làm" />
+                                <ComboBoxItem Content="Xin nghỉ" />
+                            </ComboBox>
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -347,7 +359,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="12"
+                                FontSize="13"
                                 Text="{Binding UserName}" />
                         </StackPanel>
 
@@ -374,7 +386,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="12">
+                                FontSize="13">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="PasswordChanged">
                                         <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" CommandParameter="{Binding ElementName=passwordBox}" />
@@ -407,10 +419,10 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="12">
+                                FontSize="13">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="PasswordChanged">
-                                        <i:InvokeCommandAction Command="{Binding ConFirmPasswordChangedCommand}" CommandParameter="{Binding ElementName=confirmPasswordBox}" />
+                                        <i:InvokeCommandAction Command="{Binding ConfirmPasswordChangedCommand}" CommandParameter="{Binding ElementName=confirmPasswordBox}" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </PasswordBox>

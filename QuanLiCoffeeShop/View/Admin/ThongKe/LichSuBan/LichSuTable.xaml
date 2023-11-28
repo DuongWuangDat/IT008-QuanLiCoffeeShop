@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:converters="clr-namespace:QuanLiCoffeeShop.Converter"
       xmlns:local="clr-namespace:QuanLiCoffeeShop.View.Admin.ThongKe.LichSuBan"
       x:Name="lichSuTable"
       mc:Ignorable="d"
@@ -11,7 +12,9 @@
       ShowsNavigationUI="False"
       d:DesignHeight="702" d:DesignWidth="1153"
       Title="LichSuTable">
-
+    <Page.Resources>
+        <converters:PriceConverter x:Key="PriceConverter"></converters:PriceConverter>
+    </Page.Resources>
     <Grid>
         <ListView 
             x:Name="billTable"
@@ -91,7 +94,7 @@
                         </GridViewColumn.HeaderContainerStyle>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding TotalPrice}"
+                                <TextBlock Text="{Binding TotalPrice, Converter={StaticResource PriceConverter}}"
                                         FontSize="18" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -101,6 +104,7 @@
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
                                 <Border
                                     Width="23.3"
                                     Height="24.49"
@@ -115,6 +119,22 @@
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Border>
+                                    <Border
+                                        Width="23.3"
+                                        Height="24.49"
+                                        Margin="12,0,0,0"
+                                        Background="Transparent"
+                                        BorderThickness="0"
+                                        Cursor="Hand">
+                                        <Image Source="/QuanLiCoffeeShop;component/Resources/Icon/DeleteBlue_Icon.png" />
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="Click">
+                                                <i:InvokeCommandAction Command="{Binding ElementName=billTable, Path=DataContext.DeleteBillCM}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </Border>
+                                </StackPanel>
+                                
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

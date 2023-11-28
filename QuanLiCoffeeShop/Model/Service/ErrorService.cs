@@ -32,7 +32,9 @@ namespace QuanLiCoffeeShop.Model.Service
 		{
 			using (var context = new QuanLiCoffeShopEntities())
 			{
+				
                 var errList = (from c in context.Error
+                               where c.IsDeleted == false
                                select new ErrorDTO
                                {
                                    ID = c.ID,

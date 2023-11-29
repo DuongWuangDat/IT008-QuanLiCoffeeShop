@@ -57,7 +57,7 @@ namespace QuanLiCoffeeShop.Model.Service
                                                     Product = x.Product,
                                                 }).ToList(),
                                     IsDeleted = c.IsDeleted
-                                }).ToListAsync();
+                                }).OrderByDescending(m=>m.CreateAt).ToListAsync();
 
                 return await billList;
             }

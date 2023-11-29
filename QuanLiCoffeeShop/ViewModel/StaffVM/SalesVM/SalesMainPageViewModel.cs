@@ -130,6 +130,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
         public ICommand LoadProductPageCM { get; set; }
         public ICommand FirstLoadCM { get; set; }
         public ICommand SearchCusCM { get; set; }
+        public ICommand SearchCusCMB { get; set; }
         public ICommand AddCustomerCM {  get; set; }
         public ICommand DeleteBillInfoCM { get; set; }
         public ICommand SubBillInfoCM { get; set; }
@@ -312,6 +313,26 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     }
                 }
             });
+            SearchCusCMB = new RelayCommand<object>((p) => { return true; }, async (p) =>
+            {
+                (Customer a, bool success, string messageSearch) = await CustomerService.Ins.findCusbyPhone(CusInfo);
+                if (a != null)
+                {
+                    CusOfBill = a;
+                }
+                else
+                {
+                    (Customer b, bool success1, string messageSearch1) = await CustomerService.Ins.findCusbyEmail(CusInfo);
+                    if (b != null)
+                    {
+                        CusOfBill = b;
+                    }
+                    else
+                    {
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, messageSearch);
+                    }
+                }
+            });
             DeleteBillInfoCM = new RelayCommand<BillInfoDTO>((p) => { return true; }, (p) => {
                 SelectedBillInfo = p;
                 DeleteMessage wd = new DeleteMessage();
@@ -337,7 +358,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
             });
             SubBillInfoCM = new RelayCommand<BillInfoDTO>((p) => { return true; }, (p) => {
                 SelectedBillInfo = p;
-                if(SelectedBillInfo.Count>0) 
+                if(SelectedBillInfo.Count>1) 
                     SelectedBillInfo.Count--;                
             });
             PlusBillInfoCM = new RelayCommand<BillInfoDTO>((p) => { return true; }, (p) => {
@@ -347,10 +368,17 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
             });
             ChangeCountCM = new RelayCommand<BillInfoDTO>((p) => { return true; }, (p) =>
             {
-                SelectedBillInfo = p;
-                TotalBillValue = TotalBillValue - SelectedBillInfo.PriceItem ?? 0;
-                SelectedBillInfo.PriceItem = SelectedBillInfo.Count * SelectedBillInfo.Product.Price;
-                TotalBillValue = TotalBillValue + SelectedBillInfo.PriceItem ?? 0;
+                if(SelectedBillInfo.Count==0)
+                {
+                    SelectedBillInfo.Count = 1;
+                }
+                else
+                {
+                    SelectedBillInfo = p;
+                    TotalBillValue = TotalBillValue - SelectedBillInfo.PriceItem ?? 0;
+                    SelectedBillInfo.PriceItem = SelectedBillInfo.Count * SelectedBillInfo.Product.Price;
+                    TotalBillValue = TotalBillValue + SelectedBillInfo.PriceItem ?? 0;
+                }
             });
             LoadBill = new RelayCommand<SeatDTO>((p) => { return true; }, async (p) =>
             {
@@ -399,8 +427,6 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     (Customer a, bool success, string messageSearch) = await CustomerService.Ins.findCusbyPhone("0000");
                     CusOfBill = a;
                 }
-                else
-                {
 
                     DeleteMessage wd = new DeleteMessage("Xác nhận thanh toán hóa đơn?");
                     wd.ShowDialog();
@@ -487,9 +513,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                             }
 
                         }
-                    }
-
-                }
+                    }                
             });
             EndBill = new RelayCommand<object>((p) => { return true; }, async (p) =>
             {

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM;
 using System.Windows.Forms;
+using QuanLiCoffeeShop.View.MessageBox;
 
 namespace QuanLiCoffeeShop.Model.Service
 {
@@ -31,15 +32,15 @@ namespace QuanLiCoffeeShop.Model.Service
             {
                 using (var context = new QuanLiCoffeShopEntities())
                 {
-                    var prodStatistic = context.BillInfo.Where(b => b.Bill.CreateAt>=from&&b.Bill.CreateAt<=to)
+                    var prodStatistic = context.BillInfo.Where(b => b.Bill.CreateAt>=from&&b.Bill.CreateAt<=to&&b.IsDeleted==false)
                     .GroupBy(pBill => pBill.IDProduct)
                     .Select(gr => new
                     {
                         IDProduct = gr.Key,
-                        Revenue = gr.Sum(pBill => (Decimal?)(pBill.Count * pBill.PriceItem)) ?? 0,
+                        Revenue = gr.Sum(pBill => (Decimal?)(pBill.PriceItem)) ?? 0,
                         SalesQuantity = gr.Sum(pBill => (int?)pBill.Count) ?? 0
                     })
-                    .OrderByDescending(m => m.Revenue).Take(5)
+                    .OrderByDescending(m => m.SalesQuantity).Take(10)
                     .Join(
                     context.Product,
                     statis => statis.IDProduct,
@@ -55,9 +56,10 @@ namespace QuanLiCoffeeShop.Model.Service
                     return await prodStatistic;
                 }
             }
-            catch (Exception e)
+            catch
             {
-                throw e;
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi");
+                return null;
             }
         }
 

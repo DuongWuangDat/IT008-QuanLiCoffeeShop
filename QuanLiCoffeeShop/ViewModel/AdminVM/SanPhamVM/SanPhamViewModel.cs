@@ -159,7 +159,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
             });
             ProductFilter = new RelayCommand<TextBlock>((p) => { return true; }, (p) =>
             {
-                ProductList = new ObservableCollection<ProductDTO>(prdList.FindAll(x => x.GenreName.ToLower().Contains(p.Text.ToString().ToLower())));
+                ProductList = new ObservableCollection<ProductDTO>(prdList.FindAll(x => x.GenreName.ToLower().Contains(p.Text.ToString().ToLower() ) && x.IsDeleted == false));
             });
             AllPrDFilter = new RelayCommand<Button>((p) => { return true; }, async (p) =>
             {
@@ -173,7 +173,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                 }
                 else
                 {
-                    ProductList = new ObservableCollection<ProductDTO>(prdList.FindAll(x => x.DisplayName.ToLower().Contains(p.Text.ToLower())));
+                    ProductList = new ObservableCollection<ProductDTO>(prdList.FindAll(x => x.DisplayName.ToLower().Contains(p.Text.ToLower()) && x.IsDeleted == false));
                 }
 
             });            

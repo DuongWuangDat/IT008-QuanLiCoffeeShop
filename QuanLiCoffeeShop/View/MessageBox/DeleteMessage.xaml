@@ -30,11 +30,11 @@
                         Width="57.344" 
                         Source="/QuanLiCoffeeShop;component/Resources/Icon/Warning_Icon.png" />
                     <TextBlock
+                        x:Name="TextboxShow"
                         Margin="6.4,16,6.4,16"  
                         HorizontalAlignment="Center"
                         FontFamily="Droid Sans"
-                        FontSize="18.432" 
-                        Text="Bạn có chắc chắn muốn xóa không" />
+                        FontSize="18.432"                        />
                     <StackPanel 
                         VerticalAlignment="Center" 
                         HorizontalAlignment="Center"

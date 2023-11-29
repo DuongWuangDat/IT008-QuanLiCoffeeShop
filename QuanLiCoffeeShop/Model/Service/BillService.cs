@@ -1,4 +1,5 @@
 ﻿using QuanLiCoffeeShop.DTOs;
+using QuanLiCoffeeShop.View.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -29,118 +30,196 @@ namespace QuanLiCoffeeShop.Model.Service
 		// Get All Bill
 		public async Task<List<BillDTO>> GetAllBill()
 		{
-			using (var context = new QuanLiCoffeShopEntities())
-			{
-                var billList = (from c in context.Bill
-                                select new BillDTO
-                                {
-                                    ID = c.ID,
-                                    IDCus = c.IDCus,
-                                    IDStaff = c.IDStaff,
-                                    CreateAt = c.CreateAt,
-                                    TotalPrice = c.TotalPrice,
-                                    Customer = c.Customer,
-                                    Staff = c.Staff,
-                                    Seat = c.Seat,
-                                    IDSeat = c.IDSeat,
-                                    BillInfo = (from x in c.BillInfo
-                                                where x.IsDeleted == false
-                                                select new BillInfoDTO
-                                                {
-                                                    IDBill = x.IDBill,
-                                                    PriceItem = x.PriceItem,
-                                                    IDProduct = x.IDProduct,
-                                                    Count = x.Count,
-                                                    Description = x.Description,
-                                                    Bill = x.Bill,
-                                                    Product = x.Product,
-                                                }).ToList(),
-                                    IsDeleted = c.IsDeleted
-                                }).ToListAsync();
+            try
+            {
+                using (var context = new QuanLiCoffeShopEntities())
+                {
+                    var billList = (from c in context.Bill
+                                    where c.IsDeleted == false
+                                    select new BillDTO
+                                    {
+                                        ID = c.ID,
+                                        IDCus = c.IDCus,
+                                        IDStaff = c.IDStaff,
+                                        CreateAt = c.CreateAt,
+                                        TotalPrice = c.TotalPrice,
+                                        Customer = c.Customer,
+                                        Staff = c.Staff,
+                                        Seat = c.Seat,
+                                        IDSeat = c.IDSeat,
+                                        BillInfo = (from x in c.BillInfo
+                                                    where x.IsDeleted == false
+                                                    select new BillInfoDTO
+                                                    {
+                                                        IDBill = x.IDBill,
+                                                        PriceItem = x.PriceItem,
+                                                        IDProduct = x.IDProduct,
+                                                        Count = x.Count,
+                                                        Description = x.Description,
+                                                        Bill = x.Bill,
+                                                        Product = x.Product,
+                                                    }).ToList(),
+                                        IsDeleted = c.IsDeleted
+                                    }).ToListAsync();
 
-                return await billList;
+                    return await billList;
+                }
             }
+            catch
+            {
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Lỗi xảy ra!");
+                return null;
+            }
+			
 				
 		}
+        //Get bill by id seat
+        public async Task<BillDTO> getBillByIdSeat(int id)
+        {
+            try
+            {
+                using (var context = new QuanLiCoffeShopEntities())
+                {
+                    var billList = await (from c in context.Bill
+                                          where c.IsDeleted == false && c.IDSeat == id
+                                          select new BillDTO
+                                          {
+                                              ID = c.ID,
+                                              IDCus = c.IDCus,
+                                              IDStaff = c.IDStaff,
+                                              CreateAt = c.CreateAt,
+                                              TotalPrice = c.TotalPrice,
+                                              Customer = c.Customer,
+                                              Staff = c.Staff,
+                                              Seat = c.Seat,
+                                              IDSeat = c.IDSeat,
+                                              BillInfo = (from x in c.BillInfo
+                                                          where x.IsDeleted == false
+                                                          select new BillInfoDTO
+                                                          {
+                                                              IDBill = x.IDBill,
+                                                              PriceItem = x.PriceItem,
+                                                              IDProduct = x.IDProduct,
+                                                              Count = x.Count,
+                                                              Description = x.Description,
+                                                              Bill = x.Bill,
+                                                              Product = x.Product,
+                                                          }).ToList(),
+                                              IsDeleted = c.IsDeleted
+                                          }).ToListAsync();
+
+
+                    var bill = billList.LastOrDefault();
+                    return bill;
+                }
+            
+            }
+            catch
+            {
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Lỗi xảy ra!");
+                return null;
+            }
+        }
         public async Task<List<BillDTO>> GetBillBetweenDate(DateTime dateFrom, DateTime dateTo)
         {
-            using (var context = new QuanLiCoffeShopEntities())
+            try
             {
-                List<BillDTO> billDTOs = await BillService.Ins.GetAllBill();
+                using (var context = new QuanLiCoffeShopEntities())
+                {
+                    List<BillDTO> billDTOs = await BillService.Ins.GetAllBill();
 
-                List<BillDTO> billList = billDTOs
-                    .Where(bill => bill.CreateAt >= dateFrom && bill.CreateAt <= dateTo)
-                    .ToList();
+                    List<BillDTO> billList = billDTOs
+                        .Where(bill => bill.CreateAt >= dateFrom && bill.CreateAt <= dateTo)
+                        .ToList();
 
-                return billList;
+                    return billList;
 
+                }
+            }
+            catch
+            {
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Lỗi xảy ra!");
+                return null;
             }
         }
         //Add new bill
         public async Task<(bool, string)> AddNewBill(BillDTO newBill)
 		{
-			using (var context = new QuanLiCoffeShopEntities())
-			{
+            try
+            {
+                using (var context = new QuanLiCoffeShopEntities())
+                {
 
-                int? maxID = await context.Bill.MaxAsync(b => (int?)b.ID);
-                int curID = 0;
-                if (maxID.HasValue)
-                {
-                    curID = (int)maxID + 1;
-                }
-                else
-                {
-                    curID = 1;
-                }
-                Bill bill = new Bill
-                {
-                    ID = curID,
-                    IDCus = newBill.IDCus,
-                    IDStaff = newBill.IDStaff,
-                    IsDeleted = newBill.IsDeleted,
-                    CreateAt = newBill.CreateAt,
-                    Customer = newBill.Customer,
-                    Staff = newBill.Staff,
-                    IDSeat = newBill.IDSeat,
-                    Seat = newBill.Seat,
-                };
-
-                foreach (var g in newBill.BillInfo)
-                {
-                    BillInfo billInfo = new BillInfo
+                    int? maxID = await context.Bill.MaxAsync(b => (int?)b.ID);
+                    int curID = 0;
+                    if (maxID.HasValue)
                     {
-                        IDBill = curID,
-                        IDProduct = g.IDProduct,
-                        IsDeleted = g.IsDeleted,
-                        PriceItem = g.PriceItem,
-                        Description = g.Description,
-                        Count = g.Count,
-                        Bill = g.Bill,
-                        Product = g.Product,
+                        curID = (int)maxID + 1;
+                    }
+                    else
+                    {
+                        curID = 1;
+                    }
+                    Bill bill = new Bill
+                    {
+                        ID = curID,
+                        IDCus = newBill.IDCus,
+                        IDStaff = newBill.IDStaff,
+                        IsDeleted = false,
+                        CreateAt = newBill.CreateAt,
+                        IDSeat = newBill.IDSeat,
+                        TotalPrice = newBill.TotalPrice
+
                     };
-                    bill.BillInfo.Add(billInfo);
-                    context.BillInfo.Add(billInfo);
+
+                    foreach (var g in newBill.BillInfo)
+                    {
+                        BillInfo billInfo = new BillInfo
+                        {
+                            IDBill = curID,
+                            IDProduct = g.IDProduct,
+                            IsDeleted = false,
+                            PriceItem = g.PriceItem,
+                            Description = g.Description,
+                            Count = g.Count,
+                        };
+                        context.BillInfo.Add(billInfo);
+                    }
+                    context.Bill.Add(bill);
+                    await context.SaveChangesAsync();
+                    return (true, "Them thanh cong");
                 }
-                context.Bill.Add(bill);
-                await context.SaveChangesAsync();
-                return (true, "Them thanh cong");
+            }
+            catch
+            {
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Lỗi xảy ra!");
+                return (false,null);
             }
 				
 		}
         //Delete bill
         public async Task<(bool, string)> DeleteBill(BillDTO Bill)
 		{
-            using (var context = new QuanLiCoffeShopEntities())
+            try
             {
-                var bill = await context.Bill.Where(p => p.ID == Bill.ID).FirstOrDefaultAsync();
-                if (bill.IsDeleted == false) bill.IsDeleted = true;
-                foreach (var b in Bill.BillInfo)
+                using (var context = new QuanLiCoffeShopEntities())
                 {
-                    var billInfo = await context.BillInfo.Where(p => p.IDBill == b.IDBill && p.IDProduct == b.IDProduct).FirstOrDefaultAsync();
-                    if (billInfo.IsDeleted == false) billInfo.IsDeleted = true;
+                    var bill = await context.Bill.Where(p => p.ID == Bill.ID).FirstOrDefaultAsync();
+                    if (bill.IsDeleted == false) bill.IsDeleted = true;
+                    foreach (var b in Bill.BillInfo)
+                    {
+                        var billInfo = await context.BillInfo.Where(p => p.IDBill == b.IDBill && p.IDProduct == b.IDProduct).FirstOrDefaultAsync();
+                        if (billInfo.IsDeleted == false) billInfo.IsDeleted = true;
+                    }
+                    await context.SaveChangesAsync();
+                    return (true, "Xoa thanh cong");
                 }
-                await context.SaveChangesAsync();
-                return (true, "Xoa thanh cong");
+            }
+            catch
+            {
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Lỗi xảy ra!");
+                return (false, null);
+
             }
                
 		}
@@ -148,54 +227,75 @@ namespace QuanLiCoffeeShop.Model.Service
 		//Edit bill
 		public async Task<(bool, string)> EditBill(BillDTO newBill)
 		{
-            using (var context = new QuanLiCoffeShopEntities())
+            try
             {
-                var bill = await context.Bill.Where(p => p.ID == newBill.ID).FirstOrDefaultAsync();
-                bill.IDStaff = newBill.IDStaff;
-                bill.Staff = newBill.Staff;
-                bill.Customer = newBill.Customer;
-                bill.IDCus = newBill.IDCus;
-                bill.CreateAt = newBill.CreateAt;
-                bill.TotalPrice = newBill.TotalPrice;
-                bill.IDSeat = newBill.IDSeat;
-                bill.Seat = newBill.Seat;
-                foreach (var b in newBill.BillInfo)
+                using (var context = new QuanLiCoffeShopEntities())
                 {
-                    var billInfo = await context.BillInfo.Where(p => p.IDBill == b.IDBill && p.IDProduct == b.IDProduct).FirstOrDefaultAsync();
-                    billInfo.IDProduct = b.IDProduct;
-                    billInfo.PriceItem = b.PriceItem;
-                    billInfo.IsDeleted = false;
-                    billInfo.Product = b.Product;
-                    billInfo.Description = b.Description;
-                    billInfo.Count = b.Count;
-                    billInfo.Bill = b.Bill;
-                    bill.BillInfo.Add(new BillInfo
+                    var bill = await context.Bill.Where(p => p.ID == newBill.ID).FirstOrDefaultAsync();
+                    bill.IDStaff = newBill.IDStaff;
+                    bill.Staff = newBill.Staff;
+                    bill.Customer = newBill.Customer;
+                    bill.IDCus = newBill.IDCus;
+                    bill.CreateAt = newBill.CreateAt;
+                    bill.TotalPrice = newBill.TotalPrice;
+                    bill.IDSeat = newBill.IDSeat;
+                    bill.Seat = newBill.Seat;
+                    foreach (var b in newBill.BillInfo)
                     {
-                        IDBill = b.IDBill,
-                        IDProduct = b.IDProduct,
-                        PriceItem = b.PriceItem,
-                        IsDeleted = false,
-                        Product = b.Product,
-                        Count = b.Count,
-                        Bill = b.Bill,
-                    });
+                        var billInfo = await context.BillInfo.Where(p => p.IDBill == b.IDBill && p.IDProduct == b.IDProduct).FirstOrDefaultAsync();
+                        billInfo.IDProduct = b.IDProduct;
+                        billInfo.PriceItem = b.PriceItem;
+                        billInfo.IsDeleted = false;
+                        billInfo.Product = b.Product;
+                        billInfo.Description = b.Description;
+                        billInfo.Count = b.Count;
+                        billInfo.Bill = b.Bill;
+                        bill.BillInfo.Add(new BillInfo
+                        {
+                            IDBill = b.IDBill,
+                            IDProduct = b.IDProduct,
+                            PriceItem = b.PriceItem,
+                            IsDeleted = false,
+                            Product = b.Product,
+                            Count = b.Count,
+                            Bill = b.Bill,
+                        });
+                    }
+                    await context.SaveChangesAsync();
+                    return (true, "Cập nhật thành công");
                 }
-                await context.SaveChangesAsync();
-                return (true, "Cập nhật thành công");
+            }
+            catch
+            {
+
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Lỗi xảy ra!");
+                return (false, null);
             }
                 
         }
         public async Task<int> getBillByDate(DateTime date)
         {
-            using (var context = new QuanLiCoffeShopEntities())
+            try
             {
-                var billTotal = await context.Bill.Where(p => p.CreateAt == date && p.IsDeleted==false).ToListAsync();
-                int totalPrice = 0;
-                foreach (var bill in billTotal)
+                using (var context = new QuanLiCoffeShopEntities())
                 {
-                    totalPrice += (int)bill.TotalPrice;
+                    var billTotal = await context.Bill.Where(p => p.CreateAt.Value.Day == date.Day
+                                                           && p.CreateAt.Value.Month == date.Month
+                                                           && p.CreateAt.Value.Year == date.Year 
+                                                           && p.IsDeleted==false).ToListAsync();
+                    int totalPrice = 0;
+                    foreach (var bill in billTotal)
+                    {
+                        totalPrice = totalPrice + (int)bill.TotalPrice;
+                    }
+                    return totalPrice;
+
                 }
-                return totalPrice;
+            }
+            catch
+            {
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Lỗi xảy ra!");
+                return -1;
             }
         }
 

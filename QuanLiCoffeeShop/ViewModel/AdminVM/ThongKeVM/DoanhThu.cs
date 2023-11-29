@@ -53,6 +53,12 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
                 OnPropertyChanged(nameof(YFormatter));
             }
         }
+        private decimal _sumBillTotal;
+        public decimal SumBillTotal
+        {
+            get { return _sumBillTotal; }
+            set { _sumBillTotal = value; OnPropertyChanged(); }
+        }
         public void GetRevenueData() { 
         }
     }

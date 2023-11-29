@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <Window x:Class="QuanLiCoffeeShop.View.Admin.MainAdminWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -22,6 +23,33 @@
         WindowState="Maximized"
         WindowStartupLocation="CenterOwner"
         Closed="AdminWD_Closed">
+=======
+<Window
+    x:Class="QuanLiCoffeeShop.View.Admin.MainAdminWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="AdminWD"
+    Title="MainFrame"
+    d:DesignHeight="864"
+    d:DesignWidth="1536"
+    Background="White"
+    Closed="AdminWD_Closed"
+    DataContext="{StaticResource MainAdminVM}"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    TextElement.FontFamily="Roboto Condensed"
+    TextElement.FontSize="18"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized"
+    mc:Ignorable="d">
+>>>>>>> 00bd2dfae7e30b467d3eaa60451f4260ab180308
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MenuBar" Storyboard.TargetProperty="Width">
@@ -82,7 +110,6 @@
 
         <!--  Frame  -->
         <Grid>
-
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="64" />

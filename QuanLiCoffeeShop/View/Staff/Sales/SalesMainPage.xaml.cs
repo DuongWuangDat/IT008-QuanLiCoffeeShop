@@ -51,5 +51,6 @@ namespace QuanLiCoffeeShop.View.Staff.Sales
                     break;
             }
         }
+
     }
 }

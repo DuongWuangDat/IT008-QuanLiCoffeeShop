@@ -21,6 +21,7 @@ using System.Windows.Input;
 using System.Data.Entity;
 using System.Diagnostics;
 using QuanLiCoffeeShop.View.LoginWindow;
+using QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM;
 
 namespace QuanLiCoffeeShop.ViewModel.StaffVM
 {
@@ -148,6 +149,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM
             LoadBanHangPageCM = new RelayCommand<Frame>((p) => { return true; }, (p) =>
             {
                 p.Content = new SalesMainPage();
+                SalesMainPageViewModel.currentStaff = currentStaff;
             });
             LoadErrorPageCM = new RelayCommand<Frame>((p) => { return true; }, (p) =>
             {

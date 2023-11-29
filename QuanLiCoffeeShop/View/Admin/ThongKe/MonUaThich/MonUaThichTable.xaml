@@ -9,10 +9,11 @@
       mc:Ignorable="d" 
       DataContext="{StaticResource ThongKeVM}"
       ShowsNavigationUI="False"
-      d:DesignHeight="702" d:DesignWidth="1153"
+      d:DesignHeight="594" d:DesignWidth="1127"
       Title="MonUaThichTable">
     <Page.Resources>
         <converters:PriceConverter x:Key="PriceConverter"></converters:PriceConverter>
+        <converters:IndexConverter x:Key="IndexConverter"></converters:IndexConverter>
     </Page.Resources>
     <Grid>
         <ListView 
@@ -22,13 +23,14 @@
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem"
             BasedOn="{StaticResource MaterialDesignGridViewItem}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                 </Style>
             </ListView.ItemContainerStyle>
 
             <ListView.View>
                 <GridView>
 
-                    <GridViewColumn Header="ID"  Width="120">
+                    <GridViewColumn Header="STT"  Width="100">
                         <GridViewColumn.HeaderContainerStyle>
                             <Style TargetType="{x:Type GridViewColumnHeader}">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -38,13 +40,16 @@
                         </GridViewColumn.HeaderContainerStyle>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding ID}"
-                       FontSize="18" />
+                                <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                                       AncestorType={x:Type ListViewItem}}, 
+                                                       Converter={StaticResource IndexConverter}, UpdateSourceTrigger=PropertyChanged}"
+                                        FontSize="17"
+                                           Margin="38 0 0 0"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-                    <GridViewColumn Header="Tên món" Width="412">
+                    <GridViewColumn Header="Tên món" Width="380">
                         <GridViewColumn.HeaderContainerStyle>
                             <Style TargetType="{x:Type GridViewColumnHeader}">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -56,7 +61,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding DisplayName}"
-                       FontSize="18" 
+                       FontSize="17" 
                        Margin="31,0,0,0"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -74,13 +79,15 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Count}"
-                                    FontSize="18" 
+                                    FontSize="17" 
+                                           HorizontalAlignment="Center"
+                                           Margin="0 0 15 0"
                        />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
 
                     </GridViewColumn>
-                    <GridViewColumn Header="Doanh thu" Width="400">
+                    <GridViewColumn Header="Doanh thu" Width="380">
                         <GridViewColumn.HeaderContainerStyle>
                             <Style TargetType="{x:Type GridViewColumnHeader}">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -92,7 +99,9 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Price, Converter={StaticResource PriceConverter}}"
-                                        FontSize="18"/>
+                                           HorizontalAlignment="Center"
+                                           Margin="0 0 15 0"
+                                        FontSize="17"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
 

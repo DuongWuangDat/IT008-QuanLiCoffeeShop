@@ -7,10 +7,8 @@ using QuanLiCoffeeShop.View.Admin;
 using QuanLiCoffeeShop.View.Admin.SanPham;
 using QuanLiCoffeeShop.View.Admin.StaffManagement;
 using QuanLiCoffeeShop.View.Admin.ThongKe;
-using QuanLiCoffeeShop.View.LoginWindow;
 using QuanLiCoffeeShop.View.MessageBox;
 using System;
-using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
@@ -248,7 +246,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM
             {
                 try
                 {
-                    Process.Start("https://www.facebook.com/youth.and.you.520");
+                    Process.Start("https://www.facebook.com/jack.phuongtuan1204");
                 }
                 catch (Exception)
                 {

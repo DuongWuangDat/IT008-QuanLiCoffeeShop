@@ -1,27 +1,19 @@
 ﻿using QuanLiCoffeeShop.DTOs;
-using QuanLiCoffeeShop.Model.Service;
 using QuanLiCoffeeShop.Model;
+using QuanLiCoffeeShop.Model.Service;
 using QuanLiCoffeeShop.Utils;
-using QuanLiCoffeeShop.View;
 using QuanLiCoffeeShop.View.MessageBox;
 using QuanLiCoffeeShop.View.Staff.ReportError;
 using QuanLiCoffeeShop.View.Staff.Sales;
 using QuanLiCoffeeShop.View.Staff.SalesHistory;
-using QuanLiCoffeeShop.View.Admin.Problem.Problem_page_main;
-using QuanLiCoffeeShop.ViewModel;
+using QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Data.Entity;
-using System.Diagnostics;
-using QuanLiCoffeeShop.View.LoginWindow;
-using QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM;
 
 namespace QuanLiCoffeeShop.ViewModel.StaffVM
 {
@@ -172,7 +164,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM
                 EditStatus = currentStaff.Status;
                 EditUserName = currentStaff.UserName;
                 EditWage = ((int)currentStaff.Wage).ToString("N0");
-                QuanLiCoffeeShop.View.Staff.AccountInformation account = new QuanLiCoffeeShop.View.Staff.AccountInformation();
+                View.Staff.AccountInformation account = new View.Staff.AccountInformation();
                 account.ShowDialog();
             });
             EditStaffCommand = new RelayCommand<Window>(null, async (p) =>
@@ -254,7 +246,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM
             {
                 try
                 {
-                    Process.Start("https://www.facebook.com/youth.and.you.520");
+                    Process.Start("https://www.facebook.com/jack.phuongtuan1204");
                 }
                 catch (Exception)
                 {

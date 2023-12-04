@@ -18,6 +18,7 @@ using System.Windows.Media;
 using Microsoft.Win32;
 using QuanLiCoffeeShop.View.Admin.CustomerManagement;
 using System.ComponentModel;
+using QuanLiCoffeeShop.View.Staff;
 
 namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
 {
@@ -125,7 +126,6 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
             get { return _totalBillValue; }
             set { _totalBillValue = value; OnPropertyChanged(); }
         }
-
         public ICommand LoadSeatPageCM {  get; set; }
         public ICommand LoadProductPageCM { get; set; }
         public ICommand FirstLoadCM { get; set; }
@@ -509,6 +509,8 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
 
                                 MessageBoxCustom.Show(MessageBoxCustom.Success, "Thành công");
                                 resetData();
+
+                                new InvoicePrint().ShowDialog();
 
                             }
 

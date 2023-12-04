@@ -73,6 +73,7 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -328,6 +329,9 @@
     <Compile Include="View\Staff\AccountInformation.xaml.cs">
       <DependentUpon>AccountInformation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Staff\InvoicePrint.xaml.cs">
+      <DependentUpon>InvoicePrint.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Staff\MainStaffWindow.xaml.cs">
       <DependentUpon>MainStaffWindow.xaml</DependentUpon>
     </Compile>
@@ -469,6 +473,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Staff\InvoicePrint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Staff\MainStaffWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -572,6 +580,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Icon\PrintIcon.png" />
     <Resource Include="Resources\Icon\SubtractBlack_Icon.png" />
     <Resource Include="Resources\Icon\PenBlack_Icon.png" />
     <Resource Include="Resources\Icon\DeleteGray_Icon.png" />

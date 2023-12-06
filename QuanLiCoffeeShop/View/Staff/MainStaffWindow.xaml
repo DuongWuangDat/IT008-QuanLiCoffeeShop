@@ -194,7 +194,7 @@
                                     <Button
                                         Height="50"
                                         Command="{Binding LogOutCommand}"
-                                        CommandParameter="{Binding ElementName=AdminWD}">
+                                        CommandParameter="{Binding ElementName=MainStaffWd}">
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <StackPanel Cursor="Hand" Orientation="Horizontal">

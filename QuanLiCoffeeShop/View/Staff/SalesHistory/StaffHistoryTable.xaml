@@ -24,6 +24,7 @@
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem"
                 BasedOn="{StaticResource MaterialDesignGridViewItem}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                 </Style>
             </ListView.ItemContainerStyle>
 
@@ -43,6 +44,8 @@
                                 <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, 
                                                    AncestorType={x:Type ListViewItem}}, 
                                                    Converter={StaticResource IndexConverter}, UpdateSourceTrigger=PropertyChanged}"
+                                           HorizontalAlignment="Center"
+                                           Margin="0 0 12 0"
                                     FontSize="17" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -78,6 +81,8 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding CreateAt}"
+                                           HorizontalAlignment="Center"
+                                           Margin="0 0 15 0"
                FontSize="18" 
                />
                             </DataTemplate>
@@ -97,6 +102,8 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding TotalPrice, Converter={StaticResource PriceConverter}}"
+                                           HorizontalAlignment="Center"
+                                           Margin="0 0 10 0"
                                 FontSize="17" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>

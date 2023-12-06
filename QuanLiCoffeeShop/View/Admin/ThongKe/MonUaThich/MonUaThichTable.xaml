@@ -23,13 +23,14 @@
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem"
             BasedOn="{StaticResource MaterialDesignGridViewItem}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                 </Style>
             </ListView.ItemContainerStyle>
 
             <ListView.View>
                 <GridView>
 
-                    <GridViewColumn Header="STT"  Width="110">
+                    <GridViewColumn Header="STT"  Width="100">
                         <GridViewColumn.HeaderContainerStyle>
                             <Style TargetType="{x:Type GridViewColumnHeader}">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -79,12 +80,14 @@
                             <DataTemplate>
                                 <TextBlock Text="{Binding Count}"
                                     FontSize="17" 
+                                           HorizontalAlignment="Center"
+                                           Margin="0 0 15 0"
                        />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
 
                     </GridViewColumn>
-                    <GridViewColumn Header="Doanh thu" Width="370">
+                    <GridViewColumn Header="Doanh thu" Width="380">
                         <GridViewColumn.HeaderContainerStyle>
                             <Style TargetType="{x:Type GridViewColumnHeader}">
                                 <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -96,6 +99,8 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Price, Converter={StaticResource PriceConverter}}"
+                                           HorizontalAlignment="Center"
+                                           Margin="0 0 15 0"
                                         FontSize="17"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>

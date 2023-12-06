@@ -25,6 +25,7 @@
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem"
                         BasedOn="{StaticResource MaterialDesignGridViewItem}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                 </Style>
             </ListView.ItemContainerStyle>
 
@@ -44,7 +45,9 @@
                                 <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, 
                                            AncestorType={x:Type ListViewItem}}, 
                                            Converter={StaticResource IndexConverter}, UpdateSourceTrigger=PropertyChanged}"
-                            FontSize="17" />
+                                            FontSize="17" 
+                                          
+                                           HorizontalAlignment="Center"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -62,7 +65,8 @@
                             <DataTemplate>
                                 <TextBlock Text="{Binding Customer.DisplayName}"
                                    FontSize="17" 
-                                   Margin="31,0,0,0"/>
+                                   Margin="20 0 0 0"
+                                   />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -79,6 +83,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding CreateAt}"
+                                           HorizontalAlignment="Center"
                        FontSize="17" 
                        />
                             </DataTemplate>
@@ -98,8 +103,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding TotalPrice, Converter={StaticResource PriceConverter}}"
-                                        FontSize="17" 
-                                           VerticalAlignment="Center"
+                                        FontSize="17"                                           
                                            HorizontalAlignment="Center"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>

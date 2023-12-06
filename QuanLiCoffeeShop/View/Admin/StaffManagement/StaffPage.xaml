@@ -139,10 +139,10 @@
                     CanUserSortColumns="True"
                     ColumnWidth="SizeToCells"
                     IsReadOnly="True"
-                    ItemsSource="{Binding StaffObservation, Mode=TwoWay}"
-                    SelectedItem="{Binding SelectedItem}"
                     SelectionMode="Single"
-                    SelectionUnit="FullRow">
+                    SelectionUnit="FullRow"
+                    ItemsSource="{Binding StaffObservation, Mode=TwoWay}"
+                    SelectedItem="{Binding SelectedItem}">
                     <DataGrid.CellStyle>
                         <Style BasedOn="{StaticResource MaterialDesignDataGridCell}" TargetType="DataGridCell">
                             <Setter Property="BorderThickness" Value="0" />

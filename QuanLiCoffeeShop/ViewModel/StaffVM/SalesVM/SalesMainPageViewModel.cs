@@ -18,6 +18,7 @@ using System.Windows.Media;
 using Microsoft.Win32;
 using QuanLiCoffeeShop.View.Admin.CustomerManagement;
 using System.ComponentModel;
+using QuanLiCoffeeShop.View.Staff;
 
 namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
 {
@@ -125,7 +126,6 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
             get { return _totalBillValue; }
             set { _totalBillValue = value; OnPropertyChanged(); }
         }
-
         public ICommand LoadSeatPageCM {  get; set; }
         public ICommand LoadProductPageCM { get; set; }
         public ICommand FirstLoadCM { get; set; }
@@ -161,12 +161,13 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                
             });
             LoadProductPageCM = new RelayCommand<Frame>((p) => { return true; }, async (p) => {               
+               
+                p.Content = new ProductPage();
                 ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProductCounted());
                 if (ProductList != null)
                 {
                     prdList = new List<ProductDTO>(ProductList);
                 }
-                p.Content = new ProductPage();
             });
 
             #region Seat
@@ -272,12 +273,20 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                         Count = 1,
                         Product = a
                     };
-                    
-                    BillInfoList.Add(billInfo);                   
+                    var billIF = BillInfoList.Where(x => x.IDProduct == a.ID).FirstOrDefault();
+                    if (billIF == null)
+                    {
+                        BillInfoList.Add(billInfo);
+                        TotalBillValue = TotalBillValue + billInfo.PriceItem ?? 0;
+                    }
+                    else
+                    {
+                        billIF.Count++;
+                    }             
                     Brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F0BD70"));
                     PayContent = "Thanh toán";
                     PayEnabled = true;
-                    TotalBillValue = TotalBillValue + billInfo.PriceItem??0;
+                    
                 }
                 else
                 {
@@ -368,6 +377,10 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
             });
             ChangeCountCM = new RelayCommand<BillInfoDTO>((p) => { return true; }, (p) =>
             {
+                if(SelectedBillInfo== null)
+                {
+                    SelectedBillInfo = BillInfoList.Where(x => x.IDProduct == SelectedPrdItem.ID).FirstOrDefault();
+                }
                 if(SelectedBillInfo.Count==0)
                 {
                     SelectedBillInfo.Count = 1;
@@ -509,14 +522,28 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                                 if (!suc) MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa chi tiêu khách hàng thất bại!");                
                             }
 
-                            MessageBoxCustom.Show(MessageBoxCustom.Success, "Thành công");
-                            resetData();
+                                MessageBoxCustom.Show(MessageBoxCustom.Success, "Thành công");
+                                resetData();
+                            
+                                new InvoicePrint().ShowDialog();
+                            p.Content = new SeatPage();
+                            prdEnable = false;
                         }
 
                     }
                 }                
             });
-            EndBill = new RelayCommand<object>((p) => { return true; }, async (p) =>
+            EndBill = new RelayCommand<object>((p) => { 
+                if(SelectedSeatItem != null)
+                {
+                    if(SelectedSeatItem.Status == "Đã đặt")
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }, async (p) =>
             {
                 DeleteMessage wd = new DeleteMessage("Xác nhận kết thúc hóa đơn?");
                 wd.ShowDialog();

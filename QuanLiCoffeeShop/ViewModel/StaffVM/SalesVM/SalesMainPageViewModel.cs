@@ -273,12 +273,20 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                         Count = 1,
                         Product = a
                     };
-                    
-                    BillInfoList.Add(billInfo);                   
+                    var billIF = BillInfoList.Where(x => x.IDProduct == a.ID).FirstOrDefault();
+                    if (billIF == null)
+                    {
+                        BillInfoList.Add(billInfo);
+                        TotalBillValue = TotalBillValue + billInfo.PriceItem ?? 0;
+                    }
+                    else
+                    {
+                        billIF.Count++;
+                    }             
                     Brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F0BD70"));
                     PayContent = "Thanh toán";
                     PayEnabled = true;
-                    TotalBillValue = TotalBillValue + billInfo.PriceItem??0;
+                    
                 }
                 else
                 {
@@ -369,6 +377,10 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
             });
             ChangeCountCM = new RelayCommand<BillInfoDTO>((p) => { return true; }, (p) =>
             {
+                if(SelectedBillInfo== null)
+                {
+                    SelectedBillInfo = BillInfoList.Where(x => x.IDProduct == SelectedPrdItem.ID).FirstOrDefault();
+                }
                 if(SelectedBillInfo.Count==0)
                 {
                     SelectedBillInfo.Count = 1;

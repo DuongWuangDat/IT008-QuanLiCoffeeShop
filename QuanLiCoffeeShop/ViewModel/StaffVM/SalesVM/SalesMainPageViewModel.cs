@@ -456,7 +456,17 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
 
                 }
             });
-            EndBill = new RelayCommand<object>((p) => { return true; }, async (p) =>
+            EndBill = new RelayCommand<object>((p) => { 
+                if(SelectedSeatItem != null)
+                {
+                    if(SelectedSeatItem.Status == "Đã đặt")
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }, async (p) =>
             {
                 DeleteMessage wd = new DeleteMessage("Xác nhận kết thúc hóa đơn?");
                 wd.ShowDialog();

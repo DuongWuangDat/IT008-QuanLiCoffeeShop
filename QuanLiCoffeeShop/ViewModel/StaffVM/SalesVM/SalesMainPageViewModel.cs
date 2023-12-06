@@ -510,7 +510,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                                 MessageBoxCustom.Show(MessageBoxCustom.Success, "Thành công");
                                 resetData();
 
-                                //new InvoicePrint().ShowDialog();
+                                new InvoicePrint().ShowDialog();
 
                             }
 

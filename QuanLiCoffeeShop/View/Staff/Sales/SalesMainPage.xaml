@@ -555,7 +555,6 @@
                                 HorizontalAlignment="Right">
                         <Button Margin="0 0 40 0"
                                 Command="{Binding EndBill}"
-                                IsEnabled="{Binding EndEnable}"
                                 Width="200"
                                 Height="62"
                                 materialDesign:ButtonAssist.CornerRadius="24"

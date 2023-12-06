@@ -420,7 +420,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     TotalBillValue = 0;
                 }
             });
-            PayBill = new RelayCommand<object>((p) => { return true; }, async (p) => 
+            PayBill = new RelayCommand<Frame>((p) => { return true; }, async (p) => 
             {
                 if (CusOfBill == null)
                 {
@@ -509,10 +509,11 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
 
                                 MessageBoxCustom.Show(MessageBoxCustom.Success, "Thành công");
                                 resetData();
-
+                            
                                 new InvoicePrint().ShowDialog();
-
-                            }
+                            p.Content = new SeatPage();
+                            prdEnable = false;
+                        }
 
                         }
                     }                

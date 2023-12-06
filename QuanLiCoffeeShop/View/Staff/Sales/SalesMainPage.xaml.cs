@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLiCoffeeShop.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,5 +53,24 @@ namespace QuanLiCoffeeShop.View.Staff.Sales
             }
         }
 
+        private void TabFrame_Navigating(object sender, NavigatingCancelEventArgs e)
+        {
+            
+            
+        }
+
+        private void TabFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            if (TabFrame.Content is SeatPage)
+            {
+                SeatBd.Background = new SolidColorBrush(Colors.White);
+                MenuBd.Background = new SolidColorBrush(Colors.Transparent);
+            }
+            else if (TabFrame.Content is ProductPage)
+            {
+                SeatBd.Background = new SolidColorBrush(Colors.Transparent);
+                MenuBd.Background = new SolidColorBrush(Colors.White);
+            }
+        }
     }
 }

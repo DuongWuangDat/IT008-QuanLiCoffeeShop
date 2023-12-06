@@ -113,7 +113,8 @@
             Margin="15 0 5 0"
             Grid.Row="1">
             <Frame x:Name="TabFrame"
-                   Height="680">
+                   Height="680"
+                   Navigated="TabFrame_Navigated">
                 <Frame.Style>
                     <Style TargetType="Frame">
                         <Setter Property="NavigationUIVisibility"
@@ -566,6 +567,7 @@
                         <Button
                             x:Name="Pay_btn"
                             Command="{Binding PayBill}"
+                            CommandParameter="{Binding ElementName=TabFrame}"
                             Width="200"
                             IsEnabled="{Binding PayEnabled}"
                                 Height="62"

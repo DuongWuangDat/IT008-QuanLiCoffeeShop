@@ -18,6 +18,7 @@ using System.Windows.Media;
 using Microsoft.Win32;
 using QuanLiCoffeeShop.View.Admin.CustomerManagement;
 using System.ComponentModel;
+using QuanLiCoffeeShop.View.Staff;
 
 namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
 {
@@ -125,11 +126,11 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
             get { return _totalBillValue; }
             set { _totalBillValue = value; OnPropertyChanged(); }
         }
-
         public ICommand LoadSeatPageCM {  get; set; }
         public ICommand LoadProductPageCM { get; set; }
         public ICommand FirstLoadCM { get; set; }
         public ICommand SearchCusCM { get; set; }
+        public ICommand SearchCusCMB { get; set; }
         public ICommand AddCustomerCM {  get; set; }
         public ICommand DeleteBillInfoCM { get; set; }
         public ICommand SubBillInfoCM { get; set; }
@@ -160,12 +161,13 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                
             });
             LoadProductPageCM = new RelayCommand<Frame>((p) => { return true; }, async (p) => {               
+               
+                p.Content = new ProductPage();
                 ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProductCounted());
                 if (ProductList != null)
                 {
                     prdList = new List<ProductDTO>(ProductList);
                 }
-                p.Content = new ProductPage();
             });
 
             #region Seat
@@ -312,6 +314,26 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     }
                 }
             });
+            SearchCusCMB = new RelayCommand<object>((p) => { return true; }, async (p) =>
+            {
+                (Customer a, bool success, string messageSearch) = await CustomerService.Ins.findCusbyPhone(CusInfo);
+                if (a != null)
+                {
+                    CusOfBill = a;
+                }
+                else
+                {
+                    (Customer b, bool success1, string messageSearch1) = await CustomerService.Ins.findCusbyEmail(CusInfo);
+                    if (b != null)
+                    {
+                        CusOfBill = b;
+                    }
+                    else
+                    {
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, messageSearch);
+                    }
+                }
+            });
             DeleteBillInfoCM = new RelayCommand<BillInfoDTO>((p) => { return true; }, (p) => {
                 SelectedBillInfo = p;
                 DeleteMessage wd = new DeleteMessage();
@@ -337,7 +359,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
             });
             SubBillInfoCM = new RelayCommand<BillInfoDTO>((p) => { return true; }, (p) => {
                 SelectedBillInfo = p;
-                if(SelectedBillInfo.Count>0) 
+                if(SelectedBillInfo.Count>1) 
                     SelectedBillInfo.Count--;                
             });
             PlusBillInfoCM = new RelayCommand<BillInfoDTO>((p) => { return true; }, (p) => {
@@ -347,10 +369,17 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
             });
             ChangeCountCM = new RelayCommand<BillInfoDTO>((p) => { return true; }, (p) =>
             {
-                SelectedBillInfo = p;
-                TotalBillValue = TotalBillValue - SelectedBillInfo.PriceItem ?? 0;
-                SelectedBillInfo.PriceItem = SelectedBillInfo.Count * SelectedBillInfo.Product.Price;
-                TotalBillValue = TotalBillValue + SelectedBillInfo.PriceItem ?? 0;
+                if(SelectedBillInfo.Count==0)
+                {
+                    SelectedBillInfo.Count = 1;
+                }
+                else
+                {
+                    SelectedBillInfo = p;
+                    TotalBillValue = TotalBillValue - SelectedBillInfo.PriceItem ?? 0;
+                    SelectedBillInfo.PriceItem = SelectedBillInfo.Count * SelectedBillInfo.Product.Price;
+                    TotalBillValue = TotalBillValue + SelectedBillInfo.PriceItem ?? 0;
+                }
             });
             LoadBill = new RelayCommand<SeatDTO>((p) => { return true; }, async (p) =>
             {
@@ -392,15 +421,13 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     TotalBillValue = 0;
                 }
             });
-            PayBill = new RelayCommand<object>((p) => { return true; }, async (p) => 
+            PayBill = new RelayCommand<Frame>((p) => { return true; }, async (p) => 
             {
                 if (CusOfBill == null)
                 {
                     (Customer a, bool success, string messageSearch) = await CustomerService.Ins.findCusbyPhone("0000");
                     CusOfBill = a;
                 }
-                else
-                {
 
                     DeleteMessage wd = new DeleteMessage("Xác nhận thanh toán hóa đơn?");
                     wd.ShowDialog();
@@ -483,13 +510,14 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
 
                                 MessageBoxCustom.Show(MessageBoxCustom.Success, "Thành công");
                                 resetData();
-
-                            }
+                            
+                                new InvoicePrint().ShowDialog();
+                            p.Content = new SeatPage();
+                            prdEnable = false;
+                        }
 
                         }
-                    }
-
-                }
+                    }                
             });
             EndBill = new RelayCommand<object>((p) => { 
                 if(SelectedSeatItem != null)

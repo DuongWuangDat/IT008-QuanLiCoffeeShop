@@ -60,7 +60,7 @@
                     CornerRadius="16">
                 <Button Command="{Binding LoadSeatPageCM}"
                         CommandParameter="{Binding ElementName=TabFrame}"
-                        Click="Tab_btn_Click"
+                   
                         Tag="SeatBd"
                         Width="100"
                         Height="60"
@@ -88,7 +88,7 @@
                 <Button Command="{Binding LoadProductPageCM}"
                         CommandParameter="{Binding ElementName=TabFrame}"
                         IsEnabled="{Binding prdEnable}"
-                        Click="Tab_btn_Click"
+             
                         Tag="MenuBd"
                         Width="130"
                         Height="60"

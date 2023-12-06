@@ -25,39 +25,34 @@ namespace QuanLiCoffeeShop.View.Staff.Sales
         {
             InitializeComponent();
         }
-        private void Tab_btn_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button button)
-            {
-                string borderName = button.Tag.ToString();
-                ResetBorders();
-                HighlightBorder(borderName);
-            }
-        }
-        private void ResetBorders()
-        {
-            SeatBd.Background = new SolidColorBrush(Colors.Transparent);
-            MenuBd.Background = new SolidColorBrush(Colors.Transparent);
-        }
+        //private void Tab_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (sender is Button button)
+        //    {
+        //        string borderName = button.Tag.ToString();
+        //        ResetBorders();
+        //        HighlightBorder(borderName);
+        //    }
+        //}
+        //private void ResetBorders()
+        //{
+        //    SeatBd.Background = new SolidColorBrush(Colors.Transparent);
+        //    MenuBd.Background = new SolidColorBrush(Colors.Transparent);
+        //}
 
-        private void HighlightBorder(string borderName)
-        {
-            switch (borderName)
-            {
-                case "SeatBd":
-                    SeatBd.Background = new SolidColorBrush(Colors.White);
-                    break;
-                case "MenuBd":
-                    MenuBd.Background = new SolidColorBrush(Colors.White);
-                    break;
-            }
-        }
+        //private void HighlightBorder(string borderName)
+        //{
+        //    switch (borderName)
+        //    {
+        //        case "SeatBd":
+        //            SeatBd.Background = new SolidColorBrush(Colors.White);
+        //            break;
+        //        case "MenuBd":
+        //            MenuBd.Background = new SolidColorBrush(Colors.White);
+        //            break;
+        //    }
+        //}
 
-        private void TabFrame_Navigating(object sender, NavigatingCancelEventArgs e)
-        {
-            
-            
-        }
 
         private void TabFrame_Navigated(object sender, NavigationEventArgs e)
         {

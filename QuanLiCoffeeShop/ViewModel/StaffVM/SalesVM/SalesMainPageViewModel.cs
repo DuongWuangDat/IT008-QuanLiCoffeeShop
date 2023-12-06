@@ -161,12 +161,13 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                
             });
             LoadProductPageCM = new RelayCommand<Frame>((p) => { return true; }, async (p) => {               
+               
+                p.Content = new ProductPage();
                 ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProductCounted());
                 if (ProductList != null)
                 {
                     prdList = new List<ProductDTO>(ProductList);
                 }
-                p.Content = new ProductPage();
             });
 
             #region Seat

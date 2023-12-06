@@ -404,6 +404,8 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     Brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EFD8B4"));
                     PayEnabled = false;
                     PayContent = "Đã thanh toán";
+                    EndEnable = true;
+                    EndBackGround = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F0BD70"));
 
                     TotalBillValue = SelectedBill.TotalPrice??0;
                 }
@@ -421,79 +423,78 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 }
             });
             PayBill = new RelayCommand<object>((p) => { return true; }, async (p) => 
-            {
-                if (CusOfBill == null)
+            {              
+                DeleteMessage wd = new DeleteMessage("Xác nhận thanh toán hóa đơn?");
+                wd.ShowDialog();
+                if (wd.DialogResult == true)
                 {
-                    (Customer a, bool success, string messageSearch) = await CustomerService.Ins.findCusbyPhone("0000");
-                    CusOfBill = a;
-                }
-
-                    DeleteMessage wd = new DeleteMessage("Xác nhận thanh toán hóa đơn?");
-                    wd.ShowDialog();
-                    if (wd.DialogResult == true)
+                    if (SelectedSeatItem.Status == "Đang sửa chữa")
                     {
-                        if (SelectedSeatItem.Status == "Đang sửa chữa")
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Bàn này đang được sửa chữa");
+                    }
+                    else
+                    {
+                        (Staff a, bool success1) = await StaffService.Ins.FindStaff(currentStaff.ID);
+                        billInfoList = new List<BillInfoDTO>(BillInfoList);
+                        SelectedBill.BillInfo = billInfoList;
+                        if(CusOfBill!=null)
                         {
-                            MessageBoxCustom.Show(MessageBoxCustom.Error, "Bàn này đang được sửa chữa");
-                        }
-                        else
-                        {
-                            (Staff a, bool success1) = await StaffService.Ins.FindStaff(currentStaff.ID);
-                            billInfoList = new List<BillInfoDTO>(BillInfoList);
-                            SelectedBill.BillInfo = billInfoList;
                             SelectedBill.IDCus = CusOfBill.ID;
-                            SelectedBill.IDStaff = currentStaff.ID;
-                            SelectedBill.IsDeleted = false;
-                            SelectedBill.CreateAt = DateTime.Now;
-                            SelectedBill.Customer = CusOfBill;
-                            SelectedBill.Staff = a;
-                            SelectedBill.TotalPrice = TotalBillValue;
+                        }
+                        SelectedBill.Customer = CusOfBill;
+                        SelectedBill.IDStaff = currentStaff.ID;
+                        SelectedBill.IsDeleted = false;
+                        SelectedBill.CreateAt = DateTime.Now;
+                        SelectedBill.Staff = a;
+                        SelectedBill.TotalPrice = TotalBillValue;
 
-                            (Seat b, bool sucess2) = await SeatService.Ins.FindSeat(SelectedSeatItem.ID);
-                            SelectedBill.Seat = b;
-                            SelectedBill.IDSeat = SelectedSeatItem.ID;
+                        (Seat b, bool sucess2) = await SeatService.Ins.FindSeat(SelectedSeatItem.ID);
+                        SelectedBill.Seat = b;
+                        SelectedBill.IDSeat = SelectedSeatItem.ID;
 
-                            (bool isAdded, string messageAdd) = await BillService.Ins.AddNewBill(SelectedBill);
-                            if (isAdded)
+                        (bool isAdded, string messageAdd) = await BillService.Ins.AddNewBill(SelectedBill);
+                        if (isAdded)
+                        {
+                            billList.Add(SelectedBill);
+
+                            Brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EFD8B4"));
+                            PayEnabled = false;
+                            PayContent = "Đã thanh toán";
+
+                            EndEnable = true;
+                            EndBackGround = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F0BD70"));
+
+                            Seat newseat = new Seat
                             {
-                                billList.Add(SelectedBill);
+                                ID = SelectedSeatItem.ID,
+                                Status = "Đã đặt",
+                                IDGenre = SelectedSeatItem.IDGenre,
+                                IsDeleted = false,
+                            };
+                            (bool success, string messageEdit) = await SeatService.Ins.EditSeat(newseat);
+                            UpdateBtn();
 
-                                Brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EFD8B4"));
-                                PayEnabled = false;
-                                PayContent = "Đã thanh toán";
-
-                                EndEnable = true;
-                                EndBackGround = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F0BD70"));
-
-                                Seat newseat = new Seat
+                            for (int i = 0; i < BillInfoList.Count; i++)
+                            {
+                                Product k = BillInfoList[i].Product;
+                                Product prd = new Product
                                 {
-                                    ID = SelectedSeatItem.ID,
-                                    Status = "Đã đặt",
-                                    IDGenre = SelectedSeatItem.IDGenre,
-                                    IsDeleted = false,
+                                    ID = k.ID,
+                                    DisplayName = k.DisplayName,
+                                    Price = k.Price,
+                                    IDGenre = k.IDGenre,
+                                    Count = k.Count - BillInfoList[i].Count,
+                                    Description = k.Description,
+                                    Image = k.Image,
+                                    IsDeleted = k.IsDeleted,
                                 };
-                                (bool success, string messageEdit) = await SeatService.Ins.EditSeat(newseat);
-                                UpdateBtn();
+                                (bool ss, string me) = await ProductService.Ins.EditPrD(prd, BillInfoList[i].Product.ID);
+                                if (ss == false) { MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa lượng hàng thất bại!"); }
+                            }
 
-                                for (int i = 0; i < BillInfoList.Count; i++)
-                                {
-                                    Product k = BillInfoList[i].Product;
-                                    Product prd = new Product
-                                    {
-                                        ID = k.ID,
-                                        DisplayName = k.DisplayName,
-                                        Price = k.Price,
-                                        IDGenre = k.IDGenre,
-                                        Count = k.Count - BillInfoList[i].Count,
-                                        Description = k.Description,
-                                        Image = k.Image,
-                                        IsDeleted = k.IsDeleted,
-                                    };
-                                    (bool ss, string me) = await ProductService.Ins.EditPrD(prd, BillInfoList[i].Product.ID);
-                                    if (ss == false) { MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa lượng hàng thất bại!"); }
-                                }
-
-                                //Edit chi tiêu khách hàng
+                            //Edit chi tiêu khách hàng
+                            if (CusOfBill != null) 
+                            {
                                 Customer newCus = new Customer
                                 {
                                     ID = CusOfBill.ID,
@@ -505,15 +506,15 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                                     IsDeleted = false,
                                 };
                                 (bool suc, string mEdit) = await CustomerService.Ins.EditCusList(newCus, CusOfBill.ID);
-                                if (!suc) MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa chi tiêu khách hàng thất bại!");
-
-                                MessageBoxCustom.Show(MessageBoxCustom.Success, "Thành công");
-                                resetData();
-
+                                if (!suc) MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa chi tiêu khách hàng thất bại!");                
                             }
 
+                            MessageBoxCustom.Show(MessageBoxCustom.Success, "Thành công");
+                            resetData();
                         }
-                    }                
+
+                    }
+                }                
             });
             EndBill = new RelayCommand<object>((p) => { return true; }, async (p) =>
             {

@@ -123,7 +123,7 @@ namespace QuanLiCoffeeShop.Model.Service
             }
             catch
             {
-                MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi");
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi khi chỉnh sửa khách hàng");
                 return (false, null);
             }
 

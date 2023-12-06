@@ -413,6 +413,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     
                     BillInfoList = new ObservableCollection<BillInfoDTO>(SelectedBill.BillInfo);
                     billInfoList = new List<BillInfoDTO>(BillInfoList);
+                    CusOfBill = SelectedBill.Customer;
                     
                     Brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EFD8B4"));
                     PayEnabled = false;
@@ -427,6 +428,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     SelectedBill = new BillDTO();
                     BillInfoList = new ObservableCollection<BillInfoDTO>();
                     billInfoList = new List<BillInfoDTO>(BillInfoList);
+                    CusOfBill = new Customer();
 
                     Brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EFD8B4"));
                     PayEnabled = false;
@@ -435,7 +437,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     TotalBillValue = 0;
                 }
             });
-            PayBill = new RelayCommand<object>((p) => { return true; }, async (p) => 
+            PayBill = new RelayCommand<Frame>((p) => { return true; }, async (p) => 
             {              
                 DeleteMessage wd = new DeleteMessage("Xác nhận thanh toán hóa đơn?");
                 wd.ShowDialog();
@@ -450,11 +452,16 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                         (Staff a, bool success1) = await StaffService.Ins.FindStaff(currentStaff.ID);
                         billInfoList = new List<BillInfoDTO>(BillInfoList);
                         SelectedBill.BillInfo = billInfoList;
+                        SelectedBill.Customer = CusOfBill;
                         if(CusOfBill!=null)
                         {
                             SelectedBill.IDCus = CusOfBill.ID;
                         }
-                        SelectedBill.Customer = CusOfBill;
+                        else
+                        {
+                            SelectedBill.IDCus = null;
+                            SelectedBill.Customer = null;
+                        }
                         SelectedBill.IDStaff = currentStaff.ID;
                         SelectedBill.IsDeleted = false;
                         SelectedBill.CreateAt = DateTime.Now;

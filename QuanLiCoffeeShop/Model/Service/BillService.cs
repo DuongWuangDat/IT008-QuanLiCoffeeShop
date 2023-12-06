@@ -116,7 +116,7 @@ namespace QuanLiCoffeeShop.Model.Service
             }
             catch
             {
-                MessageBoxCustom.Show(MessageBoxCustom.Error, "Lỗi xảy ra!");
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Lỗi xảy ra khi tìm bill theo bàn!");
                 return null;
             }
         }
@@ -168,7 +168,8 @@ namespace QuanLiCoffeeShop.Model.Service
                         IsDeleted = false,
                         CreateAt = newBill.CreateAt,
                         IDSeat = newBill.IDSeat,
-                        TotalPrice = newBill.TotalPrice
+                        TotalPrice = newBill.TotalPrice,
+                        Customer = newBill.Customer,
 
                     };
 
@@ -192,7 +193,7 @@ namespace QuanLiCoffeeShop.Model.Service
             }
             catch
             {
-                MessageBoxCustom.Show(MessageBoxCustom.Error, "Lỗi xảy ra!");
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Lỗi xảy ra khi thêm bill!");
                 return (false,null);
             }
 				

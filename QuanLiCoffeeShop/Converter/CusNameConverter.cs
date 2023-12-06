@@ -14,9 +14,11 @@ namespace QuanLiCoffeeShop.Converter
     {
         public object Convert(object value, Type TargetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
+            if (value == null || ((Customer)value).DisplayName==null
+                )
             {
-                return "Khách vãng lai";
+                string st = "Khách vãng lai";
+                return st;
             }
             else
             {

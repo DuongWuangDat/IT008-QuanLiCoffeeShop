@@ -30,7 +30,6 @@ namespace QuanLiCoffeeShop.View.Admin.ThongKe.LichSuBan
             {
                 DragMove();
             }
-            //hmm
         }
     }
 }

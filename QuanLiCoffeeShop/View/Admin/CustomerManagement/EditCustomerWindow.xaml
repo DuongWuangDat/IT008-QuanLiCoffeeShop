@@ -94,7 +94,8 @@
                                        Text="Chi Tiêu" 
                                        Margin="73.6,20.8,0,20.8" 
                                        VerticalAlignment="Top"/>
-                            <TextBox Width="336" 
+                            <TextBox Name="SpendTextBox"
+                                Width="336" 
                                     Height="53.6" 
                                     BorderThickness="0.5" 
                                     materialDesign:TextFieldAssist.TextFieldCornerRadius="24" 

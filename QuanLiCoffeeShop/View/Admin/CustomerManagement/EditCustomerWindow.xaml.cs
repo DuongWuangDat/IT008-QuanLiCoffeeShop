@@ -21,7 +21,9 @@ namespace QuanLiCoffeeShop.View.Admin.CustomerManagement
     {
         public EditCustomerWindow()
         {
+            
             InitializeComponent();
+            SpendTextBox.IsEnabled = false;
         }
     }
 }

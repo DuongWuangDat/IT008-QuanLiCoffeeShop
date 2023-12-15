@@ -198,10 +198,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
                 else
                 {
                     BillDTO a = SelectedItem;
-                    if (SelectedItem.Customer != null)
-                        CusName = SelectedItem.Customer.DisplayName;
-                    else
-                        CusName = "";
+                    CusName = SelectedItem.Customer.DisplayName;
                     StaffName = SelectedItem.Staff.DisplayName;
                     BillDate = SelectedItem.CreateAt.ToString();
                     BillValue = SelectedItem.TotalPrice ?? 0;

@@ -83,7 +83,7 @@ namespace QuanLiCoffeeShop.Model.Service
             }
             catch
             {
-                MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi");
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi khi tìm sản phẩm");
                 return null;
             }
 
@@ -176,7 +176,7 @@ namespace QuanLiCoffeeShop.Model.Service
             }
             catch
             {
-                MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi");
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi khi sửa sản phẩm");
                 return (false, null);
             }
             

@@ -15,6 +15,7 @@
     <Page.Resources>
         <converters:PriceConverter x:Key="PriceConverter"></converters:PriceConverter>
         <converters:IndexConverter x:Key="IndexConverter"></converters:IndexConverter>
+        <converters:CusNameConverter x:Key="CusNameConverter"></converters:CusNameConverter>
     </Page.Resources>
     <Grid>
         <ListView 
@@ -63,7 +64,7 @@
                         </GridViewColumn.HeaderContainerStyle>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Customer.DisplayName}"
+                                <TextBlock Text="{Binding Customer, Converter={StaticResource CusNameConverter}}"
                                    FontSize="17" 
                                    Margin="20 0 0 0"
                                    />

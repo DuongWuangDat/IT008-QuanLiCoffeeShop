@@ -142,13 +142,14 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
             });
             AddCusListCM = new RelayCommand<Window>((p) => { return true; }, async (p) =>
             {
-                if (this.Name == null || this.PhoneNumber == null || this.Spend == null || this.Email == null)
+                if (this.Name == null || this.PhoneNumber == null || this.Email == null)
                 {
-                    MessageBox.Show("Khong nhap du du lieu");
+                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Không nhập đủ dữ liệu");
                 }
                 else
                 {
                     if (this.Description == null) this.Description = "";
+                    if (this.Spend == null || this.Spend == "") this.Spend = "0";
                     Customer newCus = new Customer
                     {
                         Description = this.Description,
@@ -187,13 +188,15 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
             });
             EditCusListCM = new RelayCommand<Window>((p) => { return true; }, async (p) =>
             {
-                if (this.EditName == null || this.EditPhoneNumber == null || this.EditSpend == null || this.EditEmail == null)
+                
+                if (this.EditName == null || this.EditPhoneNumber == null  || this.EditEmail == null)
                 {
                     MessageBox.Show("Khong nhap du du lieu");
                 }
                 else
                 {
                     if (this.EditDescription == null) this.EditDescription = "";
+                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Không nhập đủ dữ liệu");
                     Customer newCus = new Customer
                     {
                         ID = SelectedItem.ID,

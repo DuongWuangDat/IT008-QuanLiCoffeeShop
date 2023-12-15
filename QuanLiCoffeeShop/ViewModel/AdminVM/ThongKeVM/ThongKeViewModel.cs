@@ -48,9 +48,9 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
         public ICommand HistoryStaffCM { get; set; }
         public ICommand RevenueCM { get; set; }
         public ICommand FavorCM { get; set; }
-        public ICommand InfoBillCM {  get; set; }   
-        public ICommand DeleteBillCM {  get; set; }
-        public ICommand DateChange {  get; set; }
+        public ICommand InfoBillCM { get; set; }
+        public ICommand DeleteBillCM { get; set; }
+        public ICommand DateChange { get; set; }
 
         public ThongKeViewModel()
         {
@@ -162,7 +162,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
                     SumBillTotal += revenue;
                     dates.Add(currentDate);
                     currentDate = currentDate.AddDays(1);
-                }             
+                }
 
                 string[] dateStrings = dates.Select(date => date.ToString("dd-MM-yyyy")).ToArray();
                 RevenueSeries = new SeriesCollection
@@ -175,33 +175,36 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
                 };
                 Labels = dateStrings;
                 YFormatter = value =>
-                {                   
+                {
                     return value.ToString("N");
 
                 };
             });
             #endregion
 
-            FavorCM = new RelayCommand<Frame>((p) => { return true; },async (p) =>
+            FavorCM = new RelayCommand<Frame>((p) => { return true; }, async (p) =>
             {
                 p.Content = new MonUaThichTable();
-                FavorList = await Task.Run(() => ThongKeService.Ins.GetTop10SalerBetween(SelectedDateFrom, SelectedDateTo));                 
-               
+                FavorList = await Task.Run(() => ThongKeService.Ins.GetTop10SalerBetween(SelectedDateFrom, SelectedDateTo));
+
             });
 
             InfoBillCM = new RelayCommand<BillDTO>((p) => { return true; }, (p) =>
             {
-                if(SelectedItem == null)
+                if (SelectedItem == null)
                 {
                     MessageBox.Show("SelectedItem null???");
                 }
                 else
                 {
                     BillDTO a = SelectedItem;
-                    CusName = SelectedItem.Customer.DisplayName;
+                    if (SelectedItem.Customer != null)
+                        CusName = SelectedItem.Customer.DisplayName;
+                    else
+                        CusName = "";
                     StaffName = SelectedItem.Staff.DisplayName;
                     BillDate = SelectedItem.CreateAt.ToString();
-                    BillValue = SelectedItem.TotalPrice??0;
+                    BillValue = SelectedItem.TotalPrice ?? 0;
                     ProductList = new ObservableCollection<BillInfoDTO>(SelectedItem.BillInfo);
                     ChiTietHoaDon wd = new ChiTietHoaDon();
                     wd.ShowDialog();

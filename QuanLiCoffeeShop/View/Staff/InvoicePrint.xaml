@@ -7,8 +7,8 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Bill"
-    Width="350"
-    Height="500"
+    Width="450"
+    Height="600"
     DataContext="{StaticResource SalesMainPageVM}"
     mc:Ignorable="d">
     <Window.Resources>
@@ -58,7 +58,7 @@
                     HorizontalAlignment="Right">
                     <TextBlock HorizontalAlignment="Right">
                         <Run Text="Hóa đơn số: " />
-                        <Run Text="{Binding SelectedBill.ID}" />
+                        <Run Text="{Binding NextBillID}" />
                     </TextBlock>
                     <TextBlock HorizontalAlignment="Right">
                         <Run Text="Ngày in: " />
@@ -83,7 +83,7 @@
                 SelectionUnit="FullRow">
                 <DataGrid.Columns>
                     <DataGridTextColumn
-                        Width="auto"
+                        Width="140"
                         Binding="{Binding Product.DisplayName}"
                         Header="Sản phẩm" />
                     <DataGridTextColumn
@@ -101,14 +101,14 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <TextBlock Margin="0,20,10,0" HorizontalAlignment="Right">
-                <Run Text="Tổng: " />
+            <TextBlock Margin="0,20,10,0" HorizontalAlignment="Right" FontSize="20">
+                <Run Text="Tổng: "/>
                 <Run Text="{Binding SelectedBill.TotalPrice, StringFormat={}{0:N0}}" />
             </TextBlock>
 
             <TextBlock Margin="0,5,10,0" HorizontalAlignment="Right">
                 <Run Text="Người in: " />
-                <Run Text="{Binding SelectedBill.Staff.DisplayName}" />
+                <Run Text="{Binding SelectedBill.Staff.DisplayName}" FontSize="17" />
             </TextBlock>
 
             <TextBlock Margin="10,30,0,30" Text="Cám ơn quý khách!" />

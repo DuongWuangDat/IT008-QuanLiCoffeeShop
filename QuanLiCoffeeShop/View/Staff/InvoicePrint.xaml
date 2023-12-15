@@ -7,7 +7,11 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Bill"
+<<<<<<< HEAD
     Width="450"
+=======
+    Width="370"
+>>>>>>> 1422e4067a96f64e73a8f6df8968805fd36cc522
     Height="600"
     DataContext="{StaticResource SalesMainPageVM}"
     mc:Ignorable="d">

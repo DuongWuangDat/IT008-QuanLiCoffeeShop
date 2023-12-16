@@ -37,5 +37,5 @@
   - Trong đó {your server} sẽ là tên server của bạn, {your database} sẽ là tên database của bạn
   - Bấm Ctrl + B (Chuyển sang chế độ Release) sau đó bạn vào thư mục bin/Release để chạy file .exe
 - Server online:
-  - Hiện tại server của chúng tôi đang được online bạn có thể Ctrl + B ngay mà không cần các thao tác phức tạp
+  - Hiện tại server của chúng tôi đang được online bạn có thể Ctrl + B ngay mà không cần các thao tác phức tạp  
 *Server sẽ ngừng hoạt động vào 12/01/2024*

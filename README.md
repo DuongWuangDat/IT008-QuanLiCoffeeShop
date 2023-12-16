@@ -27,7 +27,7 @@
   - Trong đó {your server} sẽ là tên server của bạn, {your database} sẽ là tên database của bạn
   - Bấm F5 để trải nghiệm app (Nếu bạn đang ở Debug sẽ trải nghiệm được app ngay, nếu bạn đang ở Release bạn vào thư mục bin/Release để chạy file .exe)
 - Server online:
-  - Hiện tại server của chúng tôi đang được online bạn sẽ có thẻ chạy ngay mà không cần các thao tác phức tạp
+  - Hiện tại server của chúng tôi đang được online bạn sẽ có thẻ chạy ngay mà không cần các thao tác phức tạp  
 **User**
 - Download repository này về
 - Local:

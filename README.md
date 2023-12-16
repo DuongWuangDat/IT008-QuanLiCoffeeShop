@@ -39,3 +39,6 @@
 - Server online:
   - Hiện tại server của chúng tôi đang được online bạn có thể Ctrl + B ngay mà không cần các thao tác phức tạp  
 *Server sẽ ngừng hoạt động vào 12/01/2024*
+# Tổng kết:
+- Sản phẩm là nỗ lực hết mình của các thành viên trong nhóm. Thông qua đó, các thành viên đã học hỏi được nhiều về việc phát triển một dự án thực tế cũng như khó khăn sau này gặp phải.
+- Đây là sản phẩm đầu tay của nhóm chúng tôi với lòng nhiệt huyết, đam mê công nghệ nên mong mọi người đón nhận. Mọi sai sót trong quá trình trải nghiêm app, mong mọi người có thể feedback cho đội ngũ phát triển chúng tôi tại coffeetime2510@gmail.com. Chúng tôi vô vùng cảm ơn các bạn

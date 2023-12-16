@@ -24,6 +24,13 @@ namespace QuanLiCoffeeShop.View.LoginWindow
             InitializeComponent();
         }
 
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();

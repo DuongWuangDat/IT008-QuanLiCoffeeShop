@@ -19,15 +19,24 @@ using Microsoft.Win32;
 using QuanLiCoffeeShop.View.Admin.CustomerManagement;
 using System.ComponentModel;
 using QuanLiCoffeeShop.View.Staff;
+using LiveCharts.Wpf;
 
 namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
 {
-    public partial class SalesMainPageViewModel:BaseViewModel
+    public partial class SalesMainPageViewModel : BaseViewModel
     {
         public static StaffDTO currentStaff;
         public static List<BillInfoDTO> billInfoList;
         public static List<BillDTO> billList;
         private bool _prdEnable;
+        private int nextBillID = -1;
+
+        public int NextBillID
+        {
+            get { return nextBillID; }
+            set { nextBillID = value; OnPropertyChanged(nameof(nextBillID)); }
+        }
+
         public bool prdEnable
         {
             get { return _prdEnable; }
@@ -64,7 +73,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
             get { return _selectedSeatItem; }
             set { _selectedSeatItem = value; OnPropertyChanged(); }
         }
-        
+
         private ProductDTO _selectedPrdItem;
         public ProductDTO SelectedPrdItem
         {
@@ -80,8 +89,8 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
         private SolidColorBrush _brush;
         public SolidColorBrush Brush
         {
-            get { return _brush; } 
-            set { _brush = value; OnPropertyChanged(); } 
+            get { return _brush; }
+            set { _brush = value; OnPropertyChanged(); }
         }
         private SolidColorBrush _endBackGround;
         public SolidColorBrush EndBackGround
@@ -99,7 +108,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
         public bool PayEnabled
         {
             get { return _payEnabled; }
-            set { _payEnabled = value; OnPropertyChanged(); } 
+            set { _payEnabled = value; OnPropertyChanged(); }
         }
         private string _tableName;
         public string TableName
@@ -126,42 +135,46 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
             get { return _totalBillValue; }
             set { _totalBillValue = value; OnPropertyChanged(); }
         }
-        public ICommand LoadSeatPageCM {  get; set; }
+        public ICommand LoadSeatPageCM { get; set; }
         public ICommand LoadProductPageCM { get; set; }
         public ICommand FirstLoadCM { get; set; }
         public ICommand SearchCusCM { get; set; }
         public ICommand SearchCusCMB { get; set; }
-        public ICommand AddCustomerCM {  get; set; }
+        public ICommand AddCustomerCM { get; set; }
         public ICommand DeleteBillInfoCM { get; set; }
         public ICommand SubBillInfoCM { get; set; }
         public ICommand PlusBillInfoCM { get; set; }
         public ICommand ChangeCountCM { get; set; }
-        public ICommand PayBill {  get; set; }
+        public ICommand PayBill { get; set; }
         public ICommand EndBill { get; set; }
-        public SalesMainPageViewModel() {
-            FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, async (p) => {
+        public SalesMainPageViewModel()
+        {
+            FirstLoadCM = new RelayCommand<Frame>((p) => { return true; }, async (p) =>
+            {
                 LoadPage();
                 Brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EFD8B4"));
                 currentStaff = MainStaffViewModel.currentStaff;
                 PayEnabled = false;
                 PayContent = "";
                 p.Content = new SeatPage();
-                
+
                 BillList = new ObservableCollection<BillDTO>();
                 billList = new List<BillDTO>(BillList);
                 prdEnable = false;
 
-                EndEnable= false;
+                EndEnable = false;
                 EndBackGround = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EFD8B4"));
             });
-          LoadSeatPageCM = new RelayCommand<Frame>((p)=> { return true; },async (p)=> {
-                 LoadPage();
-              
-              p.Content = new SeatPage();
-               
+            LoadSeatPageCM = new RelayCommand<Frame>((p) => { return true; }, async (p) =>
+            {
+                LoadPage();
+
+                p.Content = new SeatPage();
+
             });
-            LoadProductPageCM = new RelayCommand<Frame>((p) => { return true; }, async (p) => {               
-               
+            LoadProductPageCM = new RelayCommand<Frame>((p) => { return true; }, async (p) =>
+            {
+
                 p.Content = new ProductPage();
                 ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProductCounted());
                 if (ProductList != null)
@@ -224,12 +237,12 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 }
 
             });
-          
-               
+
+
             #endregion
-                        
+
             #region Product
-            AllPrDFilter = new RelayCommand<RadioButton>((p) => { return true; },  (p) =>
+            AllPrDFilter = new RelayCommand<RadioButton>((p) => { return true; }, (p) =>
             {
                 ProductList = new ObservableCollection<ProductDTO>(prdList);
             });
@@ -249,15 +262,17 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 }
 
             });
-            SelectPrd = new RelayCommand<object>((p) => { return true; }, (p) => {
+            SelectPrd = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
                 if (SelectedPrdItem != null)
                 {
 
-                    Product a = new Product { 
-                        ID = SelectedPrdItem.ID,    
-                        DisplayName = SelectedPrdItem.DisplayName, 
+                    Product a = new Product
+                    {
+                        ID = SelectedPrdItem.ID,
+                        DisplayName = SelectedPrdItem.DisplayName,
                         Price = SelectedPrdItem.Price,
-                        IDGenre = SelectedPrdItem.IDGenre,                        
+                        IDGenre = SelectedPrdItem.IDGenre,
                         Count = SelectedPrdItem.Count,
                         Description = SelectedPrdItem.Description,
                         Image = SelectedPrdItem.Image,
@@ -269,7 +284,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
 
                         IDProduct = SelectedPrdItem.ID,
                         IsDeleted = SelectedPrdItem.IsDeleted,
-                        PriceItem = SelectedPrdItem.Price,                        
+                        PriceItem = SelectedPrdItem.Price,
                         Count = 1,
                         Product = a
                     };
@@ -282,17 +297,17 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     else
                     {
                         billIF.Count++;
-                    }             
+                    }
                     Brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F0BD70"));
                     PayContent = "Thanh toán";
                     PayEnabled = true;
-                    
+
                 }
                 else
                 {
                     MessageBox.Show("Selected Item null");
                 }
-            
+
             });
             #endregion
 
@@ -302,8 +317,8 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 AddCustomerWindow wd = new AddCustomerWindow();
                 wd.ShowDialog();
             });
-            SearchCusCM = new RelayCommand<object>((p) => { return true; }, async(p) =>
-            {              
+            SearchCusCM = new RelayCommand<object>((p) => { return true; }, async (p) =>
+            {
                 (Customer a, bool success, string messageSearch) = await CustomerService.Ins.findCusbyPhone(CusInfo);
                 if (a != null)
                 {
@@ -312,7 +327,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 else
                 {
                     (Customer b, bool success1, string messageSearch1) = await CustomerService.Ins.findCusbyEmail(CusInfo);
-                    if(b!= null)
+                    if (b != null)
                     {
                         CusOfBill = b;
                     }
@@ -342,13 +357,14 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     }
                 }
             });
-            DeleteBillInfoCM = new RelayCommand<BillInfoDTO>((p) => { return true; }, (p) => {
+            DeleteBillInfoCM = new RelayCommand<BillInfoDTO>((p) => { return true; }, (p) =>
+            {
                 SelectedBillInfo = p;
                 DeleteMessage wd = new DeleteMessage();
                 wd.ShowDialog();
                 if (wd.DialogResult == true)
                 {
-                    TotalBillValue = TotalBillValue - SelectedBillInfo.PriceItem??0;
+                    TotalBillValue = TotalBillValue - SelectedBillInfo.PriceItem ?? 0;
                     BillInfoList.Remove(SelectedBillInfo);
                     if (BillInfoList.Count() > 0)
                     {
@@ -365,23 +381,25 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
 
                 }
             });
-            SubBillInfoCM = new RelayCommand<BillInfoDTO>((p) => { return true; }, (p) => {
+            SubBillInfoCM = new RelayCommand<BillInfoDTO>((p) => { return true; }, (p) =>
+            {
                 SelectedBillInfo = p;
-                if(SelectedBillInfo.Count>1) 
-                    SelectedBillInfo.Count--;                
+                if (SelectedBillInfo.Count > 1)
+                    SelectedBillInfo.Count--;
             });
-            PlusBillInfoCM = new RelayCommand<BillInfoDTO>((p) => { return true; }, (p) => {
+            PlusBillInfoCM = new RelayCommand<BillInfoDTO>((p) => { return true; }, (p) =>
+            {
                 SelectedBillInfo = p;
-                if(SelectedBillInfo.Count<SelectedBillInfo.Product.Count)
-                    SelectedBillInfo.Count++;                
+                if (SelectedBillInfo.Count < SelectedBillInfo.Product.Count)
+                    SelectedBillInfo.Count++;
             });
             ChangeCountCM = new RelayCommand<BillInfoDTO>((p) => { return true; }, (p) =>
             {
-                if(SelectedBillInfo== null)
+                if (SelectedBillInfo == null)
                 {
                     SelectedBillInfo = BillInfoList.Where(x => x.IDProduct == SelectedPrdItem.ID).FirstOrDefault();
                 }
-                if(SelectedBillInfo.Count==0)
+                if (SelectedBillInfo.Count == 0)
                 {
                     SelectedBillInfo.Count = 1;
                 }
@@ -398,7 +416,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 SelectedSeatItem = p;
                 TableName = "Bàn " + SelectedSeatItem.ID;
                 SelectedBill = new BillDTO();
-                if(SelectedSeatItem.Status == "Đã đặt" || (SelectedSeatItem.Status == "Đang sửa chữa"))
+                if (SelectedSeatItem.Status == "Đã đặt" || (SelectedSeatItem.Status == "Đang sửa chữa"))
                 {
                     SelectedBill = await BillService.Ins.getBillByIdSeat(SelectedSeatItem.ID);
                     prdEnable = false;
@@ -410,7 +428,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 }
                 if (SelectedBill != null)
                 {
-                    
+
                     BillInfoList = new ObservableCollection<BillInfoDTO>(SelectedBill.BillInfo);
                     billInfoList = new List<BillInfoDTO>(BillInfoList);
                     CusOfBill = SelectedBill.Customer;
@@ -421,7 +439,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     EndEnable = true;
                     EndBackGround = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F0BD70"));
 
-                    TotalBillValue = SelectedBill.TotalPrice??0;
+                    TotalBillValue = SelectedBill.TotalPrice ?? 0;
                 }
                 else
                 {
@@ -449,6 +467,8 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     }
                     else
                     {
+                        PayEnabled = false;
+                        PayContent = "Đang xử lý";
                         (Staff a, bool success1) = await StaffService.Ins.FindStaff(currentStaff.ID);
                         billInfoList = new List<BillInfoDTO>(BillInfoList);
                         SelectedBill.BillInfo = billInfoList;
@@ -472,14 +492,30 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                         SelectedBill.Seat = b;
                         SelectedBill.IDSeat = SelectedSeatItem.ID;
 
+
+                        if (NextBillID == -1)
+                        {
+                            List<BillDTO> allBill = await BillService.Ins.GetAllBill();
+                            if(allBill.Count > 0)
+                            {
+                                nextBillID = allBill[0].ID + 1;
+                            }
+                            else
+                                NextBillID = 1;
+                        }
+                        else
+                            NextBillID++;
+
+
+
                         (bool isAdded, string messageAdd) = await BillService.Ins.AddNewBill(SelectedBill);
                         if (isAdded)
                         {
                             billList.Add(SelectedBill);
 
                             Brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EFD8B4"));
-                            PayEnabled = false;
-                            PayContent = "Đã thanh toán";
+                            //PayEnabled = false;
+                            //PayContent = "Đã thanh toán";
 
                             EndEnable = true;
                             EndBackGround = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#F0BD70"));
@@ -529,10 +565,12 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                                 if (!suc) MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa chi tiêu khách hàng thất bại!");                
                             }
 
-                                MessageBoxCustom.Show(MessageBoxCustom.Success, "Thành công");
-                                resetData();
-                            
-                                new InvoicePrint().ShowDialog();
+                            PayContent = "Đã thanh toán";
+
+                            MessageBoxCustom.Show(MessageBoxCustom.Success, "Thành công");
+                            resetData();
+
+                            new InvoicePrint().ShowDialog();
                             p.Content = new SeatPage();
                             prdEnable = false;
                         }
@@ -540,10 +578,11 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     }
                 }                
             });
-            EndBill = new RelayCommand<object>((p) => { 
-                if(SelectedSeatItem != null)
+            EndBill = new RelayCommand<object>((p) =>
+            {
+                if (SelectedSeatItem != null)
                 {
-                    if(SelectedSeatItem.Status == "Đã đặt")
+                    if (SelectedSeatItem.Status == "Đã đặt")
                     {
                         return true;
                     }
@@ -569,8 +608,8 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                         CusInfo = null;
                         CusOfBill = new Customer();
                         BillInfoList = null;
-                        BillInfoList = new ObservableCollection<BillInfoDTO>();  
-                        
+                        BillInfoList = new ObservableCollection<BillInfoDTO>();
+
                         Brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EFD8B4"));
                         PayEnabled = false;
                         PayContent = "";
@@ -593,7 +632,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     }
                     SelectedBill = null;
                     SelectedSeatItem = null;
-                        SelectedSeatItem = new SeatDTO();
+                    SelectedSeatItem = new SeatDTO();
 
                 }
             });

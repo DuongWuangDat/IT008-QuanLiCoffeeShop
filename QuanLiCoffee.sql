@@ -1,4 +1,4 @@
-﻿drop database QuanLiCoffeShop
+﻿
 Create database QuanLiCoffeShop
 go
 use QuanLiCoffeShop

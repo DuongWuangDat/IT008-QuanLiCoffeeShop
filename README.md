@@ -23,7 +23,7 @@
 - Local:
   - Mở Microsoft SQL Server
   - Chạy query "QuanLiCoffeeShop.sql"
-  - Vào App.config, sửa thuộc tính connectionstring từ sau "provider connection string=&quot;" đến "&quot;" thành "data source={your server};initial catalog={your database};integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"
+  - Vào App.config, sửa thuộc tính connectionstring từ sau "provider connection string=\&quot;" đến "\&quot;" thành "data source={your server};initial catalog={your database};integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"
   - Trong đó {your server} sẽ là tên server của bạn, {your database} sẽ là tên database của bạn
   - Bấm F5 để trải nghiệm app (Nếu bạn đang ở Debug sẽ trải nghiệm được app ngay, nếu bạn đang ở Release bạn vào thư mục bin/Release để chạy file .exe)
 - Server online:

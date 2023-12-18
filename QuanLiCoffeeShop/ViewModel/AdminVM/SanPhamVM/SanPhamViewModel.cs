@@ -215,19 +215,26 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                         IsDeleted = false,
 
                     };
-                    (bool IsAdded, string messageAdd) = await ProductService.Ins.AddNewPrD(newPrd);
-                    if (IsAdded)
+                    if(newPrd.Image!= null)
                     {
-                        p.Close();
-                        ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProduct());
-                        prdList = new List<ProductDTO>(ProductList);
-                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Thêm thành công");
-                        //AddedSuccessfully addedSuccessfully = new AddedSuccessfully();
-                        //addedSuccessfully.Show();
+                        (bool IsAdded, string messageAdd) = await ProductService.Ins.AddNewPrD(newPrd);
+                        if (IsAdded)
+                        {
+                            p.Close();
+                            ProductList = new ObservableCollection<ProductDTO>(await ProductService.Ins.GetAllProduct());
+                            prdList = new List<ProductDTO>(ProductList);
+                            MessageBoxCustom.Show(MessageBoxCustom.Success, "Thêm thành công");
+                            //AddedSuccessfully addedSuccessfully = new AddedSuccessfully();
+                            //addedSuccessfully.Show();
+                        }
+                        else
+                        {
+                            MessageBoxCustom.Show(MessageBoxCustom.Error, messageAdd);
+                        }
                     }
                     else
                     {
-                        MessageBoxCustom.Show(MessageBoxCustom.Error, messageAdd);
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Tải ảnh lên thất bại");
                     }
                 }
 
@@ -367,7 +374,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.SanPhamVM
                 if (wd.DialogResult == true)
                 {
                     string deleteImg = SelectedItem.Image;
-                    await CloudService.Ins.DeleteImage(deleteImg);
+                    if(deleteImg != null)
+                        await CloudService.Ins.DeleteImage(deleteImg);
                     (bool sucess, string messageDelete) = await ProductService.Ins.DeletePrD(SelectedItem.ID);
                     if (sucess)
                     {

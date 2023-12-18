@@ -63,7 +63,7 @@
 
         </Style>
     </Window.Resources>
-    <Grid>
+    <Border BorderBrush="Black" BorderThickness="0.5" CornerRadius="32">
         <Border Background="White" CornerRadius="32">
             <Border.BorderBrush>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -288,5 +288,5 @@
                 </Grid>
             </Grid>
         </Border>
-    </Grid>
+    </Border>
 </Window>

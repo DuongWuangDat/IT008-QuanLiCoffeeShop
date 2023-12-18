@@ -149,13 +149,13 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
                     }
                     else
                     {
-                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Đăng nhập thất bại");
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Sai tài khoản hoặc mật khẩu");
                     }
                 }
             }
             catch (Exception e)
             {
-                MessageBoxCustom.Show(MessageBoxCustom.Error, "Có lỗi xảy ra khi đăng nhập");
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Kết nối Internet không ổn định");
             }
         }
         

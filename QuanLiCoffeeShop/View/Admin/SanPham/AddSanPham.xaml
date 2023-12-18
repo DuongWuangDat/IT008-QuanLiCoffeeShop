@@ -68,15 +68,7 @@
 
         </Style>
     </Window.Resources>
-    <Border>
-        <Border.BorderBrush>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="Black" Offset="0.888"/>
-                <GradientStop Color="White" Offset="0"/>
-                <GradientStop Color="#FE0E0E0E" Offset="0.667"/>
-            </LinearGradientBrush>
-        </Border.BorderBrush>
-
+    <Border BorderBrush="Black" BorderThickness="0.5" CornerRadius="32">
         <Grid>
         <Border Background="White"
                 CornerRadius="32">

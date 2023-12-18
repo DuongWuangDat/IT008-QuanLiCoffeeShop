@@ -149,7 +149,7 @@ namespace QuanLiCoffeeShop.ViewModel.LoginVM
                     }
                     else
                     {
-                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Đăng nhập thất bại");
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Sai tài khoản hoặc mật khẩu, vui lòng nhập lại!");
                     }
                 }
             }

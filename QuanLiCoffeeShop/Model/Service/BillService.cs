@@ -169,7 +169,6 @@ namespace QuanLiCoffeeShop.Model.Service
                         CreateAt = newBill.CreateAt,
                         IDSeat = newBill.IDSeat,
                         TotalPrice = newBill.TotalPrice,
-                        Customer = newBill.Customer,
 
                     };
 

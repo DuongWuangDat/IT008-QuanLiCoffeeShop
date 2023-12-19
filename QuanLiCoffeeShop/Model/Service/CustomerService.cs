@@ -9,25 +9,25 @@ using System.Threading.Tasks;
 
 namespace QuanLiCoffeeShop.Model.Service
 {
-	public class CustomerService
-	{
-		public CustomerService() { }
-		private static CustomerService _ins;
+    public class CustomerService
+    {
+        public CustomerService() { }
+        private static CustomerService _ins;
 
-		public static CustomerService Ins
-		{
-			get
-			{
-				if (_ins == null)
-				{
-					_ins = new CustomerService();
-				}
-				return _ins;
-			}
-			private set { _ins = value; }
-		}
-		public async Task<List<CustomerDTO>> GetAllCus()
-		{
+        public static CustomerService Ins
+        {
+            get
+            {
+                if (_ins == null)
+                {
+                    _ins = new CustomerService();
+                }
+                return _ins;
+            }
+            private set { _ins = value; }
+        }
+        public async Task<List<CustomerDTO>> GetAllCus()
+        {
             try
             {
                 using (var context = new QuanLiCoffeShopEntities())
@@ -53,10 +53,10 @@ namespace QuanLiCoffeeShop.Model.Service
                 MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi");
                 return null;
             }
-				
-		}
-		public async Task<(bool, string)> AddNewCus(Customer newCus)
-		{
+
+        }
+        public async Task<(bool, string)> AddNewCus(Customer newCus)
+        {
             try
             {
                 using (var context = new QuanLiCoffeShopEntities())
@@ -99,13 +99,13 @@ namespace QuanLiCoffeeShop.Model.Service
             catch
             {
                 MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi");
-                return (false,null);
+                return (false, null);
             }
-			
-				
-		}
-		public async Task<(bool, string)> EditCusList(Customer newCus, int ID)
-		{
+
+
+        }
+        public async Task<(bool, string)> EditCusList(Customer newCus, int ID)
+        {
             try
             {
                 using (var context = new QuanLiCoffeShopEntities())
@@ -127,10 +127,10 @@ namespace QuanLiCoffeeShop.Model.Service
                 return (false, null);
             }
 
-                
-		}
-		public async Task<(bool,string)> DeleteCustomer(int ID)
-		{
+
+        }
+        public async Task<(bool, string)> DeleteCustomer(int ID)
+        {
             try
             {
                 using (var context = new QuanLiCoffeShopEntities())
@@ -147,8 +147,8 @@ namespace QuanLiCoffeeShop.Model.Service
                 MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi");
                 return (false, null);
             }
-           
-		}
+
+        }
         // tìm theo email
         public async Task<(Customer, bool, string)> findCusbyEmail(string email)
         {
@@ -170,7 +170,7 @@ namespace QuanLiCoffeeShop.Model.Service
             catch
             {
                 MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi");
-                return (null,false, null);
+                return (null, false, null);
             }
         }
         // tìm theo sđt
@@ -196,11 +196,11 @@ namespace QuanLiCoffeeShop.Model.Service
                 MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi");
                 return (null, false, null);
             }
-        
+
         }
 
         // cập nhật chi tiêu
-        public async Task<(bool, string)> updateSpend(string spend, int id)
+        public async Task<(bool, string)> updateSpend(decimal spendDelta, int id)
         {
             try
             {
@@ -211,14 +211,9 @@ namespace QuanLiCoffeeShop.Model.Service
                     {
                         return (false, "Không tìm thấy khách hàng này");
                     }
-                    if (decimal.TryParse(spend, out decimal d))
-                    {
-                        cus.Spend = d;
-                    }
-                    else
-                    {
-                        return (false, "Chi tiêu không đúng định dạng");
-                    }
+
+                    cus.Spend += spendDelta;
+
                     await context.SaveChangesAsync();
                     return (true, "Đã cập nhật");
                 }

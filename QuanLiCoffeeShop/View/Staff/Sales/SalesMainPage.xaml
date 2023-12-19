@@ -215,11 +215,7 @@
                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                     BorderThickness="0"
                                     FontSize="16">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger EventName="TextChanged">
-                                            <i:InvokeCommandAction Command="{Binding SearchCusCM}" CommandParameter="{Binding ElementName=searchCusBox}"/>
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
+                                    
                                 </TextBox>
                                 <Border Panel.ZIndex="0"
                                         Margin="0 0 0 12"

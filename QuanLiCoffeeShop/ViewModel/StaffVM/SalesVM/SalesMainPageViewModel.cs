@@ -479,8 +479,8 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                         }
                         else
                         {
-                            SelectedBill.IDCus = null;
-                            SelectedBill.Customer = null;
+                            SelectedBill.IDCus = 0;
+                          //SelectedBill.Customer = null;
                         }
                         SelectedBill.IDStaff = currentStaff.ID;
                         SelectedBill.IsDeleted = false;
@@ -551,30 +551,25 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                             //Edit chi tiêu khách hàng
                             if (CusOfBill != null) 
                             {
-                                Customer newCus = new Customer
-                                {
-                                    ID = CusOfBill.ID,
-                                    Description = CusOfBill.Description,
-                                    PhoneNumber = CusOfBill.PhoneNumber,
-                                    Email = CusOfBill.Email,
-                                    DisplayName = CusOfBill.DisplayName,
-                                    Spend = CusOfBill.Spend + TotalBillValue,
-                                    IsDeleted = false,
-                                };
-                                (bool suc, string mEdit) = await CustomerService.Ins.EditCusList(newCus, CusOfBill.ID);
+                                (bool suc, string mEdit) = await CustomerService.Ins.updateSpend(TotalBillValue, CusOfBill.ID);
                                 if (!suc) MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa chi tiêu khách hàng thất bại!");                
                             }
-
+                            else
+                            {
+                                (bool suc, string mEdit) = await CustomerService.Ins.updateSpend(TotalBillValue, 0);
+                                if (!suc) MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa chi tiêu khách hàng thất bại!");
+                            }
                             PayContent = "Đã thanh toán";
 
                             MessageBoxCustom.Show(MessageBoxCustom.Success, "Thành công");
-                            resetData();
+                            
 
                             new InvoicePrint().ShowDialog();
-                            p.Content = new SeatPage();
-                            prdEnable = false;
+                            
                         }
-
+                        resetData();
+                        p.Content = new SeatPage();
+                        prdEnable = false;
                     }
                 }                
             });

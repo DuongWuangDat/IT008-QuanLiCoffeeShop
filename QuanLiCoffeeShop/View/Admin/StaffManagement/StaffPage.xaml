@@ -12,6 +12,7 @@
     d:Width="800"
     Background="White"
     DataContext="{StaticResource StaffPageVM}"
+    
     mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>

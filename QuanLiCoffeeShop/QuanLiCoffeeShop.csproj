@@ -581,6 +581,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Icon\AppIcon.ico" />
     <Resource Include="Resources\Icon\PrintIcon.png" />
     <Resource Include="Resources\Icon\SubtractBlack_Icon.png" />
     <Resource Include="Resources\Icon\PenBlack_Icon.png" />

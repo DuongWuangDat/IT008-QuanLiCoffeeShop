@@ -21,8 +21,9 @@
         WindowStyle="None"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         WindowStartupLocation="CenterScreen"
+        Icon="/Resources/Icon/AppIcon.ico"
         DataContext="{StaticResource LoginVM}">
-
+   
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="345.08" />

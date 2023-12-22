@@ -22,6 +22,7 @@
     TextOptions.TextRenderingMode="Auto"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
+    Icon="/Resources/Icon/AppIcon.ico"
     mc:Ignorable="d">
     <Grid>
         <Border

@@ -17,6 +17,7 @@
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
+    Icon="/Resources/Icon/AppIcon.ico"
     mc:Ignorable="d">
     <Window.Resources>
         <ResourceDictionary>

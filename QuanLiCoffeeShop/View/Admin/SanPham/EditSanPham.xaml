@@ -21,6 +21,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         WindowStartupLocation="CenterScreen"
+        Icon="/Resources/Icon/AppIcon.ico"
         WindowStyle="None">
     <Window.Resources>
         <ControlTemplate x:Key="TextBoxAdd" TargetType="TextBox">

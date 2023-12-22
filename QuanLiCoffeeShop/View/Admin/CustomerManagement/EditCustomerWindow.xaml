@@ -19,6 +19,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         DataContext="{StaticResource CustomerPageVM}"
+        Icon="/Resources/Icon/AppIcon.ico"
         Height="613.6" Width="886.4">
     <Window.Resources>
 

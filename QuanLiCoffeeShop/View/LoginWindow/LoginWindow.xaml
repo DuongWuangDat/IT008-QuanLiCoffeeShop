@@ -21,7 +21,9 @@
         WindowStyle="None"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         WindowStartupLocation="CenterScreen"
+        Icon="/Resources/Icon/AppIcon.ico"
         DataContext="{StaticResource LoginVM}">
+   
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -78,7 +80,7 @@
                                      FontSize="12"
                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                      Text="{Binding Username}" />
-                            <TextBlock Text="Mật Khẩu"
+                            <TextBlock Text="Mật khẩu"
                                        FontFamily="Inter"
                                        FontSize="11.2"
                                        FontWeight="Medium"

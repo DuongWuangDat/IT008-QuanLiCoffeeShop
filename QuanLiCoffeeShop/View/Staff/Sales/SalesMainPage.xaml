@@ -551,7 +551,9 @@
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Right">
                         <Button Margin="0 0 40 0"
+                                Name="EndBillButton"
                                 Command="{Binding EndBill}"
+                                CommandParameter="{Binding ElementName=EndBillButton}"
                                 Width="200"
                                 Height="62"
                                 materialDesign:ButtonAssist.CornerRadius="24"

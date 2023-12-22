@@ -246,7 +246,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM
             {
                 try
                 {
-                    Process.Start("https://www.facebook.com/jack.phuongtuan1204");
+                    Process.Start("https://web.facebook.com/caphecake");
                 }
                 catch (Exception)
                 {

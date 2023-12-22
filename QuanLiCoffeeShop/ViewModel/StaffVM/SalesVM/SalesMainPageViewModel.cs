@@ -432,7 +432,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     BillInfoList = new ObservableCollection<BillInfoDTO>(SelectedBill.BillInfo);
                     billInfoList = new List<BillInfoDTO>(BillInfoList);
                     CusOfBill = SelectedBill.Customer;
-                    
+
                     Brush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EFD8B4"));
                     PayEnabled = false;
                     PayContent = "Đã thanh toán";
@@ -455,8 +455,8 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     TotalBillValue = 0;
                 }
             });
-            PayBill = new RelayCommand<Frame>((p) => { return true; }, async (p) => 
-            {              
+            PayBill = new RelayCommand<Frame>((p) => { return true; }, async (p) =>
+            {
                 DeleteMessage wd = new DeleteMessage("Xác nhận thanh toán hóa đơn?");
                 wd.ShowDialog();
                 if (wd.DialogResult == true)
@@ -474,14 +474,14 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                         billInfoList = new List<BillInfoDTO>(BillInfoList);
                         SelectedBill.BillInfo = billInfoList;
                         SelectedBill.Customer = CusOfBill;
-                        if(CusOfBill!=null)
+                        if (CusOfBill != null)
                         {
                             SelectedBill.IDCus = CusOfBill.ID;
                         }
                         else
                         {
                             SelectedBill.IDCus = 0;
-                          //SelectedBill.Customer = null;
+                            //SelectedBill.Customer = null;
                         }
                         SelectedBill.IDStaff = currentStaff.ID;
                         SelectedBill.IsDeleted = false;
@@ -497,7 +497,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                         if (NextBillID == -1)
                         {
                             List<BillDTO> allBill = await BillService.Ins.GetAllBill();
-                            if(allBill.Count > 0)
+                            if (allBill.Count > 0)
                             {
                                 nextBillID = allBill[0].ID + 1;
                             }
@@ -537,30 +537,21 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                                 if (ss == false) { MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa lượng hàng thất bại!"); }
                             }
 
-                            //Edit chi tiêu khách hàng
-                            if (CusOfBill != null) 
-                            {
-                                (bool suc, string mEdit) = await CustomerService.Ins.updateSpend(TotalBillValue, CusOfBill.ID);
-                                if (!suc) MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa chi tiêu khách hàng thất bại!");                
-                            }
-                            else
-                            {
-                                (bool suc, string mEdit) = await CustomerService.Ins.updateSpend(TotalBillValue, 0);
-                                if (!suc) MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa chi tiêu khách hàng thất bại!");
-                            }
+                            (bool suc, string mEdit) = await CustomerService.Ins.updateSpend(TotalBillValue, CusOfBill.ID);
+                            if (!suc) MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa chi tiêu khách hàng thất bại!");
                             PayContent = "Đã thanh toán";
 
                             MessageBoxCustom.Show(MessageBoxCustom.Success, "Thành công");
-                            
+
 
                             new InvoicePrint().ShowDialog();
-                            
+
                         }
                         resetData();
                         p.Content = new SeatPage();
                         prdEnable = false;
                     }
-                }                
+                }
             });
             EndBill = new RelayCommand<Button>((p) =>
             {

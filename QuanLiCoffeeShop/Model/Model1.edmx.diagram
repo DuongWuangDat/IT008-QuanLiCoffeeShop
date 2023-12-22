@@ -6,7 +6,7 @@
     <edmx:Diagrams>
 
 
-      <Diagram DiagramId="19200426042f4538a3fc03a869f1fd58" Name="Diagram1" ZoomLevel="66">
+      <Diagram DiagramId="19200426042f4538a3fc03a869f1fd58" Name="Diagram1" ZoomLevel="98">
         <EntityTypeShape EntityType="QuanLiCoffeShopModel.Bill" Width="1.5" PointX="7.5" PointY="5.125" />
         <EntityTypeShape EntityType="QuanLiCoffeShopModel.BillInfo" Width="1.5" PointX="9.75" PointY="5.375" />
         <EntityTypeShape EntityType="QuanLiCoffeShopModel.Customer" Width="1.5" PointX="5.25" PointY="7" />

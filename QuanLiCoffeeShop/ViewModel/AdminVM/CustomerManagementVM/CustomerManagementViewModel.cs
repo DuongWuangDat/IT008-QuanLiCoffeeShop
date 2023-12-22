@@ -164,11 +164,12 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
                     if (IsAdded)
                     {
                         p.Close();
+                        resetData();
                         CustomerList = new ObservableCollection<CustomerDTO>(await CustomerService.Ins.GetAllCus());
                     }
                     else
                     {
-                        MessageBox.Show(messageAdd);
+                        MessageBoxCustom.Show(MessageBoxCustom.Error, "Lỗi khi thêm khách hàng");
                     }
                 }
                 
@@ -191,12 +192,12 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
                 
                 if (this.EditName == null || this.EditPhoneNumber == null  || this.EditEmail == null)
                 {
-                    MessageBox.Show("Khong nhap du du lieu");
+                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Không nhập đủ dữ liệu");
                 }
                 else
                 {
                     if (this.EditDescription == null) this.EditDescription = "";
-                    MessageBoxCustom.Show(MessageBoxCustom.Error, "Không nhập đủ dữ liệu");
+                   
                     Customer newCus = new Customer
                     {
                         ID = SelectedItem.ID,
@@ -239,5 +240,15 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
                 
             });
         }
+        #region methods
+        void resetData()
+        {
+            Name = null;
+            Description= null;
+            Email = null;
+            PhoneNumber = null;
+            Spend = null;
+        }
+        #endregion
     }
 }

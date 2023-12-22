@@ -32,7 +32,7 @@
   - Hiện tại server của chúng tôi đang được online bạn sẽ có thể chạy ngay mà không cần các thao tác phức tạp
     
 **User**
-- Download từ link này [Install](https://www.mediafire.com/file/82j9027rf8kdl36/CoffeeShopSetup.exe/file)
+- Download file setup [Install](https://www.mediafire.com/file/82j9027rf8kdl36/CoffeeShopSetup.exe/file)
   
 *Server sẽ ngừng hoạt động vào 12/01/2024*
 # Tổng kết:

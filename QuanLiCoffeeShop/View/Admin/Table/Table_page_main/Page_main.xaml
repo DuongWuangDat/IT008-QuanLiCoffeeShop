@@ -56,13 +56,13 @@
                 <StackPanel>
                     <StackPanel.Resources>
                         <ResourceDictionary>
-                                                    <Style TargetType="Button"
-                               BasedOn="{StaticResource MaterialDesignFlatAccentBgButton}">
-                            <Style.Setters>
-                                <Setter Property="Foreground"
-                                        Value="White" />
-                            </Style.Setters>
-                        </Style>
+                            <Style TargetType="Button"
+                                   BasedOn="{StaticResource MaterialDesignFlatAccentBgButton}">
+                                <Style.Setters>
+                                    <Setter Property="Foreground"
+                                            Value="White" />
+                                </Style.Setters>
+                            </Style>
                             <Style TargetType="materialDesign:PackIcon">
                                 <Style.Setters>
                                     <Setter Property="Foreground"
@@ -74,16 +74,14 @@
 
                     </StackPanel.Resources>
                     <!--Add_table-->
-                    <Button
-                        Margin="0,20,0,0"
-                        Command="{Binding OpenAdd}" 
-                        Height="50"
-                        HorizontalAlignment="Left"
+                    <Button Margin="0,20,0,0"
+                            Command="{Binding OpenAdd}"
+                            Height="50"
+                            HorizontalAlignment="Left"
                             Width="180">
                         <Button.Template>
                             <ControlTemplate>
-                                <Border 
-                                        CornerRadius="18"
+                                <Border CornerRadius="18"
                                         Background="#FFE0AE8A">
                                     <StackPanel        Cursor="Hand"
                                                        Orientation="Horizontal">
@@ -102,11 +100,10 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-                  
+
                     <!--Phanloai-->
                     <Border  Height="54"
                              Margin="0,15,0,0"
-                             
                              BorderThickness="1.5"
                              BorderBrush="#FFE0AE8A"
                              CornerRadius="16"
@@ -141,9 +138,9 @@
                             CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
                             Template="{StaticResource BtnClick}"
                             Click="Button_Click">
-                        
 
-                        
+
+
                     </Button>
                     <!--empty_table-->
                     <Button Height="54"
@@ -155,7 +152,7 @@
                             Content="Còn trống"
                             Template="{StaticResource BtnDefault}"
                             Click="Button_Click">
-                      
+
                     </Button>
                     <!--booked_table-->
                     <Button Height="54"
@@ -178,45 +175,43 @@
                             CommandParameter="{Binding RelativeSource={RelativeSource Self}}"
                             Template="{StaticResource BtnDefault}"
                             Click="Button_Click">
-                      
+
                     </Button>
-                   
+
 
                 </StackPanel>
             </Border>
         </Grid>
         <Grid Grid.Column="1">
             <ScrollViewer x:Name="ScrollViewer"
-                          Grid.Column="1"
-                          Height="730"
-                          Margin="10,25,10,5"
+                          Height="710"
+                          Margin="0,18,20,0"
                           VerticalScrollBarVisibility="Auto"
                           VerticalAlignment="Top"
                           PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
                 <ListView x:Name="list_table"
-                         
                           VerticalAlignment="Top"
                           ItemsSource="{Binding TableList}">
                     <ListView.ItemContainerStyle>
-                    <Style BasedOn="{StaticResource MaterialDesignListBoxItem}"
-                           TargetType="ListViewItem">
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver"
-                                     Value="True">
-                                <Setter Property="IsSelected"
-                                        Value="True" />
-                                <Setter Property="Background"
-                                        Value="#FFEAF8FF" />
-                            </Trigger>
-                        </Style.Triggers>
-                        <Setter Property="Padding"
-                                Value="0" />
-                        <Setter Property="Margin"
-                                Value="8 2 10 9" />
-                        <Setter Property="materialDesign:ListBoxItemAssist.ShowSelection"
-                                Value="False" />
-                        
-                    </Style>
+                        <Style BasedOn="{StaticResource MaterialDesignListBoxItem}"
+                               TargetType="ListViewItem">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Setter Property="IsSelected"
+                                            Value="True" />
+                                    <Setter Property="Background"
+                                            Value="#FFEAF8FF" />
+                                </Trigger>
+                            </Style.Triggers>
+                            <Setter Property="Padding"
+                                    Value="0" />
+                            <Setter Property="Margin"
+                                    Value="8 2 10 9" />
+                            <Setter Property="materialDesign:ListBoxItemAssist.ShowSelection"
+                                    Value="False" />
+
+                        </Style>
                     </ListView.ItemContainerStyle>
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -356,98 +351,198 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </ScrollViewer>
-         
-        </Grid>
-   <!--khi nhấn vào hình cái bàn cửa sổ sẽ hiển thị thông tin bàn-->
-            <Popup  Placement="Center"
-                    x:Name="infoPopup"
-                    IsOpen="{Binding IsPopupOpenInfo}"
-                    AllowsTransparency="True"
-                    PopupAnimation="Fade">
-                <Border Height="300"
-                        Width="400"
-                        Background="White"
-                        CornerRadius="20"
-                        BorderBrush="#E0AE8A"
-                        BorderThickness="3">
-                    <StackPanel>
 
-                        <TextBlock HorizontalAlignment="Center"
-                                   Text="Thông tin bàn"
-                                   FontSize="23"
-                                   Margin="0,10,0,0"
-                                   Foreground="#CC824D"
-                                   FontWeight="Bold"></TextBlock>
-                        <Grid Margin="0,25,0,0">
-                            <TextBlock Text="ID Bàn"
-                                       FontWeight="Bold"
-                                       Margin="25,0,0,0"></TextBlock>
-                            <TextBlock Text="Loại bàn"
-                                       FontWeight="Bold"
-                                       HorizontalAlignment="Left"
-                                       Margin="242,0,0,0" />
-                        </Grid>
-                        <Grid Margin="0,10,0,0">
-                            <Border Margin="20,0,0,0"
-                                    Height="34"
-                                    Width="150"
-                                    CornerRadius="16"
-                                    Background="White"
-                                    BorderBrush="#CC824D"
-                                    BorderThickness="1"
-                                    HorizontalAlignment="Left">
-                                <!--tb_ten-->
-                                <TextBlock Text="{Binding ID}"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"></TextBlock>
-                            </Border>
-                            <Border Margin="0,0,15,0"
-                                    Height="34"
-                                    Width="150"
-                                    CornerRadius="16"
-                                    Background="White"
-                                    BorderBrush="#CC824D"
-                                    BorderThickness="1"
-                                    HorizontalAlignment="Right">
-                                <!--tb_khachhang-->
-                                <TextBlock Text="{Binding GenreName}"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"></TextBlock>
-                            </Border>
-                        </Grid>
-                        <Grid Margin="0,25,0,0">
-                            <TextBlock Text="Trạng Thái"
-                                       FontWeight="Bold"
-                                       Margin="25,0,0,0"></TextBlock>
-                        </Grid>
-                        <Grid Margin="0,10,0,0">
-                            <Border Margin="20,0,0,0"
-                                    Height="34"
-                                    Width="150"
-                                    CornerRadius="16"
-                                    Background="White"
-                                    BorderBrush="#CC824D"
-                                    BorderThickness="1"
-                                    HorizontalAlignment="Left">
-                                <!--tb_trangthai-->
-                                <TextBlock Text="{Binding Status}"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"></TextBlock>
-                            </Border>
-                        </Grid>
-                        <!--btn_close_info-->
-                        <Button Height="38"
-                                Width="65"
-                                Margin="270,25,0,0"
-                                Command="{Binding CloseInfo}">
+        </Grid>
+        <!--khi nhấn vào hình cái bàn cửa sổ sẽ hiển thị thông tin bàn-->
+        <Popup  Placement="Center"
+                x:Name="infoPopup"
+                IsOpen="{Binding IsPopupOpenInfo}"
+                AllowsTransparency="True"
+                PopupAnimation="Fade">
+            <Border Height="300"
+                    Width="400"
+                    Background="White"
+                    CornerRadius="20"
+                    BorderBrush="#E0AE8A"
+                    BorderThickness="3">
+                <StackPanel>
+
+                    <TextBlock HorizontalAlignment="Center"
+                               Text="Thông tin bàn"
+                               FontSize="23"
+                               Margin="0,10,0,0"
+                               Foreground="#CC824D"
+                               FontWeight="Bold"></TextBlock>
+                    <Grid Margin="0,25,0,0">
+                        <TextBlock Text="ID Bàn"
+                                   FontWeight="Bold"
+                                   Margin="25,0,0,0"></TextBlock>
+                        <TextBlock Text="Loại bàn"
+                                   FontWeight="Bold"
+                                   HorizontalAlignment="Left"
+                                   Margin="242,0,0,0" />
+                    </Grid>
+                    <Grid Margin="0,10,0,0">
+                        <Border Margin="20,0,0,0"
+                                Height="34"
+                                Width="150"
+                                CornerRadius="16"
+                                Background="White"
+                                BorderBrush="#CC824D"
+                                BorderThickness="1"
+                                HorizontalAlignment="Left">
+                            <!--tb_ten-->
+                            <TextBlock Text="{Binding ID}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"></TextBlock>
+                        </Border>
+                        <Border Margin="0,0,15,0"
+                                Height="34"
+                                Width="150"
+                                CornerRadius="16"
+                                Background="White"
+                                BorderBrush="#CC824D"
+                                BorderThickness="1"
+                                HorizontalAlignment="Right">
+                            <!--tb_khachhang-->
+                            <TextBlock Text="{Binding GenreName}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"></TextBlock>
+                        </Border>
+                    </Grid>
+                    <Grid Margin="0,25,0,0">
+                        <TextBlock Text="Trạng Thái"
+                                   FontWeight="Bold"
+                                   Margin="25,0,0,0"></TextBlock>
+                    </Grid>
+                    <Grid Margin="0,10,0,0">
+                        <Border Margin="20,0,0,0"
+                                Height="34"
+                                Width="150"
+                                CornerRadius="16"
+                                Background="White"
+                                BorderBrush="#CC824D"
+                                BorderThickness="1"
+                                HorizontalAlignment="Left">
+                            <!--tb_trangthai-->
+                            <TextBlock Text="{Binding Status}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"></TextBlock>
+                        </Border>
+                    </Grid>
+                    <!--btn_close_info-->
+                    <Button Height="38"
+                            Width="65"
+                            Margin="270,25,0,0"
+                            Command="{Binding CloseInfo}">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border      CornerRadius="16"
+                                             Background="#FFC3BDB9">
+
+                                    <TextBlock   Text="Đóng"
+                                                 FontWeight="Bold"
+                                                 FontSize="18"
+                                                 VerticalAlignment="Center"
+                                                 HorizontalAlignment="Center"
+                                                 Foreground="White" />
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </Popup>
+        <!--popup sửa bàn-->
+        <Popup  Placement="Center"
+                x:Name="Popup"
+                IsOpen="{Binding IsPopupOpenEdit}"
+                AllowsTransparency="True"
+                PopupAnimation="Fade">
+            <Border Height="400"
+                    Width="380"
+                    Background="White"
+                    CornerRadius="20"
+                    BorderBrush="#E0AE8A"
+                    BorderThickness="2">
+                <StackPanel>
+
+                    <TextBlock FontSize="32"
+                               Margin="0,16,0,0"
+                               HorizontalAlignment="Center"
+                               Text="Sửa bàn"
+                               Foreground="#CC824D"
+                               FontWeight="Bold"></TextBlock>
+
+                    <TextBlock Text="Loại bàn"
+                               FontWeight="Bold"
+                               Margin="40,25,0,15"
+                               FontSize="19"></TextBlock>
+
+                    <Border  Height="50"
+                             Width="300"
+                             BorderThickness="1.5"
+                             BorderBrush="#FFE0AE8A"
+                             CornerRadius="16"
+                             Background="#FFF4F4">
+
+                        <ComboBox Width="280"
+                                  Height="40"
+                                  ItemsSource="{Binding GenreList }"
+                                  SelectedItem="{Binding GenreName}"
+                                  Margin="0,0,0,0"
+                                  Padding="12,2.4"
+                                  Background="#FFF4F4"
+                                  HorizontalAlignment="Center"
+                                  VerticalContentAlignment="Center"
+                                  materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                  materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                  BorderThickness="0"
+                                  FontFamily="Inter"
+                                  FontSize="18">
+                        </ComboBox>
+                    </Border>
+
+                    <TextBlock Text="Trạng thái"
+                               FontWeight="Bold"
+                               Margin="40,20,0,15"
+                               FontSize="19"></TextBlock>
+
+                    <Border  Height="50"
+                             Width="300"
+                             BorderThickness="1.5"
+                             BorderBrush="#FFE0AE8A"
+                             CornerRadius="16"
+                             Background="#FFF4F4">
+                        <ComboBox Width="280"
+                                  Height="40"
+                                  Padding="12,2.4"
+                                  ItemsSource="{Binding StatusList}"
+                                  SelectedItem="{Binding Status}"
+                                  Background="#FFF4F4"
+                                  HorizontalAlignment="Center"
+                                  VerticalContentAlignment="Center"
+                                  materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                  materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                  BorderThickness="0"
+                                  FontFamily="Inter"
+                                  FontSize="18">
+
+                        </ComboBox>
+                    </Border>
+                    <Grid Margin="0,40,0,0">
+                        <Button Height="48"
+                                Width="97"
+                                HorizontalAlignment="Left"
+                                Margin="45,0,0,0"
+                                Command="{Binding Edit}">
                             <Button.Template>
                                 <ControlTemplate>
-                                    <Border      CornerRadius="16"
-                                                 Background="#FFC3BDB9">
-
-                                        <TextBlock   Text="Đóng"
+                                    <Border      CornerRadius="24"
+                                                 Background="#F0BD70">
+                                        <TextBlock   Text="Sửa"
                                                      FontWeight="Bold"
-                                                     FontSize="18"
+                                                     FontSize="20"
                                                      VerticalAlignment="Center"
                                                      HorizontalAlignment="Center"
                                                      Foreground="White" />
@@ -455,258 +550,158 @@
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
-                    </StackPanel>
-                </Border>
-            </Popup>
-            <!--popup sửa bàn-->
-            <Popup  Placement="Center"
-                    x:Name="Popup"
-                    IsOpen="{Binding IsPopupOpenEdit}"
-                    AllowsTransparency="True"
-                    PopupAnimation="Fade">
-                <Border Height="400"
-                        Width="380"
-                        Background="White"
-                        CornerRadius="20"
-                        BorderBrush="#E0AE8A"
-                        BorderThickness="2">
-                    <StackPanel>
+                        <Button Height="48"
+                                Width="97"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,45,0"
+                                Command="{Binding CloseEdit}">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Border      CornerRadius="24"
+                                                 Background="#FFC3BDB9">
+                                        <TextBlock   Text="Đóng"
+                                                     FontWeight="Bold"
+                                                     FontSize="20"
+                                                     VerticalAlignment="Center"
+                                                     HorizontalAlignment="Center"
+                                                     Foreground="White" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Popup>
+        <!--popup thêm bàn-->
+        <Popup  Placement="Center"
+                x:Name="addPopup"
+                IsOpen="{Binding IsPopupOpenAdd}"
+                AllowsTransparency="True"
+                PopupAnimation="Fade">
+            <Border Height="400"
+                    Width="380"
+                    Background="White"
+                    CornerRadius="20"
+                    BorderBrush="#E0AE8A"
+                    BorderThickness="2">
+                <StackPanel>
 
-                        <TextBlock FontSize="32"
-                                   Margin="0,16,0,0"
-                                   HorizontalAlignment="Center"
-                                   Text="Sửa bàn"
-                                   Foreground="#CC824D"
-                                   FontWeight="Bold"></TextBlock>
+                    <TextBlock FontSize="32"
+                               Margin="0,16,0,0"
+                               HorizontalAlignment="Center"
+                               Text="Thêm bàn"
+                               Foreground="#CC824D"
+                               FontWeight="Bold"></TextBlock>
 
-                        <TextBlock Text="Loại bàn"
-                                   FontWeight="Bold"
-                                   Margin="40,25,0,15"
-                                   FontSize="19"></TextBlock>
+                    <TextBlock Text="Loại bàn"
+                               FontWeight="Bold"
+                               Margin="40,20,0,10"
+                               FontSize="19"></TextBlock>
 
-                        <Border  Height="50"
-                                 Width="300"
-                                 BorderThickness="1.5"
-                                 BorderBrush="#FFE0AE8A"
-                                 CornerRadius="16"
-                                 Background="#FFF4F4">
+                    <Border  Height="50"
+                             Width="300"
+                             BorderThickness="1.5"
+                             BorderBrush="#FFE0AE8A"
+                             CornerRadius="16"
+                             Background="#FFF4F4">
 
-                            <ComboBox Width="280"
-                                      Height="40"
-                                      ItemsSource="{Binding GenreList }"
-                                      SelectedItem="{Binding GenreName}"
-                                      Margin="0,0,0,0"
-                                      Padding="12,2.4"
-                                      Background="#FFF4F4"
-                                      HorizontalAlignment="Center"
-                                      VerticalContentAlignment="Center"
-                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                      materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
-                                      BorderThickness="0"
-                                      FontFamily="Inter"
-                                      FontSize="18">
-                            </ComboBox>
-                        </Border>
+                        <ComboBox Width="260"
+                                  Height="30"
+                                  ItemsSource="{Binding GenreList }"
+                                  SelectedItem="{Binding GenreName}"
+                                  Margin="0,0,0,0"
+                                  Padding="0"
+                                  Background="#FFF4F4"
+                                  HorizontalAlignment="Center"
+                                  VerticalContentAlignment="Center"
+                                  materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                  materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                  BorderThickness="0"
+                                  FontFamily="Inter"
+                                  FontSize="18">
+                        </ComboBox>
 
-                        <TextBlock Text="Trạng thái"
-                                   FontWeight="Bold"
-                                   Margin="40,20,0,15"
-                                   FontSize="19"></TextBlock>
+                    </Border>
 
-                        <Border  Height="50"
-                                 Width="300"
-                                 BorderThickness="1.5"
-                                 BorderBrush="#FFE0AE8A"
-                                 CornerRadius="16"
-                                 Background="#FFF4F4">
-                            <ComboBox Width="280"
-                                      Height="40"
-                                      Padding="12,2.4"
-                                      ItemsSource="{Binding StatusList}"
-                                      SelectedItem="{Binding Status}"
-                                      Background="#FFF4F4"
-                                      HorizontalAlignment="Center"
-                                      VerticalContentAlignment="Center"
-                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                      materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
-                                      BorderThickness="0"
-                                      FontFamily="Inter"
-                                      FontSize="18">
+                    <TextBlock Text="Trạng thái"
+                               FontWeight="Bold"
+                               Margin="40,20,0,10"
+                               FontSize="19"></TextBlock>
 
-                            </ComboBox>
-                        </Border>
-                        <Grid Margin="0,40,0,0">
-                            <Button Height="48"
-                                    Width="97"
-                                    HorizontalAlignment="Left"
-                                    Margin="45,0,0,0"
-                                    Command="{Binding Edit}">
-                                <Button.Template>
-                                    <ControlTemplate>
-                                        <Border      CornerRadius="24"
-                                                     Background="#F0BD70">
-                                            <TextBlock   Text="Sửa"
-                                                         FontWeight="Bold"
-                                                         FontSize="20"
-                                                         VerticalAlignment="Center"
-                                                         HorizontalAlignment="Center"
-                                                         Foreground="White" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                            <Button Height="48"
-                                    Width="97"
-                                    HorizontalAlignment="Right"
-                                    Margin="0,0,45,0"
-                                    Command="{Binding CloseEdit}">
-                                <Button.Template>
-                                    <ControlTemplate>
-                                        <Border      CornerRadius="24"
-                                                     Background="#FFC3BDB9">
-                                            <TextBlock   Text="Đóng"
-                                                         FontWeight="Bold"
-                                                         FontSize="20"
-                                                         VerticalAlignment="Center"
-                                                         HorizontalAlignment="Center"
-                                                         Foreground="White" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                        </Grid>
-                    </StackPanel>
-                </Border>
-            </Popup>
-            <!--popup thêm bàn-->
-            <Popup  Placement="Center"
-                    x:Name="addPopup"
-                    IsOpen="{Binding IsPopupOpenAdd}"
-                    AllowsTransparency="True"
-                    PopupAnimation="Fade">
-                <Border Height="400"
-                        Width="380"
-                        Background="White"
-                        CornerRadius="20"
-                        BorderBrush="#E0AE8A"
-                        BorderThickness="2">
-                    <StackPanel>
+                    <Border  Height="50"
+                             Width="300"
+                             BorderThickness="1.5"
+                             BorderBrush="#FFE0AE8A"
+                             CornerRadius="16"
+                             Background="#FFF4F4">
+                        <ComboBox Width="260"
+                                  Height="30"
+                                  Text="{Binding Status}"
+                                  Margin="0,0,0,0"
+                                  Padding="0"
+                                  Background="#FFF4F4"
+                                  HorizontalAlignment="Center"
+                                  VerticalContentAlignment="Center"
+                                  materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                  materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
+                                  BorderThickness="0"
+                                  FontFamily="Inter"
+                                  FontSize="18">
+                            <TextBlock Text="Còn trống"
+                                       FontSize="18"></TextBlock>
+                            <TextBlock   Text="Đã đặt"
+                                         FontSize="18"></TextBlock>
+                            <TextBlock Text="Đang sửa chữa"
+                                       FontSize="18"></TextBlock>
+                        </ComboBox>
 
-                        <TextBlock FontSize="32"
-                                   Margin="0,16,0,0"
-                                   HorizontalAlignment="Center"
-                                   Text="Thêm bàn"
-                                   Foreground="#CC824D"
-                                   FontWeight="Bold"></TextBlock>
 
-                        <TextBlock Text="Loại bàn"
-                                   FontWeight="Bold"
-                                   Margin="40,20,0,10"
-                                   FontSize="19"></TextBlock>
 
-                        <Border  Height="50"
-                                 Width="300"
-                                 BorderThickness="1.5"
-                                 BorderBrush="#FFE0AE8A"
-                                 CornerRadius="16"
-                                 Background="#FFF4F4">
-
-                            <ComboBox Width="260"
-                                      Height="30"
-                                      ItemsSource="{Binding GenreList }"
-                                      SelectedItem="{Binding GenreName}"
-                                      Margin="0,0,0,0"
-                                      Padding="0"
-                                      Background="#FFF4F4"
-                                      HorizontalAlignment="Center"
-                                      VerticalContentAlignment="Center"
-                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                      materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
-                                      BorderThickness="0"
-                                      FontFamily="Inter"
-                                      FontSize="18">
-                            </ComboBox>
-
-                        </Border>
-
-                        <TextBlock Text="Trạng thái"
-                                   FontWeight="Bold"
-                                   Margin="40,20,0,10"
-                                   FontSize="19"></TextBlock>
-
-                        <Border  Height="50"
-                                 Width="300"
-                                 BorderThickness="1.5"
-                                 BorderBrush="#FFE0AE8A"
-                                 CornerRadius="16"
-                                 Background="#FFF4F4">
-                            <ComboBox Width="260"
-                                      Height="30"
-                                      Text="{Binding Status}"                                  
-                                      Margin="0,0,0,0"
-                                      Padding="0"
-                                      Background="#FFF4F4"
-                                      HorizontalAlignment="Center"
-                                      VerticalContentAlignment="Center"
-                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                      materialDesign:TextFieldAssist.TextFieldCornerRadius="24"
-                                      BorderThickness="0"
-                                      FontFamily="Inter"
-                                      FontSize="18">
-                                <TextBlock Text="Còn trống"
-                                           FontSize="18"></TextBlock>
-                                <TextBlock   Text="Đã đặt"
-                                             FontSize="18"></TextBlock>
-                                <TextBlock Text="Đang sửa chữa"
-                                           FontSize="18"></TextBlock>
-                            </ComboBox>
-
-                           
-
-                        </Border>
-                        <Grid Margin="0,40,0,0">
-                            <Button Height="48"
-                                    Width="97"
-                                    HorizontalAlignment="Left"
-                                    Margin="45,0,0,0"
-                                    Command="{Binding Add}">
-                                <Button.Template>
-                                    <ControlTemplate>
-                                        <Border      CornerRadius="24"
-                                                     Background="#F0BD70">
-                                            <TextBlock   Text="Thêm"
-                                                         FontWeight="Bold"
-                                                         FontSize="20"
-                                                         VerticalAlignment="Center"
-                                                         HorizontalAlignment="Center"
-                                                         Foreground="White" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                            <Button Height="48"
-                                    Width="97"
-                                    HorizontalAlignment="Right"
-                                    Margin="0,0,45,0"
-                                    Command="{Binding CloseAdd}">
-                                <Button.Template>
-                                    <ControlTemplate>
-                                        <Border      CornerRadius="24"
-                                                     Background="#FFC3BDB9">
-                                            <TextBlock   Text="Đóng"
-                                                         FontWeight="Bold"
-                                                         FontSize="20"
-                                                         VerticalAlignment="Center"
-                                                         HorizontalAlignment="Center"
-                                                         Foreground="White" />
-                                        </Border>
-                                    </ControlTemplate>
-                                </Button.Template>
-                            </Button>
-                        </Grid>
-                    </StackPanel>
-                </Border>
-            </Popup>
+                    </Border>
+                    <Grid Margin="0,40,0,0">
+                        <Button Height="48"
+                                Width="97"
+                                HorizontalAlignment="Left"
+                                Margin="45,0,0,0"
+                                Command="{Binding Add}">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Border      CornerRadius="24"
+                                                 Background="#F0BD70">
+                                        <TextBlock   Text="Thêm"
+                                                     FontWeight="Bold"
+                                                     FontSize="20"
+                                                     VerticalAlignment="Center"
+                                                     HorizontalAlignment="Center"
+                                                     Foreground="White" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                        <Button Height="48"
+                                Width="97"
+                                HorizontalAlignment="Right"
+                                Margin="0,0,45,0"
+                                Command="{Binding CloseAdd}">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Border      CornerRadius="24"
+                                                 Background="#FFC3BDB9">
+                                        <TextBlock   Text="Đóng"
+                                                     FontWeight="Bold"
+                                                     FontSize="20"
+                                                     VerticalAlignment="Center"
+                                                     HorizontalAlignment="Center"
+                                                     Foreground="White" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Popup>
 
     </Grid>
 </Page>

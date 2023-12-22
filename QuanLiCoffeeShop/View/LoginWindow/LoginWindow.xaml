@@ -78,7 +78,7 @@
                                      FontSize="12"
                                      materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                      Text="{Binding Username}" />
-                            <TextBlock Text="Mật Khẩu"
+                            <TextBlock Text="Mật khẩu"
                                        FontFamily="Inter"
                                        FontSize="11.2"
                                        FontWeight="Medium"

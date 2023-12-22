@@ -193,7 +193,7 @@
                                                         VerticalAlignment="Center"
                                                         FontSize="18"
                                                         Foreground="#E0AE8A"
-                                                        Text="Trợ giúp" />
+                                                        Text="Fanpage" />
                                                 </StackPanel>
                                             </ControlTemplate>
                                         </Button.Template>

@@ -1,4 +1,6 @@
 # Quản lí coffee shop
+![appicon](https://github.com/DuongWuangDat/IT008-QuanLiCoffeeShop/assets/118280757/8402b6cb-0ed1-4cb5-94db-1ac250e9f6e8)
+
 ## Thành viên nhóm:
 - Dương Quang Đạt- 22520208
 - Nguyễn Đại Dương- 22520304

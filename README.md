@@ -1,4 +1,6 @@
 # Quản lí coffee shop
+![appicon](https://github.com/DuongWuangDat/IT008-QuanLiCoffeeShop/assets/118280757/8402b6cb-0ed1-4cb5-94db-1ac250e9f6e8)
+
 ## Thành viên nhóm:
 - Dương Quang Đạt- 22520208
 - Nguyễn Đại Dương- 22520304
@@ -30,15 +32,9 @@
   - Hiện tại server của chúng tôi đang được online bạn sẽ có thể chạy ngay mà không cần các thao tác phức tạp
     
 **User**
-- Download repository này về
-- Local:
-  - Mở Microsoft SQL Server
-  - Chạy query "QuanLiCoffeeShop.sql"
-  - Vào App.config, sửa thuộc tính connectionstring từ sau "provider connection string=\&quot;" đến "\&quot;" thành "data source={your server};initial catalog={your database};integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"
-  - Trong đó {your server} sẽ là tên server của bạn, {your database} sẽ là tên database của bạn
-  - Bấm Ctrl + B (Chuyển sang chế độ Release) sau đó bạn vào thư mục bin/Release để chạy file .exe
-- Server online:
-  - Hiện tại server của chúng tôi đang được online bạn có thể Ctrl + B ngay mà không cần các thao tác phức tạp
+- Download từ link này [Install](https://www.mediafire.com/file/q7w86yoq972ui7k/CoffeetimeSetup.msi/file)
+- Chạy file -> Next -> Browse location (thư mục muốn tại về) -> Next -> Đợi tải về -> Close
+- Trải nghiệm app
   
 *Server sẽ ngừng hoạt động vào 12/01/2024*
 # Tổng kết:

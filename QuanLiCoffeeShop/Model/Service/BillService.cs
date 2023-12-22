@@ -172,19 +172,23 @@ namespace QuanLiCoffeeShop.Model.Service
 
                     };
 
-                    foreach (var g in newBill.BillInfo)
+                    List<BillInfo> billInfoList = new List<BillInfo>();
+
+                    for (int i = 0; i < newBill.BillInfo.Count; i++)
                     {
                         BillInfo billInfo = new BillInfo
                         {
                             IDBill = curID,
-                            IDProduct = g.IDProduct,
+                            IDProduct = newBill.BillInfo[i].IDProduct,
                             IsDeleted = false,
-                            PriceItem = g.PriceItem,
-                            Description = g.Description,
-                            Count = g.Count,
+                            PriceItem = newBill.BillInfo[i].PriceItem,
+                            Description = newBill.BillInfo[i].Description,
+                            Count = newBill.BillInfo[i].Count
                         };
-                        context.BillInfo.Add(billInfo);
+                        billInfoList.Add(billInfo);
                     }
+
+                    context.BillInfo.AddRange(billInfoList);
                     context.Bill.Add(bill);
                     await context.SaveChangesAsync();
                     return (true, "Them thanh cong");

@@ -7,8 +7,7 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Foreground" Value="White" />
         <Style.Triggers>
-            <Trigger Property="IsKeyboardFocused" Value="True">
-            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True" />
         </Style.Triggers>
     </Style>
 </ResourceDictionary>

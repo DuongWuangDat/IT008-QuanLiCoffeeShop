@@ -469,6 +469,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     {
                         PayEnabled = false;
                         PayContent = "Đang xử lý";
+
                         (Staff a, bool success1) = await StaffService.Ins.FindStaff(currentStaff.ID);
                         billInfoList = new List<BillInfoDTO>(BillInfoList);
                         SelectedBill.BillInfo = billInfoList;
@@ -507,7 +508,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                             NextBillID++;
 
 
-
+                        // Lâu
                         (bool isAdded, string messageAdd) = await BillService.Ins.AddNewBill(SelectedBill);
                         if (isAdded)
                         {
@@ -532,19 +533,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
 
                             for (int i = 0; i < BillInfoList.Count; i++)
                             {
-                                Product k = BillInfoList[i].Product;
-                                Product prd = new Product
-                                {
-                                    ID = k.ID,
-                                    DisplayName = k.DisplayName,
-                                    Price = k.Price,
-                                    IDGenre = k.IDGenre,
-                                    Count = k.Count - BillInfoList[i].Count,
-                                    Description = k.Description,
-                                    Image = k.Image,
-                                    IsDeleted = k.IsDeleted,
-                                };
-                                (bool ss, string me) = await ProductService.Ins.EditPrD(prd, BillInfoList[i].Product.ID);
+                                (bool ss, string me) = await ProductService.Ins.EditPrD(BillInfoList[i].Product, BillInfoList[i].Product.ID);
                                 if (ss == false) { MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa lượng hàng thất bại!"); }
                             }
 
@@ -573,7 +562,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     }
                 }                
             });
-            EndBill = new RelayCommand<object>((p) =>
+            EndBill = new RelayCommand<Button>((p) =>
             {
                 if (SelectedSeatItem != null)
                 {
@@ -590,6 +579,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                 wd.ShowDialog();
                 if (wd.DialogResult == true)
                 {
+                    p.IsEnabled = false;
                     if (SelectedSeatItem.Status == "Đang sửa chữa")
                     {
                         MessageBoxCustom.Show(MessageBoxCustom.Error, "Bàn này đang được sửa chữa");
@@ -628,7 +618,7 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                     SelectedBill = null;
                     SelectedSeatItem = null;
                     SelectedSeatItem = new SeatDTO();
-
+                    p.IsEnabled = true;
                 }
             });
             #endregion

@@ -33,8 +33,6 @@
     
 **User**
 - Download từ link này [Install](https://www.mediafire.com/file/82j9027rf8kdl36/CoffeeShopSetup.exe/file)
-- Chạy file -> Next -> Browse location (thư mục muốn tại về) -> Next -> Đợi tải về -> Close
-- Trải nghiệm app
   
 *Server sẽ ngừng hoạt động vào 12/01/2024*
 # Tổng kết:

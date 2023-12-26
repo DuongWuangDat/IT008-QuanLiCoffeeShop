@@ -12,10 +12,10 @@
     AllowsTransparency="True"
     Background="Transparent"
     DataContext="{StaticResource StaffPageVM}"
+    Icon="/Resources/Icon/AppIcon.ico"
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
-    Icon="/Resources/Icon/AppIcon.ico"
     WindowStyle="None"
     mc:Ignorable="d">
     <Window.Resources>
@@ -257,7 +257,7 @@
                                 Background="#D9D9D9"
                                 BorderThickness="0"
                                 FontSize="12.8"
-                                Text="{Binding EditBirthDay, StringFormat=dd/MM/yyyy, Mode=TwoWay}" />
+                                Text="{Binding EditBirthDay, StringFormat=ddMMyyyy}" />
 
                         </StackPanel>
 
@@ -282,7 +282,8 @@
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 FontSize="12.8"
-                                Text="{Binding EditStartDate, StringFormat=dd/MM/yyyy, Mode=TwoWay}" />
+                                Text="{Binding EditStartDate, StringFormat=ddMMyyyy, Mode=TwoWay}" />
+
                         </StackPanel>
 
                         <!--  Trạng thái  -->

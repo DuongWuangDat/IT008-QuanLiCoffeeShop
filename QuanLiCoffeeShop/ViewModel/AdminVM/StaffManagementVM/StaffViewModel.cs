@@ -150,9 +150,9 @@ namespace QuanLiCoffeeShop.ViewModel
             set { editDisplayName = value; }
         }
 
-        private string editStartDate;
+        private DateTime? editStartDate;
 
-        public string EditStartDate
+        public DateTime? EditStartDate
         {
             get { return editStartDate; }
             set { editStartDate = value; }
@@ -182,9 +182,9 @@ namespace QuanLiCoffeeShop.ViewModel
             set { editPhoneNumber = value; }
         }
 
-        private string editBirthDay;
+        private DateTime? editBirthDay;
 
-        public string EditBirthDay
+        public DateTime? EditBirthDay
         {
             get { return editBirthDay; }
             set { editBirthDay = value; }
@@ -399,14 +399,14 @@ namespace QuanLiCoffeeShop.ViewModel
 
             OpenEditStaffCommand = new RelayCommand<object>(null, (p) =>
             {
-                EditBirthDay = SelectedItem.BirthDay.ToString();
+                EditBirthDay = SelectedItem.BirthDay;
                 EditDisplayName = SelectedItem.DisplayName;
                 EditEmail = SelectedItem.Email;
                 EditGender = SelectedItem.Gender.Trim();
                 EditPassWord = null;
                 EditPhoneNumber = SelectedItem.PhoneNumber;
                 EditRole = SelectedItem.Role;
-                EditStartDate = SelectedItem.StartDate.ToString();
+                EditStartDate = SelectedItem.StartDate;
                 EditStatus = SelectedItem.Status;
                 EditUserName = SelectedItem.UserName;
                 EditWage = ((int)SelectedItem.Wage).ToString();
@@ -429,15 +429,10 @@ namespace QuanLiCoffeeShop.ViewModel
 
                 else
                 {
-                    DateTime tempBirthDay;
-                    DateTime.TryParseExact(EditBirthDay, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempBirthDay);
-
-                    DateTime tempStartDate;
-                    DateTime.TryParseExact(EditStartDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempStartDate);
 
                     if ((EditPassWord == null || EditPassWord == "") && EditDisplayName == SelectedItem.DisplayName && EditEmail == SelectedItem.Email
-                        && EditGender == SelectedItem.Gender.Trim() && tempStartDate == SelectedItem.StartDate && EditStatus == SelectedItem.Status
-                        && EditUserName == SelectedItem.UserName && tempBirthDay == SelectedItem.BirthDay && EditPhoneNumber == SelectedItem.PhoneNumber
+                        && EditGender == SelectedItem.Gender.Trim() && EditStartDate == SelectedItem.StartDate && EditStatus == SelectedItem.Status
+                        && EditUserName == SelectedItem.UserName && EditBirthDay == SelectedItem.BirthDay && EditPhoneNumber == SelectedItem.PhoneNumber
                         && EditRole == SelectedItem.Role && iWage == SelectedItem.Wage)
                     {
                         MessageBoxCustom.Show(MessageBoxCustom.Success, "Không có gì mới để chỉnh sửa");
@@ -445,13 +440,13 @@ namespace QuanLiCoffeeShop.ViewModel
                         return;
                     }
 
-                    if (DateTime.Compare(tempBirthDay, new DateTime(1900, 1, 1)) < 0 || DateTime.Compare(tempBirthDay, DateTime.Now) > 0)
+                    if (DateTime.Compare((DateTime)EditBirthDay, new DateTime(1900, 1, 1)) < 0 || DateTime.Compare((DateTime)EditBirthDay, DateTime.Now) > 0)
                         MessageBoxCustom.Show(MessageBoxCustom.Error, "Ngày sinh không hợp lệ");
 
-                    else if (DateTime.Compare(tempStartDate, new DateTime(1900, 1, 1)) < 0 || DateTime.Compare(tempStartDate, DateTime.Now) > 0)
+                    else if (DateTime.Compare((DateTime)EditStartDate, new DateTime(1900, 1, 1)) < 0 || DateTime.Compare((DateTime)EditStartDate, DateTime.Now) > 0)
                         MessageBoxCustom.Show(MessageBoxCustom.Error, "Ngày bắt đầu không hợp lệ");
 
-                    else if (tempStartDate.Year - tempBirthDay.Year < 16)
+                    else if (((DateTime)EditStartDate).Year - ((DateTime)EditBirthDay).Year < 16)
                         MessageBoxCustom.Show(MessageBoxCustom.Error, "Đảm bảo nhân viên vào làm trên 16 tuổi");
 
                     else
@@ -470,11 +465,11 @@ namespace QuanLiCoffeeShop.ViewModel
                             DisplayName = this.EditDisplayName,
                             Email = this.EditEmail,
                             Gender = this.EditGender,
-                            StartDate = tempStartDate,
+                            StartDate = EditStartDate,
                             Status = this.EditStatus,
                             UserName = this.EditUserName,
                             PassWord = pass,
-                            BirthDay = tempBirthDay,
+                            BirthDay = EditBirthDay,
                             PhoneNumber = this.EditPhoneNumber,
                             Role = this.EditRole,
                             Wage = iWage,

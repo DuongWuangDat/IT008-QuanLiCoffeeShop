@@ -91,7 +91,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="13"
+                                FontSize="15"
                                 Text="{Binding DisplayName}" />
 
                         </StackPanel>
@@ -118,7 +118,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="13"
+                                FontSize="15"
                                 Text="{Binding Email}" />
                         </StackPanel>
 
@@ -144,7 +144,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="13"
+                                FontSize="15"
                                 Text="{Binding PhoneNumber}" />
                         </StackPanel>
 
@@ -167,7 +167,7 @@
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
-                                FontSize="13"
+                                FontSize="15"
                                 Text="{Binding Role}">
                                 <ComboBoxItem Content="Quản lí" />
                                 <ComboBoxItem Content="Nhân viên" />
@@ -197,7 +197,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="13"
+                                FontSize="15"
                                 PreviewKeyDown="TextBox_PreviewKeyDown"
                                 Text="{Binding Wage, Mode=TwoWay, StringFormat=N0}"
                                 TextChanged="TextBox_TextChanged" />
@@ -230,7 +230,7 @@
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
-                                FontSize="13"
+                                FontSize="15"
                                 Text="{Binding Gender}">
                                 <ComboBoxItem Content="Nam" />
                                 <ComboBoxItem Content="Nữ" />
@@ -258,7 +258,7 @@
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
-                                FontSize="13"
+                                FontSize="14"
                                 SelectedDate="{Binding BirthDay, Mode=TwoWay}" />
 
                         </StackPanel>
@@ -283,7 +283,7 @@
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
-                                FontSize="13"
+                                FontSize="14"
                                 SelectedDate="{Binding StartDate, Mode=TwoWay}" />
                         </StackPanel>
 
@@ -308,7 +308,7 @@
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
-                                FontSize="13"
+                                FontSize="15"
                                 Text="{Binding Status}">
                                 <ComboBoxItem Content="Đang làm" />
                                 <ComboBoxItem Content="Xin nghỉ" />
@@ -360,7 +360,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="13"
+                                FontSize="15"
                                 Text="{Binding UserName}" />
                         </StackPanel>
 
@@ -387,7 +387,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="13">
+                                FontSize="15">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="PasswordChanged">
                                         <i:InvokeCommandAction Command="{Binding PasswordChangedCommand}" CommandParameter="{Binding ElementName=passwordBox}" />
@@ -420,7 +420,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="13">
+                                FontSize="15">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="PasswordChanged">
                                         <i:InvokeCommandAction Command="{Binding ConfirmPasswordChangedCommand}" CommandParameter="{Binding ElementName=confirmPasswordBox}" />

@@ -308,7 +308,7 @@ namespace QuanLiCoffeeShop.ViewModel
                 int iWage = 0;
                 if (DisplayName == null || UserName == null || PassWord == null
                 || PhoneNumber == null || Wage == null || Status == null || Email == null
-                || Gender == null || Role == null || !int.TryParse(Wage.Replace(",", ""), out iWage)
+                || Gender == null || Role == null || !int.TryParse(Wage.Replace(".", ""), out iWage)
                 || DisplayName == "" || UserName == "" || PassWord == ""
                 || PhoneNumber == "" || Wage == "" || Status == "" || Email == ""
                 || Gender == "" || Role == "")
@@ -419,7 +419,7 @@ namespace QuanLiCoffeeShop.ViewModel
                 int iWage;
                 if (EditDisplayName == null || EditStartDate == null || EditUserName == null || EditPhoneNumber == null
                 || EditBirthDay == null || EditWage == null || EditStatus == null || EditEmail == null || EditGender == null
-                || EditRole == null || !int.TryParse(EditWage.Replace(",", ""), out iWage)
+                || EditRole == null || !int.TryParse(EditWage.Replace(".", ""), out iWage)
                 || EditDisplayName == "" || EditUserName == "" || EditPhoneNumber == ""
                 || EditWage == "" || EditStatus == "" || EditEmail == "" || EditGender == ""
                 || EditRole == "")
@@ -430,10 +430,10 @@ namespace QuanLiCoffeeShop.ViewModel
                 else
                 {
                     DateTime tempBirthDay;
-                    DateTime.TryParseExact(EditBirthDay, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempBirthDay);
+                    DateTime.TryParseExact(EditBirthDay, "dd/MM/yyyy", new CultureInfo("vi-VN"), DateTimeStyles.None, out tempBirthDay);
 
                     DateTime tempStartDate;
-                    DateTime.TryParseExact(EditStartDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tempStartDate);
+                    DateTime.TryParseExact(EditStartDate, "dd/MM/yyyy", new CultureInfo("vi-VN"), DateTimeStyles.None, out tempStartDate);
 
                     if ((EditPassWord == null || EditPassWord == "") && EditDisplayName == SelectedItem.DisplayName && EditEmail == SelectedItem.Email
                         && EditGender == SelectedItem.Gender.Trim() && tempStartDate == SelectedItem.StartDate && EditStatus == SelectedItem.Status

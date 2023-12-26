@@ -91,7 +91,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="12"
+                                FontSize="15"
                                 Text="{Binding EditDisplayName}" />
 
                         </StackPanel>
@@ -118,7 +118,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="12"
+                                FontSize="15"
                                 Text="{Binding EditEmail}" />
                         </StackPanel>
 
@@ -144,7 +144,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="12"
+                                FontSize="15"
                                 Text="{Binding EditPhoneNumber}" />
                         </StackPanel>
 
@@ -169,7 +169,7 @@
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
-                                FontSize="12.8"
+                                FontSize="15"
                                 ItemsSource="{Binding RoleList}"
                                 SelectedItem="{Binding EditRole, Mode=TwoWay}" />
                         </StackPanel>
@@ -197,7 +197,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="12"
+                                FontSize="15"
                                 PreviewKeyDown="TextBox_PreviewKeyDown"
                                 Text="{Binding EditWage}"
                                 TextChanged="TextBox_TextChanged" />
@@ -230,7 +230,7 @@
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
-                                FontSize="12.8"
+                                FontSize="15"
                                 ItemsSource="{Binding GenderList}"
                                 SelectedItem="{Binding EditGender, Mode=TwoWay}" />
                         </StackPanel>
@@ -256,7 +256,7 @@
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
-                                FontSize="12.8"
+                                FontSize="14"
                                 Text="{Binding EditBirthDay, StringFormat=dd/MM/yyyy, Mode=TwoWay}" />
 
                         </StackPanel>
@@ -281,7 +281,7 @@
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
-                                FontSize="12.8"
+                                FontSize="14"
                                 Text="{Binding EditStartDate, StringFormat=dd/MM/yyyy, Mode=TwoWay}" />
                         </StackPanel>
 
@@ -306,7 +306,7 @@
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
-                                FontSize="12.8"
+                                FontSize="15"
                                 ItemsSource="{Binding StatusList}"
                                 SelectedItem="{Binding EditStatus, Mode=TwoWay}" />
                         </StackPanel>
@@ -358,7 +358,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="12"
+                                FontSize="15"
                                 Text="{Binding EditUserName}" />
                         </StackPanel>
 
@@ -384,7 +384,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="12"
+                                FontSize="15"
                                 Text="{Binding EditPassWord, Mode=TwoWay}" />
                         </StackPanel>
 

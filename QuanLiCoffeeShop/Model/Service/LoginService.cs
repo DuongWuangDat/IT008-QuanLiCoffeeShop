@@ -40,7 +40,7 @@ namespace QuanLiCoffeeShop.Model.Service
                 mail.IsBodyHtml = true;
                 mail.From = new MailAddress("coffeetime2510@gmail.com");
                 mail.To.Add(email);
-                mail.Subject = "Test send email";
+                mail.Subject = "Coffee time xin thông báo";
                 mail.Body = "Username:" + username + "\n" +"New password:" + pass;
                 await smtpClient.SendMailAsync(mail);
             }

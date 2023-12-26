@@ -81,7 +81,7 @@
                         </GridViewColumn.HeaderContainerStyle>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding CreateAt}"
+                                <TextBlock Text="{Binding CreateAt, StringFormat='dd/MM/yyyy HH:mm:ss'}"
                                            HorizontalAlignment="Center"
                                            Margin="0 0 15 0"
                FontSize="18" 

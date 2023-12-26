@@ -15,6 +15,7 @@
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
+    Icon="/Resources/Icon/AppIcon.ico"
     WindowStyle="None"
     mc:Ignorable="d">
     <Window.Resources>

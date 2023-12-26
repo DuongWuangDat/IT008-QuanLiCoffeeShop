@@ -22,9 +22,7 @@ namespace QuanLiCoffeeShop.Model
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Bill>().HasOptional(p => p.Customer).WithMany(c => c.Bill).HasForeignKey(p => p.IDCus);
-            base.OnModelCreating(modelBuilder);
-            //throw new UnintentionalCodeFirstException();
+            throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<Bill> Bill { get; set; }

@@ -22,6 +22,7 @@
         BorderBrush="Transparent"
         BorderThickness="0"
         Background="Transparent"
+        Icon="/Resources/Icon/AppIcon.ico"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         FontFamily="{DynamicResource MaterialDesignFont}">
 

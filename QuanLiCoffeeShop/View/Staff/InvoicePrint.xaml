@@ -10,6 +10,7 @@
     Width="450"
     Height="600"
     DataContext="{StaticResource SalesMainPageVM}"
+    Icon="/Resources/Icon/AppIcon.ico"
     mc:Ignorable="d">
     <Window.Resources>
         <ResourceDictionary>

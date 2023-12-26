@@ -20,6 +20,7 @@
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
     TextOptions.TextRenderingMode="Auto"
     WindowStartupLocation="CenterScreen"
+    Icon="/Resources/Icon/AppIcon.ico"
     WindowStyle="None"
     mc:Ignorable="d">
     <Grid>

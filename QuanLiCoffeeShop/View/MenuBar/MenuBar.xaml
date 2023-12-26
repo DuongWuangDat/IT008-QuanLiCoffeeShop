@@ -13,6 +13,7 @@
         TextOptions.TextFormattingMode="Ideal"
         TextOptions.TextRenderingMode="Auto"
         Background="White"
+        Icon="/Resources/Icon/AppIcon.ico"
         FontFamily="{DynamicResource MaterialDesignFont}"
         >
 

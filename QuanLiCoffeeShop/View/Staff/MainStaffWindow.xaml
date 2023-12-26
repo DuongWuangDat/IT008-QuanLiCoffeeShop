@@ -8,7 +8,7 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="MainStaffWd"
-    Title="MainStaffWindow"
+    Title="Coffee Shop - Staff"
     d:DesignHeight="864"
     d:DesignWidth="1536"
     Closed="AdminWD_Closed"
@@ -21,6 +21,8 @@
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
     WindowStartupLocation="CenterScreen"
+    
+    Icon="/Resources/Icon/AppIcon.ico"
     WindowState="Maximized"
     mc:Ignorable="d">
     <Window.Resources>

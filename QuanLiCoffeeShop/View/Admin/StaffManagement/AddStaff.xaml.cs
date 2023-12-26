@@ -45,6 +45,13 @@ namespace QuanLiCoffeeShop.View.Admin.StaffManagement
 				MessageBoxCustom.Show(MessageBoxCustom.Error, "Lương không hợp lệ");
 			}
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+
 		private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
 			if (!((e.Key >= Key.D0 && e.Key <= Key.D9) ||  // Số từ 0 đến 9

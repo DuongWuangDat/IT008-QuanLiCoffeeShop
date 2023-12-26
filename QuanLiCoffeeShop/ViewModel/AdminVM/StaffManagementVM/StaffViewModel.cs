@@ -279,6 +279,7 @@ namespace QuanLiCoffeeShop.ViewModel
         public ICommand EditStaffCommand { get; }
         public ICommand OpenEditStaffCommand { get; }
         public ICommand CloseEditStaffCommand { get; }
+        public ICommand EditPasswordChangedCommand { get; }
         
         public StaffViewModel()
         {
@@ -392,7 +393,12 @@ namespace QuanLiCoffeeShop.ViewModel
                 passWord = p.Password;
             });
 
-            ConfirmPasswordChangedCommand = new RelayCommand<PasswordBox>(null, (p) =>
+			EditPasswordChangedCommand = new RelayCommand<PasswordBox>(null, (p) =>
+			{
+				EditPassWord = p.Password;
+			});
+
+			ConfirmPasswordChangedCommand = new RelayCommand<PasswordBox>(null, (p) =>
             {
                 confirmPassWord = p.Password;
             });

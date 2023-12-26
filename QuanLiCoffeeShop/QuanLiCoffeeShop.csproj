@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>AppIcon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CloudinaryDotNet, Version=1.22.0.0, Culture=neutral, PublicKeyToken=c8234dc617ae7841, processorArchitecture=MSIL">
       <HintPath>..\packages\CloudinaryDotNet.1.22.0\lib\net452\CloudinaryDotNet.dll</HintPath>
@@ -571,6 +574,7 @@
     <Resource Include="Resources\Icon\Remove.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="AppIcon.ico" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>

@@ -31,10 +31,13 @@ namespace QuanLiCoffeeShop.View.Admin.StaffManagement
             {
                 if (!string.IsNullOrEmpty(wageTextBox.Text))
                 {
-                    System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("en-US");
-                    var valueBefore = Int64.Parse(wageTextBox.Text, System.Globalization.NumberStyles.AllowThousands);
-                    wageTextBox.Text = String.Format(culture, "{0:N0}", valueBefore);
-                    wageTextBox.Select(wageTextBox.Text.Length, 0);
+					System.Globalization.CultureInfo culture = new System.Globalization.CultureInfo("vi-VN");
+					var valueBefore = Int64.Parse(wageTextBox.Text, System.Globalization.NumberStyles.AllowThousands);
+
+					string formattedValue = valueBefore.ToString("#,##0", culture);
+
+					wageTextBox.Text = formattedValue;
+					wageTextBox.Select(wageTextBox.Text.Length, 0);
                 }
             }
             catch (Exception)

@@ -574,6 +574,7 @@
     <Resource Include="Resources\Icon\Remove.png" />
   </ItemGroup>
   <ItemGroup>
+    <SplashScreen Include="Resources\Image\splash_screen.png" />
     <Resource Include="AppIcon.ico" />
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -585,7 +586,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-    <SplashScreen Include="Resources\Icon\appicon.png" />
+    <None Include="Resources\Icon\appicon.png" />
     <Resource Include="Resources\Icon\AppIcon.ico" />
     <Resource Include="Resources\Icon\PrintIcon.png" />
     <Resource Include="Resources\Icon\SubtractBlack_Icon.png" />

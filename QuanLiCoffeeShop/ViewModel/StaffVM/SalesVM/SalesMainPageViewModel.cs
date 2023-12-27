@@ -531,11 +531,11 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
                             (bool success, string messageEdit) = await SeatService.Ins.EditSeat(newseat);
                             UpdateBtn();
 
-                            for (int i = 0; i < BillInfoList.Count; i++)
-                            {
-                                (bool ss, string me) = await ProductService.Ins.EditPrD(BillInfoList[i].Product, BillInfoList[i].Product.ID);
-                                if (ss == false) { MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa lượng hàng thất bại!"); }
-                            }
+                            //for (int i = 0; i < BillInfoList.Count; i++)
+                            //{
+                            //    (bool ss, string me) = await ProductService.Ins.EditPrD(BillInfoList[i].Product, BillInfoList[i].Product.ID);
+                            //    if (ss == false) { MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa lượng hàng thất bại!"); }
+                            //}
 
                             (bool suc, string mEdit) = await CustomerService.Ins.updateSpend(TotalBillValue, CusOfBill.ID);
                             if (!suc) MessageBoxCustom.Show(MessageBoxCustom.Error, "Chỉnh sửa chi tiêu khách hàng thất bại!");
@@ -546,6 +546,11 @@ namespace QuanLiCoffeeShop.ViewModel.StaffVM.SalesVM
 
                             new InvoicePrint().ShowDialog();
 
+                        }
+                        else
+                        {
+                            MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi");
+                            PayContent = "";
                         }
                         resetData();
                         p.Content = new SeatPage();

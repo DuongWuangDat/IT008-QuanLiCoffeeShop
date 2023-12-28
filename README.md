@@ -18,6 +18,8 @@
 - Design UI/UX: Figma
 - Front-end và hệ thống API: WPF C#, MVVM, Entity Framework
 - Database: Microsoft SQL Server, Azure SQL Database
+## Link demo:
+- [Youtube](https://www.youtube.com/watch?v=OzczTjLEvE8&ab_channel=CubeModder)
 ## Hướng dẫn cài đặt:
 **Developer**
 - Clone repository này về máy

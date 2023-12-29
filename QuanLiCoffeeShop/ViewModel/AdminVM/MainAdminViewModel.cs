@@ -127,6 +127,8 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM
             get { return editRole; }
             set { editRole = value; }
         }
+
+        public ICommand PasswordChangedInformationCommand { get; set; }
         #endregion
 
         public ICommand FirstLoadCM { get; set; }
@@ -263,6 +265,11 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM
                 }
             });
 
-        }
+            PasswordChangedInformationCommand = new RelayCommand<PasswordBox>(null, (p) =>
+            {
+                EditPassWord = p.Password;
+            });
+
+		}
     }
 }

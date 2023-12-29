@@ -13,11 +13,11 @@
     AllowsTransparency="True"
     Background="Transparent"
     DataContext="{StaticResource MainAdminVM}"
+    Icon="/Resources/Icon/AppIcon.ico"
     MouseLeftButtonDown="Window_MouseLeftButtonDown"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
-    Icon="/Resources/Icon/AppIcon.ico"
     mc:Ignorable="d">
     <Window.Resources>
         <ResourceDictionary>
@@ -93,7 +93,7 @@
                                 BorderBrush="Black"
                                 BorderThickness="1"
                                 FontFamily="Inter"
-                                FontSize="12"
+                                FontSize="15"
                                 Text="{Binding EditDisplayName}" />
 
                         </StackPanel>
@@ -121,7 +121,7 @@
                                 BorderBrush="Black"
                                 BorderThickness="1"
                                 FontFamily="Inter"
-                                FontSize="12"
+                                FontSize="15"
                                 Text="{Binding EditEmail}" />
                         </StackPanel>
 
@@ -148,7 +148,7 @@
                                 BorderBrush="Black"
                                 BorderThickness="1"
                                 FontFamily="Inter"
-                                FontSize="12"
+                                FontSize="15"
                                 Text="{Binding EditPhoneNumber}" />
                         </StackPanel>
 
@@ -174,7 +174,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="12"
+                                FontSize="15"
                                 IsReadOnly="True"
                                 Text="{Binding EditRole}" />
                         </StackPanel>
@@ -202,7 +202,7 @@
                                 Background="#D9D9D9"
                                 BorderBrush="Transparent"
                                 FontFamily="Inter"
-                                FontSize="12"
+                                FontSize="15"
                                 IsReadOnly="True"
                                 Text="{Binding EditWage, StringFormat={}{0:N0} VNĐ}" />
                         </StackPanel>
@@ -234,7 +234,7 @@
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
-                                FontSize="12.8"
+                                FontSize="15"
                                 IsHitTestVisible="False"
                                 Text="{Binding EditGender}" />
                         </StackPanel>
@@ -258,7 +258,7 @@
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
-                                FontSize="12.8"
+                                FontSize="14"
                                 IsHitTestVisible="False"
                                 Text="{Binding EditBirthDay, StringFormat=dd/MM/yyyy, Mode=TwoWay}" />
 
@@ -282,7 +282,7 @@
                                 materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
-                                FontSize="12.8"
+                                FontSize="14"
                                 IsHitTestVisible="False"
                                 Text="{Binding EditStartDate, StringFormat=dd/MM/yyyy, Mode=TwoWay}" />
                         </StackPanel>
@@ -308,7 +308,7 @@
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="#D9D9D9"
                                 BorderThickness="0"
-                                FontSize="12.8"
+                                FontSize="15"
                                 IsHitTestVisible="False"
                                 Text="{Binding EditStatus}" />
                         </StackPanel>
@@ -361,7 +361,7 @@
                                 BorderBrush="Black"
                                 BorderThickness="1"
                                 FontFamily="Inter"
-                                FontSize="12"
+                                FontSize="15"
                                 Text="{Binding EditUserName}" />
                         </StackPanel>
 
@@ -376,7 +376,7 @@
                                 VerticalAlignment="Center"
                                 FontSize="12.8"
                                 Text="Mật khẩu" />
-                            <TextBox
+                            <PasswordBox
                                 Width="300"
                                 Height="30"
                                 Padding="12,2.4"
@@ -386,10 +386,17 @@
                                 materialDesign:TextFieldAssist.TextFieldCornerRadius="15"
                                 Background="White"
                                 BorderBrush="Black"
+                                Name="passwordBox"
                                 BorderThickness="1"
                                 FontFamily="Inter"
-                                FontSize="12"
-                                Text="{Binding EditPassWord, Mode=TwoWay}" />
+                                FontSize="15" >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="PasswordChanged">
+                                        <i:InvokeCommandAction Command="{Binding PasswordChangedInformationCommand}" CommandParameter="{Binding ElementName=passwordBox}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </PasswordBox>
+                            
                         </StackPanel>
 
                     </StackPanel>

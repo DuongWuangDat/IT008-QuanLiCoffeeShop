@@ -27,7 +27,9 @@
     <Window.Resources>
 
         <Style x:Key="TextBlockLogin" TargetType="TextBlock">
+            
             <Setter Property="Foreground" Value="Black" />
+            
             <Setter Property="FontSize" Value="19.2" />
             <Setter Property="FontWeight" Value="Bold" />
 

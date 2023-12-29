@@ -166,7 +166,7 @@
                                     Margin="10 0 20 0"
                                     Text="Từ" Height="17"></TextBlock>
                                 <DatePicker
-                                      SelectedDate="{Binding SelectedDateFrom, StringFormat=dd/MM/yyyy}"
+                                      SelectedDate="{Binding SelectedDateFrom, StringFormat=dd/MM/yyyy, Mode=TwoWay}"
                                     x:Name="DatePicker1"
                                       Width="100"
                                     SelectedDateFormat="Short"
@@ -200,7 +200,7 @@
                                     Margin="10 0 10 0"
                                     Text="Đến" Height="17"></TextBlock>
                                 <DatePicker
-                                    SelectedDate="{Binding SelectedDateTo, StringFormat=dd/MM/yyyy}"
+                                    SelectedDate="{Binding SelectedDateTo, StringFormat=dd/MM/yyyy, Mode=TwoWay}"
                                     x:Name="DatePicker2"                                    
                                     Width="100"
                                     materialDesign:CalendarAssist.IsHeaderVisible="False"

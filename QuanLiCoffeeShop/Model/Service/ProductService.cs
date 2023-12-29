@@ -182,5 +182,29 @@ namespace QuanLiCoffeeShop.Model.Service
             
 
         }
+        //update count product 
+        public async Task<(bool,string)> EditCountPrd(int id, int? countDelta)
+        {
+            try
+            {
+                using(var context = new QuanLiCoffeShopEntities())
+                {
+                    var prd = await context.Product.Where(p => p.ID == id).FirstOrDefaultAsync();
+                    if(prd == null) return(false, null);
+                    prd.Count = prd.Count - countDelta;
+                    if(prd.Count < 0) {
+                        return(false, null);
+                    }
+                    await context.SaveChangesAsync();
+                    return (true, "Da them thanh cong");
+                }
+                
+            }
+            catch
+            {
+                MessageBoxCustom.Show(MessageBoxCustom.Error, "Xảy ra lỗi khi sửa sản phẩm");
+                return (false, null);
+            }
+        }
     }
 }

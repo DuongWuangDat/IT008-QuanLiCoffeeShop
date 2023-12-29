@@ -91,7 +91,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
                     dates.Add(currentDate);
                 }
 
-                string[] dateStrings = dates.Select(date => date.ToString("dd-MM-yyyy")).ToArray();
+                string[] dateStrings = dates.Select(date => date.ToString("dd/MM/yyyy")).ToArray();
                 RevenueSeries = new SeriesCollection
                 {
                     new LineSeries
@@ -164,7 +164,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.ThongKeVM
                     currentDate = currentDate.AddDays(1);
                 }
 
-                string[] dateStrings = dates.Select(date => date.ToString("dd-MM-yyyy")).ToArray();
+                string[] dateStrings = dates.Select(date => date.ToString("dd/MM/yyyy")).ToArray();
                 RevenueSeries = new SeriesCollection
                 {
                     new LineSeries

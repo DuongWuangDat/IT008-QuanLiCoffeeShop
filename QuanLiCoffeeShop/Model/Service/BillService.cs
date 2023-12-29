@@ -174,18 +174,24 @@ namespace QuanLiCoffeeShop.Model.Service
 
                     List<BillInfo> billInfoList = new List<BillInfo>();
 
-                    for (int i = 0; i < newBill.BillInfo.Count; i++)
+                    foreach (var bI in newBill.BillInfo)
                     {
                         BillInfo billInfo = new BillInfo
                         {
                             IDBill = curID,
-                            IDProduct = newBill.BillInfo[i].IDProduct,
+                            IDProduct = bI.IDProduct,
                             IsDeleted = false,
-                            PriceItem = newBill.BillInfo[i].PriceItem,
-                            Description = newBill.BillInfo[i].Description,
-                            Count = newBill.BillInfo[i].Count
+                            PriceItem = bI.PriceItem,
+                            Description = bI.Description,
+                            Count = bI.Count
                         };
+                        (bool success, string msg) = await ProductService.Ins.EditCountPrd(bI.IDProduct, bI.Count);
+                        if (!success)
+                        {
+                            return (false, null);
+                        }
                         billInfoList.Add(billInfo);
+
                     }
 
                     context.BillInfo.AddRange(billInfoList);

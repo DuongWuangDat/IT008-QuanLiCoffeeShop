@@ -255,7 +255,7 @@
                                 VerticalAlignment="Top"
                                 Margin="50 0 15 0 "/>
                         <TextBlock Style="{DynamicResource TextBlock}" 
-                                Text="{Binding BillDate}" 
+                                Text="{Binding BillDate, StringFormat='dd/MM/yyyy HH:mm:ss'}" 
                                 Height="23" 
                                 VerticalAlignment="Top"/>
                     </StackPanel>

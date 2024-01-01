@@ -326,13 +326,22 @@ namespace QuanLiCoffeeShop.ViewModel
                         return;
                     }
                     if (DateTime.Compare(BirthDay, new DateTime(1900, 1, 1)) < 0 || DateTime.Compare(BirthDay, DateTime.Now) > 0)
+                    {
                         MessageBoxCustom.Show(MessageBoxCustom.Error, "Ngày sinh không hợp lệ");
+                        return;
+                    }    
 
                     else if (DateTime.Compare(StartDate, new DateTime(1900, 1, 1)) < 0 || DateTime.Compare(StartDate, DateTime.Now) > 0)
+                    {
                         MessageBoxCustom.Show(MessageBoxCustom.Error, "Ngày bắt đầu không hợp lệ");
+                        return;
+                    }    
 
                     else if (StartDate.Year - (BirthDay).Year < 16)
+                    {
                         MessageBoxCustom.Show(MessageBoxCustom.Error, "Đảm bảo nhân viên vào làm trên 16 tuổi");
+                        return;
+                    }    
                     string pass = Helper.MD5Hash(this.PassWord);
 
                     Staff newStaff = new Staff

@@ -166,6 +166,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
                         p.Close();
                         resetData();
                         CustomerList = new ObservableCollection<CustomerDTO>(await CustomerService.Ins.GetAllCus());
+                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Đã thêm khách hàng thành công");
                     }
                     else
                     {
@@ -213,6 +214,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
                     {
                         p.Close();
                         CustomerList = new ObservableCollection<CustomerDTO>(await CustomerService.Ins.GetAllCus());
+                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Đã sửa khách hàng thành công");
                     }
                     else
                     {
@@ -231,6 +233,7 @@ namespace QuanLiCoffeeShop.ViewModel.AdminVM.CustomerManagementVM
                     if (sucess)
                     {
                         CustomerList.Remove(SelectedItem);
+                        MessageBoxCustom.Show(MessageBoxCustom.Success, "Đã xóa khách hàng thành công");
                     }
                     else
                     {

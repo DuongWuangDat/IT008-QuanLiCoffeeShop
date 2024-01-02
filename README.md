@@ -34,8 +34,7 @@
   - Hiện tại server của chúng tôi đang được online bạn sẽ có thể chạy ngay mà không cần các thao tác phức tạp
     
 **User**
-- Download file setup [Install](https://drive.google.com/file/d/1fXkjcF10ea60qFyvIrbH1mIs5fhlM4cn/view?usp=drive_link&fbclid=IwAR0F_MJCjS1Qmjm06bBr-sBp6AgnsVaQ0hVpP9Ei21Pa_POQ8-nGNNX0fTo)
-  
+- Download file setup [Install](https://drive.google.com/file/d/1fXkjcF10ea60qFyvIrbH1mIs5fhlM4cn/view?fbclid=IwAR2Mt1kFvFetUnDCJA_7hPFcukg2IX2H6CgJYbe07uEen21X4nTzEbFOtgE)
 *Server sẽ ngừng hoạt động vào 12/01/2024*
 # Tổng kết:
 - Sản phẩm là nỗ lực hết mình của các thành viên trong nhóm. Thông qua đó, các thành viên đã học hỏi được nhiều về việc phát triển một dự án thực tế cũng như khó khăn sau này gặp phải.

@@ -26,9 +26,9 @@ namespace QuanLiCoffeeShop.Utils
 		}
 		private Account account;
 		private Cloudinary cloudinary;
-		private string CLOUD_NAME = "dtw9sgvqu";
-		private string API_KEY = "843333539914788";
-		private string API_SECRET = "xl6pXIEIgRtbjEgrjlKrzngAzJI";
+		private string CLOUD_NAME = "";
+		private string API_KEY = "";
+		private string API_SECRET = "";
 		public CloudService()
 		{
 			account = new Account(CLOUD_NAME, API_KEY, API_SECRET);
